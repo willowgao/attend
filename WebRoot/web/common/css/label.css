@@ -1,0 +1,11 @@
+.label_css{
+	margin-top: 20px;
+	margin-left: 30px;
+	position: relative;
+}
+
+/**
+easyui datagrid单元格实现溢出文本显示省略号的效果。
+**/
+.datagrid-btable .datagrid-cell{padding:3px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+

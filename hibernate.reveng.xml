@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="CLOCK_SETTING" schema="ATTEDN" class="ClockSetting"></table>
+	<table name="CLOCKEXCEPTION" schema="ATTEDN"
+		class="ClockException">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="DATADICTIONARY" schema="ATTEDN"
+		class="DataDictionary">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="CLOCK_EXCEP_APPROVE" schema="ATTEDN"
+		class="ClockExcepApprove">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="LEAVES" schema="ATTEDN" class="Leaves">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="LEAVES_APPROVE" schema="ATTEDN"
+		class="LeavesApprove">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="LEAVE_APPROVE_SETTING" schema="ATTEDN"
+		class="LeaveAppSet">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="DIARY_DAILY" schema="ATTEDN" class="DiaryDaily">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="DIARY_COMMENTS" schema="ATTEDN"
+		class="DiaryComments">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="DIARY_APPROVE" schema="ATTEDN" class="DiaryApprove">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="CLOCKDATE_SETTING" schema="ATTEDN"
+		class="ClockDateSetting">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="JOBASSIGNMENT" schema="ATTEDN" class="JobAssignment">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="JOBASSIGNMENT_APPROVE" schema="ATTEDN"
+		class="JobApprove">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="POSITION_STATEMENT" schema="ATTEDN"
+		class="PositionStatement">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+	<table name="POSITION_STATEMENT_APPROVE" schema="ATTEDN"
+		class="PositionStatementApprove">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+<table name="POSITION_STATEMENT_DETAIL" schema="ATTEDN"
+	class="PositionStatementDetail">
+	<primary-key>
+		<generator class="assigned"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 系统登录页面 -->
+	<package name="com.system.user" extends="struts-default"
+		namespace="/user">
+		<action name="userManager"
+			class="com.wgsoft.user.action.UserManagerAction">
+			<result name="addUser">/web/user/userInfo.jsp</result>
+			<result name="modifyUser">/web/user/modifyUser.jsp</result>
+			<result name="success">/web/layout/index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+	<!-- 组织管理 -->
+	<package name="com.system.organization" extends="struts-default"
+		namespace="/organization">
+		<action name="organizationTree"
+			class="com.wgsoft.system.action.OrganizationTreeAction">
+			<result name="success">/web/user/userInfo.jsp</result>
+			<result name="organizationManager">/web/system/organization/organizationManage.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 菜单管理部份-->
+	<package name="com.system.menu" extends="struts-default"
+		namespace="/menu">
+		
+		<!-- 菜单加载 -->	
+		<action name="menuTree"
+			class="com.wgsoft.system.action.IndexAction">
+			<result name="success">/web/layout/index.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		<!-- 菜单管理 -->	
+		<action name="menuManager"
+			class="com.wgsoft.system.action.MenuManagerAction">
+			<result name="success">/web/system/menu/menuManager.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+	</package>
+	
+	<!-- 权限管理部分 -->
+	<package name="com.system.authority" extends="struts-default"
+		namespace="/authority">
+			
+		<!-- 角色管理 -->	
+		<action name="roleManager"
+			class="com.wgsoft.system.action.SystemAuthorityManageAction">
+			<result name="success">/web/system/authority/authorityManager.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		
+		<!-- 用户菜单权限管理 -->	
+		<action name="userMenuManager"
+			class="com.wgsoft.system.action.MenuManagerAction">
+			<result name="success">/web/system/authority/userMenuAuthority.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		<!-- 数据字典 -->	
+		<action name="sysDataDictionary"
+			class="com.wgsoft.system.action.SystemDataDictionaryAction"> 
+		</action>
+		
+		<!-- 系统审核权限修改 -->	
+		<action name="systemAuthority"
+			class="com.wgsoft.system.action.SystemApproveAuthorityAction"> 	
+			<result name="success">/web/system/authority/sysAppAuthority.jsp</result>
+		</action>
+	</package>
+	
+	
+	
+	<!-- 系统打卡日期 -->
+	<package name="com.system.clock" extends="struts-default"
+		namespace="/sysClock">
+		
+		<!-- 节假日时间设置 -->	
+		<action name="sysClockSet"
+			class="com.wgsoft.system.action.HolidaySettingAction"> 	
+			<result name="success">/web/system/clock/dateSetting.jsp</result>
+		</action>
+	</package>
+	 
+	
+</struts>

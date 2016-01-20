@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts> 
+	<!-- 日志管理 -->
+	<package name="com.diary.management" extends="struts-default"
+		namespace="/diary">
+		<!-- 填报 -->
+		<action name="diaryDaily"
+			class="com.wgsoft.diary.action.DiaryDailyAction">
+			<result name="success">/web/diary/manage/diaryDaily.jsp</result>
+			<result name="weekly">/web/diary/manage/diaryWeekly.jsp</result>
+			<result name="monthly">/web/diary/manage/diaryMonthly.jsp</result>
+			<result name="quarterly">/web/diary/manage/diaryQuarterly.jsp</result>
+		</action> 
+		
+		<!-- 审核 -->
+		<action name="diaryApprove"
+			class="com.wgsoft.diary.action.DiaryApproveAction">
+			<result name="success">/web/diary/approve/diaryApprove.jsp</result> 
+		</action> 
+		
+		
+		<!-- 互评 -->
+		<action name="diaryDiscuss"
+			class="com.wgsoft.diary.action.DiaryDiscussEachOtherAction">
+			<result name="success">/web/diary/discuss/diaryDiscuss.jsp</result> 
+			<result name="detail">/web/diary/discuss/diaryDetail.jsp</result> 
+			<result name="discuss">/web/diary/discuss/diaryContent.jsp</result> 
+		</action> 
+	</package> 
+	
+	
+	<!-- 日志分析 -->
+	<package name="com.diary.analysis" extends="struts-default"
+		namespace="/diary">
+		<!-- 最多评论分析 -->
+		<action name="diaryAnalysis"
+			class="com.wgsoft.diary.action.DiaryAnalysisAction">
+			<result name="success">/web/diary/analysis/diaryAnalysis.jsp</result>
+		</action> 
+		 
+	</package> 
+</struts>

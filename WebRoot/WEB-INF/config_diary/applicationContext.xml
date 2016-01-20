@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- 日志管理-填报 -->
+	<bean name="diaryDailyDao" class="com.wgsoft.diary.dao.DiaryDailyDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="diaryDailyService" parent="service">
+		<property name="target">
+			<ref bean="diaryDailyServiceTarget" />
+		</property>
+	</bean>
+	<bean name="diaryDailyServiceTarget" class="com.wgsoft.diary.service.DiaryDailyService">
+		<property name="diaryDailyDao">
+			<ref bean="diaryDailyDao" />	
+		</property>
+	</bean>
+	
+	
+	<!-- 日志管理-审核 -->
+	<bean name="diaryApproveDao" class="com.wgsoft.diary.dao.DiaryApproveDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="diaryApproveService" parent="service">
+		<property name="target">
+			<ref bean="diaryApproveServiceTarget" />
+		</property>
+	</bean>
+	<bean name="diaryApproveServiceTarget" class="com.wgsoft.diary.service.DiaryApproveService">
+		<property name="diaryApproveDao">
+			<ref bean="diaryApproveDao" />	
+		</property>
+	</bean>
+	
+	
+	<!-- 日志管理-同级互评 -->
+	<bean name="diaryDiscussEachOtherDao" class="com.wgsoft.diary.dao.DiaryDiscussEachOtherDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="diaryDiscussEachOtherService" parent="service">
+		<property name="target">
+			<ref bean="diaryDiscussEachOtherServiceTarget" />
+		</property>
+	</bean>
+	<bean name="diaryDiscussEachOtherServiceTarget" class="com.wgsoft.diary.service.DiaryDiscussEachOtherService">
+		<property name="diaryDiscussEachOtherDao">
+			<ref bean="diaryDiscussEachOtherDao" />	
+		</property>
+		<property name="diaryApproveDao">
+			<ref bean="diaryApproveDao" />	
+		</property>
+		<property name="isAll" value="1"/>
+	</bean>
+	
+	
+	
+	<!-- 日志管理-统计分析 -->
+	<bean name="diaryAnalysisDao" class="com.wgsoft.diary.dao.DiaryAnalysisDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="diaryAnalysisService" parent="service">
+		<property name="target">
+			<ref bean="diaryAnalysisDaoServiceTarget" />
+		</property>
+	</bean>
+	<bean name="diaryAnalysisDaoServiceTarget" class="com.wgsoft.diary.service.DiaryAnalysisService">
+		<property name="diaryAnalysisDao">
+			<ref bean="diaryAnalysisDao" />	
+		</property> 
+	</bean>
+	
+	
+	
+</beans>

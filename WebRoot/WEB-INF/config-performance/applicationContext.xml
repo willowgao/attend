@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+ 
+ 	<!-- 工作任务分派  -->
+	<bean name="jobAssignmentDao" class="com.wgsoft.performance.dao.JobAssignmentDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="jobAssignmentService" parent="service">
+		<property name="target">
+			<ref bean="jobAssignmentServiceTarget" />
+		</property>
+	</bean>
+	<bean name="jobAssignmentServiceTarget" class="com.wgsoft.performance.service.JobAssignmentService">
+		<property name="jobAssignmentDao">
+			<ref bean="jobAssignmentDao" />	
+		</property>
+	</bean>
+	
+	
+    <!-- 工作任务分派  -->
+	<bean name="positionStatementDao" class="com.wgsoft.performance.dao.PositionStatementDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="positionStatementService" parent="service">
+		<property name="target">
+			<ref bean="positionStatementServiceTarget" />
+		</property>
+	</bean>
+	<bean name="positionStatementServiceTarget" class="com.wgsoft.performance.service.PositionStatementService">
+		<property name="positionStatementDao">
+			<ref bean="positionStatementDao" />	
+		</property>
+	</bean>
+	
+</beans>

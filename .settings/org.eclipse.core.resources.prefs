@@ -1,0 +1,26 @@
+#Fri Nov 27 15:01:04 CST 2015
+eclipse.preferences.version=1
+encoding//WebRoot/web=UTF-8
+encoding//WebRoot/web/attendance=UTF-8
+encoding//WebRoot/web/attendance/diary/js/loginInfo.js=UTF-8
+encoding//WebRoot/web/attendance/excep/js/excep.js=UTF-8
+encoding//WebRoot/web/attendance/leave/js/leave.js=UTF-8
+encoding//WebRoot/web/attendance/leave/leaveManage.jsp=UTF-8
+encoding//WebRoot/web/attendance/timeManage/js/timeManage.js=UTF-8
+encoding//WebRoot/web/common/easyui=UTF-8
+encoding//WebRoot/web/common/js/easyui_custom.js=UTF-8
+encoding//WebRoot/web/echarts=UTF-8
+encoding//WebRoot/web/layout=UTF-8
+encoding//WebRoot/web/layout/index.jsp=UTF-8
+encoding//WebRoot/web/layout/js=UTF-8
+encoding//WebRoot/web/layout/js/index.js=UTF-8
+encoding//WebRoot/web/system/authority/js/authority.js=UTF-8
+encoding//WebRoot/web/system/authority/js/userMenuAuthority.js=UTF-8
+encoding//WebRoot/web/system/menu/js/menu.js=UTF-8
+encoding//WebRoot/web/user/js/user.js=UTF-8
+encoding//resources/jdbc.properties=GBK
+encoding//resources/log4j.properties=UTF-8
+encoding//resources/template.properties=GBK
+encoding//src/com/wgsoft/system/action/SystemAuthorityManageAction.java=UTF-8
+encoding/<project>=UTF-8
+encoding/WebRoot=UTF-8

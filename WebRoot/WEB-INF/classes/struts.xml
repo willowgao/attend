@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+ 
+    <!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 默认的视图主题 -->
+    <constant name="struts.ui.theme" value="simple" />
+    <!--<constant name="struts.objectFactory" value="spring" />-->
+    <!--解决乱码    -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
+    <constant name="struts.multipart.maxSize" value="10701096"/>
+    <!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
+    <constant name="struts.multipart.saveDir " value="d:/tmp" />
+    <!--  -->
+    <constant name="struts.action.excludePattern" value="/dwr/*,/dwr/test/*" />
+    <constant name="struts.action.extension" value="action" />
+    
+	<!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中 然后用include节点引用 -->
+	<include file="struts-default.xml"></include>
+	<include file="config/struts-config-system.xml" />
+	<include file="config/struts-config-diary.xml" />
+	<include file="config/struts-config-attendance.xml" />
+	<include file="config/struts-config-performance.xml" />
+
+  
+</struts>

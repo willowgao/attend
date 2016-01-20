@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 系统登录页面 -->
+	<package name="com.attendance.diary" extends="struts-default"
+		namespace="/diary">
+		<action name="queryUserLoginInfo"
+			class="com.wgsoft.attendance.diary.action.QueryUserLoginInfoAction">
+			<result name="success">/web/attendance/diary/queryLoginInfo.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package> 
+	
+	<!-- echarts测试 -->
+	<package name="com.attendance.echarts" extends="struts-default"
+		namespace="/echarts">
+		<action name="echartTest"
+			class="com.wgsoft.attendance.echarts.EchartsTestAction">
+			<result name="success">/web/echarts/echartsTest.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package> 
+	
+	
+	<!-- 考勤管理 -->
+	<package name="com.attendance.clock" extends="struts-default"
+		namespace="/clock">
+		
+		<!-- 上下班考勤 -->
+		<action name="clockManager"
+			class="com.wgsoft.attendance.clock.action.AttendanceManageAction">
+			<result name="success">/web/attendance/timeManage/timeManagement.jsp</result>
+		</action>
+		
+		<!-- 异常考勤处理 -->
+		<action name="excepManager"
+			class="com.wgsoft.attendance.clock.action.AttendanceExcepAction">
+			<result name="success">/web/attendance/excep/excepManage.jsp</result>
+			<result name="approve">/web/attendance/excep/excepApprove.jsp</result>
+		</action>
+	</package> 
+	
+	<!-- 出差 -->
+	<package name="com.attendance.leave" extends="struts-default"
+		namespace="/leave">
+	    <action name="leaveManager"
+			class="com.wgsoft.attendance.clock.action.AttendanceLeaveManageAction">
+			<result name="success">/web/attendance/leave/leaveManage.jsp</result>
+			<result name="approve">/web/attendance/leave/leaveApprove.jsp</result>
+		</action>
+	</package> 
+</struts>

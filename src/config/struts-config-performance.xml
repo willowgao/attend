@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 工作分派与审核 -->
+	<package name="com.performance.work" extends="struts-default"
+		namespace="/workDeclare">
+		<action name="jobAssignment"
+			class="com.wgsoft.performance.action.JobAssignmentAction">
+			<result name="success">/web/performance/work/jobAssignment.jsp</result>
+			<result name="approve">/web/performance/work/jobApprove.jsp</result>
+		</action>
+	</package>  
+	
+	<!-- 岗位职责申报 -->
+	<package name="com.performance.position" extends="struts-default"
+		namespace="/position">
+		<action name="positionStatement"
+			class="com.wgsoft.performance.action.PositionStatementApproveAction">
+			<result name="success">/web/performance/position/positionStatement.jsp</result>
+		</action>
+	</package>  
+	
+	
+	
+</struts>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 用户登录日志 -->
+	<bean name="queryUserLoginInfoDao" class="com.wgsoft.attendance.diary.dao.QueryUserLoginInfoDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="queryUserLoginInfoService" parent="service">
+		<property name="target">
+			<ref bean="queryUserLoginInfoServiceTarget" />
+		</property>
+	</bean>
+	<bean name="queryUserLoginInfoServiceTarget" class="com.wgsoft.attendance.diary.service.QueryUserLoginInfoService">
+		<property name="queryDao">
+			<ref bean="queryUserLoginInfoDao" />	
+		</property>
+	</bean>
+	
+	<!-- 用户考勤管理 -->
+	<bean name="attendanceManageDao" class="com.wgsoft.attendance.clock.dao.AttendanceManageDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="attendanceManageService" parent="service">
+		<property name="target">
+			<ref bean="attendanceManageServiceTarget" />
+		</property>
+	</bean>
+	<bean name="attendanceManageServiceTarget" class="com.wgsoft.attendance.clock.service.AttendanceManageService">
+		<property name="attendanceManageDao">
+			<ref bean="attendanceManageDao" />	
+		</property>
+	</bean>
+	
+	<!-- 异常考勤管理 -->
+	<bean name="attendanceExcepDao" class="com.wgsoft.attendance.clock.dao.AttendanceExcepDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="attendanceExcepService" parent="service">
+		<property name="target">
+			<ref bean="attendanceExcepServiceTarget" />
+		</property>
+	</bean>
+	<bean name="attendanceExcepServiceTarget" class="com.wgsoft.attendance.clock.service.AttendanceExcepService">
+		<property name="attendanceExcepDao">
+			<ref bean="attendanceExcepDao" />	
+		</property>
+	</bean>
+	
+	
+	<!-- 请假管理 -->
+	<bean name="attendanceLeaveManageDao" class="com.wgsoft.attendance.clock.dao.AttendanceLeaveManageDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="attendanceLeaveManageService" parent="service">
+		<property name="target">
+			<ref bean="attendanceLeaveManageServiceTarget" />
+		</property>
+	</bean>
+	<bean name="attendanceLeaveManageServiceTarget" class="com.wgsoft.attendance.clock.service.AttendanceLeaveManageService">
+		<property name="attendanceLeaveManageDao">
+			<ref bean="attendanceLeaveManageDao" />	
+		</property>
+	</bean>
+</beans>

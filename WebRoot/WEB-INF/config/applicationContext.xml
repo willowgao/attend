@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"  >
+		<property name="locations">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+	
+	<!-- ***********************TOMCAT******************************** -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+				<property name="driverClassName">
+			<value>${datasource.driverName}</value>
+		</property>
+  			<property name="url">
+  				<value>${datasource.url}</value>
+			</property>
+			<property name="username">
+				<value>${datasource.username}</value>
+			</property>
+				<property name="password">
+				<value>${datasource.password}</value>
+			</property>
+		 <property name="initialSize" value="${datasource.initialSize}"/>
+		 <property name="maxActive" value="${datasource.maxActive}" />  
+		 <property name="maxIdle" value="${datasource.maxIdle}" />
+		 <property name="maxWait" value="${datasource.maxWait}" />
+	</bean>
+	
+	<!-- weblogic 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">  
+        <property name="jndiName">  
+            <value>sysDataSource</value>  
+        </property>  
+    </bean> 
+	-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle10gDialect
+				</prop>
+			</props>
+		</property>
+		
+		
+		<!-- weblogic -->
+		<property name="mappingResources">
+			<list> 
+				<value>com/wgsoft/attendance/clock/model/ClockExcepApprove.hbm.xml</value>
+				<value>com/wgsoft/attendance/clock/model/ClockException.hbm.xml</value>
+				<value>com/wgsoft/attendance/clock/model/ClockRecords.hbm.xml</value>
+				<value>com/wgsoft/attendance/clock/model/ClockSetting.hbm.xml</value>
+				<value>com/wgsoft/attendance/clock/model/LeaveAppSet.hbm.xml</value>
+				<value>com/wgsoft/attendance/clock/model/Leaves.hbm.xml</value>
+				<value>com/wgsoft/attendance/clock/model/LeavesApprove.hbm.xml</value>
+				<value>com/wgsoft/attendance/diary/model/UserLoginInfo.hbm.xml</value>
+				<value>com/wgsoft/common/model/Organization.hbm.xml</value>
+				<value>com/wgsoft/diary/model/DiaryApprove.hbm.xml</value>
+				<value>com/wgsoft/diary/model/DiaryComments.hbm.xml</value>
+				<value>com/wgsoft/diary/model/DiaryDaily.hbm.xml</value>
+				<value>com/wgsoft/performance/model/JobApprove.hbm.xml</value>
+				<value>com/wgsoft/performance/model/JobAssignment.hbm.xml</value>
+				<value>com/wgsoft/system/model/ClockDateSetting.hbm.xml</value>
+				<value>com/wgsoft/system/model/Deptment.hbm.xml</value>
+				<value>com/wgsoft/system/model/menu.hbm.xml</value>
+				<value>com/wgsoft/system/model/RoleInfo.hbm.xml</value>
+				<value>com/wgsoft/system/model/RoleMenu.hbm.xml</value>
+				<value>com/wgsoft/system/model/UserMenu.hbm.xml</value>
+				<value>com/wgsoft/user/model/UserInfo.hbm.xml</value>
+				<value>com/wgsoft/performance/model/PositionStatement.hbm.xml</value>
+				<value>com/wgsoft/performance/model/PositionStatementApprove.hbm.xml</value>
+				<value>com/wgsoft/performance/model/PositionStatementDetail.hbm.xml</value>
+			</list>
+		</property>
+		<!-- tomcat 
+		<property name="mappingDirectoryLocations">
+			
+			<list> 
+				<value>classpath:/com/wgsoft/common/model</value>
+				<value>classpath:/com/wgsoft/user/model</value>
+				<value>classpath:/com/wgsoft/system/model</value>
+				<value>classpath:/com/wgsoft/attendance/*/model</value>
+				<value>classpath:/com/wgsoft/diary/model</value>
+				<value>classpath:/com/wgsoft/performance/model</value>
+			</list>
+		</property>
+		-->
+	</bean>
+	
+	<!-- ***** TransactionManager *****-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+        <property name="dataSource"><ref local="dataSource"/></property>
+	</bean>
+	
+	<!-- ***** ORDER BASE SERVICE *****-->
+	<bean abstract="true" id="service" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" lazy-init="true">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="proxyTargetClass" value="true" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="insert*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="add*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="new*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="modify*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="update*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="delete*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="remove*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="del*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="myStatReport*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="find*">
+					PROPAGATION_REQUIRED,readOnly,-OrderException
+				</prop>
+				<prop key="get*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+				<prop key="*">
+					PROPAGATION_REQUIRED,-OrderException,-OrderMinimumAmountException
+				</prop>
+			</props>
+		</property>
+		
+	</bean>
+</beans>

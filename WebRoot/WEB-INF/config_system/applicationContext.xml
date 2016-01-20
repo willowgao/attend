@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean name="baseDao" class="com.wgsoft.common.dao.BaseDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- 菜单管理 -->
+	<bean name="menuDao" class="com.wgsoft.system.dao.MenuDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="menuService" parent="service">
+		<property name="target">
+			<ref bean="menuServiceTarget" />
+		</property>
+	</bean>
+	<bean name="menuServiceTarget" class="com.wgsoft.system.service.MenuService">
+		<property name="menuDao">
+			<ref bean="menuDao" />	
+		</property>
+	</bean> 
+	
+	<!-- 角色管理 -->
+	<bean name="systemAuthorityManageDao" class="com.wgsoft.system.dao.SystemAuthorityManageDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="authorityManageService" parent="service">
+		<property name="target">
+			<ref bean="authorityManageServiceTarget" />
+		</property>
+	</bean>
+	<bean name="authorityManageServiceTarget" class="com.wgsoft.system.service.SystemAuthorityManageService">
+		<property name="systemAuthorityManageDao">
+			<ref bean="systemAuthorityManageDao" />	
+		</property>
+		<property name="menuService">
+			<ref bean="menuService" />	
+		</property>
+	</bean> 
+	
+	
+	<!-- 组织管理 -->
+	<bean name="orgDao" class="com.wgsoft.system.dao.OrgDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="orgService" parent="service">
+		<property name="target">
+			<ref bean="orgServiceTarget" />
+		</property>
+	</bean>
+	
+	<bean name="orgServiceTarget"
+		class="com.wgsoft.system.service.OrgService">
+		<property name="orgDao">
+			<ref bean="orgDao" />
+		</property>
+	</bean>
+	
+	<!-- 用户管理 -->
+	<bean name="userDao" class="com.wgsoft.user.dao.UserDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="userService" parent="service">
+		<property name="target">
+			<ref bean="userServiceTarget" />
+		</property>
+	</bean>
+	<bean name="userServiceTarget" class="com.wgsoft.user.service.UserService">
+		<property name="userDao">
+			<ref bean="userDao" />	
+		</property>
+	</bean>
+	
+	<!-- 数据字典  -->
+	<bean name="dataDictionaryDao" class="com.wgsoft.system.dao.DataDictionaryDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="dataDictionaryService" parent="service">
+		<property name="target">
+			<ref bean="dataDictionaryServiceTarget" />
+		</property>
+	</bean>
+	<bean name="dataDictionaryServiceTarget" class="com.wgsoft.system.service.DataDictionaryService" init-method="initDataDictionary">
+		<property name="dataDictionaryDao">
+			<ref bean="dataDictionaryDao" />	
+		</property>
+	</bean>
+	   
+	<!-- 权限设置  -->
+	<bean name="systemApproveAuthorityDao" class="com.wgsoft.system.dao.SystemApproveAuthorityDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="systemApproveAuthorityService" parent="service">
+		<property name="target">
+			<ref bean="systemApproveAuthorityServiceTarget" />
+		</property>
+	</bean>
+	<bean name="systemApproveAuthorityServiceTarget" class="com.wgsoft.system.service.SystemApproveAuthorityService">
+		<property name="systemApproveAuthorityDao">
+			<ref bean="systemApproveAuthorityDao" />	
+		</property>
+	</bean>
+	
+	
+	<!-- 节假日设置  -->
+	<bean name="holidaySettingDao" class="com.wgsoft.system.dao.HolidaySettingDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="holidaySettingService" parent="service">
+		<property name="target">
+			<ref bean="holidaySettingServiceTarget" />
+		</property>
+	</bean>
+	<bean name="holidaySettingServiceTarget" class="com.wgsoft.system.service.HolidaySettingService">
+		<property name="holidaySettingDao">
+			<ref bean="holidaySettingDao" />	
+		</property>
+	</bean>
+	
+	
+</beans>
