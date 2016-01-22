@@ -88,7 +88,7 @@ public class EchartsTestAction extends BaseAction {
 	}
 
 	public String getPie() throws Exception {
-		this.renderText(response, getPie7().toString());
+		this.renderText(response, getPie1().toString());
 		return null;
 	}
 

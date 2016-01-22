@@ -169,7 +169,7 @@ public class UserDao extends BaseDao implements IUserDao {
 				.append(" UNION SELECT '/diary/diaryDaily!weekly.action?type=4','工作季报', ADD_MONTHS(TRUNC(SYSDATE, 'q'), -3),TRUNC(SYSDATE, 'q') - 1, TRUNC(SYSDATE, 'q') + 1 ENDTIME");
 		sql
 				.append("  FROM DUAL A  WHERE NOT EXISTS (SELECT *  FROM DIARY_DAILY B   WHERE B.STARTTIME = ADD_MONTHS(TRUNC(SYSDATE, 'q'), -3)");
-		sql.append("  AND B.ENDTIME = TO_CHAR(TRUNC(SYSDATE, 'q') - 1, 'yyyy-mm-dd')");
+		sql.append("  AND B.ENDTIME = TRUNC(SYSDATE, 'q') - 1");
 		sql.append("  AND B.USERID  ='").append(user.getUserid()).append("'  AND B.DIARYTYPE = '4' )");
 		sql.append("    AND SYSDATE >= TRUNC(SYSDATE, 'q') + 1 ");
 
