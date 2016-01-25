@@ -79,6 +79,7 @@
 				<value>com/wgsoft/performance/model/PositionStatement.hbm.xml</value>
 				<value>com/wgsoft/performance/model/PositionStatementApprove.hbm.xml</value>
 				<value>com/wgsoft/performance/model/PositionStatementDetail.hbm.xml</value>
+				<value>com/wgsoft/performance/model/PerformanceIndex.hbm.xml</value>
 			</list>
 		</property>
 		<!-- tomcat 

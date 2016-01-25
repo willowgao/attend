@@ -1,0 +1,102 @@
+2016-01-25 15:14:46 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:19:47 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:20:14 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:21:52 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:23:16 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:24:37 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:24:39 word.WordToPDF [line:72] 
+INFO [main] 设置服务！
+2016-01-25 15:24:39 word.WordToPDF [line:75] 
+INFO [main] 获取document!
+2016-01-25 15:24:39 word.WordToPDF [line:77] 
+INFO [main] 加载启动服务成功！
+2016-01-25 15:24:39 word.WordToPDF [line:24] 
+INFO [main] 开始转换word,地址：F:\workspace\workspace8\实时监控相关配置说明.docx
+2016-01-25 15:24:39 word.WordToPDF [line:54] 
+ERROR[main] 非正常的word关闭！
+2016-01-25 15:47:58 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:55:39 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:56:36 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:57:42 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:58:24 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 15:59:55 word.WordToPDF [line:68] 
+INFO [main] 加载启动word服务！
+2016-01-25 16:43:36 com.wgsoft.common.utils.Doc2HtmlUtil [line:76] 
+ERROR[main] F:\workspace\workspace8\实时监控相关配置说明.docx\docfile20160125164336.doc (系统找不到指定的路径。)
+java.io.FileNotFoundException: F:\workspace\workspace8\实时监控相关配置说明.docx\docfile20160125164336.doc (系统找不到指定的路径。)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:179)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:131)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.doc2Html(Doc2HtmlUtil.java:66)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.main(Doc2HtmlUtil.java:101)
+2016-01-25 16:43:37 com.wgsoft.common.utils.Doc2HtmlUtil [line:84] 
+ERROR[main] connection failed: socket,host=127.0.0.1,port=8100,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: connection failed: socket,host=127.0.0.1,port=8100,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+	at com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection.connect(AbstractOpenOfficeConnection.java:79)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.doc2Html(Doc2HtmlUtil.java:81)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.main(Doc2HtmlUtil.java:101)
+2016-01-25 16:44:56 com.wgsoft.common.utils.Doc2HtmlUtil [line:84] 
+ERROR[main] connection failed: socket,host=127.0.0.1,port=8100,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: connection failed: socket,host=127.0.0.1,port=8100,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+	at com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection.connect(AbstractOpenOfficeConnection.java:79)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.doc2Html(Doc2HtmlUtil.java:81)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.main(Doc2HtmlUtil.java:102)
+2016-01-25 16:44:56 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:114] 
+INFO [main] trying to (re)connect
+2016-01-25 16:49:14 com.wgsoft.common.utils.Doc2HtmlUtil [line:84] 
+ERROR[main] connection failed: socket,host=127.0.0.1,port=8100,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: connection failed: socket,host=127.0.0.1,port=8100,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+	at com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection.connect(AbstractOpenOfficeConnection.java:79)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.doc2Html(Doc2HtmlUtil.java:81)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.main(Doc2HtmlUtil.java:102)
+2016-01-25 16:50:25 com.wgsoft.common.utils.Doc2HtmlUtil [line:84] 
+ERROR[main] connection failed: socket,host=127.0.0.1,port=4444,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: connection failed: socket,host=127.0.0.1,port=4444,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+	at com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection.connect(AbstractOpenOfficeConnection.java:79)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.doc2Html(Doc2HtmlUtil.java:81)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.main(Doc2HtmlUtil.java:102)
+2016-01-25 16:50:25 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:114] 
+INFO [main] trying to (re)connect
+2016-01-25 17:13:11 com.wgsoft.common.utils.Doc2HtmlUtil [line:84] 
+ERROR[main] connection failed: socket,host=127.0.0.1,port=8019,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+java.net.ConnectException: connection failed: socket,host=127.0.0.1,port=8019,tcpNoDelay=1: java.net.ConnectException: Connection refused: connect
+	at com.artofsolving.jodconverter.openoffice.connection.AbstractOpenOfficeConnection.connect(AbstractOpenOfficeConnection.java:79)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.doc2Html(Doc2HtmlUtil.java:81)
+	at com.wgsoft.common.utils.Doc2HtmlUtil.main(Doc2HtmlUtil.java:102)
+2016-01-25 17:13:11 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:114] 
+INFO [main] trying to (re)connect
+2016-01-25 17:18:33 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:77] 
+INFO [main] connected
+2016-01-25 17:18:35 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
+INFO [main] disconnected
+2016-01-25 17:21:08 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:77] 
+INFO [main] connected
+2016-01-25 17:21:24 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
+INFO [main] disconnected
+2016-01-25 17:23:56 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:77] 
+INFO [main] connected
+2016-01-25 17:24:03 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
+INFO [main] disconnected
+2016-01-25 17:27:24 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:77] 
+INFO [main] connected
+2016-01-25 17:27:24 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
+INFO [main] disconnected
+2016-01-25 17:28:33 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:77] 
+INFO [main] connected
+2016-01-25 17:28:34 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
+INFO [main] disconnected
+2016-01-25 17:31:22 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:77] 
+INFO [main] connected
+2016-01-25 17:31:22 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
+INFO [main] disconnected

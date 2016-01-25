@@ -21,6 +21,15 @@
 		</action>
 	</package>  
 	
+	<!-- 考核指标管理 -->
+	<package name="com.performance.assess" extends="struts-default"
+		namespace="/assess">
+		<action name="indexManage"
+			class="com.wgsoft.performance.action.PerformanceIndexManageAction">
+			<result name="success">/web/performance/index/indexManage.jsp</result>
+		</action>
+	</package>  
+	
 	
 	
 </struts>

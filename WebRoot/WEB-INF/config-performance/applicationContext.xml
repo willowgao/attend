@@ -20,7 +20,7 @@
 	</bean>
 	
 	
-    <!-- 工作任务分派  -->
+    <!-- 岗位职责申报 -->
 	<bean name="positionStatementDao" class="com.wgsoft.performance.dao.PositionStatementDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -36,5 +36,26 @@
 			<ref bean="positionStatementDao" />	
 		</property>
 	</bean>
+	
+	
+    <!-- 考核指标管理  -->
+	<bean name="performanceIndexManageDao" class="com.wgsoft.performance.dao.PerformanceIndexManageDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="performanceIndexManageService" parent="service">
+		<property name="target">
+			<ref bean="performanceIndexManageServiceTarget" />
+		</property>
+	</bean>
+	<bean name="performanceIndexManageServiceTarget" class="com.wgsoft.performance.service.PerformanceIndexManageService">
+		<property name="performanceIndexManageDao">
+			<ref bean="performanceIndexManageDao" />	
+		</property>
+	</bean>
+	
+	
+	
 	
 </beans>

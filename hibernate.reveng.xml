@@ -83,8 +83,14 @@
 			<generator class="assigned"></generator>
 		</primary-key>
 	</table>
-<table name="POSITION_STATEMENT_DETAIL" schema="ATTEDN"
-	class="PositionStatementDetail">
+	<table name="POSITION_STATEMENT_DETAIL" schema="ATTEDN"
+		class="PositionStatementDetail">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table>
+<table name="PERFORMANCE_INDEX" schema="ATTEDN"
+	class="PerformanceIndex">
 	<primary-key>
 		<generator class="assigned"></generator>
 	</primary-key>
