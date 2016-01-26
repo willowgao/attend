@@ -31,6 +31,24 @@
 				align="left">
 				<thead>
 					<tr>
+						
+						<th data-options="field:'leavename',width:'12%',align:'center',editor:'textbox'">
+							假期类型描述
+						</th> 
+						<th data-options="field:'approver',width:'8%',align:'center',editor:{
+							type:'combobox',
+							options:{
+								valueField:'id',
+								textField:'text',
+								method:'get',
+								url:'<%=webapp%>/authority/sysDataDictionary!getDictionary.action?key=ROLETYPE',
+								required:true
+							}
+						}
+						,formatter:formatterRole">
+							角色适用类型
+						</th>
+						
 						<th
 							data-options="field:'leavetype',width:'20%',align:'center',editor:{
 							type:'combobox',
@@ -45,22 +63,6 @@
 						,formatter:formatterLeave">
 							假期类型
 						</th>
-						<th data-options="field:'approver',width:'8%',align:'center',editor:{
-							type:'combobox',
-							options:{
-								valueField:'id',
-								textField:'text',
-								method:'get',
-								url:'<%=webapp%>/authority/sysDataDictionary!getDictionary.action?key=ROLETYPE',
-								required:true
-							}
-						}
-						,formatter:formatterRole">
-							角色适用类型
-						</th>
-						<th data-options="field:'leavename',width:'12%',align:'center',editor:'textbox'">
-							假期类型描述
-						</th> 
 						<th data-options="field:'approvername',width:'12%',align:'center',editor:'textbox'">
 							适用角色描述
 						</th> 

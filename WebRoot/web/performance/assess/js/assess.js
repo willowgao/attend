@@ -1,26 +1,21 @@
    jq(function() {
 	 	loadData();
-		jq('#commDesc').hide();
-		
 	});
-   
-	
+    
 	//加载数据表
 	function loadData() {
 		jq('#dg').datagrid( {
 			data : getData()
 		}).datagrid('clientPaging');
 	}
-	
-	
-	
+	 
 	//查询列表数据
 	function getData() { 
 		var rows = null;
 		jq.ajaxSettings.async = false; 
-		var params =  jq('#indexForm').serialize();
+		var params =   jq('#indexForm').serialize();
 		jq.ajax( {
-			url : programName + '/assess/indexManage!queryIndex.action',
+			url : programName + '/assess/performance!queryUsers.action',
 			type : 'post',
 			data : params,
 			dataType : 'json',
@@ -30,6 +25,14 @@
 		});
 		return rows;
 	}
+	
+	/**
+	 *单选填充
+	 */
+	function onClickRow(index, row) { 
+		editIndex = index;
+	}
+	
 	/** 
 	 * 加载事件悬停div 
 	 * @param data
@@ -43,7 +46,6 @@
 	 * 多行合并
 	 */
 	var setMergeCell = function(){
-		
 		var merges = [{
 			index: 0,
 			rowspan: 3
@@ -58,35 +60,18 @@
 			rowspan: 4
 		}];
 		for(var i=0; i<merges.length; i++){
-			jq("#dg").datagrid('mergeCells',{
+			jq("#indextb").datagrid('mergeCells',{
 				index: merges[i].index,
 				field: 'item',
 				rowspan: merges[i].rowspan
 			});
 		}
+		
 	}
-	var tableId = '#dg';
+	var tableId = '#indextb';
 	var editIndex = undefined;
 
-	/**
-	 * 保存获取编辑的行时，需要先完成编辑状态
-	 * @return
-	 */
-	function save(){
-		var tableId = '#dg';
-		jq(tableId).datagrid('endEdit', editIndex);
-		var url = getDataFromDatagrid(tableId) ;
-		jq.getJSON(programName + '/assess/indexManage!save.action'+url, function(re_datas) {
-			 if(re_datas=='0'){
-				jq.messager.alert('提示','更新成功!');
-				loadData();
-			 }
-		}); 
-	}
-		   
-
-   var setRowStyle = function(value, row, index){
-	   return 'height:100px;';
-   }
-    
+	var setRowStyle = function(value, row, index){
+		   return 'height:100px;';
+	} 
 	

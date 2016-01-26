@@ -1,4 +1,4 @@
-#Fri Nov 27 15:01:04 CST 2015
+#Tue Jan 26 09:57:42 CST 2016
 eclipse.preferences.version=1
 encoding//WebRoot/web=UTF-8
 encoding//WebRoot/web/attendance=UTF-8
@@ -18,8 +18,8 @@ encoding//WebRoot/web/system/authority/js/authority.js=UTF-8
 encoding//WebRoot/web/system/authority/js/userMenuAuthority.js=UTF-8
 encoding//WebRoot/web/system/menu/js/menu.js=UTF-8
 encoding//WebRoot/web/user/js/user.js=UTF-8
-encoding//resources/jdbc.properties=GBK
 encoding//resources/log4j.properties=UTF-8
+encoding//resources/option.properties=GBK
 encoding//resources/template.properties=GBK
 encoding//src/com/wgsoft/system/action/SystemAuthorityManageAction.java=UTF-8
 encoding/<project>=UTF-8

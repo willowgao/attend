@@ -7,8 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
+import java.util.UUID;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,7 +27,34 @@ import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConv
  * */
 public class Doc2HtmlUtil {
 	private static Log log = LogFactory.getLog(Doc2HtmlUtil.class);
+
 	private static Doc2HtmlUtil doc2HtmlUtil;
+
+	private static String PROPERTIES_FILE = "/option.properties";
+	private static String soffice_host = null;
+	private static String soffice_port = null;
+	// 获取html存放的位置
+	private static String str = Doc2HtmlUtil.class.getClassLoader().getResource("").getPath();
+	static {
+
+		Properties option = new Properties();
+		try {
+			str = java.net.URLDecoder.decode(str, "utf-8");
+			InputStream is = new FileInputStream(str + PROPERTIES_FILE);
+			option.load(is);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		soffice_host = option.getProperty(SysConstants.OPENOFFIC_IP);
+		soffice_port = option.getProperty(SysConstants.OPENOFFIC_PORT);
+		
+
+	}
 
 	/**
 	 * 获取Doc2HtmlUtil实例
@@ -42,21 +70,27 @@ public class Doc2HtmlUtil {
 	 * 转换文件
 	 * 
 	 * @param fromFileInputStream
-	 *            :
 	 * */
-	public static String offic2Html(InputStream fromFileInputStream, File toFileFolder) {
-		String soffice_host = "127.0.0.1";
-		String soffice_port = "8100";
-		log.debug("soffice_host:" + soffice_host + ",soffice_port:" + soffice_port);
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String timesuffix = sdf.format(date);
-		String htmFileName = "htmlfile" + timesuffix + ".html";
-		String docFileName = "docfile" + timesuffix + ".xls";
+	public static String offic2Html(InputStream fromFileInputStream, String fileName) {
 
-		File htmlOutputFile = new File(toFileFolder.toString() + File.separatorChar + htmFileName);
-		File docInputFile = new File(toFileFolder.toString() + File.separatorChar + docFileName);
-		log.debug("########htmlOutputFile：" + toFileFolder.toString() + File.pathSeparator + htmFileName);
+		String uuid = UUID.randomUUID().toString().replace("-", "");
+		String fileSuffix = fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
+		String htmFileName = uuid + ".html";
+		String docFileName = uuid + "." + fileSuffix;
+
+		String htmlStr = str.substring(1, str.indexOf("WEB-INF")) + "web/html";
+		try {
+			// 获取的时候存在空格，需要进行字符级转译
+			htmlStr = java.net.URLDecoder.decode(htmlStr, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		File outfile = new File(htmlStr);
+
+		File htmlOutputFile = new File(outfile.toString() + File.separatorChar + htmFileName);
+		File docInputFile = new File(outfile.toString() + File.separatorChar + docFileName); 
+		
 		/**
 		 * 由fromFileInputStream构建输入文件
 		 * */
@@ -87,17 +121,9 @@ public class Doc2HtmlUtil {
 		connection.disconnect();
 
 		// 转换完之后删除word文件
-
 		docInputFile.delete();
 		log.debug("删除上传文件：" + docInputFile.getName());
 		return htmFileName;
-	}
-
-	public static void main(String[] args) throws FileNotFoundException {
-		File file = new File("F:\\workspace\\workspace8\\咸宁市人社局平时考核系统项目工作量及报价v1.0.xls");
-		InputStream input = new FileInputStream(file);
-		File outfile = new File("F:\\workspace\\workspace8\\");
-		offic2Html(input, outfile);
 	}
 
 }

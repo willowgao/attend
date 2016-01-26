@@ -8,13 +8,12 @@
 		<script type="text/javascript" src="<%=webapp%>/web/performance/index/js/indexManage.js"></script>
 		<link rel="stylesheet" href="<%=webapp%>/web/common/css/label.css" type="text/css">
 	</head>
-	<body>
-		<div id="commDesc" class="easyui-panel" style="width: 40%; height: 10%; position: absolute; z-index: 8;">
-		</div>
+	
+	<body> 
 		<div id="tb" style="height: auto">
 			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="save();">保存</a>
 		</div>
-		<table id="dg" class="easyui-datagrid" title="考核指标维护" style="with: 100%; height: 90%"
+		<table id="dg" class="easyui-datagrid" title="考核指标维护" style="with: 100%; height: 100%"
 			data-options="toolbar: '#tb', 
 				rownumbers: true,
 				onLoadSuccess: onLoadSuccess,
@@ -44,7 +43,7 @@
 					</th>
 					<th
 						data-options="field:'indexScore',width:'10%',align:'center',editor:{type:'textbox',
-							options:{required:true,multiline:true,height:100,validType:['length[0,50]']}
+							options:{required:true,multiline:true,height:35,validType:['length[0,50]']}
 						}">
 						分值
 					</th>
@@ -57,5 +56,6 @@
 		
 		<form id="indexForm" method="post">
 		</form>
+		
 	</body>
 </html>

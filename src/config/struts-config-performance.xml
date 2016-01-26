@@ -24,12 +24,25 @@
 	<!-- 考核指标管理 -->
 	<package name="com.performance.assess" extends="struts-default"
 		namespace="/assess">
+		<!-- 指标管理 -->
 		<action name="indexManage"
 			class="com.wgsoft.performance.action.PerformanceIndexManageAction">
 			<result name="success">/web/performance/index/indexManage.jsp</result>
 		</action>
+		
+		
+		<!-- 绩效考核管理 -->
+		<action name="performance"
+			class="com.wgsoft.performance.action.PerformanceAssessAction">
+			<result name="success">/web/performance/assess/performanceAssess.jsp</result>
+		</action>
+		
+		<!-- 考核资料审阅 -->
+		<action name="documentView"
+			class="com.wgsoft.performance.action.AssessDocumentViewAction">
+			<result name="success">/web/performance/assess/documentView.jsp</result>
+		</action>
 	</package>  
-	
 	
 	
 </struts>

@@ -1,11 +1,15 @@
 package com.wgsoft.performance.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
+import com.wgsoft.common.utils.Doc2HtmlUtil;
 import com.wgsoft.performance.iservice.IPerformanceIndexManageService;
 import com.wgsoft.performance.model.PerformanceIndex;
 
@@ -59,11 +63,27 @@ public class PerformanceIndexManageAction extends BaseAction {
 		renderText(response, JSONUtil.serialize(rel));
 		return null;
 	}
- 
+
+	/**
+	 * @desc:考核资料审阅
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2016-1-26 上午09:52:56
+	 */
+	@SuppressWarnings("static-access")
+	public String viewDocument() throws Exception {
+		// 输入文件路径以及文件名
+		File file = new File("F:\\code\\open\\咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx");
+		InputStream input = new FileInputStream(file);
+		String fileName1 = "咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx";
+		String fileName =  Doc2HtmlUtil.getDoc2HtmlUtilInstance().offic2Html(input, fileName1);
+		renderText(response, JSONUtil.serialize(fileName));
+		return null;
+	}
 
 	public IPerformanceIndexManageService getPerformanceIndexManageService() {
 		return (IPerformanceIndexManageService) getService("performanceIndexManageService");
 	}
-	
-	 
+
 }

@@ -301,4 +301,13 @@ public class SysConstants {
 		 */
 		public static final String JOB_TYPE_OTHER = "4";
 	}
+
+	/**
+	 * openOffic IP
+	 */
+	public static final String OPENOFFIC_IP = "openoffic.ip";
+	/**
+	 * openOffic 端口
+	 */
+	public static final String OPENOFFIC_PORT = "openoffic.port";
 }

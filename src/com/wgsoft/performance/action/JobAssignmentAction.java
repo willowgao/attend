@@ -48,6 +48,7 @@ public class JobAssignmentAction extends BaseAction {
 	 * @return String
 	 * @date： 2015-11-23 下午02:22:44
 	 */
+	@SuppressWarnings("unchecked")
 	public String queryJobs() throws Exception {
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap = (Map<String, Object>) request.getParameterMap();
@@ -80,6 +81,7 @@ public class JobAssignmentAction extends BaseAction {
 	 * @return String
 	 * @date： 2015-11-26 上午11:54:05
 	 */
+	@SuppressWarnings("unchecked")
 	public String saveAppJobs() throws Exception {
 		if (jobAssignment == null) {
 			jobAssignment = new JobAssignment();
