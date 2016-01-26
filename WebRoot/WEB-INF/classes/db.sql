@@ -1,1 +1,2 @@
 exp attedn/gcl@10.121.25.10:ORCL file=F:\workspace\workspace8\xnAttendance\db\attedn.dmp log=F:\workspace\workspace8\xnAttendance\db\attedn.log;
+imp attedn/gcl@ORCL file=F:\workspace\xnAttendance\db\attedn.dmp log=F:\workspace\xnAttendance\db\attednimp.log fromuser=attedn touser=attedn;
