@@ -618,6 +618,6 @@ function getDataFromDatagrid(tableId){
 	 map.put("insertRow", insertRow);
 	 map.put("deleteRow", deleteRow);
 	 map.put("updateRow", updateRow);
-	 var param = '?datagrid='+JSON.stringify(map);
+	 var param = JSON.stringify(map);
 	return param;
 }

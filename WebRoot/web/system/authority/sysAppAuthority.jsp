@@ -9,6 +9,10 @@
 		<title>查询</title>
 	</head>
 	<body>
+	
+	<form id="leaveAppSetForm" method="post">
+					<input type="hidden" name="leaveAppSet.datagrid" id="datagrid"></input>
+	</form>
 		<div id="tb" style="height: auto">
 			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="save()">保存</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add('#dg')">新增</a>

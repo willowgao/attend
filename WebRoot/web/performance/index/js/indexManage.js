@@ -30,6 +30,10 @@
 		});
 		return rows;
 	}
+	
+
+
+	
 	/** 
 	 * 加载事件悬停div 
 	 * @param data
@@ -67,21 +71,46 @@
 	}
 	var tableId = '#dg';
 	var editIndex = undefined;
+	
+	/**
+	 datagrid 切换行之后，取消行编辑状态
+	**/
+	function endEditing(){
+		if (editIndex == undefined){return true}
+		if (jq(tableId).datagrid('validateRow', editIndex)){
+			jq(tableId).datagrid('endEdit', editIndex);
+			setMergeCell();
+			editIndex = undefined;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 
 	/**
 	 * 保存获取编辑的行时，需要先完成编辑状态
 	 * @return
 	 */
 	function save(){
-		var tableId = '#dg';
-		jq(tableId).datagrid('endEdit', editIndex);
+		endEditing();
 		var url = getDataFromDatagrid(tableId) ;
-		jq.getJSON(programName + '/assess/indexManage!save.action'+url, function(re_datas) {
-			 if(re_datas=='0'){
-				jq.messager.alert('提示','更新成功!');
-				loadData();
-			 }
-		}); 
+		jq('#datagrid').val(url);
+		
+		var params =  jq('#indexForm').serialize();
+		jq.ajax( {
+			url : programName + '/assess/indexManage!save.action',
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			success : function(data) {
+				rows = data;
+				if(data=='0'){
+					jq.messager.alert('提示','更新成功!');
+					loadData();
+				}
+			}
+		});
 	}
 		   
 

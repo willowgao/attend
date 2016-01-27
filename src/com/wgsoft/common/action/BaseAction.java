@@ -364,6 +364,7 @@ public class BaseAction extends ActionSupport implements Action {
 		session.setAttribute(USERINFO, user);
 	}
 
+
 	/**
 	 * @desc:获取用户信息
 	 * @return

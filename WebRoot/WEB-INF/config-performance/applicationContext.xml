@@ -57,5 +57,23 @@
 	
 	
 	
+    <!-- 考核评分  -->
+	<bean name="performanceAssessDao" class="com.wgsoft.performance.dao.PerformanceAssessDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="performanceAssessService" parent="service">
+		<property name="target">
+			<ref bean="performanceAssessServiceTarget" />
+		</property>
+	</bean>
+	<bean name="performanceAssessServiceTarget" class="com.wgsoft.performance.service.PerformanceAssessService">
+		<property name="performanceAssessDao">
+			<ref bean="performanceAssessDao" />	
+		</property>
+	</bean>
+	
+	
 	
 </beans>

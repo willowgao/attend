@@ -60,7 +60,7 @@ public class UserDao extends BaseDao implements IUserDao {
 	 * @see com.wgsoft.user.idao.IUserDao#getUserInfoByUserInfo(UserInfo)
 	 */
 	public List<UserInfo> getUserInfoByUserInfo(UserInfo user) {
-		StringBuffer str = new StringBuffer("select * from userInfo where 1=1 ");
+		StringBuffer str = new StringBuffer("select a.*,b.roletype from userInfo a,roleinfo b  where 1=1 and a.roleid = b.roleid");
 		if (!RunUtil.isEmpty(user.getUserorg())) {
 			str.append(" and userorg='" + user.getUserorg() + "' ");
 		}
@@ -156,7 +156,7 @@ public class UserDao extends BaseDao implements IUserDao {
 		sql.append("  AND SYSDATE >= TRUNC(SYSDATE, 'DD') - TO_CHAR(SYSDATE, 'D') + 3");
 		// 月报
 		sql
-				.append(" UNION SELECT '/diary/diaryDaily!weekly.action?type=3','工作月报',ADD_MONTHS(TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm') || '-01', 'yyyy-mm-dd'),-1),");
+				.append(" UNION SELECT '/diary/diaryDaily!monthly.action?type=3','工作月报',ADD_MONTHS(TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm') || '-01', 'yyyy-mm-dd'),-1),");
 		sql
 				.append(" TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm') || '-01', 'yyyy-mm-dd') - 1, TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm') || '-03', 'yyyy-mm-dd') ENDTIME");
 		sql.append("  FROM DUAL A  WHERE NOT EXISTS  (SELECT 1  FROM DIARY_DAILY B WHERE B.STARTTIME =");

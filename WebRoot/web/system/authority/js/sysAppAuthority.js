@@ -38,11 +38,23 @@ var editIndex = undefined;
 function save(){ 
 	jq(tableId).datagrid('endEdit', editIndex);
 	var url = getDataFromDatagrid(tableId) ;
-	jq.getJSON(programName + '/authority/systemAuthority!saveApproves.action'+url, function(re_datas) {
-		 if(re_datas=='0'){
-			jq.messager.alert('提示','更新成功!');
-			loadData();
-		 }
-	}); 
+	jq('#datagrid').val(url);
+
+	//获取表单修改的内容
+	var params =  jq('#leaveAppSetForm').serialize();
+	jq.ajax( {
+		url : programName + '/authority/systemAuthority!saveApproves.action',
+		type : 'post',
+		data : params,
+		dataType : 'json',
+		success : function(data) {
+			rows = data;
+			if(data=='0'){
+				jq.messager.alert('提示','更新成功!');
+				loadData();
+			}
+		}
+	});
+	
 }
 	   

@@ -310,4 +310,15 @@ public class SysConstants {
 	 * openOffic 端口
 	 */
 	public static final String OPENOFFIC_PORT = "openoffic.port";
+
+	/**
+	 * 上级
+	 */
+	public static final String ASSESS_TYPE_HIGHER_LEVEL = "1";
+
+	/**
+	 * 同级
+	 */
+	public static final String ASSESS_TYPE_PEER_LEVEL = "2";
+
 }

@@ -6,7 +6,7 @@ package com.wgsoft.attendance.clock.model;
  * LeaveAppSet entity. @author MyEclipse Persistence Tools
  */
 
-public class LeaveAppSet implements java.io.Serializable {
+public class LeaveAppSet extends BaseVO implements java.io.Serializable {
 
 	// Fields
 

@@ -71,7 +71,8 @@ public class PositionStatementApproveAction extends BaseAction {
 	 * @date： 2015-12-2 上午10:51:53
 	 */
 	public String savePositionStatement() throws Exception {
-		String jsonStr = request.getParameter(DATAGRID_JSON_DATA);
+
+		String jsonStr = ((String[]) request.getParameterMap().get("position.datagrid"))[0];
 		Map<String, List<PositionStatement>> jsonMap = getListFromMap(jsonStr, new PositionStatement());
 		jsonMap.put("formData", Arrays.asList(position));
 		int rel = getPositionStatementService().savePositionStatement(jsonMap);

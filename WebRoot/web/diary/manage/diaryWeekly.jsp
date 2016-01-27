@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ include file="../../common/common.jsp"%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -19,13 +18,11 @@
 						</label>
 						<input id="starttime" name="diaryDaily.starttime" class="easyui-datebox" value="<%=DateUtil.getMonday(sysdate)%>"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
-						</td>
 						<label style="margin: 10px;">
 							至：
 						</label>
 						<input id="endtime" name="diaryDaily.endtime" class="easyui-datebox" value="<%=DateUtil.getFriday(sysdate)%>"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
-						</td>
 						<label style="margin: 10px;">
 							审批人员：
 						</label>

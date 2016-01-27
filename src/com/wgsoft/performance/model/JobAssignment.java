@@ -4,11 +4,13 @@ package com.wgsoft.performance.model;
 
 import java.util.Date;
 
+import com.wgsoft.common.model.BaseVO;
+
 /**
  * JobAssignment entity. @author MyEclipse Persistence Tools
  */
 
-public class JobAssignment implements java.io.Serializable {
+public class JobAssignment extends BaseVO implements java.io.Serializable {
 
 	// Fields
 
@@ -55,12 +57,11 @@ public class JobAssignment implements java.io.Serializable {
 		this.filltime = filltime;
 		this.status = status;
 		this.userid = userid;
-		this.approveid = approveid; 
+		this.approveid = approveid;
 	}
 
 	// Property accessors
 
-	
 	public String getJobid() {
 		return this.jobid;
 	}

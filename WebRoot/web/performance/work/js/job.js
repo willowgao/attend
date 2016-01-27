@@ -95,6 +95,7 @@
 		var tableId = '#dg';
 		jq(tableId).datagrid('endEdit', editIndex);
 		var url = getDataFromDatagrid(tableId) ;
+		jq('#datagrid').val(url);
 		jq.getJSON(programName + '/workDeclare/jobAssignment!saveJobs.action'+url, function(re_datas) {
 			 if(re_datas=='0'){
 				jq.messager.alert('提示','更新成功!');

@@ -57,7 +57,7 @@ public class PerformanceIndexManageAction extends BaseAction {
 	 * @date： 2016-1-25 上午11:50:21
 	 */
 	public String save() throws Exception {
-		String jsonStr = request.getParameter(DATAGRID_JSON_DATA);
+		String jsonStr = ((String[]) request.getParameterMap().get("index.datagrid"))[0];
 		Map<String, List<PerformanceIndex>> jsonMap = getListFromMap(jsonStr, new PerformanceIndex());
 		int rel = getPerformanceIndexManageService().saveIndex(jsonMap);
 		renderText(response, JSONUtil.serialize(rel));
@@ -77,13 +77,23 @@ public class PerformanceIndexManageAction extends BaseAction {
 		File file = new File("F:\\code\\open\\咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx");
 		InputStream input = new FileInputStream(file);
 		String fileName1 = "咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx";
-		String fileName =  Doc2HtmlUtil.getDoc2HtmlUtilInstance().offic2Html(input, fileName1);
+		String fileName = Doc2HtmlUtil.getDoc2HtmlUtilInstance().offic2Html(input, fileName1);
 		renderText(response, JSONUtil.serialize(fileName));
 		return null;
 	}
 
 	public IPerformanceIndexManageService getPerformanceIndexManageService() {
 		return (IPerformanceIndexManageService) getService("performanceIndexManageService");
+	}
+
+	private PerformanceIndex index;
+
+	public PerformanceIndex getIndex() {
+		return index;
+	}
+
+	public void setIndex(PerformanceIndex index) {
+		this.index = index;
 	}
 
 }

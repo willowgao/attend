@@ -47,7 +47,7 @@ public class SystemApproveAuthorityAction extends BaseAction {
 	}
 
 	public String saveApproves() throws Exception {
-		String jsonStr = request.getParameter(DATAGRID_JSON_DATA);
+		String jsonStr = ((String[]) request.getParameterMap().get("leaveAppSet.datagrid"))[0];
 		Map<String, List<LeaveAppSet>> jsonMap = getListFromMap(jsonStr, new LeaveAppSet());
 		int rel = getSystemApproveAuthorityService().saveSetting(jsonMap);
 		renderText(response, JSONUtil.serialize(rel));
@@ -57,4 +57,15 @@ public class SystemApproveAuthorityAction extends BaseAction {
 	private ISystemApproveAuthorityService getSystemApproveAuthorityService() {
 		return (ISystemApproveAuthorityService) getService("systemApproveAuthorityService");
 	}
+
+	private LeaveAppSet leaveAppSet;
+
+	public LeaveAppSet getLeaveAppSet() {
+		return leaveAppSet;
+	}
+
+	public void setLeaveAppSet(LeaveAppSet leaveAppSet) {
+		this.leaveAppSet = leaveAppSet;
+	}
+
 }

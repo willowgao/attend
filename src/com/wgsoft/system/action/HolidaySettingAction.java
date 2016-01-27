@@ -24,6 +24,8 @@ public class HolidaySettingAction extends BaseAction {
 
 	private String clockdate;
 
+	private String datagrid;
+
 	/**
 	 * 
 	 */
@@ -62,7 +64,7 @@ public class HolidaySettingAction extends BaseAction {
 	 * @date： 2015-11-20 下午02:30:42
 	 */
 	public String save() throws Exception {
-		String jsonStr = request.getParameter(DATAGRID_JSON_DATA);
+		String jsonStr = datagrid;
 		Map<String, List<ClockDateSetting>> map = getListFromMap(jsonStr, new ClockDateSetting());
 		int rel = getHolidaySettingSerivce().saveChange(map);
 		renderText(response, JSONUtil.serialize(rel));
@@ -71,6 +73,14 @@ public class HolidaySettingAction extends BaseAction {
 
 	public String getClockdate() {
 		return clockdate;
+	}
+
+	public String getDatagrid() {
+		return datagrid;
+	}
+
+	public void setDatagrid(String datagrid) {
+		this.datagrid = datagrid;
 	}
 
 	public IHolidaySettingService getHolidaySettingSerivce() {

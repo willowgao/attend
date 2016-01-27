@@ -31,6 +31,8 @@
 					</label>
 					<input name="position.starttime" id="starttime" class="easyui-datebox"
 						data-options="formatter:fn_Dateformatter,parser:fn_DateParser,required:true"></input>
+						
+					<input type="hidden" name="position.datagrid" id="datagrid"></input>
 					<a onclick="save();" href="#" class="easyui-linkbutton c5" style="width: 80px; margin: 10px;">传递</a>
 				</div>
 			</div>

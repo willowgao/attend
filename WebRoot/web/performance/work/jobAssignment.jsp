@@ -39,6 +39,8 @@
 						<input class="easyui-combobox" type="text" id="approver" name="jobAssignment.approver" data-options="required:true" />
 						<a onclick="transfer();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin: 10px;">传递</a>
                     </div>
+                   
+					<input type="hidden" name="jobAssignment.datagrid" id="datagrid"></input>
 				</div>
 			</div>
 		</form>

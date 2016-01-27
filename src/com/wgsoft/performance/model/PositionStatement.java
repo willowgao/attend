@@ -3,12 +3,14 @@ package com.wgsoft.performance.model;
 
 import java.util.Date;
 
+import com.wgsoft.common.model.BaseVO;
+
 
 /**
  * PositionStatement entity. @author MyEclipse Persistence Tools
  */
 
-public class PositionStatement  implements java.io.Serializable {
+public class PositionStatement extends BaseVO implements java.io.Serializable {
 
 
     // Fields    

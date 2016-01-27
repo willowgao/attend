@@ -13,7 +13,11 @@ public class PositionStatementApprove  implements java.io.Serializable {
 
     // Fields    
 
-     private String appid;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7743416119244893712L;
+	private String appid;
      private String psid;
      private String deptid;
      private String roleid;

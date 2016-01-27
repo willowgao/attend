@@ -132,8 +132,10 @@
 	function save(){
 		jq(tableId).datagrid('endEdit', editIndex);
 		var url = getDataFromDatagrid(tableId) ;
+
+		jq('#datagrid').val(url);
 		jq('#positionForm').form('submit', {    
-		    url:programName + '/position/positionStatement!savePositionStatement.action'+url,
+		    url:programName + '/position/positionStatement!savePositionStatement.action',
 		    onSubmit: function(){  
 		       return jq(this).form('validate');
 		    },

@@ -18,6 +18,7 @@
 						</label>
 						<input name="clockdate" id="clockdate" class="easyui-timespinner" value="<%=DateUtil.date2String(sysdate,DateUtil.FORMAT_MONTH) %>"
 							data-options="onChange:query,formatter:formatterYM,parser:parserYM,selections:[[0,4],[5,7]]"></input>
+							<input type="hidden" name="datagrid" id="datagrid"></input>
 				</div>
 			</div>
 		</form>

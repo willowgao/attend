@@ -481,7 +481,7 @@ public class DateUtil {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(date2String(new Date(), HMS));
+		System.out.println(DateUtil.getFirstDateOfMonth(DateUtil.addIntervalOfDate(DateUtil.date2String(new Date(),DateUtil.FORMAT_MONTH),0,-1,0,DateUtil.FORMAT_MONTH)));
 	}
 
 }

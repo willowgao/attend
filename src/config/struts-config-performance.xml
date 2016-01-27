@@ -30,7 +30,6 @@
 			<result name="success">/web/performance/index/indexManage.jsp</result>
 		</action>
 		
-		
 		<!-- 绩效考核管理 -->
 		<action name="performance"
 			class="com.wgsoft.performance.action.PerformanceAssessAction">

@@ -55,6 +55,7 @@
 		</table>
 		
 		<form id="indexForm" method="post">
+			<input type="hidden" name="index.datagrid" id="datagrid"></input>
 		</form>
 		
 	</body>

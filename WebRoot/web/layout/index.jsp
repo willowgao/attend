@@ -6,7 +6,7 @@
 	<head>
 		<title>咸宁市人社局平时考核系统</title> 
 		<link rel="shortcut icon" type="image/x-icon" href="<%=webapp%>/web/common/css/images/favicon.ico" />
-		<link rel="stylesheet" href="<%=webapp%>/web/common/zTree3.5/css/metroStyle/metroStyle.css" type="text/css">
+		<link rel="stylesheet" href="<%=webapp%>/web/common/ztree/metroStyle/metroStyle.css" type="text/css">
 		<!--<link rel="stylesheet" href="<%=webapp%>/web/common/zTree3.5/css/awesomeStyle/awesome.css" type="text/css"> -->
 		<script type="text/javascript" src="<%=webapp%>/web/common/jquery/jquery-migrate-1.2.1.js"></script>
 		<script type="text/javascript" src="<%=webapp%>/web/common/js/easyui_custom.js"></script>

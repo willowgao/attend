@@ -107,7 +107,7 @@ public class JobAssignmentAction extends BaseAction {
 	 * @date： 2015-11-23 下午05:05:30
 	 */
 	public String saveJobs() throws Exception {
-		String jsonStr = request.getParameter(DATAGRID_JSON_DATA);
+		String jsonStr = ((String[]) request.getParameterMap().get("jobAssignment.datagrid"))[0];
 		Map<String, List<JobAssignment>> jobs = getListFromMap(jsonStr, new JobAssignment());
 		int rel = getJobAssignmentService().saveJobs(jobs, getUserInfo());
 		renderText(response, JSONUtil.serialize(rel));
