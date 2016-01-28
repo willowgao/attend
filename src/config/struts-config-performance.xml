@@ -10,6 +10,14 @@
 			<result name="success">/web/performance/work/jobAssignment.jsp</result>
 			<result name="approve">/web/performance/work/jobApprove.jsp</result>
 		</action>
+		
+		<action name="upload"
+			class="com.wgsoft.performance.action.JobProgressUploadAction">
+			<result name="success">/web/performance/work/jobUpload.jsp</result>
+			<result name="uploadApp">/web/performance/work/jobUploadApp.jsp</result>
+			
+		</action>
+		
 	</package>  
 	
 	<!-- 岗位职责申报 -->

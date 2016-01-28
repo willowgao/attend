@@ -1,41 +1,8 @@
    jq(function() {
 	 	loadData();
 		jq('#commDesc').hide();
-		//加载下拉表
-		jq('#approver').combobox({    
-			url:getUsersForCombox(ROLETYPE_TRIAL),
-		    valueField:'id',    
-		    textField:'text'   
-		});  
 	});
  
-   /**
-    * 
-    */
-   var transfer = function(){
-	   var rows = jq(tableId).datagrid('getChecked');
-	   var ids = '';
-	   if(rows==''){
-		   jq.messager.alert('警告','请选择需要传递的工单信息!');
-		   return ;
-	   }
-	   for(var i=0;i< rows.length; i++ ){
-		   ids = ids+rows[i].jobid+',';
-	   }
-	   jq('#jobAssignmentForm').form('submit', {    
-		    url:programName + '/workDeclare/jobAssignment!transfer.action?ids='+ids,
-		    onSubmit: function(){  
-		       return jq(this).form('validate');
-		    },
-		    success:function(data){    
-		    	if(data=='0'){	
-				   jq.messager.alert('提示','信息更新成功!');
-					query();
-		    	}
-		    } 
-		});
-   }
-   
  	/**
  	 * 页面分页查询
  	 * @return
@@ -44,7 +11,7 @@
     	var starttime = jq('#starttime').datebox('getValue');
 		var endtime = jq('#endtime').datebox('getValue');
 	    jq('#dg').datagrid({
-	        url:  programName + '/workDeclare/jobAssignment!queryJobs.action?starttime=' + starttime + '&endtime=' + endtime
+	        url:  programName + '/workDeclare/upload!queryJobs.action?starttime=' + starttime + '&endtime=' + endtime
 	    });
     }
 	
@@ -63,7 +30,7 @@
 		jq.ajaxSettings.async = false; 
 		var params =  jq('#jobAssignmentForm').serialize();
 		jq.ajax( {
-			url : programName + '/workDeclare/jobAssignment!queryJobs.action',
+			url : programName + '/workDeclare/upload!queryJobs.action',
 			type : 'post',
 			data : params,
 			dataType : 'json',
@@ -86,6 +53,27 @@
 	}
 	var tableId = '#dg';
 	var editIndex = undefined;
+	
+	/**
+	 * 判断完成率是否达到100%
+	 * @return
+	 */
+	var checkProgress = function(){
+		var bool = true;
+		var rows = jq(tableId).datagrid('getRows');
+		for(var i=0;i<rows.length;i++){
+			var row = rows[i];
+			if(row.progress != undefined){
+			   if(parseFloat(row.progress) < 100){
+				    jq.messager.alert('提示','工作进度未达到100%,不能上报!');
+				    return false;
+			   }
+			}
+		}
+		return bool;
+	}
+	 
+	
 
 	/**
 	 * 保存获取编辑的行时，需要先完成编辑状态
@@ -94,11 +82,15 @@
 	function save(){
 		var tableId = '#dg';
 		jq(tableId).datagrid('endEdit', editIndex);
+
+		if(!checkProgress()){
+			return;
+		}
 		var url = getDataFromDatagrid(tableId) ;
 		jq('#datagrid').val(url);
 		var params =  jq('#jobAssignmentForm').serialize();
 		jq.ajax( {
-			url : programName + '/workDeclare/jobAssignment!saveJobs.action',
+			url : programName + '/workDeclare/upload!saveJobs.action',
 			type : 'post',
 			data : params,
 			dataType : 'json',
@@ -109,8 +101,6 @@
 			 }
 			}
 		});
-		
-		
 	}
 		   
 	/**

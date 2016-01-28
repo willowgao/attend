@@ -49,6 +49,24 @@ public interface IJobAssignmentService {
 	List<JobAssignment> getJobApps(Map<String, Object> queryMap);
 
 	/**
+	 * @desc:查询工已审核未上报信息
+	 * @param queryMap
+	 * @return
+	 * @return List<JobAssignment>
+	 * @date： 2016-1-28 上午11:16:42
+	 */
+	List<JobAssignment> getJobUpload(Map<String, Object> queryMap);
+
+	/**
+	 * @desc::查询工已审核已上报信息
+	 * @param queryMap
+	 * @return
+	 * @return List<JobAssignment>
+	 * @date： 2016-1-28 上午11:16:42
+	 */
+	List<JobAssignment> getJobUploadApp(Map<String, Object> queryMap);
+
+	/**
 	 * @desc: 工作任务审核
 	 * @param jobs
 	 *            List<JobAssignment> jobs
@@ -69,5 +87,25 @@ public interface IJobAssignmentService {
 	 * @date： 2015-11-26 上午10:44:44
 	 */
 	int transfer(JobAssignment job, String ids);
+
+	/**
+	 * @desc:工作单据确认 只要工作单据下面有一个工作项，没有完成，这一个工单，将不会被填上确认时间，直到最后一个工作项完成之后，再填写上确认时间
+	 * @param Map
+	 *            <String, Object> saveMap
+	 * @return
+	 * @return int
+	 * @date： 2015-11-26 上午10:44:44
+	 */
+	int confrim(Map<String, Object> saveMap);
+
+	/**
+	 * @desc:回退已经上报的工作单
+	 * @param ids
+	 *            String 选择需要传递的id
+	 * @return
+	 * @return int
+	 * @date： 2015-11-26 上午10:44:44
+	 */
+	int rollback(String ids);
 
 }

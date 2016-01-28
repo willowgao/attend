@@ -31,5 +31,8 @@
         <property name="status" type="java.lang.String">
             <column name="STATUS" length="6" />
         </property>
+        <property name="confirmtime" type="java.util.Date">
+            <column name="CONFIRMTIME" length="7" />
+        </property>
     </class>
 </hibernate-mapping>

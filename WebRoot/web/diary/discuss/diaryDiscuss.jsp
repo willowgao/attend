@@ -95,6 +95,7 @@
 					iconCls: 'icon-search',
 					resizable:true,
 					modal:true,
+					onClose:query
 				">
 			 	<iframe align="left" id ='diary' scrolling='auto' frameborder='0'  style='width:70%;height:100%;'></iframe>
 				<iframe align="right" id ='discuss' scrolling='auto' frameborder='0'  style='width:30%;height:100%;'></iframe>

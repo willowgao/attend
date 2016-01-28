@@ -25,13 +25,32 @@
 		if (jq(tableId).datagrid('validateRow', editIndex)){
 			jq(tableId).datagrid('endEdit', editIndex);
 			setMergeCell();
+			setScore();
 			editIndex = undefined;
 			return true;
 		} else {
 			return false;
 		}
 	}
- 
+	/**
+	 * 打分判断，设置得分
+	 * @return
+	 */
+	var setScore = function(){
+		var score  = 0;
+		var rows = jq(tableId).datagrid('getRows');
+		for(var i=0;i<rows.length;i++){
+			var row = rows[i];
+			if(row.indexscore != undefined){
+			   if(parseFloat(row.indexscore)>parseFloat(row.indexScore)){
+				    jq.messager.alert('提示','得分不能大于标准分!');
+				    break;
+			   }
+			  score = parseFloat(score)+ parseFloat(row.indexscore);
+			}
+		}
+		jq('#score').text(score);
+	}
 	
 	//查询列表数据
 	function getIndexData() { 
@@ -151,6 +170,12 @@
 		jq('#datagrid').val(url);
 		if(userid==''){
 			jq.messager.alert('提示','未选择被考核人员，请先选择!');
+			return;
+		}
+		
+		var score = jq('#score').text();
+		if(parseFloat(score)>100){
+			jq.messager.alert('提示','总分不能超过100!');
 			return;
 		}
 		jq.ajax( {

@@ -52,7 +52,6 @@ public class Doc2HtmlUtil {
 
 		soffice_host = option.getProperty(SysConstants.OPENOFFIC_IP);
 		soffice_port = option.getProperty(SysConstants.OPENOFFIC_PORT);
-		
 
 	}
 
@@ -74,7 +73,7 @@ public class Doc2HtmlUtil {
 	public static String offic2Html(InputStream fromFileInputStream, String fileName) {
 
 		String uuid = UUID.randomUUID().toString().replace("-", "");
-		String fileSuffix = fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
+		String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 		String htmFileName = uuid + ".html";
 		String docFileName = uuid + "." + fileSuffix;
 
@@ -89,8 +88,8 @@ public class Doc2HtmlUtil {
 		File outfile = new File(htmlStr);
 
 		File htmlOutputFile = new File(outfile.toString() + File.separatorChar + htmFileName);
-		File docInputFile = new File(outfile.toString() + File.separatorChar + docFileName); 
-		
+		File docInputFile = new File(outfile.toString() + File.separatorChar + docFileName);
+
 		/**
 		 * 由fromFileInputStream构建输入文件
 		 * */
@@ -126,4 +125,44 @@ public class Doc2HtmlUtil {
 		return htmFileName;
 	}
 
+	/**
+	 * @desc: 清空目录
+	 * @return void
+	 * @date： 2016-1-28 上午09:59:23
+	 */
+	public static synchronized boolean deleteFile(File file) {
+		boolean bool = file.delete();
+		if (bool) {
+			log.info("Successfully deleted empty directory: " + file);
+		} else {
+			log.info("Failed to delete empty directory: " + file);
+		}
+		return bool;
+	}
+
+	/**
+	 * 递归删除目录下的所有文件及子目录下所有文件
+	 * 
+	 * @param dir
+	 *            将要删除的文件目录
+	 * @return boolean Returns "true" if all deletions were successful. If a
+	 *         deletion fails, the method stops attempting to delete and returns
+	 *         "false".
+	 */
+	public static synchronized boolean deleteDirFile() {
+		String htmlStr = str.substring(1, str.indexOf("WEB-INF")) + "web/html/";
+		File file = new File(htmlStr);
+		if (file.isDirectory()) {
+			String[] children = file.list();
+			// 递归删除目录中的子目录下
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteFile(new File(file, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+		}
+		// 目录此时为空，可以删除
+		return true;
+	}
 }

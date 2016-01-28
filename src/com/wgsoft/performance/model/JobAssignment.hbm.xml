@@ -43,5 +43,17 @@
         <property name="approveid" type="java.lang.String">
             <column name="APPROVEID" length="32" />
         </property>
+        <property name="progress" type="java.lang.Double">
+            <column name="PROGRESS" precision="6" scale="2" />
+        </property>
+        <property name="uploadtime" type="java.util.Date">
+            <column name="UPLOADTIME" length="7" />
+        </property>
+        <property name="confirmtime" type="java.util.Date">
+            <column name="CONFIRMTIME" length="7" />
+        </property>
+        
+        
+        
     </class>
 </hibernate-mapping>

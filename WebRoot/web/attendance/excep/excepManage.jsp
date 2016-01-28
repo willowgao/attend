@@ -32,15 +32,11 @@
 				</div>
 			</div>
 		</form>
-			<div id="tb" style="height: auto">
-				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true" onclick="doExcep()">未打卡处理</a>
-			</div>
 			<div style="width: 100%; height: 80%">
 				<div align="left">
 				</div>
 				<table id="dg" title="考勤异常记录" style="with: 100%; height: 100%"
 					data-options="
-				toolbar: '#tb',
 				rownumbers:true,
 				onClickRow:onClickRow,
 				onDblClickRow:doExcep,

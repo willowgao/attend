@@ -45,7 +45,13 @@ public class PerformanceIndexManageAction extends BaseAction {
 	 */
 	public String queryIndex() throws Exception {
 		List<PerformanceIndex> list = getPerformanceIndexManageService().queryIndex();
-		renderText(response, transferListToJsonMapForTabel(list));
+		// 需要合计的列名
+		String[] sumCol = new String[] { "indexScore" };
+		// 需要在脚行设置为空的列名
+		String[] setNull = new String[] { "item", "itemDetail" };
+		// 需要设置“合计”字样描述的列名
+		String[] setSumDesc = new String[] { "indexContent" };
+		renderText(response, transferListToJsonMapForTabel(list, sumCol, new PerformanceIndex(), setNull, setSumDesc));
 		return null;
 	}
 

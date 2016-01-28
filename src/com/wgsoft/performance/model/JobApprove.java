@@ -21,6 +21,8 @@ public class JobApprove  implements java.io.Serializable {
      private Date appdate;
      private String appcomments;
      private String status;
+     
+     private Date confirmtime;
 
 
     // Constructors
@@ -46,10 +48,19 @@ public class JobApprove  implements java.io.Serializable {
         this.status = status;
     }
 
+    
    
     // Property accessors
 
-    public String getApproveid() {
+    public Date getConfirmtime() {
+		return confirmtime;
+	}
+
+	public void setConfirmtime(Date confirmtime) {
+		this.confirmtime = confirmtime;
+	}
+
+	public String getApproveid() {
         return this.approveid;
     }
     

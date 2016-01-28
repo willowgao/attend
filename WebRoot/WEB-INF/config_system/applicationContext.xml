@@ -139,4 +139,48 @@
 	</bean>
 	
 	
+    <!-- Spring 定时任务触发 每一段时间做调度处理
+	<bean name="fileClearer" class="com.wgsoft.common.utils.FileClearerTimer">
+	</bean>
+	
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		wait 1 seconds before starting repeated execution 
+		<property name="delay" value="${timer.delay}" />
+		run every 2 seconds
+		<property name="period" value="${timer.period}" />
+		<property name="timerTask" ref="fileClearer" />
+	</bean> 
+
+	<bean id="messageTimerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref bean="scheduledTask" /> 
+			</list>
+		</property>
+	</bean>
+	 
+	--> 
+	<!-- Spring 定时任务触发 --> 
+	<bean name="doc2HtmlUtil" class="com.wgsoft.common.utils.Doc2HtmlUtil">
+	</bean>
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="doc2HtmlUtil" />
+		<property name="targetMethod" value="deleteDirFile" />
+		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="ddlTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+         <property name="jobDetail" ref="jobDetail" />
+         <property name="cronExpression" value="00 00 00 * * ?" /> <!-- 凌晨点清除 -->
+    </bean>
+    
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="ddlTrigger" />
+			</list>
+		</property>
+		<property name="autoStartup" value="true"/>
+	</bean>
+		
 </beans>

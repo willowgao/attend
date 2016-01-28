@@ -1,6 +1,7 @@
 package com.wgsoft.performance.service;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,22 @@ public class JobAssignmentService implements IJobAssignmentService {
 	 * @see com.wgsoft.performance.iservice.IJobAssignmentService#getAppJobs(Map)
 	 */
 	public List<JobAssignment> getJobApps(Map<String, Object> queryMap) {
+		queryMap.put("status", SysConstants.ApproverStatus.APPROVER_STATUS_DECLARE);
 		return jobAssignmentDao.getJobApps(queryMap);
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IJobAssignmentService#getJobUpload(Map)
+	 */
+	public List<JobAssignment> getJobUpload(Map<String, Object> queryMap) {
+		return jobAssignmentDao.getJobUpload(queryMap);
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IJobAssignmentService#getJobUploadApp(Map)
+	 */
+	public List<JobAssignment> getJobUploadApp(Map<String, Object> queryMap) {
+		return jobAssignmentDao.getJobUploadApp(queryMap);
 	}
 
 	/**
@@ -119,6 +135,65 @@ public class JobAssignmentService implements IJobAssignmentService {
 		} else {
 			return SysConstants.ERROR;
 		}
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IJobAssignmentService#confrim(Map)
+	 */
+	public int confrim(Map<String, Object> saveMap) {
+		int rel = 0;
+		// 更新确认时间
+		rel = jobAssignmentDao.confrim((String) saveMap.get("ids"));
+		// 检查同一个单据下是否还有其它工作任务未完成
+		saveMap.put("jobid", saveMap.get("ids"));
+
+		// 查询工作任务所属的工作单据
+		List<JobAssignment> jobs = jobAssignmentDao.getJobApps(saveMap);
+		List<String> appIds = new ArrayList<String>();
+		for (JobAssignment job : jobs) {
+			appIds.add(job.getApproveid());
+		}
+		// 转成数组
+		String[] ids = new String[appIds.size()];
+		int i = 0;
+		for (String id : appIds) {
+			ids[i] = id;
+			i++;
+		}
+
+		// 获取工作任务未完成的工作项单据，那其它的单据就是已经完成的
+		List<JobApprove> jobapps = jobAssignmentDao.getJobHasNotDone(RunUtil.transObjAsSqlInStr(ids));
+
+		// 移除未完成的
+		for (int j = 0; j < appIds.size(); j++) {
+			for (JobApprove job : jobapps) {
+				if (appIds.contains(job.getApproveid())) {
+					appIds.remove(j);
+				}
+			}
+		}
+
+		// 都是完成的，需要修改工作单据的状态，和工作任务的状态，和单据的确认时间 // 还有未完成的，不做处理。
+		String[] idApps = new String[appIds.size()];
+		int k = 0;
+		for (String id : appIds) {
+			idApps[k] = id;
+			k++;
+		}
+		if (idApps.length == 0) {
+			return rel;
+		}
+		int count = jobAssignmentDao.confrimApp(RunUtil.transObjAsSqlInStr(idApps));
+		rel = rel + count;
+		return rel;
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IJobAssignmentService#confrim(JobAssignment,
+	 *      String)
+	 */
+	public int rollback(String ids) {
+		return jobAssignmentDao.rollback(ids);
 	}
 
 	private static final String TB = "填报";

@@ -6,7 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +30,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.wgsoft.common.utils.BeanUtil;
 import com.wgsoft.common.utils.SysConstants;
+import com.wgsoft.performance.model.PerformanceAssess;
+import com.wgsoft.performance.model.PerformanceIndex;
 import com.wgsoft.system.iservice.IDataDictionaryService;
 import com.wgsoft.user.iservice.IUserService;
 import com.wgsoft.user.model.UserInfo;
@@ -117,7 +121,7 @@ public class BaseAction extends ActionSupport implements Action {
 	 */
 
 	@SuppressWarnings("unchecked")
-	public String transferListToJsonMapForTabel(List list) {
+	public static String transferListToJsonMapForTabel(List list) {
 		String jsonStr = null;
 		Map<String, Object> dataGridMap = new HashMap<String, Object>();
 		dataGridMap.put("total", list.size());
@@ -129,6 +133,118 @@ public class BaseAction extends ActionSupport implements Action {
 			e.printStackTrace();
 		}
 		return jsonStr;
+	}
+
+	/**
+	 * @desc: 将list转化为json对像，用于在easyui datagrid显示（带合计）
+	 *        目前只有一种合计(sum)，以后可增加(avg,max,min 等)
+	 * @see com.wgsoft.performance.action.PerformanceIndexManageAction#queryIndex
+	 *      ()
+	 * @param list
+	 *            数据集合
+	 * @param field
+	 *            需要合计的列名(同jsp中field 列名相同)
+	 * @param object
+	 *            对象实例
+	 * @param setNullField
+	 *            需要在脚行设置为空的列名(同jsp中field 列名相同)
+	 * @param setSumDesc
+	 *            需要设置“合计”字样描述的列名 (同jsp中field 列名相同)
+	 * @return
+	 * @return String
+	 * @date： 2016-1-28 下午01:53:56
+	 */
+	@SuppressWarnings("unchecked")
+	public static String transferListToJsonMapForTabel(List list, String[] field, Object object, String[] setNullField,
+			String[] setSumDesc) {
+		String jsonStr = null;
+		Map<String, Object> dataGridMap = new HashMap<String, Object>();
+		dataGridMap.put("total", list.size());
+		dataGridMap.put("rows", list);
+		List<Object> footer = new ArrayList<Object>();
+
+		Constructor con = null;
+		Class cls = null;
+		try {
+			// 类型初始化
+			cls = (Class) Class.forName(object.getClass().getName());
+			con = cls.getConstructor();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+
+		// 得到需要合计的列
+		String totalField = field[0];
+		totalField = (totalField.charAt(0) + "").toUpperCase() + totalField.substring(1);
+		// 合计值
+		Double total = new Double(0);
+		try {
+			object = con.newInstance();
+			// 合计
+			for (int i = 0; i < list.size(); i++) {
+				BeanUtil.applyIf(object, list.get(i));
+				// 执行get方法得到数据
+				Double dou = (Double) cls.getMethod("get" + totalField).invoke(object);
+				// 累计
+				total = total.doubleValue() + dou.doubleValue();
+			}
+			// 将合计值放到初始化的属性中
+			cls.getMethod("set" + totalField, Double.class).invoke(object, total);
+			// 设置最后一行，需要赋值为空的列
+			for (String nullField : setNullField) {
+				nullField = (nullField.charAt(0) + "").toUpperCase() + nullField.substring(1);
+				cls.getMethod("set" + nullField, String.class).invoke(object, "");
+			}
+			// 设置最后一行，需要赋值为“合计”字样的列
+			for (String descField : setSumDesc) {
+				descField = (descField.charAt(0) + "").toUpperCase() + descField.substring(1);
+				cls.getMethod("set" + descField, String.class).invoke(object, "合计");
+			}
+			// 添加到合计list中
+			footer.add(object);
+		} catch (IllegalArgumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InvocationTargetException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// 放到datagrid集合
+		dataGridMap.put("footer", footer);
+		try {
+			jsonStr = JSONUtil.serialize(dataGridMap);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonStr;
+	}
+
+	public static void main(String[] args) {
+		PerformanceIndex assess = new PerformanceIndex();
+		assess.setIndexScore(Double.valueOf(23));
+
+		PerformanceIndex assess1 = new PerformanceIndex();
+		assess1.setIndexScore(Double.valueOf(43));
+
+		List list = Arrays.asList(assess, assess1);
+		String[] sumCol = new String[] { "indexScore" };
+		String[] setNull = new String[] { "item", "itemDetail" };
+		String[] setSumDesc = new String[] { "indexContent" };
+		System.out.println(transferListToJsonMapForTabel(list, sumCol, new PerformanceIndex(), setNull, setSumDesc));
 	}
 
 	/**
@@ -363,7 +479,6 @@ public class BaseAction extends ActionSupport implements Action {
 	public void setUserInfo(UserInfo user) {
 		session.setAttribute(USERINFO, user);
 	}
-
 
 	/**
 	 * @desc:获取用户信息

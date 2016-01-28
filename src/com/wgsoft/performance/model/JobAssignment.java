@@ -30,6 +30,10 @@ public class JobAssignment extends BaseVO implements java.io.Serializable {
 	private String appcomments;
 	private Date appdate;
 	private String approveid;
+	private Double progress;
+	
+	private Date uploadtime;
+	private Date confirmtime;
 
 	// Constructors
 
@@ -41,6 +45,7 @@ public class JobAssignment extends BaseVO implements java.io.Serializable {
 	public JobAssignment(String jobid) {
 		this.jobid = jobid;
 	}
+
 
 	/** full constructor */
 	public JobAssignment(String jobid, String jobtype, String executiver, String comments, Date starttime,
@@ -60,8 +65,34 @@ public class JobAssignment extends BaseVO implements java.io.Serializable {
 		this.approveid = approveid;
 	}
 
-	// Property accessors
 
+	public Double getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Double progress) {
+		this.progress = progress;
+	}
+	
+	
+	
+	public Date getUploadtime() {
+		return uploadtime;
+	}
+
+	public void setUploadtime(Date uploadtime) {
+		this.uploadtime = uploadtime;
+	}
+
+	public Date getConfirmtime() {
+		return confirmtime;
+	}
+
+	public void setConfirmtime(Date confirmtime) {
+		this.confirmtime = confirmtime;
+	}
+
+	// Property accessors
 	public String getJobid() {
 		return this.jobid;
 	}

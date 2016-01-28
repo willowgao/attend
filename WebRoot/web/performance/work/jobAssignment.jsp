@@ -10,11 +10,11 @@
 	</head>
 	<body>
 		<form id="jobAssignmentForm" method="post">
-		<div id="commDesc"  class="easyui-panel" style="width: 10%;height: 40%;position:absolute;z-index:8;">
+		<div id="commDesc"  class="easyui-panel" style="width: 40%;height:60%;;position:absolute;z-index:8;">
 		</div>
-			<div class="easyui-panel" title="审核信息" style="width: 100%">
+			<div class="easyui-panel" title="填报信息" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
-					<div>
+					<div  style="margin: 10px;>
 						<label style="margin: 10px;">
 							开始日期：
 						</label>
@@ -25,9 +25,9 @@
 						</label>
 						<input name="jobAssignment.endtime" id="endtime" class="easyui-datebox"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser,required:true"></input>
-						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin: 10px;">查询</a>
+						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">查询</a>
 					</div>
-					<div >
+					<div style="margin: 10px; >
 						<label style="margin: 10px;">
 							工单名称：
 						</label>
@@ -37,7 +37,7 @@
 							审批人员：
 						</label>
 						<input class="easyui-combobox" type="text" id="approver" name="jobAssignment.approver" data-options="required:true" />
-						<a onclick="transfer();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin: 10px;">传递</a>
+						<a onclick="transfer();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">传递</a>
                     </div>
                    
 					<input type="hidden" name="jobAssignment.datagrid" id="datagrid"></input>
