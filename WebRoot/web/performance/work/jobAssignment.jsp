@@ -9,50 +9,52 @@
 		<link rel="stylesheet" href="<%=webapp%>/web/common/css/label.css" type="text/css">
 	</head>
 	<body>
-		<form id="jobAssignmentForm" method="post">
-		<div id="commDesc"  class="easyui-panel" style="width: 40%;height:60%;;position:absolute;z-index:8;">
-		</div>
-			<div class="easyui-panel" title="填报信息" style="width: 100%">
-				<div style="margin-top: 10px; margin-bottom: 10px;">
-					<div  style="margin: 10px;>
-						<label style="margin: 10px;">
-							开始日期：
-						</label>
-						<input name="jobAssignment.starttime" id="starttime" class="easyui-datebox"
-							data-options="formatter:fn_Dateformatter,parser:fn_DateParser,required:true"></input>
-						<label style="margin: 10px;">
-							终止日期：
-						</label>
-						<input name="jobAssignment.endtime" id="endtime" class="easyui-datebox"
-							data-options="formatter:fn_Dateformatter,parser:fn_DateParser,required:true"></input>
-						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">查询</a>
-					</div>
-					<div style="margin: 10px; >
-						<label style="margin: 10px;">
-							工单名称：
-						</label>
-						<input name="jobAssignment.jobname" id="jobname" class="easyui-textbox"
-							data-options="required:true"></input>
-						<label style="margin: 10px;">
-							审批人员：
-						</label>
-						<input class="easyui-combobox" type="text" id="approver" name="jobAssignment.approver" data-options="required:true" />
-						<a onclick="transfer();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">传递</a>
-                    </div>
-                   
-					<input type="hidden" name="jobAssignment.datagrid" id="datagrid"></input>
-				</div>
+	
+			<div id="commDesc"  class="easyui-panel" style="width: 30%;height:60%;position:absolute;z-index:8;">
 			</div>
-		</form>
+			<div class="easyui-panel" title="填报信息" style="width: 100%;">
+				<form id="jobAssignmentForm" method="post">
+					<div style="margin-top: 10px; margin-bottom: 10px;">
+						<div  style="margin: 10px;>
+							<label style="margin: 10px;">
+								开始日期：
+							</label>
+							<input name="jobAssignment.starttime" id="starttime" class="easyui-datebox"
+								data-options="formatter:fn_Dateformatter,parser:fn_DateParser,required:true"></input>
+							<label style="margin: 10px;">
+								终止日期：
+							</label>
+							<input name="jobAssignment.endtime" id="endtime" class="easyui-datebox"
+								data-options="formatter:fn_Dateformatter,parser:fn_DateParser,required:true"></input>
+							<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">查询</a>
+						</div>
+						<div style="margin: 10px; >
+							<label style="margin: 10px;">
+								工单名称：
+							</label>
+							<input name="jobAssignment.jobname" id="jobname" class="easyui-textbox"
+								data-options="required:true"></input>
+							<label style="margin: 10px;">
+								审批人员：
+							</label>
+							<input class="easyui-combobox" type="text" id="approver" name="jobAssignment.approver" data-options="required:true" />
+							<a onclick="transfer();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">传递</a>
+		                 </div>
+		                  
+						<input type="hidden" name="jobAssignment.datagrid" id="datagrid"></input>
+					</div>
+				</form>
+			</div> 
+		
 		<div id="tb" style="height: auto">
 			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="save();">保存</a>
 			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add('#dg');">新增</a>
 			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit('#dg');">删除</a>
 		</div>
-		<div style="width: 100%; height: 60%">
+		<div   style="width: 100%; height: 75%">
 			<div align="left">
 			</div>
-			<table id="dg" title="工作任务记录" style="with: 100%; height: 100%"
+			<table id="dg" title="工作任务记录" style="width: 100%; height: 100%"
 				data-options="
 				toolbar: '#tb', 
 				onDblClickCell:onClickCell,
@@ -63,6 +65,7 @@
 				CheckOnSelect:true,
 				autoRowHeight:false,
 				striped:true,
+				fit:true,
 				pagination:true,
 				pageList:[5,10,15,20,25,30],
 				pageSize:15"

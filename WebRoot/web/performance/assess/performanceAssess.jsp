@@ -58,11 +58,9 @@
 						<input type="hidden" name="assess.userid" id="userid"></input>
 						<input type="hidden" name="assess.roletype" id="roletype"></input>
 						<input type="hidden" name="assess.datagrid" id="datagrid"></input>
-						
-						
 						<a href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;" onclick="save();">保存</a>
 						<label style="margin: 10px;">
-							得分为：
+							得分：
 						</label>
 						<label id="score" style="color:red;font-size : 20px;font-weight: bold;font: Georgia">
 					</div>

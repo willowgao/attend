@@ -12,8 +12,8 @@
 	</head>
 	<body>
 
-		<form id="jobAssignmentForm" >
-			<div id="commDesc" class="easyui-panel" style="width: 40%;height:60%; position: absolute; z-index: 8;">
+		<form id="jobAssignmentForm">
+			<div id="commDesc" class="easyui-panel" style="width: 30%;height:60%; position: absolute; z-index: 8;">
 			</div>
 			<div class="easyui-panel" title="查询条件" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
@@ -31,21 +31,24 @@
 						<input type="hidden" id="jobname"></input>
 						<input type="hidden" id="starttime"></input>
 						<input type="hidden" id="endtime"></input>
-						&nbsp;&nbsp;
-						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;">查询</a>
+						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 5px;">查询</a>
 					</div>
 				</div>
 			</div>
+		
 		</form>
-		<div style="width: 100%; height: 70%">
+		<div class="easyui-panel"  style="width: 100%; height: 75%">
 			<div align="left">
 			</div>
-			<table id="dg" title="工作任务申报记录" style="with: 100%; height: 100%"
+			<table id="dg" title="工作任务申报记录" style="width: 100%; height: 100%"
 				data-options="
 				onLoadSuccess:onLoadSuccess,
 				onDblClickRow:onDblClickRow,
 				rownumbers:true,
+				collapsible:true,
 				autoRowHeight:false,
+				striped:true,
+				fit:true,
 				pagination:true,
 				pageList:[5,10,15,20,25,30],
 				pageSize:15"
@@ -141,7 +144,6 @@
 				</thead>
 			</table>
 			<div style="position: absolute; left: 20px; top: 240px;">
-				
 				<div class="label_css">
 					<label for="comments">
 						审核意见 :

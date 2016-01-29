@@ -185,7 +185,7 @@ public class JobAssignmentDao extends BaseDao implements IJobAssignmentDao {
 		rel = rel + count;
 		sql = new StringBuffer("  UPDATE JOBASSIGNMENT ");
 		// 更新填报表
-		sql.append(" SET CONFIRMTIME = SYSDATE , STATUS = '").append(
+		sql.append(" SET STATUS = '").append(
 				SysConstants.ApproverStatus.APPROVER_STATUS_FIRSTPASS).append("' WHERE APPROVEID IN (").append(
 						ids).append(") ");
 		count = getSqlUpdate(sql.toString());

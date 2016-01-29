@@ -37,20 +37,31 @@
 					</div>
 				</div>
 			</div>
-			<div style="margin-top:2px; width: 100%; height: 70%"> 
+			<!-- 弹出窗口 -->
+			<div id="dlg" class="easyui-dialog" title="日志详细信息" style="width: 900px; height: 600px; padding: 10px;"
+				data-options="
+					iconCls: 'icon-search',
+					resizable:true,
+					modal:true,
+					onClose:query
+				">
+			 	<iframe align="left" id ='diary' scrolling='auto' frameborder='0'  style='width:70%;height:100%;'></iframe>
+				<iframe align="right" id ='discuss' scrolling='auto' frameborder='0'  style='width:30%;height:100%;'></iframe>
+			 </div>
+			 
+				<div class="easyui-panel" style="margin-top: 2px; width: 100%; height: 70%">
 				<table id="dg" title="日志信息列表" style="width: 100%; height: 100%"
-					data-options="
-				rownumbers:true,
-				ctrlSelect:true,
-				striped:true,
-				autoRowHeight:false,
-				sortOrder:'diarydate',
-				onLoadSuccess:onLoadSuccess,
-				onDblClickRow:onDblClickRow,
-				sortName:'logintime',
-				pagination:true,
-				pageList:[5,10,15,20,25,30],
-				pageSize:15"
+					data-options="fit:true,
+					rownumbers:true,
+					ctrlSelect:true,
+					striped:true,
+					autoRowHeight:false,
+					sortOrder:'diarydate',
+					onLoadSuccess:onLoadSuccess,
+					onDblClickRow:onDblClickRow,
+					pagination:true,
+					pageList:[5,10,15,20,25,30],
+					pageSize:15"
 					align="left">
 					<thead>
 						<tr>
@@ -89,17 +100,7 @@
 				</table>
 			</div>
 		</form>
-			<!-- 弹出窗口 -->
-			<div id="dlg" class="easyui-dialog" title="日志详细信息" style="width: 900px; height: 600px; padding: 10px;"
-				data-options="
-					iconCls: 'icon-search',
-					resizable:true,
-					modal:true,
-					onClose:query
-				">
-			 	<iframe align="left" id ='diary' scrolling='auto' frameborder='0'  style='width:70%;height:100%;'></iframe>
-				<iframe align="right" id ='discuss' scrolling='auto' frameborder='0'  style='width:30%;height:100%;'></iframe>
-			 </div>
+			
 		 
 	</body>
 </html>

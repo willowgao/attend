@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</form>
-		<div style="width: 100%; height: 70%">
+		<div  class="easyui-panel" style="width: 100%; height: 80%">
 			<div align="left">
 			</div>
 			<table id="dg" title="打卡异常信息记录" style="with: 100%; height: 100%"

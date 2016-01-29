@@ -137,13 +137,12 @@ public class UserDao extends BaseDao implements IUserDao {
 		sql.append(user.getUserpwd()).append("','null',userpwd,'").append(user.getUserpwd()).append("') ");
 		sql.append(", DEFAULTSTYLE = '").append(user.getDefaultstyle()).append("'");
 		sql.append(" WHERE userid ='").append(user.getUserid()).append("'");
-		;
 		getSqlUpdate(sql.toString());
 	}
 
 	public List<BacklogWork> getWorks(UserInfo user) {
 		StringBuffer sql = new StringBuffer(
-				" select * from (SELECT '' url,COMMENTS, STARTTIME, ENDTIME, ENDTIME settime  FROM JOBASSIGNMENT WHERE WORKTIME IS NULL AND STATUS = '2' ");
+				" select * from (SELECT '/workDeclare/upload.action' url,COMMENTS, STARTTIME, ENDTIME, ENDTIME settime  FROM JOBASSIGNMENT WHERE  UPLOADTIME IS NULL AND STATUS = '2' ");
 		sql.append(" and EXECUTIVER ='").append(user.getUserid()).append("'");
 		// 周报
 		sql

@@ -10,11 +10,11 @@
 	</head>
 	<body>
 		<form id="jobAssignmentForm" method="post">
-		<div id="commDesc"  class="easyui-panel" style="width: 40%;height:60%;position:absolute;z-index:8;">
+		<div id="commDesc"  class="easyui-panel" style="width: 30%;height:60%;position:absolute;z-index:8;">
 		</div>
 			<div class="easyui-panel" title="查询条件" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
-					<div style="margin-top: 10px;">
+					<div style="margin: 10px;">
 						<label style="margin: 10px;">
 							开始日期：
 						</label>
@@ -35,7 +35,7 @@
 			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="save();">保存</a>
 			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="rollback();">回退</a>
 		</div>
-		<div style="width: 100%; height: 60%">
+		<div style="width: 100%; height: 75%">
 			<div align="left">
 			</div>
 			<table id="dg" title="工作任务记录" style="with: 100%; height: 100%"
@@ -78,7 +78,10 @@
 						<th data-options="field:'progress',width:'8%',align:'center'">
 							工作进度(%)
 						</th>
-						<th data-options="field:'userid',width:'6%',align:'center',formatter:formatterUser,editor:'textbox',hidden:'true'">
+						<th data-options="field:'filltime',width:'6%',align:'center',formatter:formatterdateYMD"">
+							填报时间
+						</th> 
+						<th data-options="field:'userid',width:'6%',align:'center',formatter:formatterUser">
 							填报人
 						</th> 
 						<th data-options="field:'jobid',width:'10%',align:'center',hidden:'true'">

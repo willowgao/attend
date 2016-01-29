@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</form>
-			<div style="width: 100%; height: 80%">
+			<div class="easyui-panel" style="width: 100%; height: 80%">
 				<div align="left">
 				</div>
 				<table id="dg" title="考勤异常记录" style="with: 100%; height: 100%"
