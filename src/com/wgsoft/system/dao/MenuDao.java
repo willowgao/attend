@@ -1,5 +1,6 @@
 package com.wgsoft.system.dao;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.wgsoft.common.dao.BaseDao;
@@ -20,16 +21,27 @@ import com.wgsoft.system.model.UserMenu;
  */
 @SuppressWarnings("unchecked")
 public class MenuDao extends BaseDao implements IMenuDao {
+	
+	// 在查询菜单时，masoft的菜单做控制
+	private static final List SYSADMIN = Arrays.asList("0000000", "9999999");
 
 	/**
 	 * 查询菜单树
 	 */
 	public List<SysMenu> getMenuForTree(final String userId, final String menuId) {
-		final StringBuffer sql = new StringBuffer("select menuid,parentid,action,menuname from menu where  isdisable='0'");
-		sql.append("  AND MENUID IN (SELECT MENUID FROM USER_MENU WHERE USERID = '").append(userId).append("')");
-		sql.append("  START WITH  menuid = '").append(menuId);
-		sql.append("' CONNECT BY PRIOR");
-		sql.append(" menuid = parentid ORDER BY xh ");
+		final StringBuffer sql = new StringBuffer(
+				"SELECT MENUID,PARENTID,ACTION,MENUNAME FROM MENU WHERE  ISDISABLE='0'");
+		if (!SYSADMIN.contains(userId)) {
+			sql.append("  AND MENUID IN (SELECT MENUID FROM USER_MENU WHERE USERID = '").append(userId).append("')");
+			sql.append("  START WITH  menuid = '").append(menuId);
+			sql.append("' CONNECT BY PRIOR");
+			sql.append(" MENUID = PARENTID ORDER BY XH ");
+		} else {
+			sql.append("  AND MENUID IN (SELECT MENUID FROM USER_MENU )");
+			sql.append("  START WITH  menuid = '").append(menuId);
+			sql.append("' CONNECT BY PRIOR");
+			sql.append(" MENUID = PARENTID ORDER BY XH ");
+		}
 		final List<SysMenu> list = getSqlList_(sql.toString(), SysMenu.class);
 		return list;
 	}
@@ -39,9 +51,14 @@ public class MenuDao extends BaseDao implements IMenuDao {
 	 */
 	public List<SysMenu> getMenu(final String userId) {
 		final StringBuffer sql = new StringBuffer("SELECT MENUNAME,MENUID ");
-		sql.append(" FROM MENU  WHERE MENUID IN (SELECT MENUID FROM USER_MENU WHERE USERID = '").append(userId).append(
-				"') and parentid ='root' and isdisable='0'");
-		sql.append("  ORDER BY XH ");
+		if (!SYSADMIN.contains(userId)) {
+			sql.append(" FROM MENU  WHERE MENUID IN (SELECT MENUID FROM USER_MENU WHERE USERID = '").append(userId)
+					.append("') AND PARENTID ='ROOT' AND ISDISABLE='0'");
+			sql.append("  ORDER BY XH ");
+		} else {
+			sql.append(" FROM MENU  WHERE PARENTID ='ROOT' AND ISDISABLE='0'");
+			sql.append("  ORDER BY XH ");
+		}
 		final List<SysMenu> list = getSqlList_(sql.toString(), SysMenu.class);
 		return list;
 	}
@@ -57,7 +74,7 @@ public class MenuDao extends BaseDao implements IMenuDao {
 		final List<SysMenu> list = getSqlList_(sql.toString(), SysMenu.class);
 		return list;
 	}
-	
+
 	/**
 	 * 查询菜单
 	 */

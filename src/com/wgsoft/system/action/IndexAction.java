@@ -25,6 +25,7 @@ public class IndexAction extends BaseAction {
 	private static final long serialVersionUID = -8979957589408583893L;
 	private IMenuService menuService = (IMenuService) getService("menuService");
 
+
 	/**
 	 * @desc:查询横向树
 	 * @return
