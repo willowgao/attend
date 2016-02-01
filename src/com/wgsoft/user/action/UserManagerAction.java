@@ -116,6 +116,7 @@ public class UserManagerAction extends BaseAction {
 		String pwd = request.getParameter("password");
 		String ipPort = request.getRemoteAddr() + ":" + request.getRemotePort();
 		String host = request.getRemoteHost();
+		
 		List<UserInfo> list = userService.getUserInfoByUName(userName, pwd, host, ipPort);
 		if (list.size() > 0) {
 			renderText(response, "1");

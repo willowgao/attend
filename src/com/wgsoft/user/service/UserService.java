@@ -33,7 +33,7 @@ public class UserService implements IUserService {
 	private IUserDao userDao;
 
 	/**
-	 * 
+	 * 查询所有用户
 	 */
 	public List<UserInfo> getUserInfo() {
 		List<UserInfo> users = userDao.getUsers();
@@ -90,8 +90,8 @@ public class UserService implements IUserService {
 		userLoginInfo.setUsername(user.getUsername());
 		userLoginInfo.setLogincode(user.getUsercode());
 		userLoginInfo.setLogintime(new Date());
-		userLoginInfo.setLogintmachine(ipPort);
-		userLoginInfo.setLoginip(host);
+		userLoginInfo.setLogintmachine(host);
+		userLoginInfo.setLoginip(ipPort);
 		userDao.insert(userLoginInfo);
 	}
 
@@ -138,6 +138,9 @@ public class UserService implements IUserService {
 		userDao.update(user);
 	}
 
+	/**
+	 * 检查用户编码是否已经存在 未判断组织
+	 */
 	public boolean checkUserCode(String userCode) {
 		return userDao.checkUserCode(userCode);
 	}
@@ -154,6 +157,9 @@ public class UserService implements IUserService {
 		this.userDao = userDao;
 	}
 
+	/**
+	 *得到审核人员
+	 */
 	public String getUserForApprove(String roleType, UserInfo user) {
 		List<UserInfo> users = userDao.getUserForApprove(roleType, user);
 		List<Map<String, String>> jsu = new ArrayList<Map<String, String>>();
@@ -173,6 +179,9 @@ public class UserService implements IUserService {
 		return jsonStr;
 	}
 
+	/**
+	 * 得到上级人员
+	 */
 	public String getUserForHigher(UserInfo user) {
 		List<UserInfo> users = userDao.getUserForHigher(user);
 		List<Map<String, String>> jsu = new ArrayList<Map<String, String>>();
@@ -192,10 +201,16 @@ public class UserService implements IUserService {
 		return jsonStr;
 	}
 
+	/**
+	 * 更新用户信息
+	 */
 	public void updateUserBySql(UserInfo user) {
 		userDao.updateUserBySql(user);
 	}
 
+	/**
+	 * 得到工作待办信息
+	 */
 	public List<BacklogWork> getWorks(UserInfo user) {
 		return userDao.getWorks(user);
 	}

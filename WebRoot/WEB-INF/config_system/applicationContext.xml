@@ -162,6 +162,8 @@
 	--> 
 	<!-- Spring 定时任务触发 --> 
 	<bean name="doc2HtmlUtil" class="com.wgsoft.common.utils.Doc2HtmlUtil">
+		<property name="soffice_host" value="127.0.0.1"></property>
+		<property name="soffice_port" value="8100"></property>
 	</bean>
     <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="doc2HtmlUtil" />

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
@@ -19,7 +21,7 @@ import com.wgsoft.common.utils.Doc2HtmlUtil;
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class AssessDocumentViewAction extends BaseAction {
-
+	private static Log log = LogFactory.getLog(AssessDocumentViewAction.class);
 	/**\
 	 * 
 	 */
@@ -46,8 +48,10 @@ public class AssessDocumentViewAction extends BaseAction {
 		File file = new File("F:\\code\\open\\咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx");
 		InputStream input = new FileInputStream(file);
 		String fileName1 = "咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx";
-		String fileName =  Doc2HtmlUtil.getDoc2HtmlUtilInstance().offic2Html(input, fileName1);
+		String fileName =  Doc2HtmlUtil.offic2Html(input, fileName1);
 		renderText(response, JSONUtil.serialize(fileName));
+		//Doc2HtmlUtil.deleteDirFile();
+		
 		return null;
 	}
 

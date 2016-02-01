@@ -5,12 +5,13 @@
 	<!-- 工作分派与审核 -->
 	<package name="com.performance.work" extends="struts-default"
 		namespace="/workDeclare">
+		<!-- 工作任务委派、审核 -->
 		<action name="jobAssignment"
 			class="com.wgsoft.performance.action.JobAssignmentAction">
 			<result name="success">/web/performance/work/jobAssignment.jsp</result>
 			<result name="approve">/web/performance/work/jobApprove.jsp</result>
 		</action>
-		
+		<!-- 工作任务上报、确认 -->
 		<action name="upload"
 			class="com.wgsoft.performance.action.JobProgressUploadAction">
 			<result name="success">/web/performance/work/jobUpload.jsp</result>

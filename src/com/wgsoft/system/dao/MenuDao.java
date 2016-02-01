@@ -37,7 +37,6 @@ public class MenuDao extends BaseDao implements IMenuDao {
 			sql.append("' CONNECT BY PRIOR");
 			sql.append(" MENUID = PARENTID ORDER BY XH ");
 		} else {
-			sql.append("  AND MENUID IN (SELECT MENUID FROM USER_MENU )");
 			sql.append("  START WITH  menuid = '").append(menuId);
 			sql.append("' CONNECT BY PRIOR");
 			sql.append(" MENUID = PARENTID ORDER BY XH ");
@@ -53,10 +52,10 @@ public class MenuDao extends BaseDao implements IMenuDao {
 		final StringBuffer sql = new StringBuffer("SELECT MENUNAME,MENUID ");
 		if (!SYSADMIN.contains(userId)) {
 			sql.append(" FROM MENU  WHERE MENUID IN (SELECT MENUID FROM USER_MENU WHERE USERID = '").append(userId)
-					.append("') AND PARENTID ='ROOT' AND ISDISABLE='0'");
+					.append("') AND UPPER(PARENTID) ='ROOT' AND ISDISABLE='0'");
 			sql.append("  ORDER BY XH ");
 		} else {
-			sql.append(" FROM MENU  WHERE PARENTID ='ROOT' AND ISDISABLE='0'");
+			sql.append(" FROM MENU  WHERE UPPER(PARENTID) ='ROOT' AND ISDISABLE='0'");
 			sql.append("  ORDER BY XH ");
 		}
 		final List<SysMenu> list = getSqlList_(sql.toString(), SysMenu.class);

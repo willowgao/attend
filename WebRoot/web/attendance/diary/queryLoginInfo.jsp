@@ -87,7 +87,7 @@
 							登录IP
 						</th>
 						<th data-options="field:'logintmachine',width:'12%',align:'center',editor:'textbox'">
-							登录服务器地址
+							登录服务器
 						</th>
 					</tr>
 				</thead>

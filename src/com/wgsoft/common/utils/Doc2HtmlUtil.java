@@ -1,14 +1,11 @@
 package com.wgsoft.common.utils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Properties;
 import java.util.UUID;
 
 import org.apache.commons.logging.Log;
@@ -30,30 +27,10 @@ public class Doc2HtmlUtil {
 
 	private static Doc2HtmlUtil doc2HtmlUtil;
 
-	private static String PROPERTIES_FILE = "/option.properties";
-	private static String soffice_host = null;
-	private static String soffice_port = null;
-	// 获取html存放的位置
-	private static String str = Doc2HtmlUtil.class.getClassLoader().getResource("").getPath();
-	static {
-
-		Properties option = new Properties();
-		try {
-			str = java.net.URLDecoder.decode(str, "utf-8");
-			InputStream is = new FileInputStream(str + PROPERTIES_FILE);
-			option.load(is);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		soffice_host = option.getProperty(SysConstants.OPENOFFIC_IP);
-		soffice_port = option.getProperty(SysConstants.OPENOFFIC_PORT);
-
-	}
+	private static String soffice_host;
+	private static String soffice_port;
+	// 获取html存放的位置 tomcat和weblogic路径获取方法不同
+	private static String classUrl = Doc2HtmlUtil.class.getClassLoader().getResource("").getPath();
 
 	/**
 	 * 获取Doc2HtmlUtil实例
@@ -77,18 +54,49 @@ public class Doc2HtmlUtil {
 		String htmFileName = uuid + ".html";
 		String docFileName = uuid + "." + fileSuffix;
 
-		String htmlStr = str.substring(1, str.indexOf("WEB-INF")) + "web/html";
-		try {
-			// 获取的时候存在空格，需要进行字符级转译
-			htmlStr = java.net.URLDecoder.decode(htmlStr, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		File outfile = new File(htmlStr);
-
+		// 根据不同的中间件，获取不同html的地址
+		File outfile = new File(getHtmlPath());
 		File htmlOutputFile = new File(outfile.toString() + File.separatorChar + htmFileName);
 		File docInputFile = new File(outfile.toString() + File.separatorChar + docFileName);
+		// 写文件
+		writeFile(fromFileInputStream, docInputFile);
+		// 通过openOffice读取写入的文件
+		readFileFromOpenOffic(docInputFile, htmlOutputFile);
+		// 转换完之后删除word文件
+		docInputFile.delete();
+		log.debug("删除上传文件：" + docInputFile.getName());
+		return htmFileName;
+	}
+
+	/**
+	 * @desc:通过openOffice读取写入的文件
+	 * @param docInputFile
+	 * @param htmlOutputFile
+	 * @return void
+	 * @date： 2016-2-1 下午03:16:35
+	 */
+	public static void readFileFromOpenOffic(File docInputFile, File htmlOutputFile) {
+		OpenOfficeConnection connection = new SocketOpenOfficeConnection(soffice_host, Integer.parseInt(soffice_port));
+		try {
+			connection.connect();
+		} catch (Exception e) {
+			log.error("文件转换出错，请检查OpenOffice服务是否启动。openOffice地址 :" + soffice_host + "端口 :" + soffice_port);
+			log.error(e.getMessage(), e);
+		}
+		// convert
+		DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
+		converter.convert(docInputFile, htmlOutputFile);
+		connection.disconnect();
+	}
+
+	/**
+	 * @desc:写文件
+	 * @param fromFileInputStream
+	 * @param docInputFile
+	 * @return void
+	 * @date： 2016-2-1 下午03:16:46
+	 */
+	public static void writeFile(InputStream fromFileInputStream, File docInputFile) {
 
 		/**
 		 * 由fromFileInputStream构建输入文件
@@ -107,22 +115,29 @@ public class Doc2HtmlUtil {
 			log.error(e.getMessage(), e);
 		}
 
-		OpenOfficeConnection connection = new SocketOpenOfficeConnection(soffice_host, Integer.parseInt(soffice_port));
-		try {
-			connection.connect();
-		} catch (Exception e) {
-			System.err.println("文件转换出错，请检查OpenOffice服务是否启动。");
-			log.error(e.getMessage(), e);
-		}
-		// convert
-		DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
-		converter.convert(docInputFile, htmlOutputFile);
-		connection.disconnect();
+	}
 
-		// 转换完之后删除word文件
-		docInputFile.delete();
-		log.debug("删除上传文件：" + docInputFile.getName());
-		return htmFileName;
+	/**
+	 * @desc:根据不同的中间件，获取不同html的地址
+	 * @return
+	 * @return String
+	 * @date： 2016-2-1 下午03:16:59
+	 */
+	public static String getHtmlPath() {
+		String htmlStr = null;
+		try {
+			htmlStr = classUrl.substring(1, classUrl.indexOf("WEB-INF")) + "web/html";
+		} catch (Exception e1) {
+			htmlStr = Doc2HtmlUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+			htmlStr = htmlStr.substring(1, htmlStr.indexOf("WEB-INF")) + "web/html";
+		}
+		try {
+			htmlStr = java.net.URLDecoder.decode(htmlStr, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return htmlStr;
 	}
 
 	/**
@@ -150,8 +165,7 @@ public class Doc2HtmlUtil {
 	 *         "false".
 	 */
 	public static synchronized boolean deleteDirFile() {
-		String htmlStr = str.substring(1, str.indexOf("WEB-INF")) + "web/html/";
-		File file = new File(htmlStr);
+		File file = new File(getHtmlPath());
 		if (file.isDirectory()) {
 			String[] children = file.list();
 			// 递归删除目录中的子目录下
@@ -161,8 +175,31 @@ public class Doc2HtmlUtil {
 					return false;
 				}
 			}
+		} else {
+
 		}
 		// 目录此时为空，可以删除
 		return true;
 	}
+
+	public static void main(String[] args) {
+		deleteDirFile();
+	}
+
+	public static String getSoffice_host() {
+		return soffice_host;
+	}
+
+	public static void setSoffice_host(String sofficeHost) {
+		soffice_host = sofficeHost;
+	}
+
+	public static String getSoffice_port() {
+		return soffice_port;
+	}
+
+	public static void setSoffice_port(String sofficePort) {
+		soffice_port = sofficePort;
+	}
+
 }

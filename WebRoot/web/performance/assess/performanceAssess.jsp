@@ -41,7 +41,7 @@
 					</thead>
 				</table>
 			</div>
-			<div class="easyui-panel" title="考核信息录入" style="width: 1025px; height: 80px; margin-top: 2px;"
+			<div class="easyui-panel" title="考核评分" style="width: 1025px; height: 80px; margin-top: 2px;"
 				data-options="style:{position:'absolute',left:302,top:1}">
 				<div style="margin-top: 2px; margin-bottom: 2px;">
 					<div style="margin: 10px;">
