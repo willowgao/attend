@@ -14,7 +14,7 @@ import com.wgsoft.system.model.SysMenu;
  * @author： Willowgao
  * @date： 2015-9-10 下午12:37:18
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class IndexAction extends BaseAction {

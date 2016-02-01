@@ -415,7 +415,7 @@ function getChanges(tableId){
 function formatterdate(val, row) {
 	if (val != null) {
 		val = val.replace('T',' ');
-		var date = new Date(val);
+		var date =   getDateForStringDate(val);
 		var year = date.getFullYear();
 		var month = date.getMonth() + 1;
 		if(month <10){
@@ -429,6 +429,16 @@ function formatterdate(val, row) {
 	}
 }
 
+function getDateForStringDate(strDate){
+    //切割年月日与时分秒称为数组
+    var s = strDate.split(" "); 
+    var s1 = s[0].split("-"); 
+    var s2 = s[1].split(":");
+    if(s2.length==2){
+        s2.push("00");
+    }
+    return new Date(s1[0],s1[1]-1,s1[2],s2[0],s2[1],s2[2]);
+}
 
 
 /**
@@ -441,7 +451,7 @@ function formatterdate(val, row) {
 function formatterdateYMD(val, row) {
 	if (val != null) {
 		val = val.replace('T',' ');
-		var date = new Date(val);
+		var date =   getDateForStringDate(val);
 		var year = date.getFullYear();
 		var month = date.getMonth() + 1;
 		if(month <10){

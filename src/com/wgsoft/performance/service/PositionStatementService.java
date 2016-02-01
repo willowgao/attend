@@ -7,13 +7,11 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.wgsoft.attendance.clock.model.LeaveAppSet;
 import com.wgsoft.common.utils.SysConstants;
 import com.wgsoft.performance.idao.IPositionStatementDao;
 import com.wgsoft.performance.iservice.IPositionStatementService;
 import com.wgsoft.performance.model.PositionStatement;
 import com.wgsoft.performance.model.PositionStatementDetail;
-import com.wgsoft.user.model.UserInfo;
 
 /**
  * 
@@ -22,7 +20,7 @@ import com.wgsoft.user.model.UserInfo;
  * @author： Willowgao
  * @date： 2015-12-2 上午11:10:11
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class PositionStatementService implements IPositionStatementService {

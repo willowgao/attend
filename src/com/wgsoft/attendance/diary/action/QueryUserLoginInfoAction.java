@@ -15,7 +15,7 @@ import com.wgsoft.common.action.BaseAction;
  * @author： Willowgao
  * @date： 2015-9-9 下午01:48:12
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class QueryUserLoginInfoAction extends BaseAction {

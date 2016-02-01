@@ -18,7 +18,7 @@ import com.wgsoft.system.model.UserMenu;
  * @author： Willowgao
  * @date： 2015-9-7 下午01:39:39
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class MenuManagerAction extends BaseAction {

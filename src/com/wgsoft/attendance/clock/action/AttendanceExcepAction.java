@@ -21,7 +21,7 @@ import com.wgsoft.system.iservice.IDataDictionaryService;
  * @author： Willowgao
  * @date： 2015-10-28 上午10:25:16
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class AttendanceExcepAction extends BaseAction {

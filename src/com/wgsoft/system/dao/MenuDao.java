@@ -16,13 +16,13 @@ import com.wgsoft.system.model.UserMenu;
  * @author： Willowgao
  * @date： 2015-9-7 下午02:00:03
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 @SuppressWarnings("unchecked")
 public class MenuDao extends BaseDao implements IMenuDao {
-	
-	// 在查询菜单时，masoft的菜单做控制
+
+	// 在查询菜单时 masoft,sysadmin 的菜单做控制
 	private static final List SYSADMIN = Arrays.asList("0000000", "9999999");
 
 	/**

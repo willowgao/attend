@@ -6,7 +6,7 @@ package com.wgsoft.common.utils;
  * @author： Willowgao
  * @date： 2015-9-8 上午08:45:15
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class SysConstants {
@@ -62,7 +62,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-11-16 下午03:55:43
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class RoleType {
@@ -99,7 +99,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-10-30 上午08:54:18
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class ApproverStatus {
@@ -140,7 +140,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-11-2 下午01:43:39
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class LeaveType {
@@ -190,7 +190,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-11-9 下午02:59:42
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class DiaryType {
@@ -224,7 +224,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-11-16 下午03:57:04
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class SexType {
@@ -251,7 +251,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-11-20 上午08:55:21
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class DataGridData {
@@ -276,7 +276,7 @@ public class SysConstants {
 	 * @author： Willowgao
 	 * @date： 2015-11-23 下午04:47:18
 	 * @version： V1.0<br>
-	 * @versioninfo： 远光软件股份有限公司<br>
+	 * @versioninfo： 慕安软件<br>
 	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
 	 */
 	public static class JobType {

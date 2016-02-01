@@ -16,7 +16,7 @@ import com.wgsoft.system.iservice.ISystemApproveAuthorityService;
  * @author： Willowgao
  * @date： 2015-11-17 下午05:29:05
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class SystemApproveAuthorityAction extends BaseAction {

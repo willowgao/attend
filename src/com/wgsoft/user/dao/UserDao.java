@@ -17,7 +17,7 @@ import com.wgsoft.user.model.UserInfo;
  * @author： Willowgao
  * @date： 2015-11-2 上午09:46:03
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo： 慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 @SuppressWarnings("unchecked")
@@ -74,7 +74,7 @@ public class UserDao extends BaseDao implements IUserDao {
 			str.append(" and userdeptId='" + user.getUserdeptid() + "' ");
 		}
 		if (!RunUtil.isEmpty(user.getRoleid())) {
-			str.append(" and roleId='" + user.getRoleid() + "' ");
+			str.append(" and a.roleId='" + user.getRoleid() + "' ");
 		}
 		List<UserInfo> users = getSqlList_(str.toString(), UserInfo.class);
 		return users;

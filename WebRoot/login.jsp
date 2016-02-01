@@ -65,11 +65,12 @@
 		var username_hide = jq('#username_hide');
 		username_hide.val("*用户名");
 		password_hide.val("*密码");
+				
 		username_hide.click(function(){
 			username_hide.hide();
 			username.focus();
 		});
-		username.keydown(function(){
+		username.keydown(function(event){
 			if(event.keyCode == 13||event.keyCode == 9){
 				password_hide.hide();
 				password.val('');
@@ -86,7 +87,7 @@
 			password.focus();
 		});
 		
-		password.keydown(function(){
+		password.keydown(function(event){
 			if(event.keyCode == 13){
 				checkLogin();
 			}

@@ -11,7 +11,7 @@ import com.wgsoft.performance.model.PositionStatement;
  * @author： Willowgao
  * @date： 2015-12-2 上午11:10:20
  * @version： V1.0<br>
- * @versioninfo： 远光软件股份有限公司<br>
+ * @versioninfo：慕安软件<br>
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public interface IPositionStatementService {

@@ -60,33 +60,22 @@
 				<thead>
 					<tr>
 						<th
-							data-options="field:'loginid',width:'20%',align:'center',
-						formatter:function(value,row){
-							return row.loginid;
-						},
-						editor:{
-							type:'textbox',
-							options:{
-								valueField:'loginid',
-								textField:'username',
-								required:true
-							}
-						}">
+							data-options="field:'loginid',width:'20%',align:'center',hidden:'true'">
 							登录流水编码
 						</th>
-						<th data-options="field:'logincode',width:'8%',align:'center',editor:'textbox'">
+						<th data-options="field:'logincode',width:'8%',align:'center'">
 							登录编码
 						</th>
-						<th data-options="field:'username',width:'8%',align:'center',editor:'textbox'">
+						<th data-options="field:'username',width:'8%',align:'center'">
 							用户名称
 						</th>
-						<th data-options="field:'logintime',width:'12%',align:'center',editor:'textbox',formatter : formatterdate">
+						<th data-options="field:'logintime',width:'12%',align:'center',formatter : formatterdate">
 							登录时间
 						</th>
-						<th data-options="field:'loginip',width:'12%',align:'center',editor:'textbox'">
+						<th data-options="field:'loginip',width:'12%',align:'center'">
 							登录IP
 						</th>
-						<th data-options="field:'logintmachine',width:'12%',align:'center',editor:'textbox'">
+						<th data-options="field:'logintmachine',width:'20%',align:'center'">
 							登录服务器
 						</th>
 					</tr>

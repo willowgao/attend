@@ -104,3 +104,7 @@ INFO [main] disconnected
 INFO [main] connected
 2016-01-26 08:52:28 com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection [line:98] 
 INFO [main] disconnected
+2016-02-01 15:25:25 com.wgsoft.common.utils.Doc2HtmlUtil [line:140] 
+INFO [main] ==========file文件地址=======F:/workspace/github_workspace/attend/WebRoot/web/html
+2016-02-01 15:25:39 com.wgsoft.common.utils.Doc2HtmlUtil [line:140] 
+INFO [main] ==========file文件地址=======F:/workspace/github_workspace/attend/WebRoot/web/html
