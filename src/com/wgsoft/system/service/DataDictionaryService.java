@@ -14,6 +14,7 @@ import com.wgsoft.attendance.clock.model.LeaveAppSet;
 import com.wgsoft.system.idao.IDataDictionaryDao;
 import com.wgsoft.system.iservice.IDataDictionaryService;
 import com.wgsoft.system.model.DataDictionary;
+import com.wgsoft.system.model.Deptment;
 
 /**
  * @title： DataDictionaryService.java
@@ -41,7 +42,7 @@ public class DataDictionaryService implements IDataDictionaryService {
 	/**
 	 * 请假审核等级配置表数据
 	 */
-	public static Map<String, String> approverSet = new HashMap<String, String>(); 
+	public static Map<String, String> approverSet = new HashMap<String, String>();
 
 	private final static String DESC = "DESC";
 
@@ -116,6 +117,43 @@ public class DataDictionaryService implements IDataDictionaryService {
 				descList.add(dataMap);
 			}
 
+			jsonStr = JSONUtil.serialize(descList);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonStr;
+	}
+
+	public String getDeptByOrg(String org) {
+		String jsonStr = null;
+		List<Deptment> depts = dataDictionaryDao.getDeptByOrg(org);
+		List<Map<String, String>> descList = new ArrayList<Map<String, String>>();
+		try {
+			for (Deptment dept : depts) {
+				Map<String, String> dataMap = new HashMap<String, String>();
+				dataMap.put("id", dept.getDeptid());
+				dataMap.put("text", dept.getDeptname());
+				descList.add(dataMap);
+			}
+
+			jsonStr = JSONUtil.serialize(descList);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonStr;
+	}
+
+	public String getDeptByUser(String userid) {
+		String jsonStr = null;
+		List<Deptment> depts = dataDictionaryDao.getDeptByUser(userid);
+		List<Map<String, String>> descList = new ArrayList<Map<String, String>>();
+		try {
+			for (Deptment dept : depts) {
+				Map<String, String> dataMap = new HashMap<String, String>();
+				dataMap.put("id", dept.getDeptid());
+				dataMap.put("text", dept.getDeptname());
+				descList.add(dataMap);
+			}
 			jsonStr = JSONUtil.serialize(descList);
 		} catch (JSONException e) {
 			e.printStackTrace();

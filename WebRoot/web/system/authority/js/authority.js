@@ -146,6 +146,8 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 				   //重新加列表信息
 					loadRoleData();    
 		    		clearForm();
+		    		//重新加载用户内存信息
+		    	   DataDictionaryService.initDataDictionary();
 		    	}
 		    } 
 		});

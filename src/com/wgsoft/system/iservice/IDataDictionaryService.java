@@ -46,4 +46,23 @@ public interface IDataDictionaryService {
 	 * @date： 2015-10-27 下午02:04:36
 	 */
 	public String getListJsonStrByKey(String key);
+
+	/**
+	 * @desc:获取组织内部所有的部门
+	 * @param org
+	 * @return
+	 * @return String
+	 * @date： 2016-2-2 上午10:50:55
+	 */
+	public String getDeptByOrg(String org);
+
+	/**
+	 * @desc:获取用户所属部门和下属部门
+	 * @param userid
+	 * @return
+	 * @return String
+	 * @date： 2016-2-2 上午10:51:32
+	 */
+	public String getDeptByUser(String userid);
+
 }

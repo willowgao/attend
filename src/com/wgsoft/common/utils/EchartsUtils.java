@@ -1,16 +1,24 @@
 package com.wgsoft.common.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.soap.Text;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.github.abel533.echarts.AxisPointer;
 import com.github.abel533.echarts.Label;
 import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.axis.CategoryAxis;
 import com.github.abel533.echarts.axis.ValueAxis;
 import com.github.abel533.echarts.code.Magic;
-import com.github.abel533.echarts.code.MarkType;
 import com.github.abel533.echarts.code.Orient;
+import com.github.abel533.echarts.code.PointerType;
+import com.github.abel533.echarts.code.SeriesType;
 import com.github.abel533.echarts.code.Tool;
 import com.github.abel533.echarts.code.Trigger;
 import com.github.abel533.echarts.code.X;
@@ -18,7 +26,6 @@ import com.github.abel533.echarts.code.Y;
 import com.github.abel533.echarts.data.Data;
 import com.github.abel533.echarts.data.LineData;
 import com.github.abel533.echarts.data.PieData;
-import com.github.abel533.echarts.data.PointData;
 import com.github.abel533.echarts.feature.MagicType;
 import com.github.abel533.echarts.json.GsonOption;
 import com.github.abel533.echarts.series.Bar;
@@ -26,10 +33,15 @@ import com.github.abel533.echarts.series.Funnel;
 import com.github.abel533.echarts.series.Line;
 import com.github.abel533.echarts.series.Pie;
 import com.github.abel533.echarts.style.ItemStyle;
-import com.wgsoft.diary.model.DiaryDaily;
+import com.github.abel533.echarts.style.TextStyle;
+import com.github.abel533.echarts.style.itemstyle.Emphasis;
 import com.wgsoft.diary.model.EchartsOfBar;
+import com.wgsoft.diary.model.EchartsOfPie;
 
 public class EchartsUtils {
+
+	private static Log log = LogFactory.getLog(EchartsUtils.class);
+
 	/**
 	 * 图形名称 KEY
 	 */
@@ -76,6 +88,131 @@ public class EchartsUtils {
 			option.series().add(bar);
 		}
 		return option;
+	}
+
+	/**
+	 * @desc:多种类型的分类处理 分类对比柱状图
+	 * @param <T>
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 * @return GsonOption
+	 * @date： 2016-2-3 下午03:04:31
+	 */
+	public static <T> GsonOption getBarCompare(List<EchartsOfBar> list) throws Exception {
+		if (list == null) {
+			return null;
+		}
+		EchartsOfBar barEelment = list.get(0);
+		GsonOption option = new GsonOption();
+		// 设置标题
+		option.title().text(barEelment.getTitle()).subtext(barEelment.getChildtitle());
+		// 设置工具栏
+		option.toolbox().show(true).feature(Tool.mark, Tool.dataView, new MagicType(Magic.line, Magic.bar).show(true),
+				Tool.restore, Tool.saveAsImage);
+		option.calculable(true);
+		// 定义x轴的值
+		CategoryAxis xAxis = new CategoryAxis();
+		List<String> xAsixData = new ArrayList<String>();
+		option.yAxis(new ValueAxis());
+		AxisPointer pointer = new AxisPointer();
+		pointer.setType(PointerType.shadow);
+		// 设置鼠标悬浮提示
+		option.tooltip().axisPointer(pointer);
+
+		Map<Integer, List<Integer>> xValue = new HashMap<Integer, List<Integer>>();
+
+		// 这最开始是可以循环处理的
+		for (int i = 0; i < barEelment.getData().length; i++) {
+			List<Integer> xh = new ArrayList<Integer>();
+			// 添加legend图形分类
+			if (!option.legend().data().contains(barEelment.getGroupName()[i])) {
+				option.legend().data().add(barEelment.getGroupName()[i]);
+			}
+			// 添加x轴坐标分类
+			String xStr = ((String[]) barEelment.getxAxis())[i];
+			if (!xAsixData.contains(xStr)) {
+				xAsixData.add(xStr);
+				xh.add(i);
+				// 存放 分类所对应的顺序
+				xValue.put(xAsixData.size(), xh);
+			} else {
+				for (int j = 0; j < xAsixData.size(); j++) {
+					String xAxisStr = xAsixData.get(j);
+					if (xAxisStr.equals(xStr)) {
+						xValue.get(j + 1).add(i);
+					}
+				}
+			}
+		}
+		// 添加不同类型的bar
+		for (int i = 0; i < option.legend().data().size(); i++) {
+			Bar bar = new Bar(barEelment.getGroupName()[i].toString());
+			bar.setStack("总量");
+			option.series().add(bar);
+		}
+
+		for (int i = 0; i < option.series().size(); i++) {
+			for (int j = 0; j < xValue.size(); j++) {
+				Bar bar = (Bar) option.series().get(i);
+				if (xValue.get(j + 1).size() >= i) {
+					try {
+						bar.data().add(barEelment.getData()[xValue.get(j + 1).get(i)]);
+					} catch (Exception e) {
+						log.warn("====组成Json对象异常======" + e.getMessage());
+					}
+				}
+			}
+		}
+		xAxis.data(xAsixData.toArray());
+		option.xAxis(xAxis);
+		return option;
+	}
+
+	/**
+	 * @desc:普通饼图百分比
+	 * @return
+	 * @throws Exception
+	 * @return GsonOption
+	 * @date： 2016-2-3 下午03:16:47
+	 */
+	public static GsonOption getPieNormal(List<EchartsOfPie> list) throws Exception {
+		GsonOption option = new GsonOption();
+		EchartsOfPie barEelment = list.get(0);
+		// 设置标题
+		option.title().text(barEelment.getTitle()).subtext(barEelment.getChildtitle()).x("center");
+		// 设置工具栏
+		option.toolbox().show(true).feature(Tool.mark, Tool.dataView, Tool.restore, Tool.saveAsImage);
+		option.tooltip().trigger(Trigger.item).formatter("{a} <br/>{b} : {c} ({d}%)");
+		List<EchartsOfPie.Pie> pieData = new ArrayList<EchartsOfPie.Pie>();
+		// 这最开始是可以循环处理的
+		for (int i = 0; i < barEelment.getData().length; i++) {
+			// 添加legend图形分类
+			if (!option.legend().data().contains(barEelment.getGroupName()[i])) {
+				option.legend().orient(Orient.vertical).data().add(barEelment.getGroupName()[i]);
+			}
+
+			EchartsOfPie.Pie pie = new EchartsOfPie.Pie();
+			pie.setName(barEelment.getGroupName()[i].toString());
+			pie.setValue(barEelment.getData()[i].toString());
+			pieData.add(pie);
+		}
+
+		Pie pie = new Pie(barEelment.getTitle());
+		pie.type(SeriesType.pie);
+		pie.radius("55%").center("50%", "60%");
+		pie.data(pieData.toArray());
+		option.series().add(pie);
+		return option;
+	}
+
+	public static String setPieToLeft(GsonOption option) throws Exception {
+		String json = option.toString();
+		String re = "\"orient\": \"vertical\"";
+		System.out.println(json.indexOf(re));
+		String rere =  "\"orient\": \"vertical\",\"left\":\"left\"";
+		String rel  = json.replace(re,rere);
+		return rel;
 	}
 
 	public String getLine() throws Exception {

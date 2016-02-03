@@ -88,6 +88,29 @@ function getDictionaryForCombox(datatype){
 } 
 
 /**
+ * @desc:获取组织内部所有的部门
+ * @param org
+ * @return
+ * @return String
+ * @date： 2016-2-2 上午10:50:55
+ */
+
+function getDeptByOrg(){
+	return programName + '/authority/sysDataDictionary!getDeptByOrg.action';
+} 
+
+/**
+ * @desc:获取用户所属部门和下属部门
+ * @param userid
+ * @return
+ * @return String
+ * @date： 2016-2-2 上午10:51:32
+ */
+function getDeptByUser(){
+	return programName + '/authority/sysDataDictionary!getDeptByUser.action';
+} 
+
+/**
  * 根据角色信息查询用户
  * @param roleType
  * @return

@@ -129,9 +129,9 @@ public class EchartsTestAction extends BaseAction {
 	public GsonOption getPie1() {
 		GsonOption option = new GsonOption();
 		// 时间轴
-		option.timeline().data("2013-01-01", "2013-02-01", "2013-03-01", "2013-04-01", "2013-05-01",
-				new LineData("2013-06-01", "emptyStart6", 8), "2013-07-01", "2013-08-01", "2013-09-01", "2013-10-01",
-				"2013-11-01", new LineData("2013-12-01", "star6", 8));
+		option.timeline().data("01", "02", "03", "04", "05",
+				new LineData("06", "emptyStart6", 8), "07", "08", "09", "10",
+				"11", new LineData("12", "star6", 8));
 		option.timeline().autoPlay(true).label();
 		// timeline变态的地方在于多个Option
 		Option basic = new Option();

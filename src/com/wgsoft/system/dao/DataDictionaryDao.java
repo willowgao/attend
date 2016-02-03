@@ -6,6 +6,7 @@ import com.wgsoft.attendance.clock.model.LeaveAppSet;
 import com.wgsoft.common.dao.BaseDao;
 import com.wgsoft.system.idao.IDataDictionaryDao;
 import com.wgsoft.system.model.DataDictionary;
+import com.wgsoft.system.model.Deptment;
 
 /**
  * 
@@ -42,6 +43,26 @@ public class DataDictionaryDao extends BaseDao implements IDataDictionaryDao {
 	public List<LeaveAppSet> getAllLeaveAppSet() {
 		StringBuffer sql = new StringBuffer("select * from leave_approve_setting where approvetype='LEAVE' ");
 		return getSqlList_(sql.toString(), LeaveAppSet.class);
+	}
+
+	/**
+	 * @see com.wgsoft.system.idao.IDataDictionaryDao#getDeptByOrg(String)
+	 */
+	public List<Deptment> getDeptByOrg(String org) {
+		StringBuffer sql = new StringBuffer("select deptid,deptname FROM DEPTMENT  WHERE ORGID IN (SELECT ORGID");
+		sql.append("  FROM WG_ORGANIZATION A START WITH A.ORGID = '").append(org).append(
+				"'  CONNECT BY PRIOR A.ORGID = A.PARENTID)");
+		return getSqlList_(sql.toString(), Deptment.class);
+	}
+
+	/**
+	 * @see com.wgsoft.system.idao.IDataDictionaryDao#getDeptByUser(String)
+	 */
+	public List<Deptment> getDeptByUser(String userid) {
+		StringBuffer sql = new StringBuffer("select deptid,deptname FROM DEPTMENT  START WITH DEPTID = ");
+		sql.append("(SELECT USERDEPTID FROM USERINFO WHERE USERID = '").append(userid).append(
+				"' CONNECT BY PRIOR DEPTID = PARENTID ");
+		return getSqlList_(sql.toString(), Deptment.class);
 	}
 
 }

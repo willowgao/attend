@@ -35,7 +35,7 @@
 			<div class="easyui-panel" style="width: 100%; height: 80%">
 				<div align="left">
 				</div>
-				<table id="dg" title="考勤异常记录" style="with: 100%; height: 100%"
+				<table id="dg" title="考勤异常记录" style="width: 100%; height: 100%"
 					data-options="
 				rownumbers:true,
 				onClickRow:onClickRow,
@@ -51,16 +51,16 @@
 							<th data-options="field:'clockdate',width:'10%',align:'center',formatter :formatterdateYMD">
 								考勤日期
 							</th>
-							<th data-options="field:'amsb',width:'10%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'amsb',width:'15%',align:'center',styler:dgCellStyleAmsb">
 								上午上班时间
 							</th>
-							<th data-options="field:'amxb',width:'10%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'amxb',width:'15%',align:'center',styler:dgCellStyleAmxb">
 								上午下班时间
 							</th>
-							<th data-options="field:'pmsb',width:'10%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'pmsb',width:'15%',align:'center',styler:dgCellStylePmsb">
 								下午上班时间
 							</th>
-							<th data-options="field:'pmxb',width:'10%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'pmxb',width:'15%',align:'center',styler:dgCellStylePmxb">
 								下午下班时间
 							</th>
 							<th data-options="field:'isneed',width:'10%',align:'center',hidden:'true'">

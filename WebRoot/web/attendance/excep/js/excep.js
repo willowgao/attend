@@ -55,21 +55,47 @@
 	 * @param index
 	 * @return
 	 */
-	function dgCellStyle(value, row, index) {
-		if((value==null||value =='')&& row.isneed ==0){
+	function dgCellStyleAmsb(value, row, index) {
+		if((value==null||value =='')&&row.isneed=='0'){
 			return 'background-color:#F5BB2A;color:#black;';
 		}
-		if(!checkForTime(row.amsb,row.amsbtime)&& row.isneed ==0){
+		if(!checkForTime(value,row.amsbtime)){
 			return 'background-color:#E1643D;color:#black;';
+		}else{
+			return 'color:#black;';
 		}
-    	if(!checkForTime(row.amxb,row.amxbtime)&& row.isneed ==0){
+    	 
+	}
+	function dgCellStyleAmxb(value, row, index) {
+		if((value==null||value =='')&&row.isneed=='0'){
+			return 'background-color:#F5BB2A;color:#black;';
+		} 
+    	if(!checkForTime(value,row.amxbtime)){
 			return 'background-color:#E1643D;color:#black;';
+		}else{
+			return 'color:#black;';
 		}
-    	if(!checkForTime(row.pmsb,row.pmsbtime)&& row.isneed ==0){
-			return 'background-color:#E1643D;color:#black;';
+    	 
+	}
+	function dgCellStylePmsb(value, row, index) {
+		if((value==null||value =='')&&row.isneed=='0'){
+			return 'background-color:#F5BB2A;color:#black;';
 		}
-    	if(!checkForTime(row.pmxb,row.pmxbtime)&& row.isneed ==0){
+	 
+    	if(!checkForTime(value,row.pmsbtime)){
 			return 'background-color:#E1643D;color:#black;';
+		}else{
+			return 'color:#black;';
+		} 
+	}
+	function dgCellStylePmxb(value, row, index) {
+		if((value==null||value =='')&&row.isneed=='0'){
+			return 'background-color:#F5BB2A;color:#black;';
+		}
+    	if(!checkForTime(value,row.pmxbtime)){
+			return 'background-color:#E1643D;color:#black;';
+		}else{
+			return 'color:#black;';
 		}
 	}
 	

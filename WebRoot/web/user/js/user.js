@@ -60,6 +60,7 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 		//清空列表
 		clearForm();
 		jq('#defaultstyle').combobox('setValue','metro-blue'); 
+		initRoleMap();
 	}
 	//清空form
 	function clearForm(){
@@ -162,7 +163,7 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 		var deptId = jq("#deptId").val();
 		var userId = jq("#userId").val();
 		var oldPwd = jq("#oldPwd").val();
-		var roleId = jq("#roleId").val();
+		var roleId = jq('#roleMap').combobox('getValue');
 		if(orgId==null||orgId==''){
 			jq.messager.alert('提示','请选择所属单位!');
 			return;
@@ -199,6 +200,8 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 				   //重新加列表信息
 				   loadData();    
 		    	   clearForm();
+		    	   //重新加载用户内存信息
+		    	   DataDictionaryService.initDataDictionary();
 		    	}
 		    } 
 		});

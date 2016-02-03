@@ -15,6 +15,7 @@ import="com.wgsoft.common.utils.DateUtil"%>
 <script type="text/javascript" src="<%=request.getContextPath()%>/dwr/engine.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/dwr/util.js"></script>   
 <script type="text/javascript" src="<%=request.getContextPath()%>/dwr/interface/DataDictionaryService.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/web/echarts/echarts.min.js"></script>
 <%
 	String webapp = request.getContextPath();
 	request.setAttribute("webapp", webapp);

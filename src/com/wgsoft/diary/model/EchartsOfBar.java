@@ -2,7 +2,7 @@ package com.wgsoft.diary.model;
 
 import java.math.BigDecimal;
 
-public class EchartsOfBar {
+public class EchartsOfBar implements java.io.Serializable {
 
 	/**
 	 * 图表标题
@@ -29,14 +29,17 @@ public class EchartsOfBar {
 	 * y轴数据
 	 */
 	private Object[] yAxis;
-	
-	
+
+	/**
+	 * 
+	 */
+	private Object[] groupName;
+
 	private BigDecimal xdata;
-	
+
 	private String xcomments;
-	
+
 	private String id;
-	
 
 	public String getId() {
 		return id;
@@ -60,6 +63,14 @@ public class EchartsOfBar {
 
 	public void setXcomments(String xcomments) {
 		this.xcomments = xcomments;
+	}
+
+	public Object[] getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(Object[] groupName) {
+		this.groupName = groupName;
 	}
 
 	/**

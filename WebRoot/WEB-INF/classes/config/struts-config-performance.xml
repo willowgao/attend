@@ -52,5 +52,15 @@
 		</action>
 	</package>  
 	
+	<!-- 查询统计-->
+	<package name="com.performance.query" extends="struts-default"
+		namespace="/query">
 	
+		<!-- 查询出勤情况 -->
+		<action name="queryAttend"
+			class="com.wgsoft.performance.action.QueryAttendanceInfoAction">
+			<result name="success">/web/performance/query/queryAttend.jsp</result>
+		</action>
+		
+	</package>  
 </struts>

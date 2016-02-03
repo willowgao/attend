@@ -105,7 +105,7 @@
 					<label for="higherid">
 						直接上级 :
 					</label>
-					<input class="easyui-combobox" type="text" id="higherid" name="higherid" data-options="required:true" />
+					<input class="easyui-combobox" type="text" id="higherid" name="higherid"/>
 				</div> 
 				<div class="label_css">
 					<label for="name">

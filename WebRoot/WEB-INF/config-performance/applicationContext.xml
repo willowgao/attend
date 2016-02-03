@@ -74,6 +74,23 @@
 		</property>
 	</bean>
 	
+	   <!-- 考核评分  -->
+	<bean name="queryAttendanceInfoDao" class="com.wgsoft.performance.dao.QueryAttendanceInfoDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="queryAttendanceInfoService" parent="service">
+		<property name="target">
+			<ref bean="queryAttendanceInfoServiceTarget" />
+		</property>
+	</bean>
+	<bean name="queryAttendanceInfoServiceTarget" class="com.wgsoft.performance.service.QueryAttendanceInfoService">
+		<property name="queryAttendanceInfoDao">
+			<ref bean="queryAttendanceInfoDao" />	
+		</property>
+	</bean>
+	
 	
 	
 </beans>

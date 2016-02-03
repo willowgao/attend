@@ -42,6 +42,8 @@ public class ClockRecords implements java.io.Serializable {
 	
 	private String flag;
 	
+	private String dept;
+	
 	
 	
 	
@@ -55,6 +57,15 @@ public class ClockRecords implements java.io.Serializable {
 
 	public String getFlag() {
 		return flag;
+	}
+
+	
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
 	}
 
 	public void setFlag(String flag) {
