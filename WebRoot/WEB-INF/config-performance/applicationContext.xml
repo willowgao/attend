@@ -74,7 +74,7 @@
 		</property>
 	</bean>
 	
-	   <!-- 考核评分  -->
+	   <!-- 查询出勤情况  -->
 	<bean name="queryAttendanceInfoDao" class="com.wgsoft.performance.dao.QueryAttendanceInfoDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -90,6 +90,26 @@
 			<ref bean="queryAttendanceInfoDao" />	
 		</property>
 	</bean>
+	
+	
+	
+	   <!-- 工作完成情况查询  -->
+	<bean name="queryJobUploadDao" class="com.wgsoft.performance.dao.QueryJobUploadDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="queryJobUploadService" parent="service">
+		<property name="target">
+			<ref bean="queryJobUploadServiceTarget" />
+		</property>
+	</bean>
+	<bean name="queryJobUploadServiceTarget" class="com.wgsoft.performance.service.QueryJobUploadService">
+		<property name="queryJobUploadDao">
+			<ref bean="queryJobUploadDao" />	
+		</property>
+	</bean>
+	
 	
 	
 	

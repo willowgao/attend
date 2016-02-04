@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
@@ -29,6 +33,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.wgsoft.common.utils.BeanUtil;
 import com.wgsoft.common.utils.SysConstants;
+import com.wgsoft.performance.model.JobAssignment;
 import com.wgsoft.performance.model.PerformanceIndex;
 import com.wgsoft.system.iservice.IDataDictionaryService;
 import com.wgsoft.user.iservice.IUserService;
@@ -122,6 +127,7 @@ public class BaseAction extends ActionSupport implements Action {
 	public static String transferListToJsonMapForTabel(List list) {
 		String jsonStr = null;
 		Map<String, Object> dataGridMap = new HashMap<String, Object>();
+
 		dataGridMap.put("total", list.size());
 		dataGridMap.put("rows", list);
 		try {
@@ -130,6 +136,105 @@ public class BaseAction extends ActionSupport implements Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return jsonStr;
+	}
+
+	/**
+	 * 创建一颗树，以json字符串形式返回
+	 * 
+	 * @param list
+	 *            原始数据列表
+	 * @return 树
+	 * @throws ClassNotFoundException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 */
+	public static String createTreeJson(List list, Object obj) throws ClassNotFoundException, IllegalArgumentException,
+			SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+		JSONArray rootArray = new JSONArray();
+		// 类型初始化
+		Class cls = (Class) Class.forName(obj.getClass().getName());
+		for (int i = 0; i < list.size(); i++) {
+			Object object = (Object) list.get(i);
+			if (cls.getMethod("getPid").invoke(object) == null) {
+				JSONObject rootObj = createBranch(list, object);
+				rootArray.add(rootObj);
+			}
+		}
+
+		String jsonStr = null;
+		Map<String, Object> dataGridMap = new HashMap<String, Object>();
+		dataGridMap.put("total", rootArray.size());
+		dataGridMap.put("rows", rootArray);
+		jsonStr = JSONSerializer.toJSON(dataGridMap).toString();
+		return jsonStr;
+	}
+
+	/**
+	 * 递归创建分支节点Json对象
+	 * 
+	 * @param list
+	 *            创建树的原始数据
+	 * @param currentNode
+	 *            当前节点
+	 * @return 当前节点与该节点的子节点json对象
+	 * @throws ClassNotFoundException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 */
+	private static JSONObject createBranch(List list, Object currentNode) throws ClassNotFoundException,
+			IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException,
+			NoSuchMethodException {
+		/*
+		 * 将javabean对象解析成为JSON对象
+		 */
+		JSONObject currentObj = JSONObject.fromObject(currentNode);
+		JSONArray childArray = new JSONArray();
+		/*
+		 * 循环遍历原始数据列表，判断列表中某对象的父id值是否等于当前节点的id值，
+		 * 如果相等，进入递归创建新节点的子节点，直至无子节点时，返回节点，并将该 节点放入当前节点的子节点列表中
+		 */
+		Class cls = (Class) Class.forName(currentNode.getClass().getName());
+
+		for (int i = 0; i < list.size(); i++) {
+			Object object = (Object) list.get(i);
+			if (cls.getMethod("getPid").invoke(object) != null
+					&& cls.getMethod("getPid").invoke(object).equals(cls.getMethod("getId").invoke(currentNode))) {
+				JSONObject childObj = createBranch(list, object);
+				childArray.add(childObj);
+			}
+		}
+
+		/*
+		 * 判断当前子节点数组是否为空，不为空将子节点数组加入children字段中
+		 */
+		if (!childArray.isEmpty()) {
+			currentObj.put("children", childArray);
+		}
+		return currentObj;
+	}
+
+	/**
+	 * @desc:List For easyUI
+	 * @param list
+	 * @return
+	 * @return String
+	 * @date： 2015-9-9 下午01:46:15
+	 */
+
+	@SuppressWarnings("unchecked")
+	public static String tranferTreeGridJson(List list) throws JSONException {
+		String jsonStr = null;
+		Map<String, Object> dataGridMap = new HashMap<String, Object>();
+		dataGridMap.put("total", list.size());
+		dataGridMap.put("rows", list);
+		jsonStr = JSONSerializer.toJSON(dataGridMap).toString();
 		return jsonStr;
 	}
 

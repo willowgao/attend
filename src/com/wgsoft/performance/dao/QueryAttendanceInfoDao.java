@@ -118,10 +118,7 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 		sql.append(" AND B.Userdeptid  =  '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
 		sql.append(" AND EXISTS (SELECT 1  FROM CLOCKEXCEPTION D  WHERE B.USERID = D.USERID  AND D.ISENABLE = '0'");
 		sql.append(" AND TO_CHAR(D.CLOCKDATE, 'yyyy-mm-dd') =  TO_CHAR(A.CLOCKDATE, 'yyyy-mm-dd'))");
-		
-		
-		
-		
+		 
 
 		sql.append(" UNION SELECT  '").append(descClockDate).append(
 				"'||' 部门出勤率' title, '本部门出勤情况' CHILDTITLE, COUNT(1) VALUE,'正常考勤' NAME,'名' DATAUNIT");

@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,6 +21,7 @@ import org.springframework.orm.hibernate3.SessionFactoryUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wgsoft.common.idao.IBaseDao;
+import com.wgsoft.common.model.BaseVO;
 import com.wgsoft.common.utils.CnDate;
 import com.wgsoft.common.utils.SqlUtil;
 
@@ -434,4 +438,6 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 		session.flush();
 		return re;
 	}
+
+
 }

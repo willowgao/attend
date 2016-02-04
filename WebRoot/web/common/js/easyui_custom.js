@@ -1,8 +1,9 @@
 var programName = '/xnAttendance';
-var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
+var jq = jQuery.noConflict();// jQuery将$换成jq，避免冲突
 
 /**
  * 系统样式初化
+ * 
  * @return
  */
 
@@ -10,9 +11,9 @@ jq(document).ready(function() {
 	doSysStyle();
 });
 
-//角色类型 普通人员
+// 角色类型 普通人员
 var ROLETYPE_NOMARL = "1";
-//角色类型  初审人员
+// 角色类型 初审人员
 var ROLETYPE_TRIAL = "2";
 // 角色类型 一级审核
 var ROLETYPE_FIRST = "3";
@@ -22,8 +23,8 @@ var ROLETYPE_SECOND = "4";
 var ROLETYPE_THIRD = "5";
 
 /**
- * easyui datagrid单元格实现溢出文本显示省略号的效果。
- * 需要同/web/common/css/label.css 一同引用
+ * easyui datagrid单元格实现溢出文本显示省略号的效果。 需要同/web/common/css/label.css 一同引用
+ * 
  * @param value
  * @param row
  * @param index
@@ -39,6 +40,7 @@ function datagridcell(value,row,index){
 
 /**
  * 系统样式初化
+ * 
  * @return
  */
 var doSysStyle = function(){
@@ -67,8 +69,8 @@ function fn_Dateformatter(date) {
 }
 
 /**
- * dwr 设置为同步，异步调用获取不到数据
- * 根据KEY获取数据字典中的值
+ * dwr 设置为同步，异步调用获取不到数据 根据KEY获取数据字典中的值
+ * 
  * @return
  */
 function getDictionaryDesc(datatype){
@@ -80,6 +82,7 @@ function getDictionaryDesc(datatype){
 
 /**
  * 查询数据字典到下拉列表公共方法
+ * 
  * @param datatype
  * @return
  */
@@ -112,6 +115,7 @@ function getDeptByUser(){
 
 /**
  * 根据角色信息查询用户
+ * 
  * @param roleType
  * @return
  */
@@ -140,14 +144,14 @@ function fn_DateParser(s) {
 		return new Date();
 	}
 }
-//是否有效(0：是，1：否)
+// 是否有效(0：是，1：否)
 function foratterEnable(s){
 	var enableMap = getDictionaryDesc('ISENABLE');
 	return enableMap[s];
 }
 
 /**
- *组织机构
+ * 组织机构
  */
 function formatterOrg(s){
 	var dataMap = getDictionaryDesc('ORG');
@@ -155,6 +159,7 @@ function formatterOrg(s){
 }
 /**
  * 组织类型
+ * 
  * @param s
  * @return
  */
@@ -165,6 +170,7 @@ function formatterOrgType(s){
 
 /**
  * 角色类型
+ * 
  * @param s
  * @return
  */
@@ -174,6 +180,7 @@ function formatterRole(s){
 }
 /**
  * 部门编号
+ * 
  * @param s
  * @return
  */
@@ -183,6 +190,7 @@ function formatterDept(s){
 }
 /**
  * 核审状态
+ * 
  * @param s
  * @return
  */
@@ -192,6 +200,7 @@ function formatterStatus(s){
 }
 /**
  * 假期类型
+ * 
  * @param s
  * @return
  */
@@ -201,6 +210,7 @@ function formatterLeave(s){
 }
 /**
  * 用户
+ * 
  * @param s
  * @return
  */
@@ -210,6 +220,7 @@ function formatterUser(s){
 }
 /**
  * 异常类型
+ * 
  * @param s
  * @return
  */
@@ -220,6 +231,7 @@ function formatterExcep(s){
 
 /**
  * 日志类型
+ * 
  * @param s
  * @return
  */
@@ -230,6 +242,7 @@ function formatterDiary(s){
 
 /**
  * 工作类型
+ * 
  * @param s
  * @return
  */
@@ -239,6 +252,7 @@ function formatterJob(s){
 }
 /**
  * 性别类型
+ * 
  * @param s
  * @return
  */
@@ -248,7 +262,9 @@ function formatterSex(s){
 }
 /**
  * 字符日期、转化为date类型
- * @param strDate yyyy-mm-dd
+ * 
+ * @param strDate
+ *            yyyy-mm-dd
  * @return
  */
 function tranferStr2Date(strDate){
@@ -257,10 +273,12 @@ function tranferStr2Date(strDate){
 
 
 /**
- * 比较两个日期大小
- * startTime  >  endTime返回 true,反之返回false
- * @param startTime yyyy-mm-dd
- * @param endTime  yyyy-mm-dd
+ * 比较两个日期大小 startTime > endTime返回 true,反之返回false
+ * 
+ * @param startTime
+ *            yyyy-mm-dd
+ * @param endTime
+ *            yyyy-mm-dd
  * @return
  */
 function compare2Date(startTime,endTime){
@@ -335,7 +353,7 @@ function compare2Date(startTime,endTime){
 })(jQuery);
 
 /**
- datagrid删除
+ * datagrid删除
  */
 var selectIndex = new Array();
 function removeit(tableId){
@@ -357,8 +375,8 @@ function removeit(tableId){
 }
 
 /**
- datagrid 切换行之后，取消行编辑状态
-**/
+ * datagrid 切换行之后，取消行编辑状态
+ */
 function endEditing(){
 	if (editIndex == undefined){return true}
 	if (jq(tableId).datagrid('validateRow', editIndex)){
@@ -372,20 +390,21 @@ function endEditing(){
 
 /**
  * datagrid新增
+ * 
  * @param tableId
  * @return
  */
 function add(tableId){
 	if (endEditing()){
-		//新增时写入默认值
+		// 新增时写入默认值
 		jq(tableId).datagrid('appendRow',{});
 		editIndex = jq(tableId).datagrid('getRows').length-1;
 		jq(tableId).datagrid('selectRow', editIndex).datagrid('beginEdit', editIndex);
 	}
 }
 /**
- datagrid 列双击之后处理编辑状态
-**/
+ * datagrid 列双击之后处理编辑状态
+ */
 function onClickCell(index, field){
 	if (editIndex != index){
 		if (endEditing()){
@@ -403,6 +422,7 @@ function onClickCell(index, field){
 
 /**
  * 保存
+ * 
  * @return
  */
 function accept(tableId){
@@ -411,8 +431,8 @@ function accept(tableId){
 	}
 }
 /**
-	重重置表格信息
-**/
+ * 重重置表格信息
+ */
 
 function reject(tableId){
 	jq(tableId).datagrid('rejectChanges');
@@ -420,6 +440,7 @@ function reject(tableId){
 }
 /**
  * 获取变更信息
+ * 
  * @return
  */
 function getChanges(tableId){
@@ -430,6 +451,7 @@ function getChanges(tableId){
 
 /**
  * datagrid日期格式化
+ * 
  * @param val
  * @param row
  * @return
@@ -453,7 +475,7 @@ function formatterdate(val, row) {
 }
 
 function getDateForStringDate(strDate){
-    //切割年月日与时分秒称为数组
+    // 切割年月日与时分秒称为数组
     var s = strDate.split(" "); 
     var s1 = s[0].split("-"); 
     var s2 = s[1].split(":");
@@ -463,9 +485,37 @@ function getDateForStringDate(strDate){
     return new Date(s1[0],s1[1]-1,s1[2],s2[0],s2[1],s2[2]);
 }
 
+function formatDate(dt){
+	  return dt.getYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
+	}
+
+
+//对Date的扩展，将 Date 转化为指定格式的String
+//月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
+//年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
+//例子： 
+//(new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423 
+//(new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
+Date.prototype.Format = function (fmt) { //author: meizz 
+ var o = {
+     "M+": this.getMonth() + 1, //月份 
+     "d+": this.getDate(), //日 
+     "h+": this.getHours(), //小时 
+     "m+": this.getMinutes(), //分 
+     "s+": this.getSeconds(), //秒 
+     "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+     "S": this.getMilliseconds() //毫秒 
+ };
+ if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+ for (var k in o)
+ if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+ return fmt;
+}
+
 
 /**
  * datagrid日期格式化
+ * 
  * @param val
  * @param row
  * @return
@@ -473,8 +523,13 @@ function getDateForStringDate(strDate){
 
 function formatterdateYMD(val, row) {
 	if (val != null) {
-		val = val.replace('T',' ');
-		var date =   getDateForStringDate(val);
+		try{
+			val = val.replace('T',' ');
+		}catch(e){
+			val = new Date(val.time).Format("yyyy-MM-dd");
+			val = val+" 00:00:00"
+		}
+		var date = getDateForStringDate(val);
 		var year = date.getFullYear();
 		var month = date.getMonth() + 1;
 		if(month <10){
@@ -489,7 +544,8 @@ function formatterdateYMD(val, row) {
 }
 
 /**
- * 日期格式化  formatterYM
+ * 日期格式化 formatterYM
+ * 
  * @param date
  * @return
  */
@@ -525,21 +581,16 @@ Array.prototype.remove = function(s) {
     }     
 }     
     
-/**   
- * Map 对象 
- *    
- *    
- * var m = new Map();   
- * m.put('key','value');   
- * ...   
- * var s = "";   
- * m.each(function(key,value,index){   
- *      s += index+":"+ key+"="+value+"/n";   
- * });   
- * alert(s);   
- *    
- * @author dewitt   
- * @date 2008-05-24   
+/**
+ * Map 对象
+ * 
+ * 
+ * var m = new Map(); m.put('key','value'); ... var s = "";
+ * m.each(function(key,value,index){ s += index+":"+ key+"="+value+"/n"; });
+ * alert(s);
+ * 
+ * @author dewitt
+ * @date 2008-05-24
  */    
 function Map() {     
     /** 存放键的数组(遍历用到) */    
@@ -547,11 +598,14 @@ function Map() {
     /** 存放数据 */    
     this.data = new Object();     
          
-    /**   
-     * 放入一个键值对   
-     * @param {String} key   
-     * @param {Object} value   
-     */    
+    /**
+	 * 放入一个键值对
+	 * 
+	 * @param {String}
+	 *            key
+	 * @param {Object}
+	 *            value
+	 */    
     this.put = function(key, value) {     
         if(this.data[key] == null){     
             this.keys.push(key);     
@@ -559,29 +613,34 @@ function Map() {
         this.data[key] = value;     
     };     
          
-    /**   
-     * 获取某键对应的值   
-     * @param {String} key   
-     * @return {Object} value   
-     */    
+    /**
+	 * 获取某键对应的值
+	 * 
+	 * @param {String}
+	 *            key
+	 * @return {Object} value
+	 */    
     this.get = function(key) {     
         return this.data[key];     
     };     
          
-    /**   
-     * 删除一个键值对   
-     * @param {String} key   
-     */    
+    /**
+	 * 删除一个键值对
+	 * 
+	 * @param {String}
+	 *            key
+	 */    
     this.remove = function(key) {     
         this.keys.remove(key);     
         this.data[key] = null;     
     };     
          
-    /**   
-     * 遍历Map,执行处理函数   
-     *    
-     * @param {Function} 回调函数 function(key,value,index){..}   
-     */    
+    /**
+	 * 遍历Map,执行处理函数
+	 * 
+	 * @param {Function}
+	 *            回调函数 function(key,value,index){..}
+	 */    
     this.each = function(fn){     
         if(typeof fn != 'function'){     
             return;     
@@ -593,10 +652,11 @@ function Map() {
         }     
     };     
          
-    /**   
-     * 获取键值数组(类似Java的entrySet())   
-     * @return 键值对象{key,value}的数组   
-     */    
+    /**
+	 * 获取键值数组(类似Java的entrySet())
+	 * 
+	 * @return 键值对象{key,value}的数组
+	 */    
     this.entrys = function() {     
         var len = this.keys.length;     
         var entrys = new Array(len);     
@@ -609,23 +669,23 @@ function Map() {
         return entrys;     
     };     
          
-    /**   
-     * 判断Map是否为空   
-     */    
+    /**
+	 * 判断Map是否为空
+	 */    
     this.isEmpty = function() {     
         return this.keys.length == 0;     
     };     
          
-    /**   
-     * 获取键值对数量   
-     */    
+    /**
+	 * 获取键值对数量
+	 */    
     this.size = function(){     
         return this.keys.length;     
     };     
          
-    /**   
-     * 重写toString    
-     */    
+    /**
+	 * 重写toString
+	 */    
     this.toString = function(){     
         var s = "{";     
         for(var i=0;i<this.keys.length;i++,s+=','){     
@@ -638,8 +698,8 @@ function Map() {
 } 
 
 /**
- * 获取datagrid table表格信息</br>
- * 返回带key为insertRow,deleteRow,updateRow json对象
+ * 获取datagrid table表格信息</br> 返回带key为insertRow,deleteRow,updateRow json对象
+ * 
  * @param tableId
  * @return url
  */

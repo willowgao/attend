@@ -31,12 +31,9 @@ public class JobAssignment extends BaseVO implements java.io.Serializable {
 	private Date appdate;
 	private String approveid;
 	private Double progress;
-	
 	private Date uploadtime;
 	private Date confirmtime;
-
-	// Constructors
-
+	 
 	/** default constructor */
 	public JobAssignment() {
 	}

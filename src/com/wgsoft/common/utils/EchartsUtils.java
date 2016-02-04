@@ -206,12 +206,19 @@ public class EchartsUtils {
 		return option;
 	}
 
+	/**
+	 * @desc:饼图增加项目左对齐的处理
+	 * @param option
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2016-2-4 上午08:15:55
+	 */
 	public static String setPieToLeft(GsonOption option) throws Exception {
 		String json = option.toString();
 		String re = "\"orient\": \"vertical\"";
-		System.out.println(json.indexOf(re));
-		String rere =  "\"orient\": \"vertical\",\"left\":\"left\"";
-		String rel  = json.replace(re,rere);
+		String rere = "\"orient\": \"vertical\",\"left\":\"left\"";
+		String rel = json.replace(re, rere);
 		return rel;
 	}
 
