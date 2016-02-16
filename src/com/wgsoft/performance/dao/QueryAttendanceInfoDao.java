@@ -89,7 +89,7 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 		sql
 				.append(" (SELECT 1  FROM CLOCKEXCEPTION D WHERE B.USERID = D.USERID  AND D.ISENABLE = '0'  AND TO_CHAR(D.CLOCKDATE, 'yyyy-mm-dd') = ");
 		sql
-				.append("  TO_CHAR(A.CLOCKDATE, 'yyyy-mm-dd'))) GROUP BY C.DEPTNAME) GROUP BY F.DEPTNAME ) A  ORDER BY xcomments desc,dataname DESC ");
+				.append("  TO_CHAR(A.CLOCKDATE, 'yyyy-mm-dd'))) GROUP BY C.DEPTNAME) GROUP BY F.DEPTNAME ) A  ORDER BY xcomments desc,dataname  ");
 		return getSqlList_(sql.toString(), EchartsOfBar.class);
 	}
 

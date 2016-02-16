@@ -8,7 +8,7 @@ import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.attendance.clock.iservice.IAttendanceExcepService;
 import com.wgsoft.attendance.clock.model.ClockExcepApprove;
-import com.wgsoft.attendance.clock.model.ClockException;
+import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.AttednUtils;
@@ -106,7 +106,7 @@ public class AttendanceExcepAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public String saveExcep() throws Exception {
-		ClockException clockExp = new ClockException();
+		ClockExcep clockExp = new ClockExcep();
 		clockExp.setClockdate(clockRecords.getStartTime());
 		clockExp.setExptype(SysConstants.CLOCK_EXCEPTION_DONOT);
 		clockExp.setIsenable(SysConstants.ISENABLE_YES);

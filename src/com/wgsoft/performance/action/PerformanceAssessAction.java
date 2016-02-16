@@ -54,8 +54,8 @@ public class PerformanceAssessAction extends BaseAction {
 			if (me.getUserid().equals(getUserInfo().getUserid())) {
 				// 不包括自己
 				j = i;
+				break;
 			}
-			i++;
 		}
 		// 移除自己
 		list.remove(j);

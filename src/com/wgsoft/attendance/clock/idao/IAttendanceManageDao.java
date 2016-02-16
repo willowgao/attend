@@ -3,7 +3,7 @@ package com.wgsoft.attendance.clock.idao;
 import java.util.List;
 import java.util.Map;
 
-import com.wgsoft.attendance.clock.model.ClockException;
+import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.attendance.clock.model.ClockSetting;
 import com.wgsoft.common.idao.IBaseDao;
@@ -68,7 +68,7 @@ public interface IAttendanceManageDao extends IBaseDao {
 	 * @return int
 	 * @date： 2015-10-27 上午11:31:02
 	 */
-	int saveClockException(ClockException ce);
+	int saveClockException(ClockExcep ce);
 
 
 	/**

@@ -16,6 +16,12 @@ import="com.wgsoft.common.utils.DateUtil"%>
 <script type="text/javascript" src="<%=request.getContextPath()%>/dwr/util.js"></script>   
 <script type="text/javascript" src="<%=request.getContextPath()%>/dwr/interface/DataDictionaryService.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/web/echarts/echarts.min.js"></script>
+
+<!-- plupload 文件上传 -->
+<link rel="stylesheet" href="<%=request.getContextPath() %>/web/common/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css" type="text/css"></link>
+<script type="text/javascript" src="<%=request.getContextPath() %>/web/common/plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/web/common/plupload/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/web/common/plupload/js/i18n/zh-CN.js"></script>
 <%
 	String webapp = request.getContextPath();
 	request.setAttribute("webapp", webapp);

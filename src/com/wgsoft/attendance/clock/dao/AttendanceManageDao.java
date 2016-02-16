@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.wgsoft.attendance.clock.idao.IAttendanceManageDao;
-import com.wgsoft.attendance.clock.model.ClockException;
+import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.attendance.clock.model.ClockRecordsId;
 import com.wgsoft.attendance.clock.model.ClockSetting;
@@ -112,7 +112,7 @@ public class AttendanceManageDao extends BaseDao implements IAttendanceManageDao
 		return cs;
 	}
 
-	public int saveClockException(ClockException ce) {
+	public int saveClockException(ClockExcep ce) {
 		try {
 			// 更新存在在此区间的数据
 			insert(ce);

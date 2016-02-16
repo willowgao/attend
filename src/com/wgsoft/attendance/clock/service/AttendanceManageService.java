@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.wgsoft.attendance.clock.idao.IAttendanceManageDao;
 import com.wgsoft.attendance.clock.iservice.IAttendanceManageService;
-import com.wgsoft.attendance.clock.model.ClockException;
+import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.attendance.clock.model.ClockSetting;
 import com.wgsoft.common.utils.DateUtil;
@@ -34,7 +34,7 @@ public class AttendanceManageService implements IAttendanceManageService {
 		/**
 		 * 需要对打卡的时间与标准时间进行判断，用以区分是迟到、早退、旷工等情况
 		 */
-		ClockException clockExp = new ClockException();
+		ClockExcep clockExp = new ClockExcep();
 		Date checkTime = DateUtil.string2Date(clock.getCheckTime(), DateUtil.HMS);
 		boolean bool = false;
 		if ((RunUtil.isNotEmpty(clock.getAmsb()) && clock.getType().equals("1"))

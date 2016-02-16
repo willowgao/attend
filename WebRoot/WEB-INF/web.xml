@@ -33,7 +33,6 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
-
  
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -42,9 +41,10 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
-
+	 
+	 
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>

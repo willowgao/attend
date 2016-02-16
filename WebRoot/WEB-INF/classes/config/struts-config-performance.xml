@@ -63,7 +63,7 @@
 		</action>
 		
 		
-		<!--  -->
+		<!-- 工作任务统计 -->
 		<action name="queryWorks"
 			class="com.wgsoft.performance.action.QueryJobUploadAction">
 			<result name="success">/web/performance/query/queryWorks.jsp</result>

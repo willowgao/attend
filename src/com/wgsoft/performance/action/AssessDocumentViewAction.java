@@ -2,12 +2,18 @@ package com.wgsoft.performance.action;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.Doc2HtmlUtil;
+import com.wgsoft.common.utils.FileUtil;
 
 /**
  * @title： AssessDocmentViewAction.java
@@ -19,6 +25,7 @@ import com.wgsoft.common.utils.Doc2HtmlUtil;
  * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class AssessDocumentViewAction extends BaseAction {
+
 	/**
 	 * 
 	 */
@@ -48,6 +55,38 @@ public class AssessDocumentViewAction extends BaseAction {
 		renderText(response, JSONUtil.serialize(fileName));
 		// Doc2HtmlUtil.deleteDirFile();
 
+		return null;
+	}
+
+	/**
+	 * @desc:文件写入
+	 * @return
+	 * @throws Exception 
+	 * @return String
+	 * @date： 2016-2-16 上午10:23:06
+	 */
+	public String upload() throws Exception {
+		FileUtil.writeFile(request, response);
+		return null;
+	}
+
+	/**
+	 * @desc:文件保存到数据库中
+	 * @return
+	 * @throws Exception 
+	 * @return String
+	 * @date： 2016-2-16 上午10:23:16
+	 */
+	public String save() throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		String msg = "您上传了：<br/>";
+		String[] fileUrls = request.getParameterValues("fileUrl");
+		String[] fileNames = request.getParameterValues("fileName");
+		for (int i = 0; i < fileUrls.length; i++) {
+			msg += "文件路径：" + fileUrls[i] + " 文件名称：" + fileNames[i] + "<br/>";
+			System.out.println(fileUrls[i] + " " + fileNames[i]);
+		} 
 		return null;
 	}
 

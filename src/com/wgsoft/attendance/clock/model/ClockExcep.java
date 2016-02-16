@@ -8,7 +8,7 @@ import java.util.Date;
  * ClockException entity. @author MyEclipse Persistence Tools
  */
 
-public class ClockException  implements java.io.Serializable {
+public class ClockExcep  implements java.io.Serializable {
 
 
     // Fields    
@@ -46,16 +46,16 @@ public class ClockException  implements java.io.Serializable {
 	}
 
 	/** default constructor */
-    public ClockException() {
+    public ClockExcep() {
     }
 
 	/** minimal constructor */
-    public ClockException(String expid) {
+    public ClockExcep(String expid) {
         this.expid = expid;
     }
     
     /** full constructor */
-    public ClockException(String expid, Date clockdate, String exptype, String clocktime, String userid) {
+    public ClockExcep(String expid, Date clockdate, String exptype, String clocktime, String userid) {
         this.expid = expid;
         this.clockdate = clockdate;
         this.exptype = exptype;

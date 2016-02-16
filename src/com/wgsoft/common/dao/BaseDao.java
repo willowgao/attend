@@ -10,9 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,19 +20,21 @@ import org.springframework.orm.hibernate3.SessionFactoryUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wgsoft.common.idao.IBaseDao;
-import com.wgsoft.common.model.BaseVO;
 import com.wgsoft.common.utils.CnDate;
 import com.wgsoft.common.utils.SqlUtil;
 
 /**
- * @type BaseDao
- * @title BaseDao.java
- * @desc
- * @author gaochengliu
- * @date 2015-7-17
- * @version V1.0
+ * @title： BaseDao.java
+ * @desc： 数据加操作类
+ * @author： Willowgao
+ * @date： 2016-2-14 上午10:46:07
+ * @version： V1.0<br>
+ * @versioninfo： 慕安软件<br>
+ * @modify： 更改时间、更改人、更改原因、更改内容<br>
  */
 public class BaseDao extends HibernateDaoSupport implements IBaseDao {
+
+	private static Log log = LogFactory.getLog(BaseDao.class);
 
 	public void delete(Object entity) {
 		getSession().delete(entity);
@@ -150,6 +151,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Object> getSqlList(String sql) {
+		if (log.isInfoEnabled()) {
+			log.info("执行过程【" + sql.toUpperCase() + "】");
+		}
 		return getSession().createSQLQuery(sql).list();
 	}
 
@@ -246,6 +250,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 
 		try {
 			conn = SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection();
+			if (log.isInfoEnabled()) {
+				log.info("执行SQL【" + sql .toUpperCase()+ "】");
+			}
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			list = null;
@@ -408,6 +415,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 	}
 
 	public void callPrepareCall(String callStr, String[] arg) {
+		if (log.isInfoEnabled()) {
+			log.info("执行过程【" + callStr + "】");
+		}
 		Connection con = null;
 		try {
 			con = SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection();
@@ -433,11 +443,13 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 	}
 
 	public int updateBySql(String sql) {
+		if (log.isInfoEnabled()) {
+			log.info("执行过程【" + sql + "】");
+		}
 		Session session = getSession();
 		int re = session.createSQLQuery(sql.toString()).executeUpdate();
 		session.flush();
 		return re;
 	}
-
 
 }

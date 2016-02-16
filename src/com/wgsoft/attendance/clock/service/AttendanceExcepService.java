@@ -10,7 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import com.wgsoft.attendance.clock.idao.IAttendanceExcepDao;
 import com.wgsoft.attendance.clock.iservice.IAttendanceExcepService;
 import com.wgsoft.attendance.clock.model.ClockExcepApprove;
-import com.wgsoft.attendance.clock.model.ClockException;
+import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.common.utils.SysConstants;
 
@@ -43,7 +43,7 @@ public class AttendanceExcepService implements IAttendanceExcepService {
 	 * @see com.wgsoft.attendance.clock.iservice.IAttendanceExcepService#saveExcep(Map)
 	 */
 	public int saveExcep(Map<String, Object> saveMap) {
-		ClockException excep = (ClockException) saveMap.get("clockExp");
+		ClockExcep excep = (ClockExcep) saveMap.get("clockExp");
 		ClockExcepApprove expApp = new ClockExcepApprove();
 		expApp.setApproverid((String) saveMap.get("approver"));
 		expApp.setComments(excep.getComments());
