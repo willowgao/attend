@@ -57,7 +57,7 @@
 						<th data-options="field:'userdeptid',width:'20%',align:'center',formatter:formatterDept">
 							部门
 						</th>
-						<th data-options="field:'userorg',width:'25%',align:'center',formatter:formatterOrg">
+						<th data-options="field:'userorg',width:'30%',align:'center',formatter:formatterOrg">
 							组织机构
 						</th>
 					</tr>

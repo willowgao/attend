@@ -40,7 +40,7 @@
 			</div> 
 
 			<!-- 弹出窗口 -->
-			<div id="dlg" class="easyui-dialog" title="日志填报申请审核" style="width: 700px; height: 500px; padding: 10px;"
+			<div id="dlg" class="easyui-dialog" title="日志填报申请审核" style="width: 700px; height: 600px; padding: 10px;"
 				data-options="
 					iconCls: 'icon-search',
 					toolbar: '#dlg-toolbar',
@@ -49,14 +49,14 @@
 					buttons: '#dlg-buttons'
 				">
 				<div class="easyui-panel" style="width: 100%; margin-top: 2px;">
-					<div style="margin: 0px; height: 32%;">
-						<label style="margin: 10px;">
+					<div style="margin: 0px; height: 45%;">
+						<label id="t_label" style="margin: 10px;">
 							本周总结:
 						</label>
 						<input name="diaryDaily.content" id="content" class="easyui-textbox"
 							data-options="disabled:true,readonly:true,multiline:true,required:true" style="width: 70%; height: 100%;"></input>
 					</div>
-					<div id="nextCont" style="margin: 0px; height: 32%;">
+					<div id="nextCont" style="margin: 0px; height: 25%;">
 						<label style="margin: 10px;">
 							下期计划:
 						</label>
@@ -69,7 +69,7 @@
 						</label>
 						<input name="diaryDaily.comments" id="comments" class="easyui-textbox" data-options="multiline:true" style="width: 70%; height: 100%;"></input>
 					</div>
-					<div style="margin-top: 5px; height: 10%;">
+					<div style="margin-top: 5px; height: 5%;">
 						<label style="margin: 10px;">
 							核审意见:
 						</label>

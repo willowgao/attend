@@ -111,16 +111,16 @@
 							<th data-options="field:'clockdate',width:'12%',align:'center',formatter :formatterdateYMD">
 								考勤日期
 							</th>
-							<th data-options="field:'amsb',width:'18%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'amsb',width:'15%',align:'center',styler:dgCellStyleAmsb">
 								上午上班时间
 							</th>
-							<th data-options="field:'amxb',width:'18%',align:'center',styler:dgCellStyle">
-								上午下班时间 
+							<th data-options="field:'amxb',width:'15%',align:'center',styler:dgCellStyleAmxb">
+								上午下班时间
 							</th>
-							<th data-options="field:'pmsb',width:'18%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'pmsb',width:'15%',align:'center',styler:dgCellStylePmsb">
 								下午上班时间
 							</th>
-							<th data-options="field:'pmxb',width:'18%',align:'center',styler:dgCellStyle">
+							<th data-options="field:'pmxb',width:'15%',align:'center',styler:dgCellStylePmxb">
 								下午下班时间
 							</th>
 							<th data-options="field:'isneed',width:'10%',align:'center',hidden:'true'">

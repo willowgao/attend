@@ -99,7 +99,7 @@
 						<th data-options="field:'roletype',width:'20%',align:'center',formatter:formatterRole">
 							角色类型
 						</th>
-						<th data-options="field:'roleorg',width:'40%',align:'center',formatter:formatterOrg">
+						<th data-options="field:'roleorg',width:'50%',align:'center',formatter:formatterOrg">
 							组织机构
 						</th>
 					</tr>

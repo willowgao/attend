@@ -52,7 +52,7 @@
 						<th data-options="field:'orgType',width:'8%',align:'center',formatter:formatterOrgType">
 							组织类型
 						</th>
-						<th data-options="field:'orgid',width:'25%',align:'center',formatter:formatterOrg">
+						<th data-options="field:'orgid',width:'30%',align:'center',formatter:formatterOrg">
 							组织机构
 						</th>
 					</tr>

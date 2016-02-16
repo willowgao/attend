@@ -91,7 +91,7 @@ var jq = jQuery.noConflict();
 		var  status = row.status;
 		var  diarytype = row.diarytype;
 
-		jq('#diaryid').textbox('setValue',diaryid); 
+		jq('#diaryid').attr('value',diaryid); 
 		jq('#userid').attr('value',row.userid); 
 		jq('#nowdiarytype').attr('value',diarytype); 
 		jq('#content').textbox('setValue',row.content); 
@@ -101,7 +101,15 @@ var jq = jQuery.noConflict();
 		//为日报，不显示下期计划
 		if(diarytype=='1'){
 			jq('#nextCont').hide();
+			jq('#t_label').text('本日总结:');
+		}else if(diarytype=='2'){
+			jq('#t_label').text('本周总结:');
+			jq('#nextCont').show();
+		}else if(diarytype=='3'){
+			jq('#t_label').text('本月总结:');
+			jq('#nextCont').show();
 		}else{
+			jq('#t_label').text('本季总结:');
 			jq('#nextCont').show();
 		}
 		//将窗口移动到固定的位置

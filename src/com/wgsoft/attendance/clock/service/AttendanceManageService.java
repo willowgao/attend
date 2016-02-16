@@ -67,6 +67,11 @@ public class AttendanceManageService implements IAttendanceManageService {
 				Date pmxb = DateUtil.string2Date(clock.getPmxb(), DateUtil.HMS);
 				bool = pmxb.before(checkTime);
 			}
+			//上午下班时间，晚于下午上班时间，也属于异常打卡
+			if (RunUtil.isNotEmpty(clock.getAmxb())) {
+				Date pmsb = DateUtil.string2Date(clock.getPmsb(), DateUtil.HMS);
+				bool = pmsb.before(checkTime);
+			}
 
 			// 下班打卡，如果打卡时间早于设置时间，则属于早退
 			if (bool) {

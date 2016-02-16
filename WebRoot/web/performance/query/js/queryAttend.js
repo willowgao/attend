@@ -99,7 +99,7 @@ var jq = jQuery.noConflict();
 		if((value==null||value =='')){
 			return 'background-color:#F5BB2A;color:#black;';
 		}
-		if(!checkForTime(value,row.amsbtime)){
+		if(!checkForTimeCD(value,row.amsbtime)){
 			return 'background-color:#E1643D;color:#black;';
 		}else{
 			return 'color:#black;';
@@ -110,7 +110,7 @@ var jq = jQuery.noConflict();
 		if((value==null||value =='')){
 			return 'background-color:#F5BB2A;color:#black;';
 		} 
-    	if(!checkForTime(value,row.amxbtime)){
+    	if(!checkForTimeZT(value,row.amxbtime)){
 			return 'background-color:#E1643D;color:#black;';
 		}else{
 			return 'color:#black;';
@@ -122,7 +122,7 @@ var jq = jQuery.noConflict();
 			return 'background-color:#F5BB2A;color:#black;';
 		}
 	 
-    	if(!checkForTime(value,row.pmsbtime)){
+    	if(!checkForTimeCD(value,row.pmsbtime)){
 			return 'background-color:#E1643D;color:#black;';
 		}else{
 			return 'color:#black;';
@@ -132,14 +132,18 @@ var jq = jQuery.noConflict();
 		if((value==null||value =='')){
 			return 'background-color:#F5BB2A;color:#black;';
 		}
-    	if(!checkForTime(value,row.pmxbtime)){
+    	if(!checkForTimeZT(value,row.pmxbtime)){
 			return 'background-color:#E1643D;color:#black;';
 		}else{
 			return 'color:#black;';
 		}
 	}
+	
 	//判断是否到打卡时间
-	function checkForTime(systime,checkTime){
+	function checkForTimeCD(systime,checkTime){
+		if(systime==null){
+			return true;
+		}
 		var a = '01/10/2015 ' + systime;
 	    var b = '01/10/2015 ' + checkTime;
 	    var d = new Date(a);
@@ -148,6 +152,21 @@ var jq = jQuery.noConflict();
 	  	   return false;
 	  	} else {
 	   	   return true;
+	  	}
+	}
+	//判断是否到打卡时间
+	function checkForTimeZT(systime,checkTime){
+		if(systime==null){
+			return true;
+		}
+		var a = '01/10/2015 ' + systime;
+	    var b = '01/10/2015 ' + checkTime;
+	    var d = new Date(a);
+	    var e = new Date(b);
+	  	if (d > e) {
+	  	   return true;
+	  	} else {
+	   	   return false;
 	  	}
 	}
 	

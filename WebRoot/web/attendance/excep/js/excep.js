@@ -58,49 +58,55 @@
 	function dgCellStyleAmsb(value, row, index) {
 		if((value==null||value =='')&&row.isneed=='0'){
 			return 'background-color:#F5BB2A;color:#black;';
-		}
-		if(!checkForTime(value,row.amsbtime)){
-			return 'background-color:#E1643D;color:#black;';
 		}else{
-			return 'color:#black;';
+			if(!checkForTimeCD(value,row.amsbtime)){
+				return 'background-color:#E1643D;color:#black;';
+			}else{
+				return 'color:#black;';
+			}
 		}
     	 
 	}
 	function dgCellStyleAmxb(value, row, index) {
 		if((value==null||value =='')&&row.isneed=='0'){
 			return 'background-color:#F5BB2A;color:#black;';
-		} 
-    	if(!checkForTime(value,row.amxbtime)){
-			return 'background-color:#E1643D;color:#black;';
-		}else{
-			return 'color:#black;';
+		}else{ 
+	    	if(!checkForTimeZT(value,row.amxbtime)){
+				return 'background-color:#E1643D;color:#black;';
+			}else{
+				return 'color:#black;';
+			}
 		}
     	 
 	}
 	function dgCellStylePmsb(value, row, index) {
 		if((value==null||value =='')&&row.isneed=='0'){
 			return 'background-color:#F5BB2A;color:#black;';
-		}
-	 
-    	if(!checkForTime(value,row.pmsbtime)){
-			return 'background-color:#E1643D;color:#black;';
 		}else{
-			return 'color:#black;';
-		} 
+	    	if(!checkForTimeCD(value,row.pmsbtime)){
+				return 'background-color:#E1643D;color:#black;';
+			}else{
+				return 'color:#black;';
+			}
+		}
 	}
 	function dgCellStylePmxb(value, row, index) {
 		if((value==null||value =='')&&row.isneed=='0'){
 			return 'background-color:#F5BB2A;color:#black;';
-		}
-    	if(!checkForTime(value,row.pmxbtime)){
-			return 'background-color:#E1643D;color:#black;';
 		}else{
-			return 'color:#black;';
+	    	if(!checkForTimeZT(value,row.pmxbtime)){
+				return 'background-color:#E1643D;color:#black;';
+			}else{
+				return 'color:#black;';
+			}
 		}
 	}
 	
-	//判断是否到打卡时间
-	function checkForTime(systime,checkTime){
+	//判断是否异常打卡
+	function checkForTimeCD(systime,checkTime){
+		if(systime==null){
+			return true;
+		}
 		var a = '01/10/2015 ' + systime;
 	    var b = '01/10/2015 ' + checkTime;
 	    var d = new Date(a);
@@ -111,6 +117,22 @@
 	   	   return true;
 	  	}
 	}
+	//判断是否异常打卡
+	function checkForTimeZT(systime,checkTime){
+		if(systime==null){
+			return true;
+		}
+		var a = '01/10/2015 ' + systime;
+	    var b = '01/10/2015 ' + checkTime;
+	    var d = new Date(a);
+	    var e = new Date(b);
+	  	if (d > e) {
+	  	   return true;
+	  	} else {
+	   	   return false;
+	  	}
+	}
+	
 	
 	
 	/**

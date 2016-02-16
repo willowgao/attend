@@ -2,12 +2,8 @@ package com.wgsoft.performance.action;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.json.JSONUtil;
 
@@ -45,7 +41,6 @@ public class AssessDocumentViewAction extends BaseAction {
 	 * @return String
 	 * @date： 2016-1-26 上午09:52:56
 	 */
-	@SuppressWarnings("static-access")
 	public String viewDocument() throws Exception {
 		// 输入文件路径以及文件名
 		File file = new File("F:\\code\\open\\咸宁市人社局平时考核系统工作计划安排_V1.0.xlsx");

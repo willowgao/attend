@@ -72,7 +72,7 @@
 						<th data-options="field:'usercode',width:'10%',align:'center'">
 							用户编码
 						</th>
-						<th data-options="field:'userorg',width:'25%',align:'center',formatter:formatterOrg">
+						<th data-options="field:'userorg',width:'30%',align:'center',formatter:formatterOrg">
 							组织机构
 						</th>
 					</tr>
