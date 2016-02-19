@@ -170,5 +170,20 @@ var jq = jQuery.noConflict();
 	  	}
 	}
 	
+	
+	var exportExcel = function(){
+		var rows = jq('#dg').datagrid('getRows');
+		var map = new Map();
+		map.put("rows", rows);
+		var param = JSON.stringify(map);
+		
+		jq.ajaxSettings.async = false; 
+        jq.getJSON(programName+'/query/queryAttend!exportExcel.action?param=' + param, function(datas) {
+		//取出json的值
+			option =  datas;
+		});
+        
+	}
+	
 	 
 	

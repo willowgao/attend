@@ -95,10 +95,10 @@
 			<generator class="assigned"></generator>
 		</primary-key>
 	</table>
-<table name="PERFORMANCE_ASSESS" schema="ATTEDN"
-	class="PerformanceAssess">
-	<primary-key>
-		<generator class="assigned"></generator>
-	</primary-key>
-</table>
+	<table name="PERFORMANCE_ASSESS" schema="ATTEDN"
+		class="PerformanceAssess">
+		<primary-key>
+			<generator class="assigned"></generator>
+		</primary-key>
+	</table> 
 </hibernate-reverse-engineering>

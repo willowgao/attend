@@ -130,6 +130,11 @@ public class QueryAttendanceInfoAction extends BaseAction {
 		return null;
 
 	}
+	
+	public String exportExcel() throws Exception {
+		
+		return null;
+	}
 
 	private IQueryAttendanceInfoService getQueryAttendanceInfoService() {
 		return (IQueryAttendanceInfoService) getService("queryAttendanceInfoService");
