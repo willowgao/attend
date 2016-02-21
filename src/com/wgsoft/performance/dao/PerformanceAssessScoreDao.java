@@ -11,15 +11,11 @@ public class PerformanceAssessScoreDao extends BaseDao implements
 		IPerformanceAssessScoreDao {
 
 	public List<PerformanceAssessScore> queryScores(Map<String, Object> queryMap) {
-		StringBuffer sql = new StringBuffer("SELECT  A.USERID USERID, ROUND(SUM(DECODE(A.ASSESSTYPE, '1', SUM(NVL(INDEXSCORE, 0)), 0)) /");
-		sql.append("  SUM(DECODE(A.ASSESSTYPE, '1', COUNT(DISTINCT A.ASSESSER), 0))) * .7 HIGHERSCORE,");
-		sql.append("  ROUND(SUM(DECODE(A.ASSESSTYPE, '2', SUM(NVL(INDEXSCORE, 0)), 0)) /");
-		sql.append("  SUM(DECODE(A.ASSESSTYPE, '2', COUNT(DISTINCT A.ASSESSER), 0))) * .3 PEERSCORE,");
-		sql.append("  ROUND(SUM(DECODE(A.ASSESSTYPE, '1', SUM(NVL(INDEXSCORE, 0)), 0)) /");
-		sql.append("  SUM(DECODE(A.ASSESSTYPE, '1', COUNT(DISTINCT A.ASSESSER), 0))) * .7 +");
-		sql.append("  ROUND(SUM(DECODE(A.ASSESSTYPE, '2', SUM(NVL(INDEXSCORE, 0)), 0)) /");
-		sql.append("  SUM(DECODE(A.ASSESSTYPE, '2', COUNT(DISTINCT A.ASSESSER), 0))) * .3 FINALSCORE");
-		sql.append("  FROM PERFORMANCE_ASSESS A  GROUP BY A.USERID, A.ASSESSER, ASSESSTYPE");
+		StringBuffer sql = new StringBuffer("SELECT  USERID,SUM(HIGHERSCORE / NUM) * .7 HIGHERSCORE,");
+		sql.append(" SUM(PEERSCORE / NUM) * .3 PEERSCORE,  SUM(HIGHERSCORE / NUM) * .7 + SUM(PEERSCORE / NUM) * .3 FINALSCORE");
+		sql.append(" FROM (SELECT A.USERID,  DECODE(A.ASSESSTYPE, '1', SUM(NVL(INDEXSCORE, 0)), 0) HIGHERSCORE,");
+		sql.append(" DECODE(A.ASSESSTYPE, '2', SUM(NVL(INDEXSCORE, 0)), 0) PEERSCORE,  COUNT(DISTINCT A.ASSESSER) NUM");
+		sql.append(" FROM PERFORMANCE_ASSESS A GROUP BY A.USERID, A.ASSESSTYPE)  GROUP BY USERID");
 		return getSqlList_(sql.toString(), PerformanceAssessScore.class);
 	}
 
