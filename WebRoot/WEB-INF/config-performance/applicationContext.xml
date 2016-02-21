@@ -74,6 +74,23 @@
 		</property>
 	</bean>
 	
+    <!-- 考核评分汇总  -->
+	<bean name="performanceAssessScoreDao" class="com.wgsoft.performance.dao.PerformanceAssessScoreDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="performanceAssessScore" parent="service">
+		<property name="target">
+			<ref bean="performanceAssessScoreTarget" />
+		</property>
+	</bean>
+	<bean name="performanceAssessScoreTarget" class="com.wgsoft.performance.service.PerformanceAssessScoreService">
+		<property name="performanceAssessScoreDao">
+			<ref bean="performanceAssessScoreDao" />	
+		</property>
+	</bean>
+	
 	   <!-- 查询出勤情况  -->
 	<bean name="queryAttendanceInfoDao" class="com.wgsoft.performance.dao.QueryAttendanceInfoDao">
 		<property name="sessionFactory">

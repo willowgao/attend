@@ -161,6 +161,11 @@
 	var save = function(){
 		var rows = null;
 		endEditing();
+		var updateRow = jq(tableId).datagrid('getChanges', "updated"); 
+		if(updateRow.length!=12){
+			jq.messager.alert('提示','请完成所有打分项评分!');
+			return;
+		}
 		//获取列表修改的内容
 		var url = getDataFromDatagrid(tableId) ;
 		jq.ajaxSettings.async = false; 

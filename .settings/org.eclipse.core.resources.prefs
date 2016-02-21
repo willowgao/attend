@@ -1,4 +1,4 @@
-#Sun Feb 14 16:51:51 CST 2016
+#Sun Feb 21 11:29:14 GMT+08:00 2016
 eclipse.preferences.version=1
 encoding//WebRoot/web=UTF-8
 encoding//WebRoot/web/attendance=UTF-8
@@ -7,6 +7,7 @@ encoding//WebRoot/web/attendance/excep/js/excep.js=UTF-8
 encoding//WebRoot/web/attendance/leave/js/leave.js=UTF-8
 encoding//WebRoot/web/attendance/leave/leaveManage.jsp=UTF-8
 encoding//WebRoot/web/attendance/timeManage/js/timeManage.js=UTF-8
+encoding//WebRoot/web/common=UTF-8
 encoding//WebRoot/web/common/easyui=UTF-8
 encoding//WebRoot/web/common/js/easyui_custom.js=UTF-8
 encoding//WebRoot/web/common/plupload/js/plupload.silverlight.xap=UTF-8

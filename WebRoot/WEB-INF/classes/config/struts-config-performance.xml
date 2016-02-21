@@ -50,6 +50,13 @@
 			class="com.wgsoft.performance.action.AssessDocumentViewAction">
 			<result name="success">/web/performance/assess/documentView.jsp</result>
 		</action>
+		
+		<!-- 绩效考核得分 -->
+		<action name="score"
+			class="com.wgsoft.performance.action.PerformanceAssessAction">
+			<result name="success">/web/performance/assess/performanceAssess.jsp</result>
+		</action>
+		
 	</package>  
 	
 	<!-- 查询统计-->

@@ -100,5 +100,11 @@
 		<primary-key>
 			<generator class="assigned"></generator>
 		</primary-key>
-	</table> 
+	</table>
+<table name="PERFORMANCE_ASSESS_SCORE" schema="ATTEND"
+	class="PerformanceAssessScore">
+	<primary-key>
+		<generator class="assigned"></generator>
+	</primary-key>
+</table>
 </hibernate-reverse-engineering>
