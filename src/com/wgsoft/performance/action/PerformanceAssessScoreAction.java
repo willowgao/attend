@@ -8,8 +8,10 @@ import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.DateUtil;
+import com.wgsoft.common.utils.RunUtil;
 import com.wgsoft.performance.iservice.IPerformanceAssessScoreService;
 import com.wgsoft.performance.model.PerformanceAssess;
+import com.wgsoft.performance.model.PerformanceAssessScore;
 
 /**
  * @title： PerformanceIndexManageAction.java
@@ -42,7 +44,20 @@ public class PerformanceAssessScoreAction extends BaseAction {
 	 * @date： 2015-11-23 下午02:22:44
 	 */
 	public String queryScore() throws Exception {
-		renderText(response, transferListToJsonMapForTabel(null));
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		if (assess == null) {
+			assess = new PerformanceAssess();
+		}
+		Map<String, Object> requestMap = request.getParameterMap(); 
+		if(RunUtil.isNotEmpty(((String[]) requestMap.get("assess.starttime"))[0])){
+			queryMap.put("starttime", DateUtil.string2Date(((String[]) requestMap.get("assess.starttime"))[0], DateUtil.YMD));
+		}
+		if(RunUtil.isNotEmpty(((String[]) requestMap.get("assess.endtime"))[0])){
+			queryMap.put("endtime", DateUtil.string2Date(((String[]) requestMap.get("assess.endtime"))[0], DateUtil.YMD));
+		}
+		queryMap.put("user", getUserInfo());
+		List<PerformanceAssessScore> list = getPerformanceAssessScoreService().queryScores(queryMap);
+		renderText(response, transferListToJsonMapForTabel(list));
 		return null;
 	}
 
@@ -54,24 +69,14 @@ public class PerformanceAssessScoreAction extends BaseAction {
 	 * @date： 2016-1-27 下午02:09:46
 	 */
 	@SuppressWarnings("unchecked")
-	public String save() throws Exception {
-		if (assess == null) {
-			assess = new PerformanceAssess();
-		}
-		Map<String, Object> requestMap = request.getParameterMap();
-		assess.setStarttime(DateUtil.string2Date(((String[]) requestMap.get("assess.starttime"))[0], DateUtil.YMD));
-		assess.setEndtime(DateUtil.string2Date(((String[]) requestMap.get("assess.endtime"))[0], DateUtil.YMD));
-		assess.setUserid(((String[]) requestMap.get("assess.userid"))[0]);
-		assess.setRoletype(((String[]) requestMap.get("assess.roletype"))[0]);
-
+	public String save() throws Exception { 
 		Map<String, Object> saveMap = new HashMap<String, Object>();
-		saveMap.put("assess", assess);
 		// 用户信息
 		saveMap.put("user", getUserInfo());
 		//列表信息
 		String jsonStr = ((String[]) request.getParameterMap().get("assess.datagrid"))[0];
-		Map<String, List<PerformanceAssess>> assessIndexs = getListFromMap(jsonStr, new PerformanceAssess());
-		saveMap.put("assessIndexs", assessIndexs);
+		List<PerformanceAssessScore> assessScore =(List<PerformanceAssessScore>)JSONUtil.deserialize(jsonStr);
+		saveMap.put("assessScore", assessScore);
 		int rel = getPerformanceAssessScoreService().saveAssessScore(saveMap);
 		renderText(response, JSONUtil.serialize(rel));
 		return null;

@@ -15,16 +15,19 @@ public class PerformanceAssessScore implements java.io.Serializable {
 	// Fields
 
 	private String scoreid;
-	private Long userid;
-	private Short assessyear;
+	private String userid;
+	private String assessyear;
 	private Date starttime;
 	private Date endtime;
 	private Double higherscore;
 	private Double peerscore;
 	private Double attednscore;
 	private Double finalscore;
-	private Long uploder;
+	private String uploder;
 	private Date uplodetime;
+	private Double reductionscore;
+	
+	private String deptid;
 
 	// Constructors
 
@@ -38,9 +41,9 @@ public class PerformanceAssessScore implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public PerformanceAssessScore(String scoreid, Long userid,
-			Short assessyear, Date starttime, Date endtime, Double higherscore,
-			Double peerscore, Double attednscore,Double finalscore, Long uploder, Date uplodetime) {
+	public PerformanceAssessScore(String scoreid, String userid,
+			String assessyear, Date starttime, Date endtime, Double higherscore,
+			Double peerscore, Double attednscore,Double finalscore, String uploder, Date uplodetime) {
 		this.scoreid = scoreid;
 		this.userid = userid;
 		this.assessyear = assessyear;
@@ -54,29 +57,47 @@ public class PerformanceAssessScore implements java.io.Serializable {
 		this.uplodetime = uplodetime;
 	}
 
+	
 	// Property accessors
+
+	public Double getReductionscore() {
+		return reductionscore;
+	}
+
+	public void setReductionscore(Double reductionscore) {
+		this.reductionscore = reductionscore;
+	}
 
 	public String getScoreid() {
 		return this.scoreid;
+	}
+
+	
+	public String getDeptid() {
+		return deptid;
+	}
+
+	public void setDeptid(String deptid) {
+		this.deptid = deptid;
 	}
 
 	public void setScoreid(String scoreid) {
 		this.scoreid = scoreid;
 	}
 
-	public Long getUserid() {
+	public String getUserid() {
 		return this.userid;
 	}
 
-	public void setUserid(Long userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
-	public Short getAssessyear() {
+	public String getAssessyear() {
 		return this.assessyear;
 	}
 
-	public void setAssessyear(Short assessyear) {
+	public void setAssessyear(String assessyear) {
 		this.assessyear = assessyear;
 	}
 
@@ -130,11 +151,11 @@ public class PerformanceAssessScore implements java.io.Serializable {
 		this.finalscore = finalscore;
 	}
 
-	public Long getUploder() {
+	public String getUploder() {
 		return this.uploder;
 	}
 
-	public void setUploder(Long uploder) {
+	public void setUploder(String uploder) {
 		this.uploder = uploder;
 	}
 

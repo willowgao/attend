@@ -53,8 +53,8 @@
 		
 		<!-- 绩效考核得分 -->
 		<action name="score"
-			class="com.wgsoft.performance.action.PerformanceAssessAction">
-			<result name="success">/web/performance/assess/performanceAssess.jsp</result>
+			class="com.wgsoft.performance.action.PerformanceAssessScoreAction">
+			<result name="success">/web/performance/assess/performanceScore.jsp</result>
 		</action>
 		
 	</package>  

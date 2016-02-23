@@ -10,10 +10,10 @@
             <column name="SCOREID" length="32" />
             <generator class="uuid"></generator>
         </id>
-        <property name="userid" type="java.lang.Long">
+        <property name="userid" type="java.lang.String">
             <column name="USERID" precision="15" scale="0" />
         </property>
-        <property name="assessyear" type="java.lang.Short">
+        <property name="assessyear" type="java.lang.String">
             <column name="ASSESSYEAR" precision="4" scale="0" />
         </property>
         <property name="starttime" type="java.util.Date">
@@ -34,7 +34,10 @@
         <property name="finalscore" type="java.lang.Double">
             <column name="FINALSCORE" precision="6" />
         </property>
-        <property name="uploder" type="java.lang.Long">
+        <property name="reductionscore" type="java.lang.Double">
+            <column name="REDUCTIONSCORE" precision="6" />
+        </property>
+        <property name="uploder" type="java.lang.String">
             <column name="UPLODER" precision="15" scale="0" />
         </property>
         <property name="uplodetime" type="java.util.Date">

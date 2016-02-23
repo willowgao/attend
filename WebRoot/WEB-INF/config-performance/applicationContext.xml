@@ -80,12 +80,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="performanceAssessScore" parent="service">
+	<bean id="performanceAssessScoreService" parent="service">
 		<property name="target">
-			<ref bean="performanceAssessScoreTarget" />
+			<ref bean="performanceAssessScoreServiceTarget" />
 		</property>
 	</bean>
-	<bean name="performanceAssessScoreTarget" class="com.wgsoft.performance.service.PerformanceAssessScoreService">
+	<bean name="performanceAssessScoreServiceTarget" class="com.wgsoft.performance.service.PerformanceAssessScoreService">
 		<property name="performanceAssessScoreDao">
 			<ref bean="performanceAssessScoreDao" />	
 		</property>
