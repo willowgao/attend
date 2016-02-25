@@ -24,11 +24,15 @@
 							审批人员：
 						</label>
 						<input class="easyui-combobox" type="text" id="approver" name="diaryDaily.approverid" data-options="required:true" />
-							&nbsp;&nbsp;
-							<a onclick="save()" href="#" class="easyui-linkbutton c5" style="width: 80px">保存</a>
-						&nbsp;&nbsp;
-							<a onclick="queryHistory()" href="#" class="easyui-linkbutton c5" style="width: 80px">查询历史</a>
+						<label style="margin: 10px;">
+							晒业绩：
+						</label>
+						<input id="onsubmitBtn" class="easyui-switchbutton" checked data-options="onText:'晒',offText:'不晒'"> 
+							<a onclick="save()" href="#" class="easyui-linkbutton c5" style="margin-left:10px;width: 80px">保存</a>
+							<a onclick="queryHistory()" href="#" class="easyui-linkbutton c5" style="margin-left:10px;width: 80px">查询历史</a>
 						
+						<input type="hidden" id="onsubmit"  name="diaryDaily.onsubmit"  />
+	
 						<input type="hidden" id="diarytype" name="diaryDaily.diarytype"  value="<%=request.getParameter("type") %>"></input>
 					</div>
 				</div>

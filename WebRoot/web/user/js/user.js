@@ -253,15 +253,23 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 	//删除用户
 	function removeit(tableId){
 		var userid = jq('#'+tableId).datagrid('getRows')[editIndex]['userid'];
-		if(confirm('请确认是否删除此条信息!')){
-			jq.getJSON( programName + '/user/userManager!deleteUser.action?userid=' + userid , function(re_datas) {
-				if(re_datas=='1'){
-					jq.messager.alert('提示','删除成功！');
-					//重新加列表信息
-					loadData();
-				}
-			});
-		}
+		
+		jq.messager.confirm('确认','请确认是否删除此条信息？',function(r){    
+		    if (r){    
+				jq.ajaxSettings.async = false; 
+		    	jq.getJSON( programName + '/user/userManager!deleteUser.action?userid=' + userid , function(re_datas) {
+					if(re_datas=='0'){
+						jq.messager.alert('提示','删除成功！');
+						//重新加列表信息
+						loadData();
+					}else{
+						jq.messager.alert('提示','删除失败，请确认角色下是否有用户信息？');
+					}
+				});
+		    }else{  
+		    	return;
+		    }
+		});   
 	}
 	
 

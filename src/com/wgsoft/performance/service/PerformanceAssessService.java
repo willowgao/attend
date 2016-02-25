@@ -58,7 +58,7 @@ public class PerformanceAssessService implements IPerformanceAssessService {
 				assessIndex.setAssessdate(assessdate);
 				assessIndex.setAssesser(user.getUserid());
 				assessIndex.setAssessyear(DateUtil.getNowDateByFormat(DateUtil.YMD).substring(0, 4));
-				assessIndex.setDeptid(user.getUserdeptid());
+				assessIndex.setDeptid(assess.getDeptid());
 				assessIndex.setEndtime(assess.getEndtime());
 				assessIndex.setStarttime(assess.getStarttime());
 				assessIndex.setUserid(assess.getUserid());

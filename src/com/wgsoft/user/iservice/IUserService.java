@@ -68,7 +68,7 @@ public interface IUserService {
 
 	void updateUser(UserInfo user);
 
-	void deleteUser(UserInfo user);
+	int deleteUser(UserInfo user);
 
 	List<RoleInfo> getRoleInfoByOrg(UserInfo user);
 

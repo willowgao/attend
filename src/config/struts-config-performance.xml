@@ -76,5 +76,13 @@
 			<result name="success">/web/performance/query/queryWorks.jsp</result>
 		</action>
 		
+		
+		<!-- 考核情况查询 -->
+		<action name="queryAssess"
+			class="com.wgsoft.performance.action.QueryAssessInfoAction">
+			<result name="success">/web/performance/query/queryAssess.jsp</result>
+		</action>
+		
+		
 	</package>  
 </struts>

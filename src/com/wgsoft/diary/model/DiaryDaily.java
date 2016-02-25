@@ -30,8 +30,17 @@ public class DiaryDaily implements java.io.Serializable {
 	private String nextcontent;
 	private Integer viewcount;
 	private Integer commentcount;
+	private String onsubmit;
 
 	// Constructors
+
+	public String getOnsubmit() {
+		return onsubmit;
+	}
+
+	public void setOnsubmit(String onsubmit) {
+		this.onsubmit = onsubmit;
+	}
 
 	/** default constructor */
 	public DiaryDaily() {

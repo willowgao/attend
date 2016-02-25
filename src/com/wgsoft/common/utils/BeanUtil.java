@@ -40,6 +40,7 @@ public class BeanUtil {
 			if (clazz != Object.class) {
 				return getGetMethodByFieldName(fieldName, clazz.getSuperclass());
 			} else {
+				System.out.println(getMethodName);
 				throw new NoSuchMethodException();
 			}
 		}

@@ -42,29 +42,28 @@ function onClick(event, treeId, treeNode, clickFlag) {
 	var parentid = treeNode.parentid;
 	jq("#menuId").val(menuid);
 	jq("#parentId").val(parentid); 
-	if(confirm('请问，是新增菜单吗？')){
-		type = 'add';
-		clearForm();
-		if(treeNode.isdisable=='0'){
-			jq("#disable_no").attr('checked', 'true');
-		}else{
-			jq("#disable_yes").attr('checked', 'true');
-		}
-	}else{
-		type = 'update';
-		jq("#menuname").val(treeNode.menuname);
-		jq("#action").val(treeNode.action);
-		jq("#menuaction").val(treeNode.action);
-		if(treeNode.isdisable=='0'){
-			jq("#disable_no").attr('checked', 'true');
-		}else{
-			jq("#disable_yes").attr('checked', 'true');
-		}
-		jq("#xh").val(treeNode.xh);
-		
-	}
-	
-	
+	jq.messager.confirm('确认','请问，是新增菜单吗？',function(r){    
+	    if (r){    
+	    	type = 'add';
+			clearForm();
+			if(treeNode.isdisable=='0'){
+				jq("#disable_no").attr('checked', 'true');
+			}else{
+				jq("#disable_yes").attr('checked', 'true');
+			}
+	    }else{  
+	    	type = 'update';
+			jq("#menuname").val(treeNode.menuname);
+			jq("#action").val(treeNode.action);
+			jq("#menuaction").val(treeNode.action);
+			if(treeNode.isdisable=='0'){
+				jq("#disable_no").attr('checked', 'true');
+			}else{
+				jq("#disable_yes").attr('checked', 'true');
+			}
+			jq("#xh").val(treeNode.xh);
+	    }
+	});  
 }
 
 //清除
@@ -92,16 +91,7 @@ function submitForm(){
 	if(menuId==null||menuId==''){
 		jq.messager.alert('提示','请选择需要修改或新增的目录!');
 		return;
-	} 
-	if(type=='add'){
-		if(!confirm('请确认，是否在本级菜单下新增子菜单!')){	
-			return;
-		}
-	}else{
-		if(!confirm('请确认，是否修改本级菜单!')){	
-			return;
-		}
-	}
+	}  
 	jq('#addMenuForm').form('submit', {    
 	    url: programName + '/menu/menuManager!saveMenu.action?menuId='+menuId+'&parentId='+parentId+'&type='+type,    
 	    onSubmit: function(){ 

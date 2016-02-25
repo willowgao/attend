@@ -1,7 +1,14 @@
    jq(function() {
 	 	loadData();
-	 	loadIndexData();
+	 	loadIndexData(); 
+	 	loadCombobox();
+	 	changeDept();
 	});
+   
+
+	var tableId = '#indextb';
+	var editIndex = undefined;
+
     
 	//加载数据表
 	function loadData() {
@@ -16,6 +23,7 @@
 			data : getIndexData()
 		}).datagrid('clientPaging');
 	}
+	
 	
 	/**
 	 datagrid 切换行之后，取消行编辑状态
@@ -52,6 +60,16 @@
 		jq('#score').text(score);
 	}
 	
+	
+	var changeDept = function(){
+		//easyui下拉列表onchange事件，修改主题风格
+		jq('#deptid').combobox({
+			onSelect:function(record){	
+				loadData();
+			}
+		});  
+		
+	} 
 	//查询列表数据
 	function getIndexData() { 
 		var rows = null;
@@ -89,25 +107,18 @@
 	
 	
 	//加载下拉表
-	var loadCombobox= function(){
-		jq('#approver').combobox({    
-			url:getUsersForCombox(ROLETYPE_TRIAL),
+	var loadCombobox= function(){ 
+		jq('#deptid').combobox({    
+			url:getDeptByOrg(),
 		    valueField:'id',    
 		    textField:'text'   
-		});  
-		
-		jq('#status').combobox({
-			url:getDictionaryForCombox('APPROVER_STATUS'),
-		    valueField:'id',    
-		    textField:'text'  
-		});
+		}); 
 	}
 	
 	/**
 	 *单选填充
 	 */
 	function onClickRow(index, row) { 
-		editIndex = index;
 		jq('#userid').val(row.userid);
 		jq('#roletype').val(row.roletype);
 	}
@@ -147,12 +158,41 @@
 		}
 		
 	}
-	var tableId = '#indextb';
-	var editIndex = undefined;
-
 	var setRowStyle = function(value, row, index){
 		   return 'height:100px;';
 	} 
+	
+	var checkScore = function(){
+
+		endEditing();
+		//获取列表修改的内容
+		var url = getDataFromDatagrid(tableId) ;
+		jq.ajaxSettings.async = false; 
+
+		var userid = jq('#userid').val();
+		jq('#datagrid').val(url);
+
+		var updateRow = jq(tableId).datagrid('getChanges', "updated"); 
+		if(updateRow.length!=12){
+			jq.messager.alert('提示','请完成所有打分项评分!');
+			return;
+		}
+		
+		if(userid==''){
+			jq.messager.alert('提示','未选择被考核人员，请先选择!');
+			return;
+		}
+		
+		jq.messager.confirm('确认','请您确认打分是否完成？',function(r){    
+		    if (r){    
+		    	save(); 
+		    }else{  
+		    	return;
+		    }
+		});  
+
+		
+	}
 	
 	/**
 	 * 保存表单和列表修改的数据
@@ -160,29 +200,14 @@
 	 */
 	var save = function(){
 		var rows = null;
-		endEditing();
-		var updateRow = jq(tableId).datagrid('getChanges', "updated"); 
-		if(updateRow.length!=12){
-			jq.messager.alert('提示','请完成所有打分项评分!');
-			return;
-		}
-		//获取列表修改的内容
-		var url = getDataFromDatagrid(tableId) ;
-		jq.ajaxSettings.async = false; 
-		//获取表单修改的内容
-		var params =  jq('#assessForm').serialize();
-		var userid = jq('#userid').val();
-		jq('#datagrid').val(url);
-		if(userid==''){
-			jq.messager.alert('提示','未选择被考核人员，请先选择!');
-			return;
-		}
-		
+
 		var score = jq('#score').text();
 		if(parseFloat(score)>100){
 			jq.messager.alert('提示','总分不能超过100!');
 			return;
 		}
+		//获取表单修改的内容
+		var params =  jq('#assessForm').serialize();
 		jq.ajax( {
 			url : programName + '/assess/performance!save.action',
 			type : 'post',

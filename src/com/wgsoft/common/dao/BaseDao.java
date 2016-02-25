@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -50,6 +52,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 		try {
 			conn = SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection();
 			ps = conn.prepareStatement(sql);
+			if (log.isInfoEnabled()) {
+				log.info(" GETSQLUPDATE 执行SQL【" + sql.toUpperCase() + "】");
+			}
 			int i = ps.executeUpdate();
 			ps.close();
 			return i;
@@ -69,6 +74,82 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * 描述:得到SQL的值 <br>
+	 * 参数:SQL 普通的查询SQL语句 <br>
+	 * 返回值:ObjectList
+	 */
+	public List getSqlListForMap(String sql) {
+		PreparedStatement ps = null;
+		Connection conn = null;
+		List list = null;
+		try {
+			conn = SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection();
+			ps = conn.prepareStatement(sql);
+			if (log.isInfoEnabled()) {
+				log.info(" GETSQLLISTFORMAP 执行SQL【" + sql.toUpperCase() + "】");
+			}
+			ResultSet rs = ps.executeQuery();
+			list = populate(rs);
+			if (rs != null) {
+				rs.close();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (DataAccessResourceFailureException e1) {
+			e1.printStackTrace();
+		} catch (HibernateException e1) {
+			e1.printStackTrace();
+		} catch (IllegalStateException e1) {
+			e1.printStackTrace();
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return list;
+	}
+
+	/*
+	 * 
+	 * 将rs结果转换成对象列表
+	 * 
+	 * @param rs jdbc结果集
+	 * 
+	 * @param clazz 对象的映射类 return 封装了对象的结果列表
+	 */
+	public List populate(ResultSet rs) {
+		// 结果集的元素对象
+		ResultSetMetaData rsmd;
+		List list = null;
+		try {
+			rsmd = rs.getMetaData();
+			// 获取结果集的元素个数
+			int colCount = rsmd.getColumnCount();
+			// 返回结果的列表集合
+			list = new ArrayList();
+			while (rs.next()) {
+				Map map = new LinkedHashMap();
+				// 将每一个字段取出进行赋值
+				for (int i = 1; i <= colCount; i++) {
+					Object value = rs.getObject(i);
+					String columnName = rsmd.getColumnName(i);
+					map.put(columnName, value);
+				}
+				list.add(map);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	/**
@@ -251,7 +332,7 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 		try {
 			conn = SessionFactoryUtils.getDataSource(getSessionFactory()).getConnection();
 			if (log.isInfoEnabled()) {
-				log.info("执行SQL【" + sql .toUpperCase()+ "】");
+				log.info(" GETSQLLIST_ 执行SQL【" + sql.toUpperCase() + "】");
 			}
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();

@@ -8,6 +8,7 @@ import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.DateUtil;
+import com.wgsoft.common.utils.RunUtil;
 import com.wgsoft.performance.iservice.IPerformanceAssessService;
 import com.wgsoft.performance.model.PerformanceAssess;
 import com.wgsoft.user.iservice.IUserService;
@@ -47,8 +48,15 @@ public class PerformanceAssessAction extends BaseAction {
 		UserInfo user = new UserInfo();
 		// 查询本部门的人员
 		user.setUserdeptid(getUserInfo().getUserdeptid());
+
+		Map<String, Object> requestMap = request.getParameterMap();
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
+			user.setUserdeptid(((String[]) requestMap.get("assess.deptid"))[0]);
+		} else {
+			user.setUserdeptid(getUserInfo().getUserdeptid());
+		}
 		List<UserInfo> list = getUserService().getUserInfoByUserInfo(user);
-		int j = 0;
+		int j = 99999;
 		for (int i = 0; i < list.size(); i++) {
 			UserInfo me = list.get(i);
 			if (me.getUserid().equals(getUserInfo().getUserid())) {
@@ -57,8 +65,10 @@ public class PerformanceAssessAction extends BaseAction {
 				break;
 			}
 		}
-		// 移除自己
-		list.remove(j);
+		if (j != 99999) {
+			// 移除自己
+			list.remove(j);
+		}
 		renderText(response, transferListToJsonMapForTabel(list));
 		return null;
 	}
@@ -80,12 +90,18 @@ public class PerformanceAssessAction extends BaseAction {
 		assess.setEndtime(DateUtil.string2Date(((String[]) requestMap.get("assess.endtime"))[0], DateUtil.YMD));
 		assess.setUserid(((String[]) requestMap.get("assess.userid"))[0]);
 		assess.setRoletype(((String[]) requestMap.get("assess.roletype"))[0]);
+		
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
+			assess.setDeptid(((String[]) requestMap.get("assess.deptid"))[0]);
+		} else {
+			assess.setDeptid(getUserInfo().getUserdeptid());
+		}
 
 		Map<String, Object> saveMap = new HashMap<String, Object>();
 		saveMap.put("assess", assess);
 		// 用户信息
 		saveMap.put("user", getUserInfo());
-		//列表信息
+		// 列表信息
 		String jsonStr = ((String[]) request.getParameterMap().get("assess.datagrid"))[0];
 		Map<String, List<PerformanceAssess>> assessIndexs = getListFromMap(jsonStr, new PerformanceAssess());
 		saveMap.put("assessIndexs", assessIndexs);

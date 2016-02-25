@@ -5,8 +5,17 @@
 		loadCombobox();
 		jq('#dlg').dialog('close');
 		initForm();
-		 
-		
+    	jq('#onsubmit').val("1");
+	    jq('#onsubmitBtn').switchbutton({ 
+	      onChange: function(checked){ 
+	        if(checked==true){
+	        	jq('#onsubmit').val("1");
+	        }else{
+	        	jq('#onsubmit').val("0");
+	        }
+	      } 
+	    }) 
+
 	});
 	/**
 	 * 初始日志格式
@@ -38,6 +47,13 @@
 					 if(idx=='diaryDaily.status'){
 						jq('#status').combobox('setValue',item);
 					 }  
+					 if(idx=='diaryDaily.onsubmit'){
+						 var bool = false;
+						 if(item==1){
+							 bool = true;
+						 }
+						jq('#onsubmitBtn').switchbutton({checked: bool});
+					 }
 				});
 				
 			}
@@ -142,7 +158,8 @@
 		yOffset = 13;
 		jq("#commDesc").css("top",(e.pageY - xOffset) + "px").css("left",(e.pageX + yOffset) + "px").css("position","absolute").css("z-index","9999").show();
 	}
-	
+	 
+	  
 	/**
 	 * 
 	 * 保存数据

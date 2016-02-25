@@ -208,6 +208,18 @@ function formatterLeave(s){
 	var dataMap = getDictionaryDesc('LEAVETYPE');
 	return dataMap[s];
 }
+
+
+/**
+ * 考核类型
+ * @param s
+ * @return
+ */
+function formatterAssess(s){
+	var dataMap = getDictionaryDesc('ASSESSTYPE');
+	return dataMap[s];
+}
+
 /**
  * 用户
  * 

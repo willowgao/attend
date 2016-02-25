@@ -17,6 +17,7 @@ public class FileClearerTimer extends TimerTask {
 	@Override
 	public void run() {
 		Doc2HtmlUtil.getDoc2HtmlUtilInstance().deleteDirFile();
+		Doc2HtmlUtil.getDoc2HtmlUtilInstance().deleteExportFile();
 	}
 
 }

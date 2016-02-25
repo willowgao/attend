@@ -24,8 +24,12 @@
 						<input name="assess.endtime" id="endtime" class="easyui-datebox"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
 						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 5px;">查询</a>
+						<a onclick="exportExcel();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 5px;">导出</a>
 					</div>
 					<input type="hidden" name="assess.datagrid" id="datagrid"></input>
+					<input type="hidden"  id="userid"></input>
+					<input type="hidden"  id="d_starttime"></input>
+					<input type="hidden"  id="d_endtime"></input>
 				</div>
 			</div>
 		</form>
@@ -41,6 +45,7 @@
 				rownumbers:true,
 				selectOnCheck:true,
 				CheckOnSelect:true,
+				onDblClickRow:onDblClickRow,
 				collapsible:true, 
 				autoRowHeight:false,
 				striped:true,
@@ -65,21 +70,72 @@
 						<th data-options="field:'endtime',width:'8%',align:'center',formatter:formatterdateYMD">
 							终止日期
 						</th>
-						<th data-options="field:'higherscore',width:'10%',align:'right'">
+						<th data-options="field:'higherscore',width:'10%',align:'center'">
 							领导打分
 						</th>
-						<th data-options="field:'peerscore',width:'10%',align:'right'">
+						<th data-options="field:'peerscore',width:'10%',align:'center'">
 							同级打分
 						</th>
-						<th data-options="field:'reductionscore',width:'10%',align:'right'">
+						<th data-options="field:'reductionscore',width:'10%',align:'center'">
 							考勤扣分
 						</th>
-						<th data-options="field:'finalscore',width:'10%',align:'right'">
+						<th data-options="field:'finalscore',width:'10%',align:'center'">
 							最后得分
 						</th>
 					</tr>
 				</thead>
 			</table>
 		</div>
+		
+		<!-- 弹出窗口 -->
+		<div id="dlg" class="easyui-dialog" title="评分明细" style="width: 800px; height: 500px; padding: 10px;"
+			data-options="
+					iconCls: 'icon-search',
+					toolbar: '#dlg-toolbar',
+					resizable:true,
+					modal:true,
+					buttons: '#dlg-buttons'
+				">
+			<table id="dlgdg" title="评分明细记录" style="with: 100%; height: 80%"
+				data-options="
+				rownumbers:true,
+				autoRowHeight:false,
+				fitColumns:true,
+				pagination:true,
+				pageList:[5,10,15,20,25,30],
+				pageSize:10"
+				align="left">
+				<thead>
+					<tr>
+						<th data-options="field:'assesstype',width:'10%',align:'center',formatter:formatterAssess">
+							考核类型
+						</th>
+						<th data-options="field:'assessyear',width:'10%',align:'center'">
+							考核年度
+						</th>
+						<th data-options="field:'deptid',width:'15%',align:'center',formatter:formatterDept">
+							部门
+						</th>
+						<th data-options="field:'userid',width:'10%',align:'center',formatter:formatterUser">
+							被考核人
+						</th>
+						<th data-options="field:'starttime',width:'15%',align:'center',formatter:formatterdateYMD">
+							开始日期
+						</th>
+						<th data-options="field:'endtime',width:'15%',align:'center',formatter:formatterdateYMD">
+							终止日期
+						</th>
+						<th data-options="field:'assesser',width:'10%',align:'center',formatter:formatterUser">
+							考核人
+						</th>
+						<th data-options="field:'finalscore',width:'8%',align:'center'">
+							得分
+						</th>
+					</tr>
+				</thead>
+			</table> 
+		</div>
+		
+		
 	</body>
 </html>

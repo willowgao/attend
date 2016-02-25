@@ -34,10 +34,16 @@
 								审批状态：
 							</label>
 							<input class="easyui-combobox" type="text" id="status" name="diaryDaily.status" data-options="readonly:true,disabled:true" />
-							 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-							<a onclick="save()" href="#" class="easyui-linkbutton c5" style="width: 80px">保存</a> &nbsp;&nbsp;
-							<a onclick="queryHistory()" href="#" class="easyui-linkbutton c5" style="width: 80px">查询历史</a>
-						</div>
+							
+						<label style="margin: 10px;">
+							晒业绩：
+						</label>
+						
+						<input id="onsubmitBtn" class="easyui-switchbutton" checked data-options="onText:'晒',offText:'不晒'"> 
+							<a onclick="save()" href="#" class="easyui-linkbutton c5" style="margin-left:10px;width: 80px">保存</a>
+							<a onclick="queryHistory()" href="#" class="easyui-linkbutton c5" style="margin-left:10px;width: 80px">查询历史</a>
+						
+						<input type="hidden" id="onsubmit"  name="diaryDaily.onsubmit"  />
 					</div>
 				</div>
 				<div class="easyui-panel" style="width: 100%; margin-top: 2px;">

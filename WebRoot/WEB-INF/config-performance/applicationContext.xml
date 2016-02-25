@@ -127,6 +127,23 @@
 		</property>
 	</bean>
 	
+	   <!-- 考核情况查询  -->
+	<bean name="queryAssessInfoDao" class="com.wgsoft.performance.dao.QueryAssessInfoDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="queryAssessInfoService" parent="service">
+		<property name="target">
+			<ref bean="queryAssessInfoServiceTarget" />
+		</property>
+	</bean>
+	<bean name="queryAssessInfoServiceTarget" class="com.wgsoft.performance.service.QueryAssessInfoService">
+		<property name="queryAssessInfoDao">
+			<ref bean="queryAssessInfoDao" />	
+		</property>
+	</bean>
+	
 	
 	
 	

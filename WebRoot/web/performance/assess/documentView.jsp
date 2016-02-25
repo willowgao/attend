@@ -17,13 +17,18 @@
 				<a onclick="query()" href="#" class="easyui-linkbutton c5" style="width: 80px">查看</a>
 				<!-- 
 				<input class="easyui-filebox" style="width:400px;margin: 5px;" data-options="buttonText: '选择文件...',buttonAlign: 'right',prompt:'选择文件...',buttonIcon:'icon-search'">
-				 -->
-				
-				 
-			<a href="#" class="easyui-linkbutton"  style="width: 80px;margin: 5px;" onclick="saveFile()">保存文件</a>
+				 --> 
+				<a href="#" class="easyui-linkbutton"  style="width: 80px;margin: 5px;" onclick="saveFile()">保存文件</a>
 			</div>
-			 <div id="uploader" style="width: 35%;height: 30%">您的浏览器没有安装Flash插件，或不支持HTML5！</div>
-			<!-- 弹出窗口 -->
+			
+			
+			<div class="easyui-panel" style="height: 8%;width: 30%" align="center">
+				<input class="easyui-slider" value="12" style="margin-left:200px; "  data-options="width:300,showTip:true,rule:[0,'|',25,'|',50,'|',75,'|',100]">
+			</div>
+			 
+			<div id="uploader" style="width: 35%;height: 30%">您的浏览器没有安装Flash插件，或不支持HTML5！</div>
+			
+			
 			<div id="dlg" class="easyui-dialog" title="日志详细信息" style="width: 900px; height: 600px; padding: 10px;"
 				data-options="
 						iconCls: 'icon-search',

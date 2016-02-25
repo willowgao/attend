@@ -295,8 +295,8 @@ public class UserManagerAction extends BaseAction {
 		String userid = request.getParameter("userid");
 		UserInfo user = new UserInfo();
 		user.setUserid(userid);
-		userService.deleteUser(user);
-		this.renderText(response, "1");
+		int rel = userService.deleteUser(user);
+		this.renderText(response, JSONUtil.serialize(rel));
 		return null;
 	}
 

@@ -4,13 +4,15 @@ package com.wgsoft.performance.model;
 
 import java.util.Date;
 
+import com.wgsoft.common.model.BaseVO;
+
 /**
  * AbstractPerformanceAssessScore entity provides the base persistence
  * definition of the PerformanceAssessScore entity. @author MyEclipse
  * Persistence Tools
  */
 
-public class PerformanceAssessScore implements java.io.Serializable {
+public class PerformanceAssessScore extends BaseVO implements java.io.Serializable {
 
 	// Fields
 
@@ -28,6 +30,8 @@ public class PerformanceAssessScore implements java.io.Serializable {
 	private Double reductionscore;
 	
 	private String deptid;
+	private String assesstype;
+	private String assesser;
 
 	// Constructors
 
@@ -62,6 +66,22 @@ public class PerformanceAssessScore implements java.io.Serializable {
 
 	public Double getReductionscore() {
 		return reductionscore;
+	}
+
+	public String getAssesstype() {
+		return assesstype;
+	}
+
+	public String getAssesser() {
+		return assesser;
+	}
+
+	public void setAssesser(String assesser) {
+		this.assesser = assesser;
+	}
+
+	public void setAssesstype(String assesstype) {
+		this.assesstype = assesstype;
 	}
 
 	public void setReductionscore(Double reductionscore) {

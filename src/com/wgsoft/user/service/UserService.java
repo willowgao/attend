@@ -11,6 +11,7 @@ import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.attendance.diary.model.UserLoginInfo;
 import com.wgsoft.common.utils.RunUtil;
+import com.wgsoft.common.utils.SysConstants;
 import com.wgsoft.system.model.Deptment;
 import com.wgsoft.system.model.RoleInfo;
 import com.wgsoft.user.idao.IUserDao;
@@ -98,8 +99,13 @@ public class UserService implements IUserService {
 	/**
 	 * 删除用户
 	 */
-	public void deleteUser(UserInfo user) {
-		userDao.delete(user);
+	public int deleteUser(UserInfo user) {
+		try {
+			userDao.delete(user);
+		} catch (Exception e) {
+			return SysConstants.ERROR;
+		}
+		return SysConstants.SUCCESS;
 	}
 
 	/**

@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -56,30 +55,13 @@ public class FileUtil {
 
 	static String uploadPath;
 
-	public static final ResourceBundle bundle = ResourceBundle.getBundle("option");
-
-	// 获取html存放的位置 tomcat和weblogic路径获取方法不同
-	public static String classUrl = FileUtil.class.getClassLoader().getResource("").getPath();
-
 	/**
 	 * @desc: 初始化路径
 	 * @return void
 	 * @date： 2016-2-16 上午09:52:59
 	 */
 	public static void init() {
-
-		try {
-			uploadPath = classUrl.substring(1, classUrl.indexOf("WEB-INF")) + bundle.getString("uploadPath");
-		} catch (Exception e1) {
-			uploadPath = FileUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-			uploadPath = uploadPath.substring(1, uploadPath.indexOf("WEB-INF")) + bundle.getString("uploadPath");
-		}
-		try {
-			uploadPath = java.net.URLDecoder.decode(uploadPath, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		uploadPath = SysConstants.getPath(SysConstants.UPLOAD_PATH);
 		File up = new File(uploadPath);
 		if (!up.exists()) {
 			up.mkdir();
@@ -145,7 +127,7 @@ public class FileUtil {
 				}
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("status", true);
-				m.put("fileUrl", bundle.getString("uploadPath") + "/" + newFileName);
+				m.put("fileUrl", SysConstants.UPLOAD_PATH + "/" + newFileName);
 				response.getWriter().write(JSON.toJSONString(m));
 			} catch (FileUploadException e) {
 				e.printStackTrace();

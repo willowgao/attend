@@ -160,15 +160,23 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 	
 	function removeit(tableId){
 		var roleid = jq('#'+tableId).datagrid('getRows')[editIndex]['roleid'];
-		if(confirm('请确认是否删除此条信息!')){
-			jq.getJSON( programName + '/authority/roleManager!deleteRole.action?roleId=' + roleid , function(re_datas) {
-				if(re_datas=='0'){
-					jq.messager.alert('提示','删除成功！');
-					//重新加列表信息
-					loadRoleData();    
-				}
-			});
-		}
+		jq.messager.confirm('确认','请确认是否删除此条信息？',function(r){    
+		    if (r){    
+		    	jq.getJSON( programName + '/authority/roleManager!deleteRole.action?roleId=' + roleid , function(re_datas) {
+					if(re_datas>0){
+						jq.messager.alert('提示','删除成功！');
+						//重新加列表信息
+						loadRoleData();    
+					}else{
+						jq.messager.alert('提示','删除失败，请确认角色下是否有用户信息？');
+					}
+				});
+		    }else{  
+		    	return;
+		    }
+		});  
+		
+		 
 	}
 	
 	//检查角色名是否已经注册
@@ -204,19 +212,25 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 	    } 
 	    //同步用户菜单标志，1 同步，0不同步
 	    var synchronizeType = null;
-	    if(confirm('修改角色所属菜单后，是否同步到所有属于此角色的用户菜单信息？')){
-		   synchronizeType = '1';
-	   	}else{
-	   		synchronizeType ='0';
-	   	}
-	   	 //执行修改操作
-	    jq.getJSON( programName + '/authority/roleManager!roleAuthority.action?treeIds='+treeIds+'&roleId='+roleId+'&org='+org+'&synchronizeType='+synchronizeType ,function(datas){
-             if(datas=='0'){
-             	jq.messager.alert('提示','角色权限授权成功!');
-             }else{
-             	jq.messager.alert('提示','角色权限授权失败!');
-             }
-	   }); 
+	    
+	    jq.messager.confirm('确认','修改角色所属菜单后，是否同步到所有属于此角色的用户菜单信息？',function(r){    
+		    if (r){    
+		    	 synchronizeType = '1';
+		    }else{  
+		    	synchronizeType ='0';
+		    }
+		    
+			 //执行修改操作
+		    jq.getJSON( programName + '/authority/roleManager!roleAuthority.action?treeIds='+treeIds+'&roleId='+roleId+'&org='+org+'&synchronizeType='+synchronizeType ,function(datas){
+	             if(datas=='0'){
+	             	jq.messager.alert('提示','角色权限授权成功!');
+	             }else{
+	             	jq.messager.alert('提示','角色权限授权失败!');
+	             }
+		   }); 
+		});  
+	    
+	   
 	} 
 	
 	//展开全部树

@@ -1,5 +1,9 @@
 package com.wgsoft.common.utils;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.ResourceBundle;
+
 /**
  * @title： SysConstants.java
  * @desc： 系统公共用常量
@@ -320,5 +324,43 @@ public class SysConstants {
 	 * 同级
 	 */
 	public static final String ASSESS_TYPE_PEER_LEVEL = "2";
+
+	// 获取html存放的位置 tomcat和weblogic路径获取方法不同
+	public static String classUrl = FileUtil.class.getClassLoader().getResource("").getPath();
+
+	public static String EXPORT_PATH = "web/files/exportFile";
+
+	public static String HTML_PATH = "web/files/html";
+
+	public static String UPLOAD_PATH = "web/files/uploadFile";
+
+	/**
+	 * @desc:获取系统路径
+	 * @param folderPath
+	 * @return
+	 * @return String
+	 * @date： 2016-2-25 上午10:43:16
+	 */
+	public static String getPath(String folderPath) {
+		String uploadPath;
+		try {
+			uploadPath = classUrl.substring(1, classUrl.indexOf("WEB-INF")) + folderPath;
+		} catch (Exception e1) {
+			uploadPath = FileUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+			uploadPath = uploadPath.substring(1, uploadPath.indexOf("WEB-INF")) + folderPath;
+		}
+		try {
+			uploadPath = java.net.URLDecoder.decode(uploadPath, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		File up = new File(uploadPath);
+		if (!up.exists()) {
+			up.mkdir();
+		}
+		return uploadPath;
+
+	}
 
 }

@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 import org.apache.commons.logging.Log;
@@ -29,8 +28,6 @@ public class Doc2HtmlUtil {
 
 	private static String soffice_host;
 	private static String soffice_port;
-	// 获取html存放的位置 tomcat和weblogic路径获取方法不同
-	private static String classUrl = Doc2HtmlUtil.class.getClassLoader().getResource("").getPath();
 
 	/**
 	 * 获取Doc2HtmlUtil实例
@@ -55,7 +52,7 @@ public class Doc2HtmlUtil {
 		String docFileName = uuid + "." + fileSuffix;
 
 		// 根据不同的中间件，获取不同html的地址
-		File outfile = new File(getHtmlPath());
+		File outfile = new File(SysConstants.getPath(SysConstants.HTML_PATH));
 		File htmlOutputFile = new File(outfile.toString() + File.separatorChar + htmFileName);
 		File docInputFile = new File(outfile.toString() + File.separatorChar + docFileName);
 		// 写文件
@@ -118,29 +115,6 @@ public class Doc2HtmlUtil {
 	}
 
 	/**
-	 * @desc:根据不同的中间件，获取不同html的地址
-	 * @return
-	 * @return String
-	 * @date： 2016-2-1 下午03:16:59
-	 */
-	public static String getHtmlPath() {
-		String htmlStr = null;
-		try {
-			htmlStr = classUrl.substring(1, classUrl.indexOf("WEB-INF")) + "web/html";
-		} catch (Exception e1) {
-			htmlStr = Doc2HtmlUtil.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-			htmlStr = htmlStr.substring(1, htmlStr.indexOf("WEB-INF")) + "web/html";
-		}
-		try {
-			htmlStr = java.net.URLDecoder.decode(htmlStr, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return htmlStr;
-	}
-
-	/**
 	 * @desc: 清空目录
 	 * @return void
 	 * @date： 2016-1-28 上午09:59:23
@@ -165,7 +139,25 @@ public class Doc2HtmlUtil {
 	 *         "false".
 	 */
 	public static synchronized boolean deleteDirFile() {
-		File file = new File(getHtmlPath());
+		File file = new File(SysConstants.getPath(SysConstants.HTML_PATH));
+		if (file.isDirectory()) {
+			String[] children = file.list();
+			// 递归删除目录中的子目录下
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteFile(new File(file, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+		} else {
+
+		}
+		// 目录此时为空，可以删除
+		return true;
+	}
+	
+	public static synchronized boolean deleteExportFile() {
+		File file = new File(SysConstants.getPath(SysConstants.EXPORT_PATH));
 		if (file.isDirectory()) {
 			String[] children = file.list();
 			// 递归删除目录中的子目录下

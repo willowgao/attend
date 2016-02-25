@@ -248,18 +248,24 @@
 		}
 		var isearly = false;
 		if(checkForTime()&&(type=='2'||type=='4')){
-			if(!confirm('未到打卡时间，是否打卡?')){ 
-				return;
-			}
+			jq.messager.confirm('确认','未到打卡时间，是否打卡？',function(r){    
+			    if (r){     
+			    	params += 'checkTime:\"'+checkTime+'\",';
+					params += 'type:\"'+type+'\",';
+					
+					params = params.substring(0,params.length-1)+'}';
+					jq.get(programName+'/clock/clockManager!saveClock.action?params='+params,function(datas){
+						queryClockRecords();
+					});
+			    }else{
+			    	
+					return;
+			    }
+			});  
+			
 		} 
 
-		params += 'checkTime:\"'+checkTime+'\",';
-		params += 'type:\"'+type+'\",';
 		
-		params = params.substring(0,params.length-1)+'}';
-		jq.get(programName+'/clock/clockManager!saveClock.action?params='+params,function(datas){
-			queryClockRecords();
-		}); 
 	}
 	 
 	//查询顶部的模块菜单

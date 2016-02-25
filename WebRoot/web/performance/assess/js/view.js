@@ -10,7 +10,7 @@
 		jq.ajaxSettings.async = false; 
 		jq.getJSON(programName + '/assess/documentView!viewDocument.action', function(re_datas) {
 			 if(re_datas!=''){
-				jq('#diary').attr('src',programName+'/web/html/'+re_datas);
+				jq('#diary').attr('src',programName+'/web/files/html/'+re_datas);
 			 }
 		});  
 	}

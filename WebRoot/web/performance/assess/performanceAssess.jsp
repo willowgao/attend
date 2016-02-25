@@ -9,8 +9,17 @@
 	</head>
 	<body>
 		<form id="assessForm">
-			<div title="用户列表信息" class="easyui-panel" style="width: 300px; height: 603px;"
+			<div class="easyui-panel" title="部门信息" style="width: 300px; height: 100px;"
 				data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
+				<div style="margin: 20px;">
+					<label >
+						部门：
+					</label>
+					<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
+				</div>
+			</div>
+			<div title="用户列表信息" class="easyui-panel" style="width: 300px; height: 503px;"
+				data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:100}">
 				<table id="dg" class="easyui-datagrid" style="width: 100%; height: 100%"
 					data-options="onClickRow:onClickRow,
 					rownumbers:true,
@@ -58,7 +67,7 @@
 						<input type="hidden" name="assess.userid" id="userid"></input>
 						<input type="hidden" name="assess.roletype" id="roletype"></input>
 						<input type="hidden" name="assess.datagrid" id="datagrid"></input>
-						<a href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;" onclick="save();">保存</a>
+						<a href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;" onclick="checkScore();">保存</a>
 						<label style="margin: 10px;">
 							得分：
 						</label>

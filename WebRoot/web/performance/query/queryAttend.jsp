@@ -26,7 +26,6 @@
 						<input name="clockRecords.clockdate" id="clockdate" class="easyui-datebox"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
 						<a onclick="query();" href="#" class="easyui-linkbutton c5" style="width: 80px; margin-left: 5px;">查询</a>
-						<a onclick="exportExcel();" href="#" class="easyui-linkbutton c5" style="width: 80px; margin-left: 5px;">导出</a>
 					</div>
 				</div>
 			</div>
