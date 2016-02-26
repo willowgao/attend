@@ -7,7 +7,6 @@
 	<head>
 		<title>咸宁市人社局平时考核系统</title> 
 		<link rel="shortcut icon" type="image/x-icon" href="<%=webapp%>/web/common/css/images/favicon.ico" />
-		<link rel="stylesheet" href="<%=webapp%>/web/common/ztree/metroStyle/metroStyle.css" type="text/css">
 		<!--<link rel="stylesheet" href="<%=webapp%>/web/common/zTree3.5/css/awesomeStyle/awesome.css" type="text/css"> -->
 		<script type="text/javascript" src="<%=webapp%>/web/common/jquery/jquery-migrate-1.2.1.js"></script>
 		<script type="text/javascript" src="<%=webapp%>/web/common/js/easyui_custom.js"></script>
@@ -32,6 +31,7 @@
 				</div>
 				<div id="style_change" style="position: absolute; left: 1200px; top: 50px;">
 				<input type="hidden" id="sysstyle" value="<%=request.getAttribute("sysstyle")%>"/>
+				<input type="hidden" id="fontsize" value="<%=request.getAttribute("fontsize")%>"/>
 					主题风格：
 					<input id="cob_cssselector" class="easyui-combobox" style="width: 150px;"
 						data-options="valueField:'id',textField:'text',data: [{id: 'default',text:'default'},{id: 'gray',	text: 'gray'},

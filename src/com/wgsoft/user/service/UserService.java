@@ -117,6 +117,7 @@ public class UserService implements IUserService {
 		user.setRoleid(null);
 		List<UserInfo> users = userDao.getUserInfoByUserInfo(user);
 		user.setRoleid(roleId);
+		user.setFontsize("bigger");
 		try {
 			if (users != null && users.size() > 0) {
 				user.setUserid(users.get(0).getUserid());

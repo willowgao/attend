@@ -53,8 +53,28 @@ var doSysStyle = function(){
 	    	}
 	    }
 	}
+	
+	if(parent.document.getElementById('fontsize')!=null){
+		var link_easyui_css = jq("#link_easyui_css").attr("href");
+		var link_easyui_css_content = jq(parent.document).contents().find('#link_easyui_css').attr("href");
+		var ztree_style = jq("#ztree_style").attr("href");
+	    var peo = parent.document.getElementById('fontsize').value;
+	    if(peo!=''&&peo!=null&&peo!='null'){
+	    	if(peo=='smaller'){
+	    		if(jq("#link_easyui_css")!=null){
+		    		//easyui下拉列表onchange事件，修改主题风格
+					jq("#link_easyui_css").attr("href",link_easyui_css.replace("easyui.css","easyui12.css"));
+					jq(parent.document).contents().find('#link_easyui_css').attr("href",link_easyui_css_content.replace("easyui.css","easyui12.css"));
+	    		}
+		    	if(jq("#ztree_style")!=null&&jq("#ztree_style").length!=0){
+		    		jq("#ztree_style").attr("href",ztree_style.replace("metroStyle.css","metroStyle12.css"));
+					jq(parent.document).contents().find('ztree_style').attr("href",ztree_style.replace("metroStyle.css","metroStyle12.css"));
+		    	
+		    	}
+			}
+	    }
+	}
 }
-
 /**
  * 日期格式化
  * 

@@ -28,6 +28,15 @@ public class UserInfo implements java.io.Serializable {
 	private String higherid;
 	private String defaultstyle;
 	private String usersex;
+	private String fontsize;
+
+	public String getFontsize() {
+		return fontsize;
+	}
+
+	public void setFontsize(String fontsize) {
+		this.fontsize = fontsize;
+	}
 
 	private List<Map<String, String>> depts;
 	private List<Map<String, String>> users;

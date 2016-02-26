@@ -136,6 +136,7 @@ public class UserDao extends BaseDao implements IUserDao {
 		StringBuffer sql = new StringBuffer("UPDATE USERINFO SET USERPWD = decode('");
 		sql.append(user.getUserpwd()).append("','null',userpwd,'").append(user.getUserpwd()).append("') ");
 		sql.append(", DEFAULTSTYLE = '").append(user.getDefaultstyle()).append("'");
+		sql.append(", fontsize = '").append(user.getFontsize()).append("'");
 		sql.append(" WHERE userid ='").append(user.getUserid()).append("'");
 		getSqlUpdate(sql.toString());
 	}

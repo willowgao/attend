@@ -36,6 +36,9 @@
 		<property name="defaultstyle" type="java.lang.String">
 			<column name="DEFAULTSTYLE" length="20" />
 		</property>
+		<property name="fontsize" type="java.lang.String">
+			<column name="FONTSIZE" length="20" />
+		</property>
 		<property name="usersex" type="java.lang.String">
 			<column name="USERSEX" length="6" />
 		</property>

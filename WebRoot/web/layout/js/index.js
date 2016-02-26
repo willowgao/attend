@@ -16,6 +16,30 @@
 	}
 	
 	/**
+	 * 系统样式初化
+	 * @return
+	 */
+	var changeFont = function (){
+		var link_easyui_css = jq("#link_easyui_css").attr("href");
+		var link_easyui_css_content = jq(parent.document).contents().find('#link_easyui_css').attr("href");
+		var ztree_style = jq("#ztree_style").attr("href");
+	    var peo = jq('#fontsize').val();
+		if(peo!=null){
+			if(peo=='smaller'){
+				//easyui下拉列表onchange事件，修改主题风格
+				jq("#link_easyui_css").attr("href",link_easyui_css.replace("easyui.css","easyui12.css"));
+				jq(parent.document).contents().find('#link_easyui_css').attr("href",link_easyui_css_content.replace("easyui.css","easyui12.css"));
+				jq("#ztree_style").attr("href",ztree_style.replace("metroStyle.css","metroStyle12.css"));
+				jq(parent.document).contents().find('ztree_style').attr("href",ztree_style.replace("metroStyle.css","metroStyle12.css"));
+				
+			}else{
+				//easyui下拉列表onchange事件，修改主题风格
+				jq("#link_easyui_css").attr("href",link_easyui_css.replace("easyui12.css","easyui.css"));
+				jq(parent.document).contents().find('#link_easyui_css').attr("href",link_easyui_css_content.replace("easyui12.css","easyui.css"));
+			}
+		}
+	}
+	/**
 	 固定可移动的窗口
 	**/
 	function onDrag(e){
@@ -46,7 +70,8 @@
 	            title:title,    
 	            content:content,    
 	            closable:true
-	        });     
+	        });    
+	        
 	      /**获取最后一个tabs 在新加的选项卡后面添加"关闭全部"
 	        var li = jq(".tabs-wrap ul li:last-child");
 	        jq("#close").remove();
@@ -104,6 +129,7 @@
 		loadData();
 		changeStyle();
 		initSysStyle();
+		changeFont();
 		//查询待办
 		queryWait();
 		jq('#tab_rightmenu').hide();

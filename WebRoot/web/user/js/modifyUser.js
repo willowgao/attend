@@ -8,7 +8,7 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 		jq('#reUserPwd').change(function(){
 			checkPwd();
 		}); 
-		initForm();
+		initForm(); 
 	});
 	
 	var changeStyle = function(peo){
@@ -18,11 +18,31 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 			jq("#link_easyui_layout_css").attr("href",programName+"/web/common/easyui/themes/"+peo.text+"/layout.css");
 			parent.document.getElementById('sysstyle').value = peo.text;
 			jq(parent.document).contents().find('#link_easyui_css').attr("href",programName+"/web/common/easyui/themes/"+peo.text+"/easyui.css");
-			jq(parent.document).contents().find('#link_easyui_layout_css').attr("href",programName+"/web/common/easyui/themes/"+peo.text+"/easyui.css");
+			jq(parent.document).contents().find('#link_easyui_layout_css').attr("href",programName+"/web/common/easyui/themes/"+peo.text+"/layout.css");
+		}
+	} 
+	var changeFont = function (peo){
+		var link_easyui_css = jq("#link_easyui_css").attr("href");
+		var link_easyui_css_content = jq(parent.document).contents().find('#link_easyui_css').attr("href");
+		var ztree_style = jq("#ztree_style").attr("href");
+		if(peo!=null){
+			if(peo.id=='smaller'){
+				//easyui下拉列表onchange事件，修改主题风格
+				jq("#link_easyui_css").attr("href",link_easyui_css.replace("easyui.css","easyui12.css"));
+				jq(parent.document).contents().find('#link_easyui_css').attr("href",link_easyui_css_content.replace("easyui.css","easyui12.css"));
+				jq("#ztree_style").attr("href",ztree_style.replace("metroStyle.css","metroStyle12.css"));
+						jq(parent.document).contents().find('ztree_style').attr("href",ztree_style.replace("metroStyle.css","metroStyle12.css"));
+			}else{
+				//easyui下拉列表onchange事件，修改主题风格
+				jq("#link_easyui_css").attr("href",link_easyui_css.replace("easyui12.css","easyui.css"));
+				jq(parent.document).contents().find('#link_easyui_css').attr("href",link_easyui_css_content.replace("easyui12.css","easyui.css"));
+				jq("#ztree_style").attr("href",ztree_style.replace("metroStyle12.css","metroStyle.css"));
+				jq(parent.document).contents().find('ztree_style').attr("href",ztree_style.replace("metroStyle12.css","metroStyle.css"));
+			}
 		}
 	}
-		
 	
+		
 	var initForm = function(){
 		var queUrl =  programName + '/user/userManager!getUser.action';
 		jq.ajaxSettings.async = false; 

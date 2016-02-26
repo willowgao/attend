@@ -27,7 +27,7 @@
 			data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
 			 <form id="addUserForm" method="post">
 				<div class="label_css">
-					<label for="role">
+					<label for="defaultstyle">
 						系统样式 :
 					</label>
 					<input id="defaultstyle" name="defaultstyle" class="easyui-combobox" style="width: 170px;"
@@ -36,6 +36,14 @@
 						{id: 'metro-gray',text: 'metro-gray'},{id: 'metro-orange',text: 'metro-orange'},{id: 'metro-green',text: 'metro-green'},
 						{id: 'metro-red',text: 'metro-red'},{id: 'ui-cupertino',text: 'ui-cupertino'},{id: 'ui-dark-hive',text: 'ui-dark-hive'},
 						{id: 'ui-pepper-grinder',text: 'ui-pepper-grinder'},{id: 'ui-sunny',text: 'ui-sunny'}]">
+					</input>
+				</div> 
+				<div class="label_css">
+					<label for="fontsize">
+						字体大小 :
+					</label>
+					<input id="fontsize" name="fontsize" class="easyui-combobox" style="width: 170px;"
+						data-options="onSelect:changeFont,required:true,valueField:'id',textField:'text',data: [{id: 'bigger',text:'默认字体',selected:true},{id: 'smaller',	text: '较小字体'}]">
 					</input>
 				</div> 
 				<div class="label_css">

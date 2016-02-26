@@ -5,7 +5,7 @@ import="com.wgsoft.common.utils.DateUtil"%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/web/common/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/web/common/easyui/themes/color.css">
 <link id="link_easyui_layout_css" rel="stylesheet" href="<%=request.getContextPath() %>/web/common/easyui/themes/metro-blue/layout.css" type="text/css"></link>
-<script type="text/javascript" src="<%=request.getContextPath() %>/web/common/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/web/common/jquery/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/web/common/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/web/common/easyui/easyui-lang-zh_CN.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/web/common/css/main.css">

@@ -50,7 +50,7 @@
 						<th data-options="field:'jobname',width:'12%',align:'center'">
 							工作名称
 						</th>
-						<th data-options="field:'jobtype',width:'5%',align:'center',formatter:formatterJob">
+						<th data-options="field:'jobtype',width:'8%',align:'center',formatter:formatterJob">
 							工作类型
 						</th>
 						<th data-options="field:'comments',width:'15%',align:'center'">
@@ -62,10 +62,10 @@
 						<th data-options="field:'executiver',width:'6%',align:'center',formatter:formatterUser">
 							执行人
 						</th>
-						<th data-options="field:'starttime',width:'6%',align:'center',formatter:formatterdateYMD">
+						<th data-options="field:'starttime',width:'8%',align:'center',formatter:formatterdateYMD">
 							开始日期
 						</th>
-						<th data-options="field:'endtime',width:'6%',align:'center',formatter:formatterdateYMD">
+						<th data-options="field:'endtime',width:'8%',align:'center',formatter:formatterdateYMD">
 							终止日期
 						</th>
 						<th data-options="field:'plantime',width:'5%',align:'center'">
@@ -77,7 +77,7 @@
 						<th data-options="field:'progress',width:'8%',align:'center'">
 							工作进度(%)
 						</th>
-						<th data-options="field:'filltime',width:'6%',align:'center',formatter:formatterdateYMD">
+						<th data-options="field:'filltime',width:'8%',align:'center',formatter:formatterdateYMD">
 							填报时间
 						</th> 
 						<th data-options="field:'userid',width:'6%',align:'center',formatter:formatterUser">
@@ -86,10 +86,10 @@
 						<th data-options="field:'approver',width:'6%',align:'center',formatter:formatterUser">
 							审核人
 						</th> 
-						<th data-options="field:'uploadtime',width:'6%',align:'center',formatter:formatterdateYMD">
+						<th data-options="field:'uploadtime',width:'8%',align:'center',formatter:formatterdateYMD">
 							上报日期
 						</th>
-						<th data-options="field:'confirmtime',width:'6%',align:'center',formatter:formatterdateYMD">
+						<th data-options="field:'confirmtime',width:'8%',align:'center',formatter:formatterdateYMD">
 							确认日期
 						</th>
 						

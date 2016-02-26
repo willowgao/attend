@@ -31,9 +31,18 @@ public class UserManagerAction extends BaseAction {
 	private String userCode;
 	private String higherid;
 	private String defaultstyle;
+	private String fontsize;
 	private String usersex;
 	private String oldPwd;
 	private String role;
+
+	public String getFontsize() {
+		return fontsize;
+	}
+
+	public void setFontsize(String fontsize) {
+		this.fontsize = fontsize;
+	}
 
 	public String getRole() {
 		return role;
@@ -116,7 +125,7 @@ public class UserManagerAction extends BaseAction {
 		String pwd = request.getParameter("password");
 		String ipPort = request.getRemoteAddr() + ":" + request.getRemotePort();
 		String host = request.getRemoteHost();
-		
+
 		List<UserInfo> list = userService.getUserInfoByUName(userName, pwd, host, ipPort);
 		if (list.size() > 0) {
 			renderText(response, "1");
@@ -139,6 +148,7 @@ public class UserManagerAction extends BaseAction {
 		} else {
 			request.setAttribute("username", getUserInfo().getUsername());
 			request.setAttribute("sysstyle", getUserInfo().getDefaultstyle());
+			request.setAttribute("fontsize", getUserInfo().getFontsize());
 		}
 		return SUCCESS;
 	}
@@ -255,6 +265,7 @@ public class UserManagerAction extends BaseAction {
 	public String updateUser() throws Exception {
 		UserInfo user = new UserInfo();
 		user.setDefaultstyle(defaultstyle);
+		user.setFontsize(fontsize);
 		if (!userPwd.equals(getUserInfo().getUserpwd())) {
 			user.setUserpwd(SecurityUtils.setPwdForDb(userPwd));
 		}
@@ -317,7 +328,7 @@ public class UserManagerAction extends BaseAction {
 
 	/**
 	 * @desc:查询待办记录
-	 * @return 
+	 * @return
 	 * @return String
 	 * @date： 2015-12-8 下午02:08:43
 	 */
