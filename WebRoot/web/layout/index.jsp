@@ -65,11 +65,11 @@
 				<div id="mytabs" class="easyui-tabs" data-options="fit : true">
 					<div title="个人中心">
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60; top: 100; width: 1019px; height: 200px; border: 1px solid #ccc;">
+							style="position: absolute; left: 60; top: 100; width: 90%; height: 200px; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;font-weight: bold; ">
 								打卡区域
 							</div>
-							<div id="personInfo" style="position: absolute; left: 300; top:100; color: #404040;font-weight: bold; font-size:20px;">
+							<div id="personInfo" style="position: absolute; left: 440; top:100; color: #404040;font-weight: bold; font-size:20px;">
 								<%=request.getAttribute("username")%>,您好！现在是：<%= DateUtil.date2String(new Date(),DateUtil.YNYMDR)%></br> 
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<label style="color: red;font-weight: bold; font-size:30px;" id="timeShow"></lable>
@@ -78,8 +78,8 @@
 							    <thead>   
 							        <tr>   
 							            <th id="amsbText" data-options="field:'amsbText',width:'25%',align:'center'"></th>   
-							            <th id="amxbText" data-options="field:'amxbText',width:'26%',align:'center'"></th>   
-							            <th id="pmsbText" data-options="field:'pmsbText',width:'26%',align:'center'"></th>   
+							            <th id="amxbText" data-options="field:'amxbText',width:'25%',align:'center'"></th>   
+							            <th id="pmsbText" data-options="field:'pmsbText',width:'25%',align:'center'"></th>   
 							            <th id="pmxbText" data-options="field:'pmxbText',width:'25%',align:'center'"></th>   
 							        </tr>   
 							    </thead>   
@@ -94,13 +94,13 @@
 							</table>  
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60; top: 310; width: 505px; height: 320px;  border: 1px solid #ccc;">
+							style="position: absolute; left: 60; top: 310; width: 44.5%; height: 320px;  border: 1px solid #ccc;">
 							<div id="title" style="padding: 15px;  color: #404040;font-weight: bold; ">
 								 
 							</div>
 							<div id="topic" class="topic_icon" align="center">
 							</div>
-							 <table id="waitTable"  style="width: 500px; height: 290px;"
+							 <table id="waitTable"  style="width: 100%; height: 290px;"
 								data-options="
 								rownumbers:true,
 								autoRowHeight:false,
@@ -132,11 +132,11 @@
 							
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 575; top: 310; width: 505px; height: 320px; border: 1px solid #ccc;">
+							style="position: absolute; left: 660; top: 310; width: 45%; height: 320px; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;  color: #404040;font-weight: bold; ">
 								考勤记录
 							</div>
-							 <table id="clocktables"  style="width: 500px; height: 290px;"
+							 <table id="clocktables"  style="width: 100%; height: 290px;"
 								data-options="
 								rownumbers:true,
 								autoRowHeight:false,

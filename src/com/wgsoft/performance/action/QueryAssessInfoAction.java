@@ -8,13 +8,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.BeanUtil;
+import com.wgsoft.common.utils.EchartsUtils;
 import com.wgsoft.common.utils.FileUtil;
+import com.wgsoft.common.utils.RunUtil;
 import com.wgsoft.common.utils.SysConstants;
+import com.wgsoft.diary.model.EchartsOfBar;
 import com.wgsoft.performance.iservice.IQueryAssessInfoService;
 import com.wgsoft.performance.model.PerformanceAssessScore;
 
@@ -57,6 +61,16 @@ public class QueryAssessInfoAction extends BaseAction {
 	 */
 	public String queryAssess() throws Exception {
 		Map<String, Object> queryMap = new HashMap<String, Object>();
+		Map<String, Object> requestMap = request.getParameterMap();
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.starttime"))[0])) {
+			queryMap.put("starttime", ((String[]) requestMap.get("assess.starttime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.endtime"))[0])) {
+			queryMap.put("endtime", ((String[]) requestMap.get("assess.endtime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
+			queryMap.put("deptid", ((String[]) requestMap.get("assess.deptid"))[0]);
+		}
 		queryMap.put("user", getUserInfo());
 		List<PerformanceAssessScore> list = getQueryAssessInfoService().queryAssessForList(queryMap);
 		renderText(response, transferListToJsonMapForTabel(list));
@@ -104,22 +118,38 @@ public class QueryAssessInfoAction extends BaseAction {
 	}
 
 	/**
-	 * @desc: 查询部门出勤率排名
+	 * 页面初始化
+	 */
+	public String showCharts() throws Exception {
+		return "showCharts";
+	}
+	
+	/**
+	 * @desc: 考核得分排名
 	 * @return
 	 * @return String
 	 * @date： 2016-2-2 下午01:37:43
 	 */
 	public String queryOrgRanking() throws Exception {
-		return null;
-	}
-
-	/**
-	 * @desc: 查询部门出勤率排名
-	 * @return
-	 * @return String
-	 * @date： 2016-2-2 下午01:37:43
-	 */
-	public String queryDeptRanking() throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		List<EchartsOfBar> list = getQueryAssessInfoService().queryOrgRanking(queryMap);
+		List<EchartsOfBar> jsonList = new ArrayList<EchartsOfBar>();
+		if (list != null && list.size() > 0) {
+			String[] xComments = new String[list.size()];
+			String[] xData = new String[list.size()];
+			int i = 0;
+			EchartsOfBar jsonBar = new EchartsOfBar();
+			BeanUtils.copyProperties(jsonBar, list.get(0));
+			for (EchartsOfBar bar : list) {
+				xComments[i] = bar.getXcomments();
+				xData[i] = bar.getXdata().toString();
+				i++;
+			}
+			jsonBar.setxAxis(xComments);
+			jsonBar.setData(xData);
+			jsonList.add(jsonBar);
+		}
+		renderText(response, EchartsUtils.getBar(jsonList).toString());
 		return null;
 	}
  

@@ -35,8 +35,10 @@ public class AttendanceManageService implements IAttendanceManageService {
 		 * 需要对打卡的时间与标准时间进行判断，用以区分是迟到、早退、旷工等情况
 		 */
 		ClockExcep clockExp = new ClockExcep();
+		ClockSetting setting = queryTimesForNow();
 		Date checkTime = DateUtil.string2Date(clock.getCheckTime(), DateUtil.HMS);
 		boolean bool = false;
+		// 上午上班、下午上班
 		if ((RunUtil.isNotEmpty(clock.getAmsb()) && clock.getType().equals("1"))
 				|| (RunUtil.isNotEmpty(clock.getPmsb()) && clock.getType().equals("3"))) {
 			if (RunUtil.isNotEmpty(clock.getAmsb())) {
@@ -67,10 +69,10 @@ public class AttendanceManageService implements IAttendanceManageService {
 				Date pmxb = DateUtil.string2Date(clock.getPmxb(), DateUtil.HMS);
 				bool = pmxb.before(checkTime);
 			}
-			//上午下班时间，晚于下午上班时间，也属于异常打卡
-			if (RunUtil.isNotEmpty(clock.getAmxb())) {
-				Date pmsb = DateUtil.string2Date(clock.getPmsb(), DateUtil.HMS);
-				bool = pmsb.before(checkTime);
+			// 上午下班时间，晚于下午上班时间，也属于异常打卡 异常的类型？
+			if (RunUtil.isNotEmpty(clock.getAmxb()) && RunUtil.isNotEmpty(setting.getPmsbTime())) {
+				Date pmsb = DateUtil.string2Date(setting.getPmsbTime(), DateUtil.HMS);
+				bool = pmsb.after(checkTime);
 			}
 
 			// 下班打卡，如果打卡时间早于设置时间，则属于早退

@@ -13,6 +13,10 @@
 			<div class="easyui-panel" title="查询条件" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
+						<label >
+							部门：
+						</label>
+						<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">
 							开始日期：
 						</label>
@@ -70,6 +74,9 @@
 						</th>
 						<th data-options="field:'reductionscore',width:'10%',align:'center'">
 							考勤扣分
+						</th>
+						<th data-options="field:'attednscore',width:'10%',align:'center'">
+							考勤得分
 						</th>
 						<th data-options="field:'finalscore',width:'10%',align:'center'">
 							最后得分

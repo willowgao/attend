@@ -3,8 +3,8 @@ package com.wgsoft.performance.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.common.dao.BaseDao;
-import com.wgsoft.common.utils.DateUtil;
 import com.wgsoft.common.utils.RunUtil;
 import com.wgsoft.performance.idao.IPerformanceAssessScoreDao;
 import com.wgsoft.performance.model.PerformanceAssessScore;
@@ -33,7 +33,7 @@ public class PerformanceAssessScoreDao extends BaseDao implements IPerformanceAs
 		sql
 				.append(" FROM CLOCKEXCEPTION B WHERE A.USERID = B.USERID AND A.STARTTIME <= CLOCKDATE AND A.ENDTIME >= CLOCKDATE  ");
 		sql
-				.append(" AND B.ISENABLE = '0') * 1 + ((A.ENDTIME - A.STARTTIME + 1) - (SELECT COUNT(1) FROM CLOCKREOCRDS C WHERE A.USERID = C.USERID");
+				.append(" AND B.ISENABLE = '0') * 1 + ((SELECT COUNT(1) FROM clockdate_setting  WHERE a.starttime <=CLOCKDATE AND a.endtime >=CLOCKDATE AND isneed=0) - (SELECT COUNT(1) FROM CLOCKREOCRDS C WHERE A.USERID = C.USERID");
 		sql.append(" AND A.STARTTIME <= CLOCKDATE  AND A.ENDTIME >= CLOCKDATE)) * 5 REDUCTIONSCORE");
 		sql
 				.append(" FROM (SELECT A.USERID,A.DEPTID,A.ASSESSYEAR,A.STARTTIME,A.ENDTIME,  DECODE(A.ASSESSTYPE, '1', SUM(NVL(INDEXSCORE, 0)), 0) HIGHERSCORE,");
@@ -43,7 +43,11 @@ public class PerformanceAssessScoreDao extends BaseDao implements IPerformanceAs
 			sql.append("  AND TO_CHAR(A.STARTTIME,'YYYY-MM-DD') >='").append(queryMap.get("starttime")).append("'");
 		}
 		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
-			sql.append("  AND TO_CHAR(A.ENDTIME,'YYYY-MM-DD') >='").append(queryMap.get("endtime")).append("'");
+			sql.append("  AND TO_CHAR(A.ENDTIME,'YYYY-MM-DD') <='").append(queryMap.get("endtime")).append("'");
+		}
+
+		if (RunUtil.isNotEmpty(queryMap.get("deptid"))) {
+			sql.append("  AND A.DEPTID = '").append(queryMap.get("deptid")).append("'");
 		}
 		sql.append("  AND A.DEPTID = '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
 		sql.append("  GROUP BY A.USERID, A.ASSESSTYPE,A.DEPTID,A.ASSESSYEAR,A.STARTTIME,A.ENDTIME) A");
@@ -63,12 +67,71 @@ public class PerformanceAssessScoreDao extends BaseDao implements IPerformanceAs
 							.substring(0, queryMap.get("starttime").toString().indexOf("T"))).append("'");
 		}
 		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
-			sql.append("  AND TO_CHAR(A.ENDTIME,'YYYY-MM-DD') >='").append(queryMap.get("endtime").toString()
+			sql.append("  AND TO_CHAR(A.ENDTIME,'YYYY-MM-DD') <='").append(queryMap.get("endtime").toString()
 					.substring(0, queryMap.get("endtime").toString().indexOf("T"))).append("'");
 		}
 		sql.append("  AND A.USERID = '").append(queryMap.get("userid")).append("' ");
 		sql.append("  GROUP BY A.USERID, A.ASSESSTYPE,A.DEPTID,A.ASSESSYEAR,A.STARTTIME,A.ENDTIME,A.ASSESSER");
 		sql.append("  ORDER BY A.ASSESSER ");
+		return getSqlList_(sql.toString(), PerformanceAssessScore.class);
+	}
+
+	public List<PerformanceAssessScore> queryReductions(Map<String, Object> queryMap) {
+		StringBuffer sql = new StringBuffer(" SELECT a.userid,CLOCKDATE CLOCKDATE, EXPTYPE,1*1 reductionscore FROM CLOCKEXCEPTION A");
+		sql.append(" WHERE   A.ISENABLE = '0' ");
+		if (RunUtil.isNotEmpty(queryMap.get("starttime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') >='").append(
+					queryMap.get("starttime").toString()
+							.substring(0, queryMap.get("starttime").toString().indexOf("T"))).append("'");
+		}
+		
+		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') <='").append(queryMap.get("endtime").toString()
+					.substring(0, queryMap.get("endtime").toString().indexOf("T"))).append("'");
+		}
+		sql.append("  AND A.USERID = '").append(queryMap.get("userid")).append("' ");
+		//
+		sql.append(" UNION ALL (SELECT '").append(queryMap.get("userid")).append("',   CLOCKDATE, '4',1*5 ");
+		sql.append(" FROM CLOCKDATE_SETTING A  WHERE   ISNEED = 0  ");
+		if (RunUtil.isNotEmpty(queryMap.get("starttime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') >='").append(
+					queryMap.get("starttime").toString()
+							.substring(0, queryMap.get("starttime").toString().indexOf("T"))).append("'");
+		}
+		
+		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') <='").append(queryMap.get("endtime").toString()
+					.substring(0, queryMap.get("endtime").toString().indexOf("T"))).append("'");
+		}
+		sql.append("  MINUS SELECT a.userid, CLOCKDATE, '4' ,1*5 FROM CLOCKREOCRDS A ");
+
+		sql.append("  WHERE A.USERID = '").append(queryMap.get("userid")).append("' ");
+		if (RunUtil.isNotEmpty(queryMap.get("starttime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') >='").append(
+					queryMap.get("starttime").toString()
+							.substring(0, queryMap.get("starttime").toString().indexOf("T"))).append("'");
+		}
+		
+		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') <='").append(queryMap.get("endtime").toString()
+					.substring(0, queryMap.get("endtime").toString().indexOf("T"))).append("'");
+		}
+		sql.append(" )");
+		
+		sql.append(" UNION ALL SELECT A.USERID,A.CLOCKDATE,A.EXPTYPE,1*1 FROM CLOCKEXCEPTION A");
+		sql.append("  WHERE A.USERID = '").append(queryMap.get("userid")).append("' ");
+		if (RunUtil.isNotEmpty(queryMap.get("starttime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') >='").append(
+					queryMap.get("starttime").toString()
+							.substring(0, queryMap.get("starttime").toString().indexOf("T"))).append("'");
+		}
+		
+		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
+			sql.append("  AND TO_CHAR(A.CLOCKDATE,'YYYY-MM-DD') <='").append(queryMap.get("endtime").toString()
+					.substring(0, queryMap.get("endtime").toString().indexOf("T"))).append("'");
+		}
+		
+		
 		return getSqlList_(sql.toString(), PerformanceAssessScore.class);
 	}
 

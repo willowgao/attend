@@ -1,4 +1,9 @@
    jq(function() {
+		jq('#deptid').combobox({    
+			url:getDeptByOrg(),
+		    valueField:'id',    
+		    textField:'text'   
+		}); 
 	 	loadData();
 	});
  
@@ -9,8 +14,9 @@
     var query = function(){
     	var starttime = jq('#starttime').datebox('getValue');
 		var endtime = jq('#endtime').datebox('getValue');
+		var deptid = jq('#deptid').combo('getValue');
 	    jq('#dg').datagrid({
-	        url:  programName + '/query/queryAssess!queryAssess.action?assess.starttime=' + starttime + '&assess.endtime=' + endtime
+	        url:  programName + '/query/queryAssess!queryAssess.action?assess.starttime=' + starttime + '&assess.endtime=' + endtime+ '&assess.deptid=' + deptid
 	    });
     }
 	

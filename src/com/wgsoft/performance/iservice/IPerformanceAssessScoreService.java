@@ -36,6 +36,15 @@ public interface IPerformanceAssessScoreService {
 	public List<PerformanceAssessScore> queryScoresDetail(Map<String, Object> queryMap);
 
 	/**
+	 * @desc: 查询扣分明细
+	 * @param queryMap
+	 * @return
+	 * @return List<PerformanceAssessScore>
+	 * @date： 2016-2-25 上午09:09:37
+	 */
+	public List<PerformanceAssessScore> queryReductions(Map<String, Object> queryMap);
+
+	/**
 	 * @desc:保存考核汇总信息
 	 * @param saveMap
 	 * @return

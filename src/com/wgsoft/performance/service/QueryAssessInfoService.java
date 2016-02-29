@@ -3,6 +3,7 @@ package com.wgsoft.performance.service;
 import java.util.List;
 import java.util.Map;
 
+import com.wgsoft.diary.model.EchartsOfBar;
 import com.wgsoft.performance.idao.IQueryAssessInfoDao;
 import com.wgsoft.performance.iservice.IQueryAssessInfoService;
 import com.wgsoft.performance.model.PerformanceAssessScore;
@@ -19,18 +20,27 @@ import com.wgsoft.performance.model.PerformanceAssessScore;
 public class QueryAssessInfoService implements IQueryAssessInfoService {
 
 	private IQueryAssessInfoDao queryAssessInfoDao;
+
 	/**
 	 * @see com.wgsoft.performance.iservice.IQueryAssessInfoService#queryAssessForList(Map)
 	 */
 	public List<PerformanceAssessScore> queryAssessForList(Map<String, Object> queryMap) {
 		return queryAssessInfoDao.queryAssessForList(queryMap);
 	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IQueryAssessInfoService#queryOrgRanking(Map)
+	 */
+	public List<EchartsOfBar> queryOrgRanking(Map<String, Object> queryMap) {
+		return queryAssessInfoDao.queryOrgRanking(queryMap);
+	}
+
 	public IQueryAssessInfoDao getQueryAssessInfoDao() {
 		return queryAssessInfoDao;
 	}
+
 	public void setQueryAssessInfoDao(IQueryAssessInfoDao queryAssessInfoDao) {
 		this.queryAssessInfoDao = queryAssessInfoDao;
 	}
-	
 
 }

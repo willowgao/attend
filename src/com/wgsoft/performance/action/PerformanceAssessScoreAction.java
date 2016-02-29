@@ -65,12 +65,38 @@ public class PerformanceAssessScoreAction extends BaseAction {
 		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.endtime"))[0])) {
 			queryMap.put("endtime", ((String[]) requestMap.get("assess.endtime"))[0]);
 		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
+			queryMap.put("deptid", ((String[]) requestMap.get("assess.deptid"))[0]);
+		}
 		queryMap.put("user", getUserInfo());
 		List<PerformanceAssessScore> list = getPerformanceAssessScoreService().queryScores(queryMap);
 		renderText(response, transferListToJsonMapForTabel(list));
 		return null;
 	}
 
+	/**
+	 * @desc:查询扣分明细
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2015-11-23 下午02:22:44
+	 */
+	public String queryReductions() throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+
+		Map<String, Object> requestMap = request.getParameterMap();
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("starttime"))[0])) {
+			queryMap.put("starttime", ((String[]) requestMap.get("starttime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("endtime"))[0])) {
+			queryMap.put("endtime", ((String[]) requestMap.get("endtime"))[0]);
+		}
+		queryMap.put("userid", ((String[]) requestMap.get("userid"))[0]);
+		List<PerformanceAssessScore> list = getPerformanceAssessScoreService().queryReductions(queryMap);
+		renderText(response, transferListToJsonMapForTabel(list));
+		return null;
+	}
+	
 	/**
 	 * @desc:查询考核指标明细信息
 	 * @return

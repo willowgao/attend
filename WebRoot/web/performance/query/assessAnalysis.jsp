@@ -24,7 +24,7 @@
                var option =  "";
                
 			jq.ajaxSettings.async = false; 
-               jq.getJSON(programName+'/diary/diaryAnalysis!getQueryMaxDiss.action', function(datas) {
+            jq.getJSON(programName+'/query/queryAssess!queryOrgRanking.action', function(datas) {
 			//取出json的值
 				option =  datas;
 			});

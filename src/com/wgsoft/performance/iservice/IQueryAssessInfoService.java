@@ -3,6 +3,7 @@ package com.wgsoft.performance.iservice;
 import java.util.List;
 import java.util.Map;
 
+import com.wgsoft.diary.model.EchartsOfBar;
 import com.wgsoft.performance.model.PerformanceAssessScore;
 
 /**
@@ -24,4 +25,15 @@ public interface IQueryAssessInfoService {
 	 * @date： 2016-2-25 下午02:51:59
 	 */
 	List<PerformanceAssessScore> queryAssessForList(Map<String, Object> queryMap);
+	
+
+	/**
+	 * @desc: 考核得分排名
+	 * @param queryMap
+	 * @return
+	 * @return List<PerformanceAssessScore>
+	 * @date： 2016-2-25 下午02:51:59
+	 */
+	List<EchartsOfBar> queryOrgRanking(Map<String, Object> queryMap);
+	
 }

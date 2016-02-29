@@ -13,6 +13,10 @@
 			<div class="easyui-panel" title="查询条件" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
+						<label >
+							部门：
+						</label>
+						<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">
 							开始日期：
 						</label>
@@ -96,7 +100,7 @@
 					modal:true,
 					buttons: '#dlg-buttons'
 				">
-			<table id="dlgdg" title="评分明细记录" style="with: 100%; height: 80%"
+			<table id="dlgdg" title="评分明细记录" style="witdh: 100%; height: 50%"
 				data-options="
 				rownumbers:true,
 				autoRowHeight:false,
@@ -130,6 +134,32 @@
 						</th>
 						<th data-options="field:'finalscore',width:'8%',align:'center'">
 							得分
+						</th>
+					</tr>
+				</thead>
+			</table> 
+			<table id="dlgdg1" title="扣分明细记录" style="witdh: 100%; height: 50%"
+				data-options="
+				rownumbers:true,
+				autoRowHeight:false,
+				fitColumns:true,
+				pagination:true,
+				pageList:[5,10,15,20,25,30],
+				pageSize:10"
+				align="left">
+				<thead>
+					<tr>
+						<th data-options="field:'clockdate',width:'15%',align:'center',formatter:formatterdateYMD">
+							考勤时间
+						</th>
+						<th data-options="field:'userid',width:'10%',align:'center',formatter:formatterUser">
+							被考核人
+						</th>
+						<th data-options="field:'exptype',width:'15%',align:'center',formatter:formatterExcep">
+							异常类型
+						</th>
+						<th data-options="field:'reductionscore',width:'10%',align:'center'">
+							考勤扣分
 						</th>
 					</tr>
 				</thead>

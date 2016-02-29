@@ -105,6 +105,7 @@ public class AttendanceManageDao extends BaseDao implements IAttendanceManageDao
 		ClockSetting cs = new ClockSetting();
 		StringBuffer sql = new StringBuffer(
 				" SELECT *  FROM CLOCK_SETTING WHERE ISENABLE = '0' AND SYSDATE BETWEEN STARTTIME AND ENDTIME ");
+		sql.append("AND EXISTS (SELECT 1 FROM  CLOCKDATE_SETTING WHERE TO_CHAR(CLOCKDATE,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD') AND ISNEED='0')");
 		List<ClockSetting> list = getSqlList_(sql.toString(), ClockSetting.class);
 		if (list != null && list.size() > 0) {
 			cs = list.get(0);

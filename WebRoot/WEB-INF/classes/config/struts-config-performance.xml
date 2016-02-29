@@ -81,6 +81,7 @@
 		<action name="queryAssess"
 			class="com.wgsoft.performance.action.QueryAssessInfoAction">
 			<result name="success">/web/performance/query/queryAssess.jsp</result>
+			<result name="showCharts">/web/performance/query/assessAnalysis.jsp</result>
 		</action>
 		
 		

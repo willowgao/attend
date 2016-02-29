@@ -32,8 +32,30 @@ public class PerformanceAssessScore extends BaseVO implements java.io.Serializab
 	private String deptid;
 	private String assesstype;
 	private String assesser;
-
+	
+	 private Date clockdate;
+     private String exptype;
+	 
+	
+	
 	// Constructors
+
+ 
+	public Date getClockdate() {
+		return clockdate;
+	}
+
+	public void setClockdate(Date clockdate) {
+		this.clockdate = clockdate;
+	}
+
+	public String getExptype() {
+		return exptype;
+	}
+
+	public void setExptype(String exptype) {
+		this.exptype = exptype;
+	}
 
 	/** default constructor */
 	public PerformanceAssessScore() {

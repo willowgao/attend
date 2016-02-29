@@ -175,7 +175,7 @@ public class Doc2HtmlUtil {
 	}
 
 	public static void main(String[] args) {
-		deleteDirFile();
+		deleteExportFile();
 	}
 
 	public static String getSoffice_host() {

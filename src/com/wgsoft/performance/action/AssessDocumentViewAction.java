@@ -80,7 +80,7 @@ public class AssessDocumentViewAction extends BaseAction {
 		String[] fileNames = request.getParameterValues("fileName");
 		for (int i = 0; i < fileUrls.length; i++) {
 			msg += "文件路径：" + fileUrls[i] + " 文件名称：" + fileNames[i] + "<br/>";
-			System.out.println(fileUrls[i] + " " + fileNames[i]);
+			System.out.println(msg);
 		} 
 		return null;
 	}

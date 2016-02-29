@@ -1,4 +1,9 @@
    jq(function() {
+		jq('#deptid').combobox({    
+			url:getDeptByOrg(),
+		    valueField:'id',    
+		    textField:'text'   
+		}); 
 	 	loadData();
 		jq('#dlg').dialog('close');
 	});
@@ -10,8 +15,9 @@
     var query = function(){
     	var starttime = jq('#starttime').datebox('getValue');
 		var endtime = jq('#endtime').datebox('getValue');
+		var deptid = jq('#deptid').combo('getValue');
 	    jq('#dg').datagrid({
-	        url:  programName + '/assess/score!queryScore.action?assess.starttime=' + starttime + '&assess.endtime=' + endtime
+	        url:  programName + '/assess/score!queryScore.action?assess.starttime=' + starttime + '&assess.endtime=' + endtime+ '&assess.deptid=' + deptid
 	    });
     }
 	
@@ -106,6 +112,9 @@
 		jq('#dlgdg').datagrid( {
 			data : getDetail()
 		}).datagrid('clientPaging');
+		jq('#dlgdg1').datagrid( {
+			data : getReductions()
+		}).datagrid('clientPaging');
 		
 		//将窗口移动到固定的位置
 		jq('#dlg').dialog('move',{
@@ -129,6 +138,30 @@
 		var params =  jq('#assessForm').serialize();
 		jq.ajax( {
 			url : programName + '/assess/score!queryDetail.action?userid='+userid+'&starttime='+d_starttime+'&endtime='+d_endtime,
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			success : function(data) {
+				rows = data;
+			}
+		});
+		return rows;
+		
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	var getReductions = function(){
+		var rows = null;
+		jq.ajaxSettings.async = false; 
+		var userid = jq('#userid').val();  
+		var d_starttime = jq('#d_starttime').val();  
+		var d_endtime = jq('#d_endtime').val();  
+		var params =  jq('#assessForm').serialize();
+		jq.ajax( {
+			url : programName + '/assess/score!queryReductions.action?userid='+userid+'&starttime='+d_starttime+'&endtime='+d_endtime,
 			type : 'post',
 			data : params,
 			dataType : 'json',

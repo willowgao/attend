@@ -1,21 +1,12 @@
 package com.wgsoft.performance.service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
-import com.wgsoft.common.model.BaseVO;
 import com.wgsoft.common.utils.BeanUtil;
-import com.wgsoft.common.utils.FileUtil;
 import com.wgsoft.performance.idao.IPerformanceAssessScoreDao;
 import com.wgsoft.performance.iservice.IPerformanceAssessScoreService;
 import com.wgsoft.performance.model.PerformanceAssessScore;
@@ -41,9 +32,11 @@ public class PerformanceAssessScoreService implements IPerformanceAssessScoreSer
 	public List<PerformanceAssessScore> queryScores(Map<String, Object> queryMap) {
 		List<PerformanceAssessScore> scores = performanceAssessScoreDao.queryScores(queryMap);
 		for (PerformanceAssessScore score : scores) {
+			
+			DecimalFormat df = new DecimalFormat("0.00");
 			// 最后得分减扣分项
-			score.setFinalscore(score.getFinalscore() - score.getReductionscore());
-			score.setAttednscore(Double.valueOf("20") - score.getReductionscore());
+			score.setFinalscore(Double.valueOf(df.format(score.getFinalscore() - score.getReductionscore())));
+			score.setAttednscore(Double.valueOf(df.format(Double.valueOf("20") - score.getReductionscore())));
 		}
 		return scores;
 	}
@@ -53,6 +46,13 @@ public class PerformanceAssessScoreService implements IPerformanceAssessScoreSer
 	 */
 	public List<PerformanceAssessScore> queryScoresDetail(Map<String, Object> queryMap) {
 		return performanceAssessScoreDao.queryScoresDetail(queryMap);
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IPerformanceAssessScoreService#queryReductions(Map)
+	 */
+	public List<PerformanceAssessScore> queryReductions(Map<String, Object> queryMap) {
+		return performanceAssessScoreDao.queryReductions(queryMap);
 	}
 
 	/**
@@ -74,11 +74,10 @@ public class PerformanceAssessScoreService implements IPerformanceAssessScoreSer
 			assessScore.setUploder(user.getUserid());
 			assessScore.setUplodetime(date);
 			// 最后得分减扣分项
-			assessScore.setFinalscore(assessScore.getFinalscore() - assessScore.getReductionscore());
 			assessScore.setAttednscore(Double.valueOf("20") - assessScore.getReductionscore());
 			scores.add(assessScore);
 		}
-		
+
 		return performanceAssessScoreDao.insertBatch(scores);
 	}
 

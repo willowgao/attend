@@ -78,34 +78,30 @@
 	        li.after("<li id='close'><a class='tabs-inner' href='javascript:void()' onClick='javascript:closeAll()'>关闭全部</a></li>");
 	      **/
       }
-    }
-	/**
-	    function closeAll() {
-	      jq(".tabs li").each(function(index, obj) {
-	            //获取所有可关闭的选项卡
-	          var tab = jq(".tabs-closable", this).text();
-	          jq(".easyui-tabs").tabs('close', tab);
-	      });
-	      jq("#close").remove();//同时把此按钮关闭
-	    }**/
+    } 
 	
 	var changeStyle = function(){
+	    var fontsize = jq('#fontsize').val();
 		//easyui下拉列表onchange事件，修改主题风格
 		jq('#cob_cssselector').combobox({
 			onSelect:function(record){
 			var peo = jq('#cob_cssselector').combobox('getValue');
-			jq("#link_easyui_css").attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui.css");
-			jq("#link_easyui_layout_css").attr("href",programName+"/web/common/easyui/themes/"+peo+"/layout.css");
-			//获取随机数
-			var colorNum = Math.round(Math.random() * 8);
-			jq("iframe").contents().find('#link_easyui_css').attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui.css");
-			jq("iframe").contents().find('#link_easyui_layout_css').attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui.css");
-			/**
-			var classStr1 =null;
-			if(jq("iframe").contents().length>0  && jq("iframe").contents().find("[href='#']").length>0){
-				 classStr1 = jq("iframe").contents().find("[href='#']").attr('class')+' l-btn-plain';
+			if(fontsize=='bigger'){
+				jq("#link_easyui_css").attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui.css");
+				jq("#link_easyui_layout_css").attr("href",programName+"/web/common/easyui/themes/"+peo+"/layout.css");
+				//获取随机数
+				var colorNum = Math.round(Math.random() * 8);
+				jq("iframe").contents().find('#link_easyui_css').attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui.css");
+				jq("iframe").contents().find('#link_easyui_layout_css').attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui.css");
+			}else{
+				jq("#link_easyui_css").attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui12.css");
+				jq("#link_easyui_layout_css").attr("href",programName+"/web/common/easyui/themes/"+peo+"/layout.css");
+				//获取随机数
+				var colorNum = Math.round(Math.random() * 8);
+				jq("iframe").contents().find('#link_easyui_css').attr("href",programName+"/web/common/easyui/themes/"+peo+"/easyui12.css");
+				jq("iframe").contents().find('#link_easyui_layout_css').attr("href",programName+"/web/common/easyui/themes/"+peo+"/layout.css");
+				
 			}
-			**/
 			var classStr = "easyui-linkbutton c"+colorNum+" l-btn l-btn-small l-btn-plain";
 			jq("[href='#']").attr("class",classStr);
 			
@@ -169,21 +165,22 @@
 	function queryTimesForNow(){
 		jq.ajaxSettings.async = false; 
 		jq.getJSON( programName + '/clock/clockManager!queryTimesForNow.action', function(datas) {
-		   
-			 jq('#amsbTime').val(datas.amsbTime);
-			 jq('#amxbTime').val(datas.amxbTime);
-			 jq('#pmsbTime').val(datas.pmsbTime);
-			 jq('#pmxbTime').val(datas.pmxbTime);
-			 
-		 	//动态设置时间区间
-			jq('#dg').datagrid({    
-			    columns:[[    
-			        {field:'amsbText',title:"上午上班("+datas.amsbTime+")",width:'25%',align:'center'},    
-			        {field:'amxbText',title:"上午下班("+datas.amxbTime+")",width:'25%',align:'center'},    
-			        {field:'pmsbText',title:"下午上班("+datas.pmsbTime+")",width:'25%',align:'center'},    
-			        {field:'pmxbText',title:"下午下班("+datas.pmxbTime+")",width:'25%',align:'center'},    
-			    ]]    
-			});
+			if(datas.amsbTime!=null){
+				 jq('#amsbTime').val(datas.amsbTime);
+				 jq('#amxbTime').val(datas.amxbTime);
+				 jq('#pmsbTime').val(datas.pmsbTime);
+				 jq('#pmxbTime').val(datas.pmxbTime);
+				 
+			 	//动态设置时间区间
+				jq('#dg').datagrid({    
+				    columns:[[    
+				        {field:'amsbText',title:"上午上班("+datas.amsbTime+")",width:'25%',align:'center'},    
+				        {field:'amxbText',title:"上午下班("+datas.amxbTime+")",width:'25%',align:'center'},    
+				        {field:'pmsbText',title:"下午上班("+datas.pmsbTime+")",width:'25%',align:'center'},    
+				        {field:'pmxbText',title:"下午下班("+datas.pmxbTime+")",width:'25%',align:'center'},    
+				    ]]    
+				});
+			}
 			//setValue(existsData);
 		});
 		
@@ -284,14 +281,18 @@
 						queryClockRecords();
 					});
 			    }else{
-			    	
 					return;
 			    }
 			});  
+		} else{
+			params += 'checkTime:\"'+checkTime+'\",';
+			params += 'type:\"'+type+'\",';
 			
-		} 
-
-		
+			params = params.substring(0,params.length-1)+'}';
+			jq.get(programName+'/clock/clockManager!saveClock.action?params='+params,function(datas){
+				queryClockRecords();
+			});
+		}
 	}
 	 
 	//查询顶部的模块菜单
