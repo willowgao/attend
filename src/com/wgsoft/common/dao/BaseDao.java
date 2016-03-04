@@ -59,8 +59,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 			ps.close();
 			return i;
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			if (log.isWarnEnabled()) {
+				log.warn(" GETSQLUPDATE 执行SQL 异常" + e.getMessage());
+			}
 			return -1;
 		} finally {
 			try {
@@ -98,7 +99,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			if (log.isWarnEnabled()) {
+				log.warn(" GETSQLLISTFORMAP 执行SQL 异常" + e.getMessage());
+			}
 		} catch (DataAccessResourceFailureException e1) {
 			e1.printStackTrace();
 		} catch (HibernateException e1) {
@@ -339,7 +342,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 			list = null;
 			list = populate(rs, entityClass);
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (log.isWarnEnabled()) {
+				log.warn(" GETSQLLIST_ 执行SQL 异常" + e.getMessage());
+			}
 		} finally {
 			try {
 				if (rs != null) {
@@ -509,8 +514,9 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 			proc.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if (log.isWarnEnabled()) {
+				log.warn(" 执行过程 异常" + e.getMessage());
+			}
 		} finally {
 			if (con != null) {
 				try {
@@ -528,7 +534,14 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 			log.info("执行过程【" + sql + "】");
 		}
 		Session session = getSession();
-		int re = session.createSQLQuery(sql.toString()).executeUpdate();
+		int re = 0;
+		try {
+			re = session.createSQLQuery(sql.toString()).executeUpdate();
+		} catch (HibernateException e) {
+			if (log.isWarnEnabled()) {
+				log.warn(" 执行过程 异常" + e.getMessage());
+			}
+		}
 		session.flush();
 		return re;
 	}

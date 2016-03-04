@@ -1,10 +1,11 @@
  //jQuery将$换成jq，避免冲突
-var jq = jQuery.noConflict();
  	jq(function() {
 		loadData(); 
 		jq('#dlg').dialog('close');
 		jq('#commDesc').hide();
 		loadCombobox();
+		
+		jq('#fontsize').val(parent.document.getElementById('fontsize').value);
 	});
 	
 	//加载数据表

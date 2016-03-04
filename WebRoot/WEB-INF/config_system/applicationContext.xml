@@ -167,7 +167,7 @@
 	</bean>
     <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="doc2HtmlUtil" />
-		<property name="targetMethod" value="deleteDirFile" />
+		<property name="targetMethod" value="clearFiles" />
 		<property name="concurrent" value="false" />
 	</bean>
 	

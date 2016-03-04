@@ -6,6 +6,7 @@
 	<head>
 		<script type="text/javascript" src="<%=webapp%>/web/common/js/easyui_custom.js"></script>
 		<link rel="stylesheet" href="<%=webapp%>/web/common/css/label.css" type="text/css">
+		<script type="text/javascript" src="<%=webapp%>/web/diary/discuss/js/diaryDetail.js"></script>
 		<title>查询</title>
 	</head>
 	<body>
@@ -15,15 +16,15 @@
 					<label style="margin: 10px;">
 						日志内容:
 					</label>
-					<input id="content" class="easyui-textbox" data-options="multiline:true,required:true,disabled:true"
-						style="width: 70%; height: 100%;" value="<%=request.getAttribute("content") %>"></input>
+					<input  name="diaryDaily.content" id="content" class="easyui-textbox" data-options="multiline:true,required:true,disabled:true"
+						style="width: 70%; height: 100%;" ></input>
 				</div>
 				<div style="height: 48%;">
 					<label style="margin: 10px;">
 						下期计划:
 					</label>
-					<input id="nextcontent" class="easyui-textbox" data-options="multiline:true,required:true,disabled:true"
-						style="width: 70%; height: 100%;" value="<%=request.getAttribute("nextcontent") %>"></input>
+					<input name="diaryDaily.nextcontent" id="nextcontent" class="easyui-textbox" data-options="multiline:true,required:true,disabled:true"
+						style="width: 70%; height: 100%;"  ></input>
 				</div> 
 			</div> 
 		</form>

@@ -181,7 +181,7 @@
 			jq('#dlg').dialog('open');
 			//将窗口移动到固定的位置
 			jq('#dlg').dialog('move',{
-			    left: document.documentElement.offsetWidth/2-350,
+			    left: document.documentElement.offsetWidth/2-250,
 			    top: document.documentElement.offsetTop,
 			    right:"",
 			    zIndex:jq.fn.window.defaults.zIndex++

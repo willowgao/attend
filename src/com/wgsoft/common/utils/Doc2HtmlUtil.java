@@ -155,7 +155,23 @@ public class Doc2HtmlUtil {
 		// 目录此时为空，可以删除
 		return true;
 	}
-	
+
+	/**
+	 * @desc: 清空系统无效文件
+	 * @return void
+	 * @date： 2016-3-1 上午08:58:03
+	 */
+	public static void clearFiles() {
+		deleteExportFile();
+		deleteDirFile();
+	}
+
+	/**
+	 * @desc:清空导出的临时文件
+	 * @return
+	 * @return boolean
+	 * @date： 2016-3-1 上午10:01:13
+	 */
 	public static synchronized boolean deleteExportFile() {
 		File file = new File(SysConstants.getPath(SysConstants.EXPORT_PATH));
 		if (file.isDirectory()) {

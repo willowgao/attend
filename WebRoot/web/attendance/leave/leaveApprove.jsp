@@ -15,7 +15,7 @@
 		<form id="leaveForm">
 		<div id="commDesc"  class="easyui-panel" style="width: 10%;height: 80%;position:absolute;z-index:8;">
 		</div>
-			<div class="easyui-panel" title="请假信息录入" style="width: 100%">
+			<div class="easyui-panel" title="查询条件" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
 						<label style="margin: 10px;">

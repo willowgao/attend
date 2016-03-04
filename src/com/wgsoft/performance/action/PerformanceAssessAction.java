@@ -48,7 +48,6 @@ public class PerformanceAssessAction extends BaseAction {
 		UserInfo user = new UserInfo();
 		// 查询本部门的人员
 		user.setUserdeptid(getUserInfo().getUserdeptid());
-
 		Map<String, Object> requestMap = request.getParameterMap();
 		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
 			user.setUserdeptid(((String[]) requestMap.get("assess.deptid"))[0]);
@@ -74,6 +73,31 @@ public class PerformanceAssessAction extends BaseAction {
 	}
 
 	/**
+	 * @desc:查询是否存在此人的被打过的考核记录
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2016-3-2 下午03:33:58
+	 */
+	public String queryAssess() throws Exception {
+		Map<String, Object> requestMap = request.getParameterMap();
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.starttime"))[0])) {
+			queryMap.put("starttime", ((String[]) requestMap.get("assess.starttime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.endtime"))[0])) {
+			queryMap.put("endtime", ((String[]) requestMap.get("assess.endtime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.userid"))[0])) {
+			queryMap.put("userid", ((String[]) requestMap.get("assess.userid"))[0]);
+		}
+		queryMap.put("assesser", getUserInfo().getUserid());
+		List<PerformanceAssess> list = getPerformanceAssessService().queryAssess(queryMap);
+		renderText(response, JSONUtil.serialize(list.size()));
+		return null;
+	}
+
+	/**
 	 * @desc:保存考核打分
 	 * @return
 	 * @throws Exception
@@ -90,7 +114,7 @@ public class PerformanceAssessAction extends BaseAction {
 		assess.setEndtime(DateUtil.string2Date(((String[]) requestMap.get("assess.endtime"))[0], DateUtil.YMD));
 		assess.setUserid(((String[]) requestMap.get("assess.userid"))[0]);
 		assess.setRoletype(((String[]) requestMap.get("assess.roletype"))[0]);
-		
+
 		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
 			assess.setDeptid(((String[]) requestMap.get("assess.deptid"))[0]);
 		} else {

@@ -6,17 +6,6 @@
 		<script type="text/javascript" src="<%=webapp%>/web/common/js/easyui_custom.js"></script>
 		<script type="text/javascript" src="<%=webapp%>/web/user/js/modifyUser.js"  charset="utf-8"></script>
 		<link rel="stylesheet" href="<%=webapp%>/web/common/css/label.css" type="text/css">
-		<html:base target="_self" />
-		<META http-equiv="Content-Style-Type" content="text/css">
-		<style type="text/css">
-.ztree li span.button .add {
-	margin-left: 2px;
-	margin-right: -1px;
-	background-position: -144px 0;
-	vertical-align: top; *
-	vertical-align: middle
-}
-</style>
 	</HEAD>
 	<input type="hidden" id="orgId">
 	<input type="hidden" id="userId">

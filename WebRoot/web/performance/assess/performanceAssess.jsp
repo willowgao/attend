@@ -9,17 +9,17 @@
 	</head>
 	<body>
 		<form id="assessForm">
-			<div class="easyui-panel" title="部门信息" style="width: 300px; height: 100px;"
+			<div class="easyui-panel" title="部门用户信息" style="width: 300px; height: 82px;"
 				data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
-				<div style="margin: 20px;">
+				<div style="margin: 15px;">
 					<label >
 						部门：
 					</label>
 					<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 				</div>
 			</div>
-			<div title="用户列表信息" class="easyui-panel" style="width: 300px; height: 503px;"
-				data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:100}">
+			<div class="easyui-panel" style="width: 300px; height: 520px;"
+				data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:84}">
 				<table id="dg" class="easyui-datagrid" style="width: 100%; height: 100%"
 					data-options="onClickRow:onClickRow,
 					rownumbers:true,

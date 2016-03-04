@@ -2,7 +2,10 @@ package com.wgsoft.common.utils;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.ResourceBundle;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @title： SysConstants.java
@@ -328,10 +331,19 @@ public class SysConstants {
 	// 获取html存放的位置 tomcat和weblogic路径获取方法不同
 	public static String classUrl = FileUtil.class.getClassLoader().getResource("").getPath();
 
+	/**
+	 * 导出文件目录
+	 */
 	public static String EXPORT_PATH = "web/files/exportFile";
 
+	/**
+	 * 生成html临时预览文件目录
+	 */
 	public static String HTML_PATH = "web/files/html";
 
+	/**
+	 * 上传文件目录
+	 */
 	public static String UPLOAD_PATH = "web/files/uploadFile";
 
 	/**

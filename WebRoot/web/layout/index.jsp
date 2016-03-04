@@ -27,9 +27,9 @@
 				<div id="logo" style="position: absolute; left: 1px; top: 1px; border-radius: 15px;" />
 					<img src="<%=webapp%>/web/common/css/images/logo.png" width="233px;" height="75px;"></img>
 				</div>
-				<div id="menu_list" style="position: absolute; left: 233px; top: 1px;" />
+				<div id="menu_list" style="position: absolute; left: 235px; top: 1px;" />
 				</div>
-				<div id="style_change" style="position: absolute; left: 1200px; top: 50px;">
+				<div id="style_change" style="position: absolute; right: 100px; bottom: 3px;">
 				<input type="hidden" id="sysstyle" value="<%=request.getAttribute("sysstyle")%>"/>
 				<input type="hidden" id="fontsize" value="<%=request.getAttribute("fontsize")%>"/>
 					主题风格：
@@ -65,7 +65,7 @@
 				<div id="mytabs" class="easyui-tabs" data-options="fit : true">
 					<div title="个人中心">
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60; top: 100; width: 90%; height: 200px; border: 1px solid #ccc;">
+							style="position: absolute; left: 60; top: 100; width: 90%; height: 30%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;font-weight: bold; ">
 								打卡区域
 							</div>
@@ -94,13 +94,12 @@
 							</table>  
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60; top: 310; width: 44.5%; height: 320px;  border: 1px solid #ccc;">
-							<div id="title" style="padding: 15px;  color: #404040;font-weight: bold; ">
-								 
+							style="position: absolute; left: 60;  bottom: 50; width: 44.5%; height: 47%;  border: 1px solid #ccc;">
+							<div id="title" style="padding: 13px;  color: #404040;font-weight: bold; ">
 							</div>
 							<div id="topic" class="topic_icon" align="center">
 							</div>
-							 <table id="waitTable"  style="width: 100%; height: 290px;"
+							 <table id="waitTable"  style="width: 100%; height: 90%;"
 								data-options="
 								rownumbers:true,
 								autoRowHeight:false,
@@ -132,11 +131,11 @@
 							
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 660; top: 310; width: 45%; height: 320px; border: 1px solid #ccc;">
+							style="position: absolute; right: 70; bottom: 50; width: 45%; height: 47%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;  color: #404040;font-weight: bold; ">
 								考勤记录
 							</div>
-							 <table id="clocktables"  style="width: 100%; height: 290px;"
+							 <table  id="clocktables"  style="width: 100%; height: 90%;"
 								data-options="
 								rownumbers:true,
 								autoRowHeight:false,

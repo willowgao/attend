@@ -63,7 +63,9 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 			clockDate = (String) queryMap.get("clockdate");
 		}
 		String descClockDate = DateUtil.string2Format(clockDate, DateUtil.YMD, DateUtil.YNYMDR);
-		StringBuffer sql = new StringBuffer(" SELECT *  FROM ( SELECT  '").append(descClockDate).append(
+		StringBuffer sql = new StringBuffer(" SELECT *  FROM ( SELECT  '").append(descClockDate);
+		//异常数据
+		sql.append(
 				"'||' 部门出勤率' title, '组织内出勤排名' childtitle,C.DEPTNAME xcomments,COUNT(1) xdata, ");
 		sql.append(" '异常数' dataname,'名' dataunit");
 		sql.append(" FROM CLOCKDATE_SETTING A, USERINFO B, DEPTMENT C WHERE B.USERDEPTID = C.DEPTID");
@@ -74,6 +76,9 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 		sql
 				.append(" (SELECT 1  FROM CLOCKEXCEPTION D WHERE B.USERID = D.USERID  AND D.ISENABLE = '0'  AND TO_CHAR(D.CLOCKDATE, 'yyyy-mm-dd') = ");
 		sql.append("  TO_CHAR(A.CLOCKDATE, 'yyyy-mm-dd'))) GROUP BY C.DEPTNAME");
+		
+		
+		//正常考勤
 		sql.append(" UNION SELECT  '").append(descClockDate).append(
 				"'||' 部门出勤率' title, '组织内出勤排名' childtitle,F.DEPTNAME xcomments,COUNT(1) xdata, ");
 		sql.append(" '正常数' dataname,'名' dataunit");
@@ -108,14 +113,25 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 		StringBuffer sql = new StringBuffer(" SELECT  '").append(descClockDate).append(
 				"'||' 部门出勤率' title, '本部门出勤情况' CHILDTITLE, COUNT(1) dataValue,'未考勤' dataName,'名' DATAUNIT");
 		sql.append(" FROM CLOCKDATE_SETTING A, USERINFO B WHERE  TO_DATE('").append(clockDate).append("', 'yyyy-mm-dd') = A.CLOCKDATE");
-		sql.append(" AND B.Userdeptid =  '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
+		if (RunUtil.isNotEmpty(queryMap.get("dept"))) {
+			sql.append("  AND  B.USERDEPTID = '").append(queryMap.get("dept")).append("' ");
+		} else {
+			sql.append("  AND  B.USERDEPTID = '").append(((UserInfo) queryMap.get("user")).getUserdeptid())
+					.append("' ");
+		}
+		 
 		sql.append(" AND  NOT EXISTS (SELECT 1 FROM CLOCKREOCRDS C WHERE B.USERID = C.USERID  AND C.CLOCKDATE = A.CLOCKDATE)  ");
 		
 		
 		sql.append(" UNION SELECT  '").append(descClockDate).append(
 				"'||' 部门出勤率' title, '本部门出勤情况' CHILDTITLE, COUNT(1) VALUE,'考勤异常' NAME,'名' DATAUNIT");
 		sql.append(" FROM CLOCKDATE_SETTING A, USERINFO B WHERE  TO_DATE('").append(clockDate).append("', 'yyyy-mm-dd') = A.CLOCKDATE");
-		sql.append(" AND B.Userdeptid  =  '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
+		if (RunUtil.isNotEmpty(queryMap.get("dept"))) {
+			sql.append("  AND  B.USERDEPTID = '").append(queryMap.get("dept")).append("' ");
+		} else {
+			sql.append("  AND  B.USERDEPTID = '").append(((UserInfo) queryMap.get("user")).getUserdeptid())
+					.append("' ");
+		}
 		sql.append(" AND EXISTS (SELECT 1  FROM CLOCKEXCEPTION D  WHERE B.USERID = D.USERID  AND D.ISENABLE = '0'");
 		sql.append(" AND TO_CHAR(D.CLOCKDATE, 'yyyy-mm-dd') =  TO_CHAR(A.CLOCKDATE, 'yyyy-mm-dd'))");
 		 
@@ -123,7 +139,12 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 		sql.append(" UNION SELECT  '").append(descClockDate).append(
 				"'||' 部门出勤率' title, '本部门出勤情况' CHILDTITLE, COUNT(1) VALUE,'正常考勤' NAME,'名' DATAUNIT");
 		sql.append(" FROM CLOCKDATE_SETTING A, USERINFO B WHERE  TO_DATE('").append(clockDate).append("', 'yyyy-mm-dd') = A.CLOCKDATE");
-		sql.append(" AND B.Userdeptid =  '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
+		if (RunUtil.isNotEmpty(queryMap.get("dept"))) {
+			sql.append("  AND  B.USERDEPTID = '").append(queryMap.get("dept")).append("' ");
+		} else {
+			sql.append("  AND  B.USERDEPTID = '").append(((UserInfo) queryMap.get("user")).getUserdeptid())
+					.append("' ");
+		}
 		sql.append(" AND NOT EXISTS (SELECT 1  FROM CLOCKEXCEPTION D  WHERE B.USERID = D.USERID  AND D.ISENABLE = '0'");
 		sql.append(" AND TO_CHAR(D.CLOCKDATE, 'yyyy-mm-dd') =  TO_CHAR(A.CLOCKDATE, 'yyyy-mm-dd'))");
 

@@ -15,22 +15,22 @@ With the Partitioning, OLAP and Data Mining options
 . 正在导出簇定义
 . 即将导出 ATTEDN 的表通过常规路径...
 . . 正在导出表               CLOCKDATE_SETTING导出了         731 行
-. . 正在导出表                  CLOCKEXCEPTION导出了          48 行
-. . 正在导出表                    CLOCKREOCRDS导出了          39 行
-. . 正在导出表             CLOCK_EXCEP_APPROVE导出了          17 行
+. . 正在导出表                  CLOCKEXCEPTION导出了          55 行
+. . 正在导出表                    CLOCKREOCRDS导出了          42 行
+. . 正在导出表             CLOCK_EXCEP_APPROVE导出了          18 行
 . . 正在导出表                   CLOCK_SETTING导出了           5 行
 . . 正在导出表                  DATADICTIONARY导出了          40 行
 . . 正在导出表                        DEPTMENT导出了           8 行
 . . 正在导出表                   DIARY_APPROVE导出了           4 行
-. . 正在导出表                  DIARY_COMMENTS导出了          91 行
-. . 正在导出表                     DIARY_DAILY导出了          12 行
+. . 正在导出表                  DIARY_COMMENTS导出了          90 行
+. . 正在导出表                     DIARY_DAILY导出了          13 行
 . . 正在导出表                   JOBASSIGNMENT导出了           5 行
 . . 正在导出表           JOBASSIGNMENT_APPROVE导出了           3 行
 . . 正在导出表                          LEAVES导出了           5 行
 . . 正在导出表                  LEAVES_APPROVE导出了          28 行
 . . 正在导出表           LEAVE_APPROVE_SETTING导出了          12 行
 . . 正在导出表                            MENU导出了          50 行
-. . 正在导出表              PERFORMANCE_ASSESS导出了         147 行
+. . 正在导出表              PERFORMANCE_ASSESS导出了         144 行
 . . 正在导出表        PERFORMANCE_ASSESS_SCORE导出了           2 行
 . . 正在导出表               PERFORMANCE_INDEX导出了          12 行
 . . 正在导出表              POSITION_STATEMENT导出了           1 行
@@ -39,8 +39,8 @@ With the Partitioning, OLAP and Data Mining options
 . . 正在导出表                        ROLEINFO导出了          14 行
 . . 正在导出表                       ROLE_MENU导出了         171 行
 . . 正在导出表                        USERINFO导出了          16 行
-. . 正在导出表                 USER_LOGIN_INFO导出了        1746 行
-. . 正在导出表                       USER_MENU导出了         239 行
+. . 正在导出表                 USER_LOGIN_INFO导出了        1798 行
+. . 正在导出表                       USER_MENU导出了         245 行
 . . 正在导出表                 WG_ORGANIZATION导出了           8 行
 . 正在导出同义词
 . 正在导出视图

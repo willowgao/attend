@@ -24,6 +24,16 @@ public class PerformanceAssessService implements IPerformanceAssessService {
 
 	private IPerformanceAssessDao performanceAssessDao;
 
+	/**
+	 * @see com.wgsoft.performance.iservice.IPerformanceAssessService#queryAssess(Map)
+	 */
+	public List<PerformanceAssess> queryAssess(Map<String, Object> queryMap) {
+		return performanceAssessDao.queryAssess(queryMap);
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IPerformanceAssessService#saveAssess(Map)
+	 */
 	@SuppressWarnings("unchecked")
 	public int saveAssess(Map<String, Object> saveMap) {
 		UserInfo user = (UserInfo) saveMap.get("user");

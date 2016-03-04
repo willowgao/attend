@@ -21,8 +21,6 @@
 	<!--  -->
 	<constant name="struts.action.excludePattern" value="/dwr/*,/dwr/test/*" />
 	<constant name="struts.action.extension" value="action" />
-
-	
 	<!-- include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中 然后用include节点引用 -->
 	<include file="struts-default.xml"></include>
 	<include file="config/struts-config-system.xml" />
@@ -34,6 +32,5 @@
 		name="myRequestParser" class="com.wgsoft.common.utils.RequestParseWrapper"
 		scope="default" optional="true " />
 	<constant name="struts.multipart.handler" value="myRequestParser" />
-
-
+	
 </struts>

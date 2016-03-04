@@ -52,6 +52,7 @@ var jq = jQuery.noConflict();
 	
     
     function drawBar() {
+    	var dept = jq('#dept').combobox('getValue');
         var myChart = echarts.init(document.getElementById('bar'));
         myChart.showLoading({
 		    text: '正在努力的读取数据中...',    //loading话术
@@ -59,7 +60,7 @@ var jq = jQuery.noConflict();
 		var clockdate = jq('#clockdate').datebox('getValue');
         var option =  "";
 		jq.ajaxSettings.async = false; 
-        jq.getJSON(programName+'/query/queryAttend!queryOrgRanking.action?clockdate=' + clockdate , function(datas) {
+        jq.getJSON(programName+'/query/queryAttend!queryOrgRanking.action?clockdate=' + clockdate+ '&dept=' + dept , function(datas) {
 		//取出json的值
 			option =  datas;
 		});
@@ -70,6 +71,7 @@ var jq = jQuery.noConflict();
     }
     
     function drawPie() {
+    	var dept = jq('#dept').combobox('getValue');
         var myChart = echarts.init(document.getElementById('pie'));
         myChart.showLoading({
 		    text: '正在努力的读取数据中...',    //loading话术
@@ -77,7 +79,7 @@ var jq = jQuery.noConflict();
         var option =  "";
         var clockdate = jq('#clockdate').datebox('getValue');
     	jq.ajaxSettings.async = false; 
-        jq.getJSON(programName+'/query/queryAttend!queryDeptRanking.action?clockdate=' + clockdate, function(datas) {
+        jq.getJSON(programName+'/query/queryAttend!queryDeptRanking.action?clockdate=' + clockdate+ '&dept=' + dept, function(datas) {
 		//取出json的值
 			option =  datas;
 		});

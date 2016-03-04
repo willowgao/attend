@@ -75,9 +75,26 @@ public class DiaryDiscussEachOtherAction extends BaseAction {
 	 * @date： 2015-11-12 下午03:54:12
 	 */
 	public String goDetail() throws Exception {
-		request.setAttribute("content", request.getParameter("diaryDaily.content"));
-		request.setAttribute("nextcontent", request.getParameter("diaryDaily.nextcontent"));
+		session.setAttribute("content", request.getParameter("diaryDaily.content"));
+		session.setAttribute("nextcontent", request.getParameter("diaryDaily.nextcontent"));
 		return "detail";
+	}
+
+	/**
+	 * @desc:页面赋值，原样填充
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2016-3-3 上午08:51:23
+	 */
+	public String getContent() throws Exception {
+		if (diaryDaily == null) {
+			diaryDaily = new DiaryDaily();
+		}
+		diaryDaily.setContent((String) session.getAttribute("content"));
+		diaryDaily.setNextcontent((String) session.getAttribute("nextcontent"));
+		renderText(response, transferVoToForm("diaryDaily", diaryDaily, DiaryDaily.class));
+		return null;
 	}
 
 	/**
@@ -128,10 +145,11 @@ public class DiaryDiscussEachOtherAction extends BaseAction {
 		renderText(response, JSONUtil.serialize(rel));
 		return null;
 	}
+
 	/**
 	 * @desc:更新日志查阅信息
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 * @return String
 	 * @date： 2015-11-13 上午09:06:28
 	 */

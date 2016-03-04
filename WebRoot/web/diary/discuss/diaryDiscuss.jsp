@@ -34,6 +34,7 @@
 						<input name="diaryDaily.content" id="content"   type="hidden"></input>
 						<input name="diaryDaily.nextcontent" id="nextcontent"   type="hidden"></input>
 						<input name="diaryDaily.diaryid" id="diaryid"   type="hidden"></input>
+						<input id="fontsize"   type="hidden"></input>
 					</div>
 				</div>
 			</div>

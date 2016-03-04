@@ -48,7 +48,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
 			<div class="easyui-panel" style="width: 100%;margin-top: 2px; ">
 				<div style="margin: 0px; height: 32%;">
 					<label style="margin: 10px;">

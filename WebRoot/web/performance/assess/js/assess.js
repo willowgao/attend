@@ -119,8 +119,19 @@
 	 *单选填充
 	 */
 	function onClickRow(index, row) { 
-		jq('#userid').val(row.userid);
-		jq('#roletype').val(row.roletype);
+		var userid= jq('#userid').val(row.userid);
+		var params = jq('#assessForm').serialize();
+		jq.ajax( {
+			url : programName + '/assess/performance!queryAssess.action?userid='+userid,
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			success : function(data) {
+				if(data>1){
+					jq.messager.alert('提示','已经存在您对此人员考核信息!');
+				}
+			}
+		});
 	}
 	
 	/** 
