@@ -31,8 +31,18 @@ public class DiaryDaily implements java.io.Serializable {
 	private Integer viewcount;
 	private Integer commentcount;
 	private String onsubmit;
+	
+	private String deptid;
 
 	// Constructors
+
+	public String getDeptid() {
+		return deptid;
+	}
+
+	public void setDeptid(String deptid) {
+		this.deptid = deptid;
+	}
 
 	public String getOnsubmit() {
 		return onsubmit;

@@ -23,6 +23,13 @@
 		    valueField:'id',    
 		    textField:'text'   
 		});  
+		
+		jq('#userid').combobox({
+			url: programName + '/diary/diaryDiscuss!getUsersFormUser.action',
+		    valueField:'id',    
+		    textField:'text'  
+		});
+		
 	}
 	//查询列表数据
 	function getData() { 
@@ -49,8 +56,9 @@
     	var starttime = jq('#starttime').datebox('getValue');
 		var endtime = jq('#endtime').datebox('getValue');
 		var diarytype = jq('#diarytype').combobox('getValue');
+		var userid = jq('#userid').combobox('getValue');
 	    jq('#dg').datagrid({
-	        url: programName + '/diary/diaryDiscuss!queryDiarys.action?starttime=' + starttime + '&endtime=' + endtime+ '&diarytype=' + diarytype
+	        url: programName + '/diary/diaryDiscuss!queryDiarys.action?starttime=' + starttime + '&endtime=' + endtime+ '&diarytype=' + diarytype+ '&userid=' + userid
 	    });
     }
 	 

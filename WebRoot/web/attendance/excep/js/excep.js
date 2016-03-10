@@ -126,7 +126,7 @@
 	    var b = '01/10/2015 ' + checkTime;
 	    var d = new Date(a);
 	    var e = new Date(b);
-	  	if (d > e) {
+	  	if (d >= e) {
 	  	   return true;
 	  	} else {
 	   	   return false;

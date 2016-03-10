@@ -56,9 +56,11 @@ public class DiaryDiscussEachOtherAction extends BaseAction {
 			if (RunUtil.isNotEmpty(request.getParameter("endtime"))) {
 				diaryDaily.setEndtime(DateUtil.string2Date(request.getParameter("endtime"), DateUtil.YMD));
 			}
+			if (RunUtil.isNotEmpty(request.getParameter("userid"))) {
+				diaryDaily.setUserid((request.getParameter("userid")));
+			}
 			diaryDaily.setDiarytype(request.getParameter("diarytype"));
 		}
-		diaryDaily.setUserid(user.getUserid());
 		queryMap.put("org", user.getUserorg());
 		queryMap.put("deptid", user.getUserdeptid());
 		queryMap.put("diaryDaily", diaryDaily);

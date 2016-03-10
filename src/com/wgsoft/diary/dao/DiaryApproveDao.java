@@ -52,17 +52,22 @@ public class DiaryApproveDao extends BaseDao implements IDiaryApproveDao {
 		}
 		
 		// 如果isAll为1则查询所有，如果为2则只查询本部门
-		if (RunUtil.isNotEmpty(queryMap.get("isAll")) && queryMap.get("isAll").equals("2")) {
-			sql.append(" AND USERID IN (SELECT USERID FROM USERINFO WHERE USERDEPT = '").append(queryMap.get("deptid"))
+		if (RunUtil.isNotEmpty(queryMap.get("isAll")) && queryMap.get("isAll").equals("1")) {
+			sql.append(" AND USERID IN (SELECT USERID FROM USERINFO WHERE USERDEPTID = '").append(queryMap.get("deptid"))
 					.append("')");
 		}
 		// 如果isAll为1则查询所有，如果为2则只查询本部门
 		if (RunUtil.isNotEmpty(queryMap.get("isAll")) && queryMap.get("isAll").equals("2")) {
 			sql.append(" AND USERID IN (SELECT USERID FROM USERINFO WHERE userorg = '").append(queryMap.get("org"))
 					.append("')");
+			
+			if (RunUtil.isNotEmpty(queryMap.get("deptid"))) {
+				sql.append(" AND USERID IN (SELECT USERID FROM USERINFO WHERE USERDEPTID = '").append(queryMap.get("deptid"))
+						.append("')");
+			}
 		}
 		
-		sql.append(" order by diarydate desc");
+		sql.append(" order by diarydate desc,userid desc");
 		return getSqlList_(sql.toString(), DiaryDaily.class);
 	}
 

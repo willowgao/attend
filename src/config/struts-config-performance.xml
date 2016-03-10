@@ -85,5 +85,13 @@
 		</action>
 		
 		
+		
+		<!-- 日志信息查询 -->
+		<action name="queryDiarys"
+			class="com.wgsoft.performance.action.QueryDiarysAction">
+			<result name="success">/web/performance/query/queryDiarys.jsp</result>
+		</action>
+		
+		
 	</package>  
 </struts>

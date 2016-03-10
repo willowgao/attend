@@ -147,7 +147,7 @@
 						style="width: 500px; height: 100px;"></input>
 				</div>
 				<div class="label_css">
-					<a onclick="save()" href="#" class="easyui-linkbutton c5" style="width: 80px">传递</a>
+					<a onclick="save()" href="#" class="easyui-linkbutton c5" style="width: 80px">保存</a>
 				</div>
 			</div>
 		</div>

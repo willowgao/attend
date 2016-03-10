@@ -24,6 +24,8 @@ var jq = jQuery.noConflict();
 				var peo = jq('#leavetype').combobox('getValue');
 				if(peo=='1'){
 					jq('#destination').textbox({ required: true });
+				}else{
+					jq('#destination').textbox({ required: false });
 				}
 			}
 		}); 

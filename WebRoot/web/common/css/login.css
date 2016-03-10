@@ -92,8 +92,8 @@ body {
 }
 
 .login_hide {
-	left: 30px;
-	top: 240px; font-size : 12px;
+	left: 1000px;
+	top: 550px; font-size : 12px;
 	font-weight: bold;
 	color: red;
 	position: absolute; 

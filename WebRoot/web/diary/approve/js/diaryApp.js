@@ -136,7 +136,7 @@ var jq = jQuery.noConflict();
 	 */
 	function save(){
 		var comments = jq('#comments').textbox('getValue'); 
-		var diaryid = jq('#diaryid').textbox('getValue');
+		var diaryid = jq('#diaryid').val();
 		var userid = jq('#userid').attr('value'); 
 		var nowdiarytype =  jq('#nowdiarytype').attr('value'); 
 		var status = jq('#status').combobox('getValue'); 

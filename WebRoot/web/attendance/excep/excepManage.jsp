@@ -12,7 +12,8 @@
 	<body>
 		<form id="clockRecordsForm">
 			<div class="easyui-panel" title="查询条件" style="width: 100%">
-				<div style="margin-top: 10px; margin-bottom: 10px;">
+				<div style="margin-top: 10px; margin-bottom: 10px;position: relative">
+				
 					<div style="margin: 10px;">
 						<label style="margin: 10px;">
 							开始日期：
@@ -28,11 +29,30 @@
 						<input name="clockRecords.userid" id="userid" type="hidden" />
 						<input name="clockRecords.clockdate" id="clockdate" type="hidden" />
 						<input name="clockRecords.isneed" id="isneed" type="hidden" />
+						
+						
+					
+					</div>
+					
+					
+					<div style="margin: 10px;">
+						<div style="margin: 10px;float:left">
+							异常打卡
+						</div>
+						<div style="margin: 10px;background-color: #E1643D;width: 40px;height: 20px;float:left"></div>
+						<div  style="margin: 10px;float:left">
+							未打卡
+						</div> 
+						<div style="margin: 10px;background-color: #F5BB2A;width: 40px;height: 20px;float:left"></div>
+						<div style="margin: 10px;float:left">
+							假期
+						</div> 
+							<div style="margin: 10px;background-color: #CBE8F1;width: 40px;height: 20px;float:left"></div>
 					</div>
 				</div>
 			</div>
 		</form>
-			<div class="easyui-panel" style="width: 100%; height: 80%">
+			<div class="easyui-panel" style="width: 100%; height: 68%">
 				<div align="left">
 				</div>
 				<table id="dg" title="考勤异常记录" style="width: 100%; height: 100%"

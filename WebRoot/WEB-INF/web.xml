@@ -76,7 +76,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 		
 		<init-param>
 			<param-name>WebLogicCluster</param-name>
-			<param-value>10.122.2.100:8001|10.122.2.100:8002</param-value>
+			<param-value>10.129.74.55:8001|10.129.74.55:8002|10.129.74.55:8004|10.129.74.55:8003</param-value>
 		</init-param>
 		<!-- 是否启用调试配置，正式运行时需要关闭 -->
 		<init-param>

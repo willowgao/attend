@@ -41,6 +41,7 @@ public class DiaryDiscussEachOtherService implements IDiaryDiscussEachOtherServi
 		queryMap.put("startTime", DateUtil.date2String(diaryDaily.getStarttime(), DateUtil.YMD));
 		queryMap.put("endTime", DateUtil.date2String(diaryDaily.getEndtime(), DateUtil.YMD));
 		queryMap.put("diarytype", diaryDaily.getDiarytype());
+		queryMap.put("userid", diaryDaily.getUserid());
 		queryMap.put("onsubmit", "1");
 		return diaryApproveDao.getDiarysForApprove(queryMap);
 	}

@@ -131,6 +131,8 @@ public class UserManagerAction extends BaseAction {
 			renderText(response, "1");
 			// 设置用户信息
 			setUserInfo(list.get(0));
+		}else{
+			renderText(response, "0");
 		}
 		return null;
 	}

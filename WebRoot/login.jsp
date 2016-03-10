@@ -83,9 +83,10 @@
 			</div> 
 			<div id="systemName" align="center">
 									Xianning Human Resources And Social Security  Usually Assessment Information System</br>Copyright @ 2015-2016</br> MaSoft
+									&nbsp;<a href="web/common/browser/Chrome_Setup.exe">Chrome 浏览器下载</a>
 								</div>
-		<div id="login" class="login_main">
 								
+		<div id="login" class="login_main">
 			<div class="login_username">
 				<input id="username" name="username"></input>
 			</div>
@@ -102,12 +103,14 @@
 				<div class="login_button">
 					登 录
 				</div>
-				
 			</div>
 			<div id="login_hide" class="login_hide">
 				*请检查用户名密码是否正确!
 			</div>
 		</div>
+		<img src="web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 420px;top: 587px;z-index: 99999" alt="Responsive image"></img>
+		<a class="btn btn-primary btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:18%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
+		
 	</body>
 
 

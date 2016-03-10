@@ -21,6 +21,10 @@
 						</label>
 						<input class="easyui-combobox" type="text" id="diarytype" name="diaryDaily.diarytype" />
 						<label style="margin: 10px;">
+							填报人：
+						</label>
+						<input class="easyui-combobox" type="text" id="userid" name="diaryDaily.userid" />
+						<label style="margin: 10px;">
 							开始日期：
 						</label>
 						<input name="diaryDaily.starttime" id="starttime" class="easyui-datebox"

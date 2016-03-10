@@ -127,7 +127,7 @@
 		</property>
 	</bean>
 	
-	   <!-- 考核情况查询  -->
+	<!-- 考核情况查询  -->
 	<bean name="queryAssessInfoDao" class="com.wgsoft.performance.dao.QueryAssessInfoDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -141,6 +141,26 @@
 	<bean name="queryAssessInfoServiceTarget" class="com.wgsoft.performance.service.QueryAssessInfoService">
 		<property name="queryAssessInfoDao">
 			<ref bean="queryAssessInfoDao" />	
+		</property>
+	</bean>
+	
+	<!--日志信息查询-->
+	<bean name="queryDiarysDao" class="com.wgsoft.performance.dao.QueryDiarysDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="queryDiarysService" parent="service">
+		<property name="target">
+			<ref bean="queryDiarysServiceTarget" />
+		</property>
+	</bean>
+	<bean name="queryDiarysServiceTarget" class="com.wgsoft.performance.service.QueryDiarysService">
+		<property name="queryDiarysDao">
+			<ref bean="queryDiarysDao" />	
+		</property>
+		<property name="diaryApproveDao">
+			<ref bean="diaryApproveDao" />	
 		</property>
 	</bean>
 	
