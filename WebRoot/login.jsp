@@ -100,17 +100,16 @@
 				<input type="text" id="password_hide" name="password_hide"></input>
 			</div>
 			<div id="login_footer" class="login_footer">
-				<div class="login_button">
+				<a class="btn btn-primary btn-lg" style="width:100%;">
 					登 录
-				</div>
+				</a>
 			</div>
-			<div id="login_hide" class="login_hide">
+			<div  id="login_hide" class="login_hide">
 				*请检查用户名密码是否正确!
 			</div>
 		</div>
-		<img src="web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 420px;top: 587px;z-index: 99999" alt="Responsive image"></img>
-		<a class="btn btn-primary btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:18%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
-		
+			<img src="web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 405px;top: 587px;z-index: 99999" alt="Responsive image"></img>
+			<a class="btn btn-primary btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:15%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
 	</body>
 
 
