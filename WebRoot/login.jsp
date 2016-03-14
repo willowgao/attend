@@ -30,7 +30,7 @@
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					<div class="item active" style="background-image:url('<%=webapp%>/web/common/css/images/login1.jpg')">
+					<div class="item active" style="background-image:url('<%=webapp%>/web/common/css/images/login.jpg')">
 						<img class="first-slide"  src="<%=webapp%>/web/common/css/images/b_bg.jpg" alt="First slide">
 						<div class="container">
 							<div class="carousel-caption"  >
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img  class="second-slide" src="<%=webapp%>/web/common/css/images/login1.jpg" alt="Second slide">
+						<img  class="second-slide" src="<%=webapp%>/web/common/css/images/login.jpg" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img class="third-slide" src="<%=webapp%>/web/common/css/images/login1.jpg" alt="Third slide">
+						<img class="third-slide" src="<%=webapp%>/web/common/css/images/login.jpg" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>

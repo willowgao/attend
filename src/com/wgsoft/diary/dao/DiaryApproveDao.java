@@ -51,8 +51,8 @@ public class DiaryApproveDao extends BaseDao implements IDiaryApproveDao {
 			sql.append(" and onsubmit = '").append(queryMap.get("onsubmit")).append("'");
 		}
 		
-		// 如果isAll为1则查询所有，如果为2则只查询本部门
-		if (RunUtil.isNotEmpty(queryMap.get("isAll")) && queryMap.get("isAll").equals("1")) {
+		// 如果isAll为1则查询所有，如果为2则只查询本组织,3查询本部门
+		if (RunUtil.isNotEmpty(queryMap.get("isAll")) && queryMap.get("isAll").equals("3")) {
 			sql.append(" AND USERID IN (SELECT USERID FROM USERINFO WHERE USERDEPTID = '").append(queryMap.get("deptid"))
 					.append("')");
 		}

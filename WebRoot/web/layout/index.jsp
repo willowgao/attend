@@ -23,10 +23,7 @@
 	
 		<div id="commDesc"  class="easyui-panel" style="width: 10%;height: 3%;position:absolute;z-index:8;border-radius: 8px;"></div>
 		<div id="main" class="easyui-layout" style="width: 100%" >
-			<div id="north" data-options="region:'north'">
-				<div id="logo" style="position: absolute; left: 1px; top: 1px; border-radius: 15px;" />
-					<img src="<%=webapp%>/web/common/css/images/logo.png" width="233px;" height="75px;"></img>
-				</div>
+			<div id="north" data-options="region:'north'" style="height:99px;background-image:url('<%=webapp%>/web/common/css/images/template-header2.jpg');">
 				<div id="menu_list" style="position: absolute; left: 235px; top: 1px;" />
 				</div>
 				<div id="style_change" style="position: absolute; right: 100px; bottom: 3px;">
