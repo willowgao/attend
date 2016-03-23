@@ -6,7 +6,7 @@ var jq = jQuery.noConflict();
 		jq('#commDesc').hide();
 		//加载下拉表
 		jq('#approver').combobox({    
-			url:getUsersForCombox(ROLETYPE_TRIAL),
+			url:getUsersForCombox(),
 		    valueField:'id',    
 		    textField:'text'   
 		});  

@@ -9,8 +9,11 @@ import org.apache.struts2.json.JSONUtil;
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.DateUtil;
 import com.wgsoft.common.utils.RunUtil;
+import com.wgsoft.common.utils.SysConstants;
+import com.wgsoft.common.utils.SysConstants.DatesCheckUtils;
 import com.wgsoft.performance.iservice.IPerformanceAssessService;
 import com.wgsoft.performance.model.PerformanceAssess;
+import com.wgsoft.system.model.ClockDateSetting;
 import com.wgsoft.user.iservice.IUserService;
 import com.wgsoft.user.model.UserInfo;
 
@@ -35,6 +38,20 @@ public class PerformanceAssessAction extends BaseAction {
 	 */
 	public String execute() throws Exception {
 		return SUCCESS;
+	}
+
+
+	/**
+	 * @desc:
+	 * @return
+	 * @throws Exception 
+	 * @return String
+	 * @date： 2016-3-17 下午06:05:13
+	 */
+	public String getCheckDate() throws Exception {
+		ClockDateSetting dateSet = getPerformanceAssessService().getDateByType(SysConstants.DatesCheckUtils.CHECK_TYPE_ASSESS[0]);
+		renderText(response, JSONUtil.serialize(dateSet.getClockdate()));
+		return null;
 	}
 
 	/**

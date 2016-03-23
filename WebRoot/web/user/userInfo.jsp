@@ -120,6 +120,12 @@
 					<input class="easyui-combobox" type="text" id="usersex" name="usersex" data-options="required:true" />
 				</div>
 				<div class="label_css">
+					<label for="usersex">
+						参加考核 :
+					</label>
+					<input class="easyui-combobox" type="text" id="needassess" name="needassess" data-options="required:true" />
+				</div>
+				<div class="label_css">
 					<label for="userCode">
 						用 户 名 &nbsp;:
 					</label>

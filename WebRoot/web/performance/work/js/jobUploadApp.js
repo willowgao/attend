@@ -95,6 +95,7 @@
 	   for(var i=0;i< rows.length; i++ ){
 		   ids = ids+rows[i].jobid+',';
 	   }
+	   ids = ids.substring(0, ids.lastIndexOf(','));
 	   jq('#jobAssignmentForm').form('submit', {    
 		    url:programName + '/workDeclare/upload!rollback.action?ids='+ids,
 		    onSubmit: function(){  

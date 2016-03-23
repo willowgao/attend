@@ -29,6 +29,15 @@ public interface IQueryAttendanceInfoDao extends IBaseDao {
 	List<ClockRecords> queryAttend(Map<String, Object> queryMap);
 
 	/**
+	 * @desc: 个人一段时间内的出勤情况
+	 * @param queryMap
+	 * @return
+	 * @return List<ClockRecords>
+	 * @date： 2016-2-2 上午09:27:12
+	 */
+	List<ClockRecords> queryAttends(Map<String, Object> queryMap);
+
+	/**
 	 * @desc: 查询出勤情况 所有组织
 	 * @param queryMap
 	 * @return

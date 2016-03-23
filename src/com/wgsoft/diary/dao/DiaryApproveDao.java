@@ -67,7 +67,7 @@ public class DiaryApproveDao extends BaseDao implements IDiaryApproveDao {
 			}
 		}
 		
-		sql.append(" order by diarydate desc,userid desc");
+		sql.append(" and rownum <31 order by diarydate desc,userid desc");
 		return getSqlList_(sql.toString(), DiaryDaily.class);
 	}
 

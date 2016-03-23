@@ -153,7 +153,8 @@ public class AttendanceLeaveManageAction extends BaseAction {
 	 * @date： 2015-11-2 下午04:27:42
 	 */
 	public String initAppStatus() throws Exception {
-		Map<String, String> dataMap = getDataDictionaryService().getDataDictionarysByKey(SysConstants.ApproverStatus.DICTIONARY_KEY);
+		Map<String, String> dataMap = getDataDictionaryService().getDataDictionarysByKey(
+				SysConstants.ApproverStatus.DICTIONARY_KEY);
 		String leavetype = request.getParameter("leavetype");
 		String status = request.getParameter("status");
 		this.renderText(response, JSONUtil.serialize(AttednUtils.getStatusByLeaveType(leavetype, status, dataMap)));
@@ -173,7 +174,7 @@ public class AttendanceLeaveManageAction extends BaseAction {
 		String status = request.getParameter("status");
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("leavetype", leavetype);
-		queryMap.put("status", status);
+		queryMap.put("status",  status);
 		queryMap.put("user", getUserInfo());
 		queryMap.put("userid", userid);
 		List<Map<String, String>> users = attendanceLeaveManageService.getUserForApprover(queryMap);

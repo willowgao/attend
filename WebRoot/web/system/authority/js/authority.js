@@ -160,6 +160,7 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 	
 	function removeit(tableId){
 		var roleid = jq('#'+tableId).datagrid('getRows')[editIndex]['roleid'];
+		alert(roleid);
 		jq.messager.confirm('确认','请确认是否删除此条信息？',function(r){    
 		    if (r){    
 		    	jq.getJSON( programName + '/authority/roleManager!deleteRole.action?roleId=' + roleid , function(re_datas) {

@@ -57,17 +57,18 @@
 						<label style="margin: 10px;">
 							考核周期：
 						</label>
-						<input name="assess.starttime" id="starttime" class="easyui-datebox" value="<%=DateUtil.getFirstDateOfMonth(DateUtil.date2String(sysdate, DateUtil.FORMAT_MONTH))%>"
+						<input name="assess.starttime" id="starttime" class="easyui-datebox" value="<%=DateUtil.addIntervalOfDate(DateUtil.getFirstDateOfMonth(DateUtil.date2String(sysdate, DateUtil.FORMAT_MONTH)),  0, -1, 0, DateUtil.YMD) %>"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
 						<label style="margin: 10px;">
 							至：
 						</label>
-						<input name="assess.endtime" id="endtime" class="easyui-datebox" value="<%=DateUtil.getLastDateOfMonth(DateUtil.date2String(sysdate, DateUtil.FORMAT_MONTH))%>"
+						<input name="assess.endtime" id="endtime" class="easyui-datebox" value="<%=DateUtil.addIntervalOfDate(DateUtil.getLastDateOfMonth(DateUtil.date2String(sysdate, DateUtil.FORMAT_MONTH)),  0, -1, 0, DateUtil.YMD)%>"
 							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
 						<input type="hidden" name="assess.userid" id="userid"></input>
 						<input type="hidden" name="assess.roletype" id="roletype"></input>
 						<input type="hidden" name="assess.datagrid" id="datagrid"></input>
-						<a href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;" onclick="checkScore();">保存</a>
+						<input type="hidden"  id="sysdate" value="<%=DateUtil.getNowDateByFormat(DateUtil.YMD) %>"></input>
+						<a href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;" id="saveBtn" onclick="checkScore();">保存</a>
 						<label style="margin: 10px;">
 							得分：
 						</label>

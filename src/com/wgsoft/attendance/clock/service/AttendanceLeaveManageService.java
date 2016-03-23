@@ -146,6 +146,10 @@ public class AttendanceLeaveManageService implements IAttendanceLeaveManageServi
 			}
 			return SysConstants.ERROR;
 		}
+		// 如果审核人员ID为空，则说明是最后一步核审，当系统到达最后一步核审时，将考勤异常信息处理掉
+		if (RunUtil.isEmpty(approverid)) {
+			attendanceLeaveManageDao.insertRecoreds(leaveid);
+		}
 		return SysConstants.SUCCESS;
 	}
 

@@ -71,5 +71,14 @@ public interface IAttendanceLeaveManageDao extends IBaseDao {
 	 * @date： 2015-11-2 下午06:30:45
 	 */
 	int updateStatus(String leaveId, String status, String approver);
+	
+	/**
+	 * @desc:
+	 * @param leaveId
+	 * @return 
+	 * @return int
+	 * @date： 2016-3-18 上午09:18:35
+	 */
+	int insertRecoreds(String leaveId);
 
 }

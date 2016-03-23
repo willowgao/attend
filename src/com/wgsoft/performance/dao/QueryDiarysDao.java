@@ -46,6 +46,7 @@ public class QueryDiarysDao extends BaseDao implements IQueryDiarysDao {
 		if (RunUtil.isNotEmpty(queryMap.get("endtime"))) {
 			sql.append(" AND diarydate <= to_date('").append(queryMap.get("endtime")).append("','yyyy-mm-dd') ");
 		}
+		sql.append("  and rownum < 31");
 		return getSqlList_(sql.toString(), DiaryDaily.class);
 	}
 

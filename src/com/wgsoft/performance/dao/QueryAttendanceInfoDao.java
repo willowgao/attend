@@ -38,7 +38,7 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 				"', 'yyyy-mm-dd'),TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm-dd'), 'yyyy-mm-dd')) CLOCKDATE,");
 		sql
 				.append(" A.USERDEPTID DEPT, A.USERID,B.AMSB,B.AMXB,B.PMSB,B.PMXB,C.AMSBTIME,C.AMXBTIME,C.PMSBTIME,C.PMXBTIME ");
-		sql.append("  FROM USERINFO A, CLOCKREOCRDS B, CLOCK_SETTING C WHERE A.USERID = B.USERID(+) AND TO_DATE('")
+		sql.append("  FROM CLOCKREOCRDS B,CLOCK_SETTING C, USERINFO A WHERE A.USERID = B.USERID(+) AND TO_DATE('")
 				.append(clockDate).append("', 'yyyy-mm-dd') = B.CLOCKDATE(+)");
 		sql.append("  AND TO_DATE('").append(clockDate).append("', 'yyyy-mm-dd') BETWEEN C.STARTTIME AND C.ENDTIME");
 
@@ -151,5 +151,12 @@ public class QueryAttendanceInfoDao extends BaseDao implements IQueryAttendanceI
 		sql.append(" AND EXISTS (SELECT 1 FROM CLOCKREOCRDS C WHERE B.USERID = C.USERID  AND C.CLOCKDATE = A.CLOCKDATE)  ");
 		
 		return getSqlList_(sql.toString(), EchartsOfPie.class);
+	}
+	/**
+	 * @see com.wgsoft.performance.idao.IQueryAttendanceInfoDao#queryAttends(Map)
+	 */
+	public List<ClockRecords> queryAttends(Map<String, Object> queryMap) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

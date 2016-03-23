@@ -307,8 +307,8 @@
 				}
 				var menuId = menu.substring(menu.indexOf("_")+1,menu.length);
 				var menuName = menu.substring(0,menu.indexOf("_"));
-				jq('#menu_list').append("<a href='#' onclick='queryTree("+menuId+")' class='easyui-linkbutton c5 l-btn l-btn-small l-btn-plain' style='width: 120px; height: 73px;' group id ><span class='l-btn-left' style='margin-top:10px;'><span class='l-btn-text'><h3>"+menuName+"</h3></span></span></a>");
-			}	 
+				jq('#menu_list').append("<a href='#' onclick='queryTree("+menuId+")' class='easyui-linkbutton c5 l-btn l-btn-small l-btn-plain' style='width: 120px; height:70px;border-radius: 15px;' group id ><span class='l-btn-left' style='margin-top:10px;'><span class='l-btn-text'><h3>"+menuName+"</h3></span></span></a>");
+			} 
 		});
 	}
 	//退出系统

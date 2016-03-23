@@ -38,16 +38,23 @@ public class AttendanceExcepDao extends BaseDao implements IAttendanceExcepDao {
 		sql
 				.append(" CLOCKDATE CLOCKDATE, NULL,NULL,NULL,NULL FROM CLOCKDATE_SETTING A) GROUP BY USERID, CLOCKDATE) F,CLOCK_SETTING G ");
 		sql
-				.append(" WHERE F.CLOCKDATE BETWEEN G.STARTTIME AND G.ENDTIME AND G.ISENABLE = '0' AND F.CLOCKDATE BETWEEN (SYSDATE - 15) AND (SYSDATE + 15) ");
-		sql
-				.append("  AND ((F.AMSB IS NULL OR F.AMXB IS NULL OR F.PMSB IS NULL OR   F.PMXB IS NULL) OR  (EXISTS  (SELECT 1");
-		sql
-				.append("   FROM CLOCKEXCEPTION H  WHERE F.CLOCKDATE = TO_DATE(TO_CHAR(H.CLOCKDATE, 'yyyy-mm-dd'), 'yyyy-mm-dd')");
-		sql.append("  AND H.USERID = F.USERID))) ");
+				.append(" WHERE F.CLOCKDATE BETWEEN G.STARTTIME AND G.ENDTIME AND G.ISENABLE = '0' ");
+		
+		if(RunUtil.isNotEmpty(queryMap.get("isExcep"))){
+			sql
+					.append("  AND ((F.AMSB IS NULL OR F.AMXB IS NULL OR F.PMSB IS NULL OR   F.PMXB IS NULL) OR  (EXISTS  (SELECT 1");
+			sql
+					.append("   FROM CLOCKEXCEPTION H  WHERE F.CLOCKDATE = TO_DATE(TO_CHAR(H.CLOCKDATE, 'yyyy-mm-dd'), 'yyyy-mm-dd')");
+			sql.append("  AND H.USERID = F.USERID))) ");
+		}
 
 		if (RunUtil.isNotEmpty(queryMap.get("clockdate"))) {
 			sql.append(" AND  F.clockdate =to_date('").append(
 					DateUtil.date2String((Date) queryMap.get("clockdate"), DateUtil.YMD)).append("','yyyy-mm-dd')");
+		}
+		
+		if(RunUtil.isEmpty(queryMap.get("startTime"))&&RunUtil.isEmpty(queryMap.get("endTime"))){
+			sql.append(" AND F.CLOCKDATE BETWEEN (SYSDATE - 15) AND (SYSDATE + 15) ");
 		}
 
 		if (RunUtil.isNotEmpty(queryMap.get("startTime"))) {

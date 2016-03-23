@@ -39,6 +39,19 @@ public class QueryDiarysService implements IQueryDiarysService {
 		queryMap.put("deptid", diaryDaily.getDeptid());
 		return diaryApproveDao.getDiarysForApprove(queryMap);
 	}
+	
+	
+	public List<DiaryDaily> queryHistoryDiarys(Map<String, Object> queryMap) {
+		DiaryDaily diaryDaily = (DiaryDaily) queryMap.get("diaryDaily");
+		queryMap.put("diaryid", diaryDaily.getDiaryid());
+		queryMap.put("startTime", DateUtil.date2String(diaryDaily.getStarttime(), DateUtil.YMD));
+		queryMap.put("endTime", DateUtil.date2String(diaryDaily.getEndtime(), DateUtil.YMD));
+		queryMap.put("diarytype", diaryDaily.getDiarytype());
+		queryMap.put("userid", diaryDaily.getUserid());
+		queryMap.put("deptid", diaryDaily.getDeptid());
+		return queryDiarysDao.queryDiarys(queryMap);
+	}
+	
 
 	public IQueryDiarysDao getQueryDiarysDao() {
 		return queryDiarysDao;
@@ -55,6 +68,7 @@ public class QueryDiarysService implements IQueryDiarysService {
 	public void setDiaryApproveDao(IDiaryApproveDao diaryApproveDao) {
 		this.diaryApproveDao = diaryApproveDao;
 	}
+
 	
 	
 

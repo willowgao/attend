@@ -20,11 +20,17 @@
 		<input type="hidden"  name="clockSetting.pamsbTime" id="pmsbTime" ></input>
 		<input type="hidden"  name="clockSetting.pamxbTime" id="pmxbTime" ></input>
 	<form>
-	
 		<div id="commDesc"  class="easyui-panel" style="width: 10%;height: 3%;position:absolute;z-index:8;border-radius: 8px;"></div>
 		<div id="main" class="easyui-layout" style="width: 100%" >
-			<div id="north" data-options="region:'north'" style="height:99px;background-image:url('<%=webapp%>/web/common/css/images/template-header2.jpg');">
-				<div id="menu_list" style="position: absolute; left: 235px; top: 1px;" />
+			<div id="north" data-options="region:'north'" style="background-image:url('<%=webapp%>/web/common/css/images/bg-header2.png');" >
+				<!-- 
+				<img style="position:absolute;left:0px;top:0px;width:100%;height:100%; border:1px" src="<%=webapp%>/web/common/css/images/logo1.png" />
+				 --> 
+				 
+				<div id="logo" style="position: absolute; left: 1px; top: 2px; border-radius: 15px;" />
+					<img src="<%=webapp%>/web/common/css/images/logo1.png" width="100%" height="12%;"></img>
+				</div>
+				<div id="menu_list" style="position: absolute; left: 35%; top: 1px;"/>
 				</div>
 				<div id="style_change" style="position: absolute; right: 100px; bottom: 3px;">
 				<input type="hidden" id="sysstyle" value="<%=request.getAttribute("sysstyle")%>"/>
@@ -38,7 +44,7 @@
 						{id: 'ui-pepper-grinder',text: 'ui-pepper-grinder'},{id: 'ui-sunny',text: 'ui-sunny'}]">
 					</input>
 				</div>
-
+ 
 				<div id="toobars" style="position: absolute; right: 50px; top: 8px;">
 					您好！<%=request.getAttribute("username")%>&nbsp;&nbsp;|&nbsp;&nbsp;
 					<a onclick="fnLoginOut();" style="width: 80px">退出</a>
@@ -47,9 +53,10 @@
 			<input type="hidden" id="statictext" value=">> 您所在菜单：" />
 			<!-- <div id="east" data-options="region:'east'" title="east"></div> 
 			<div id="south" data-options="region:'south'" title="south"></div>  -->
-			<div id="west" data-options="region:'west',split:true" title="系统菜单" style="z-index: -9999;">
+			<div id="west" data-options="region:'west',split:true" title="系统菜单" style="width:30%; background-image:url('<%=webapp%>/web/common/css/images/bg-header2.png');">
 				<ul id="orgTree" class="ztree">
 				</ul>
+				<img src="<%=webapp%>/web/common/css/images/header-social-media.png" style="position:absolute;top:65%; width:100%;height:30%;z-index: 0;"></img>
 			</div>
 			<div id="tab_rightmenu" class="easyui-menu" style="width:150px;"> <!--  <div name="tab_menu-tabclose">关闭</div> -->  
 				<div name="tab_menu-tabcloseall">关闭全部标签</div>  
@@ -60,18 +67,24 @@
 			</div>
 			<div id="center" data-options="region:'center'" title=">>">
 				<div id="mytabs" class="easyui-tabs" data-options="fit : true">
-					<div title="个人中心">
-						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60; top: 100; width: 90%; height: 30%; border: 1px solid #ccc;">
+					
+					<div title="个人中心" style="background-image:url('<%=webapp%>/web/common/css/images/bg-header2.png');">
+						<!-- 
+						<img src="<%=webapp%>/web/common/css/images/slide1.png" style="position:absolute;left:10%;top:26%; width:15%;height:20%"></img>
+					 -->	<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
+							style="position: absolute; left: 60; top: 100; width: 1200px; height: 30%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;font-weight: bold; ">
 								打卡区域
 							</div>
-							<div id="personInfo" style="position: absolute; left: 440; top:100; color: #404040;font-weight: bold; font-size:20px;">
+							<div id="personInfo" style="position: absolute; left: 440; top:100; color: #404040;font-weight: bold; font-size:20px;font-family: Yahei, Georgia, Serif;">
 								<%=request.getAttribute("username")%>,您好！现在是：<%= DateUtil.date2String(new Date(),DateUtil.YNYMDR)%></br> 
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<label style="color: red;font-weight: bold; font-size:30px;" id="timeShow"></lable>
 							</div>
-							<table id="dg" class="easyui-datagrid">   
+								<img src="<%=webapp%>/web/common/css/images/card.jpg" style="position:absolute;left:70%;top:45%; width:20%;height:50%"></img>
+							<table id="dg" class="easyui-datagrid" data-options="
+							onLoadSuccess:function(){jq(this).prev().find('div.datagrid-body').unbind('mouseover');jq(this).prev().find('div.datagrid-body').unbind('onClickRow')},
+							rowStyler:function(){return 'height: 40px';}"  style="width: 100%;">   
 							    <thead>   
 							        <tr>   
 							            <th id="amsbText" data-options="field:'amsbText',width:'25%',align:'center'"></th>   
@@ -81,17 +94,17 @@
 							        </tr>   
 							    </thead>   
 							    <tbody >   
-							        <tr id="clockTr">   
-							            <td align="center"><a href="javascript:void(0)" id="amsb" onclick="fnClock('1');" style="text-decoration : none;color:red;font-weight:bold; ">打卡</a></td>
-							            <td align="center"><a href="javascript:void(0)" id="amxb" onclick="fnClock('2');" style="text-decoration : none;color:red;font-weight:bold;">打卡</td>
-							            <td align="center"><a href="javascript:void(0)" id="pmsb" onclick="fnClock('3');" style="text-decoration : none;color:red; font-weight:bold;">打卡</td>
-							            <td align="center"><a href="javascript:void(0)" id="pmxb" onclick="fnClock('4');" style="text-decoration : none;color:red;font-weight:bold;">打卡</td>  
+							        <tr id="clockTr" >   
+							            <td align="center"><a href="javascript:void(0)" id="amsb" onclick="fnClock('1');" style="text-decoration : none;color:red;font-weight:bold;font-size:16px; ">打卡</a></td>
+							            <td align="center"><a href="javascript:void(0)" id="amxb" onclick="fnClock('2');" style="text-decoration : none;color:red;font-weight:bold;font-size:16px;">打卡</a></td>
+							            <td align="center"><a href="javascript:void(0)" id="pmsb" onclick="fnClock('3');" style="text-decoration : none;color:red;font-weight:bold;font-size:16px;">打卡</a></td>
+							            <td align="center"><a href="javascript:void(0)" id="pmxb" onclick="fnClock('4');" style="text-decoration : none;color:red;font-weight:bold;font-size:16px;">打卡</a></td>  
 							        </tr>     
 							    </tbody>   
 							</table>  
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60;  bottom: 50; width: 44.5%; height: 47%;  border: 1px solid #ccc;">
+							style="position: absolute; left: 60;  bottom: 50; width: 595px; height: 47%;  border: 1px solid #ccc;">
 							<div id="title" style="padding: 13px;  color: #404040;font-weight: bold; ">
 							</div>
 							<div id="topic" class="topic_icon" align="center">
@@ -128,7 +141,7 @@
 							
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; right: 70; bottom: 50; width: 45%; height: 47%; border: 1px solid #ccc;">
+							style="position: absolute; left: 664; bottom: 50; width: 595px; height: 47%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;  color: #404040;font-weight: bold; ">
 								考勤记录
 							</div>
@@ -166,7 +179,6 @@
 						</div>
 					</div>
 				</div>
-				 
 			</div>
 		</div>
 <script type="text/javascript">
@@ -177,9 +189,7 @@
 	jq('#main').width(winWidth);
 	jq('#main').height(winHeight);
 	jq('#north').height(parseFloat(winHeight) * 0.10);
-	jq('#west').width(parseFloat(winWidth) * 0.15);
- 
-    
+	jq('#west').width(parseFloat(winWidth) * 0.15); 
 </script>
 </body>
 </html>

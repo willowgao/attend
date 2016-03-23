@@ -17,6 +17,15 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 		    valueField:'id',    
 		    textField:'text'   
 		});  
+		
+		jq('#needassess').combobox({    
+		    url:getDictionaryForCombox('NEEDASSESS'),    
+		    valueField:'id',    
+		    textField:'text'   
+		}); 
+		
+		
+		
 	});
 
 	//tree初始化设置
@@ -245,6 +254,7 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 			jq('#defaultstyle').combobox('setValue',re_datas.rows[0].defaultstyle);
 			jq('#usersex').combobox('setValue',re_datas.rows[0].usersex);
 			jq('#deptId').val(re_datas.rows[0].userdeptid); 
+			jq('#needassess').combobox('setValue',re_datas.rows[0].needassess);
 		});  
 
 

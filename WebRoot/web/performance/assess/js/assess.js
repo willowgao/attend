@@ -3,6 +3,7 @@
 	 	loadIndexData(); 
 	 	loadCombobox();
 	 	changeDept();
+	 	getCheckDate();
 	});
    
 
@@ -130,6 +131,29 @@
 				if(data>1){
 					jq.messager.alert('提示','已经存在您对此人员考核信息!');
 				}
+			}
+		});
+	}
+	
+	
+	var getCheckDate = function(){
+		var params = jq('#assessForm').serialize();
+		jq.ajax( {
+			url : programName + '/assess/performance!getCheckDate.action?',
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			success : function(data) {
+				 var sysdate= jq('#sysdate').val();
+				    var d = new Date(sysdate);
+				    var e = new Date(data);
+				  	if (d > e) { 
+				  		jq.messager.alert('提示','已经超过操作考核日期【 '+data.substring(0,data.indexOf('T'))+'】,不能再进行考核!');
+				  		jq('#saveBtn').hide();
+				  	}else{
+				  		jq('#saveBtn').show();
+				  	}
+				  	   
 			}
 		});
 	}

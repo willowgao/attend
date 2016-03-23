@@ -51,4 +51,9 @@ public class QueryAttendanceInfoService implements IQueryAttendanceInfoService {
 		this.queryAttendanceInfoDao = queryAttendanceInfoDao;
 	}
 
+	public List<ClockRecords> queryAttends(Map<String, Object> queryMap) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

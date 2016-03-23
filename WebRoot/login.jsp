@@ -30,21 +30,21 @@
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					<div class="item active" style="background-image:url('<%=webapp%>/web/common/css/images/login.jpg')">
-						<img class="first-slide"  src="<%=webapp%>/web/common/css/images/b_bg.jpg" alt="First slide">
+					<div class="item active" style="background-image:url('<%=webapp%>/web/common/css/images/class-scheduling-profile.jpg')">
+						<img class="first-slide"  src="<%=webapp%>/web/common/css/images/Banner-bg.jpg"  >
 						<div class="container">
-							<div class="carousel-caption"  >
-								<h1>
+							<div class="carousel-caption"  style="margin-bottom: 40px;">
+								<h1 style="font-size: 55px;">
 									咸宁市人力资源和社会保障局
 								</h1>
-								<p>
+								<p style="font-size: 35px;">
 									平时考核信息管理系统
 								</p> 
 							</div>
 						</div>
 					</div>
 					<div class="item">
-						<img  class="second-slide" src="<%=webapp%>/web/common/css/images/login.jpg" alt="Second slide">
+						<img  class="second-slide" src="<%=webapp%>/web/common/css/images/Banner-bg07.jpg" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>
@@ -54,13 +54,13 @@
 									通过开发运行平时考核信息化管理系统平台，进一步规范平时考核工作，完善平时考核机制，促进工作人员勤政廉政，提高平时考核工作的科学性，提高工作效能。
 								</p>
 								<p>
-									<a class="btn btn-lg btn-primary" href="#" role="button">我们的指导思想</a>
+									<a class="btn btn-danger btn-lg btn-primary" href="#" role="button">我们的指导思想</a>
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="item">
-						<img class="third-slide" src="<%=webapp%>/web/common/css/images/login.jpg" alt="Third slide">
+						<img class="third-slide" src="<%=webapp%>/web/common/css/images/hr-banner.png" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>
@@ -70,7 +70,7 @@
 									建立平时考核系统平台，利用信息化手段，对工作人员日常工作的情况进行记录、反馈、评估及互动，实现工作人员平时考核客观、公正、量化、高效，促进人社事业的发展。
 								</p>
 								<p>
-									<a class="btn btn-lg btn-primary" href="#" role="button">我们的工作目标</a>
+									<a class="btn btn-danger btn-lg btn-primary" href="#" role="button">我们的工作目标</a>
 								</p>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 				<input type="text" id="password_hide" name="password_hide"></input>
 			</div>
 			<div id="login_footer" class="login_footer">
-				<a class="btn btn-primary btn-lg" style="width:100%;">
+				<a class="btn btn-danger btn-lg" style="width:100%;">
 					登 录
 				</a>
 			</div>
@@ -108,8 +108,8 @@
 				*请检查用户名密码是否正确!
 			</div>
 		</div>
-			<img src="web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 405px;top: 587px;z-index: 99999" alt="Responsive image"></img>
-			<a class="btn btn-primary btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:15%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
+			<img src="<%=webapp%>/web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 405px;top: 587px;z-index: 99999" alt="Responsive image"></img>
+			<a class="btn btn-danger btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:15%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
 	</body>
 
 
@@ -143,7 +143,7 @@
 		password_hide.click(function(){
 			password_hide.hide();
 			password.focus();
-		});
+		}); 
 		 
 		password_hide.focus(function(){
 			password_hide.hide();
@@ -159,7 +159,13 @@
 		jq('#login_footer').click(function(){
 			checkLogin();
 		});
+		username_hide.focus();
 		 
+		username_hide.keydown(function(){
+			username_hide.hide();
+			username.focus();
+		});
+		
 		function checkLogin(){
 			var strName =username.val();
 			var strPwd =password.val();

@@ -34,7 +34,7 @@ public class AttendanceLeaveManageDao extends BaseDao implements IAttendanceLeav
 				sql.append(" and userid = '").append(leave.getUserid()).append("'");
 			}
 			if (RunUtil.isNotEmpty(leave.getStatus())) {
-				sql.append(" and status = '").append(leave.getStatus()).append("'");
+				sql.append(" and ( status = '").append(leave.getStatus()).append("' or status = '1')");
 			}
 			if (RunUtil.isNotEmpty(leave.getLeavetype())) {
 				sql.append(" and leavetype = '").append(leave.getLeavetype()).append("'");
@@ -74,12 +74,14 @@ public class AttendanceLeaveManageDao extends BaseDao implements IAttendanceLeav
 		StringBuffer sql = new StringBuffer(
 				" SELECT userid,username FROM USERINFO A, ROLEINFO B , leave_approve_setting c WHERE A.ROLEID = B.ROLEID  ");
 		sql.append("  AND b.roletype <= c.approver AND c.approvetype ='LEAVE' AND ROLETYPE = '").append(
-				Integer.valueOf(status).intValue() + 2);
+						Integer.valueOf(user.getRoletype()).compareTo(Integer.valueOf(status)) > 0 ? user.getRoletype()
+								: Integer.valueOf(status).intValue() + 2);
 		sql.append("' AND a.userdeptid ='").append(user.getUserdeptid()).append("'");
 		// 根据类型获取需要处理人员
 		sql.append(" AND c.leavetype ='").append(leaveType).append("'");
 		// 核审人员，不能是申报人员本人
 		sql.append(" AND a.userid !='").append(queryMap.get("userid")).append("'");
+		sql.append(" AND a.userid !='").append(user.getUserid()).append("'");
 		return getSqlList_(sql.toString(), UserInfo.class);
 	}
 
@@ -101,6 +103,20 @@ public class AttendanceLeaveManageDao extends BaseDao implements IAttendanceLeav
 		StringBuffer sql = new StringBuffer("SELECT * FROM leaves_approve where 1=1");
 		sql.append(" and  LEAVEID ='").append(queryMap.get("leaveid")).append("' order by appdate ");
 		return getSqlList_(sql.toString(), LeavesApprove.class);
+	}
+
+	public int insertRecoreds(String leaveId) {
+		StringBuffer sql = new StringBuffer(" INSERT INTO clockreocrds SELECT USERID, CLOCKDATE, D.AMSBTIME,");
+		sql.append("  CASE  WHEN TO_DATE(TO_CHAR(A.ENDDATE, 'yyyy-mm-dd') || ' ' || A.ENDTIME, 'yyyy-mm-dd hh24:mi:ss') >=");
+		sql.append(" TO_DATE(TO_CHAR(B.CLOCKDATE, 'yyyy-mm-dd') || ' ' ||  D.AMXBTIME, 'yyyy-mm-dd hh24:mi:ss') THEN  D.AMXBTIME ");
+		sql.append(" ELSE NULL END AMXBTIME, CASE WHEN TO_DATE(TO_CHAR(A.ENDDATE, 'yyyy-mm-dd') || ' ' || A.ENDTIME, 'yyyy-mm-dd hh24:mi:ss') >= ");
+		sql.append(" TO_DATE(TO_CHAR(B.CLOCKDATE, 'yyyy-mm-dd') || ' ' ||  D.PMSBTIME,  'yyyy-mm-dd hh24:mi:ss') THEN D.PMSBTIME ");
+		sql.append(" ELSE NULL  END PMSBTIME,  CASE WHEN TO_DATE(TO_CHAR(A.ENDDATE, 'yyyy-mm-dd') || ' ' || A.ENDTIME, 'yyyy-mm-dd hh24:mi:ss') >= ");
+		sql.append(" TO_DATE(TO_CHAR(B.CLOCKDATE, 'yyyy-mm-dd') || ' ' || D.PMXBTIME, 'yyyy-mm-dd hh24:mi:ss') THEN  D.PMXBTIME ELSE NULL END PMXBTIME ");
+		sql.append(" FROM LEAVES A, CLOCKDATE_SETTING B, CLOCK_SETTING D WHERE A.LEAVEID = '").append(leaveId).append("' ");
+		sql.append(" AND B.CLOCKDATE >= A.STARTDATE AND B.CLOCKDATE <= A.ENDDATE AND B.CLOCKDATE >= D.STARTTIME  AND B.CLOCKDATE <= D.ENDTIME");
+		sql.append(" AND D.ISENABLE = '0' AND B.ISNEED = '0' AND NOT EXISTS (SELECT 1  FROM CLOCKREOCRDS C WHERE A.USERID = C.USERID AND C.CLOCKDATE = B.CLOCKDATE)");
+		return getSqlUpdate(sql.toString());
 	}
 
 }

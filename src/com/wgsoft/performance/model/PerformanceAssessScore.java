@@ -2,6 +2,7 @@ package com.wgsoft.performance.model;
 
 // default package
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.wgsoft.common.model.BaseVO;
@@ -28,25 +29,61 @@ public class PerformanceAssessScore extends BaseVO implements java.io.Serializab
 	private String uploder;
 	private Date uplodetime;
 	private Double reductionscore;
-	
+
 	private String deptid;
 	private String assesstype;
 	private String assesser;
+
+	private Date clockdate;
+	private String exptype;
 	
-	 private Date clockdate;
-     private String exptype;
-	 
-	
-	
+	private String strstartdate;
+	private String strenddate;
+	private BigDecimal khrs;
+	private BigDecimal bmrs;
+
 	// Constructors
 
- 
+	public String getStrstartdate() {
+		return strstartdate;
+	}
+
+	public void setStrstartdate(String strstartdate) {
+		this.strstartdate = strstartdate;
+	}
+
+	public String getStrenddate() {
+		return strenddate;
+	}
+
+	public void setStrenddate(String strenddate) {
+		this.strenddate = strenddate;
+	}
+
 	public Date getClockdate() {
 		return clockdate;
 	}
 
 	public void setClockdate(Date clockdate) {
 		this.clockdate = clockdate;
+	}
+	
+	
+
+	public BigDecimal getKhrs() {
+		return khrs;
+	}
+
+	public void setKhrs(BigDecimal khrs) {
+		this.khrs = khrs;
+	}
+
+	public BigDecimal getBmrs() {
+		return bmrs;
+	}
+
+	public void setBmrs(BigDecimal bmrs) {
+		this.bmrs = bmrs;
 	}
 
 	public String getExptype() {
@@ -67,9 +104,8 @@ public class PerformanceAssessScore extends BaseVO implements java.io.Serializab
 	}
 
 	/** full constructor */
-	public PerformanceAssessScore(String scoreid, String userid,
-			String assessyear, Date starttime, Date endtime, Double higherscore,
-			Double peerscore, Double attednscore,Double finalscore, String uploder, Date uplodetime) {
+	public PerformanceAssessScore(String scoreid, String userid, String assessyear, Date starttime, Date endtime,
+			Double higherscore, Double peerscore, Double attednscore, Double finalscore, String uploder, Date uplodetime) {
 		this.scoreid = scoreid;
 		this.userid = userid;
 		this.assessyear = assessyear;
@@ -83,7 +119,6 @@ public class PerformanceAssessScore extends BaseVO implements java.io.Serializab
 		this.uplodetime = uplodetime;
 	}
 
-	
 	// Property accessors
 
 	public Double getReductionscore() {
@@ -114,7 +149,6 @@ public class PerformanceAssessScore extends BaseVO implements java.io.Serializab
 		return this.scoreid;
 	}
 
-	
 	public String getDeptid() {
 		return deptid;
 	}
@@ -182,8 +216,6 @@ public class PerformanceAssessScore extends BaseVO implements java.io.Serializab
 	public void setAttednscore(Double attednscore) {
 		this.attednscore = attednscore;
 	}
-	
-	
 
 	public Double getFinalscore() {
 		return finalscore;

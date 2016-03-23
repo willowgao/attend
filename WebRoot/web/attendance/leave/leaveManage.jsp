@@ -44,7 +44,7 @@
 							开始时间：
 						</label>
 						<input name="leaves.starttime" id="starttime" class="easyui-timespinner"
-							data-options="min:'08:00',max:'09:00',showSeconds:true,value:'08:00',required:true"></input>
+							data-options="min:'08:00',max:'08:00',showSeconds:true,value:'08:00',required:true"></input>
 						<label style="margin: 10px;">
 							终止日期：
 						</label>
@@ -54,7 +54,7 @@
 							终止时间：
 						</label>
 						<input name="leaves.endtime" id="endtime" class="easyui-timespinner"
-							data-options="min:'17:00',max:'18:00',showSeconds:true,value:'17:00',required:true"></input>
+							data-options="min:'12:00',max:'17:00',showSeconds:true,value:'17:00',required:true"></input>
 					</div>
 					
 				<div style="margin-top: 10px; margin-bottom: 10px;">

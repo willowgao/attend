@@ -71,7 +71,7 @@
 		if((value==null||value =='')&&row.isneed=='0'){
 			return 'background-color:#F5BB2A;color:#black;';
 		}else{ 
-	    	if(!checkForTimeZT(value,row.amxbtime)){
+	    	if(!checkForTimeZT(value,row.amxbtime)||!checkForTimeCD(value,row.pmsbtime)){
 				return 'background-color:#E1643D;color:#black;';
 			}else{
 				return 'color:#black;';
@@ -174,7 +174,7 @@
 			}
 		if(isneed == 0){
 			jq('#dlgdg').datagrid( {
-				data : getData(startTime, endTime)
+				data : getData()
 			}).datagrid('clientPaging');
 			
 			//打开弹出窗口
@@ -189,7 +189,7 @@
 			
 			//加载下拉表
 			jq('#approver').combobox({    
-				url:getUsersForCombox(ROLETYPE_TRIAL),
+				url:getUsersForCombox(),
 			    valueField:'id',    
 			    textField:'text'   
 			});  

@@ -375,4 +375,35 @@ public class SysConstants {
 
 	}
 
+	/**
+	 * 
+	 * @title： SysConstants.java
+	 * @desc： 查检日期天数公共类
+	 * @author： Willowgao
+	 * @date： 2016-3-17 下午05:55:28
+	 * @version： V1.0<br>
+	 * @versioninfo： 慕安软件<br>
+	 * @modify： 更改时间、更改人、更改原因、更改内容<br>
+	 */
+
+	public static class DatesCheckUtils {
+
+		/**
+		 * 考核检查天数
+		 */
+		public static final String[] CHECK_TYPE_ASSESS = { "1", "6" };
+		/**
+		 *日期检查类型与具体的检查时间天数
+		 */
+		static Map<String, String> checkMap = null;
+
+		public static String getDatesByType(String type) {
+			if (checkMap == null) {
+				checkMap = new HashMap<String, String>();
+				checkMap.put(CHECK_TYPE_ASSESS[0], CHECK_TYPE_ASSESS[1]);
+			}
+			return checkMap.get(type);
+		}
+	}
+
 }

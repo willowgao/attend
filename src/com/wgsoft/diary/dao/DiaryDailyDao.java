@@ -26,33 +26,28 @@ public class DiaryDailyDao extends BaseDao implements IDiaryDailyDao {
 	 */
 	public List<DiaryDaily> getDiarys(boolean ischeck, DiaryDaily diary) {
 		StringBuffer sql = new StringBuffer("SELECT * FROM DIARY_DAILY WHERE 1=1");
-		if (!ischeck) {
-			if (RunUtil.isNotEmpty(diary.getStarttime())) {
-				sql.append(" and (to_char(diarydate,'yyyy-mm-dd') >= '").append(
-						DateUtil.date2String(diary.getStarttime(), DateUtil.YMD)).append("'");
-			}
-			if (RunUtil.isNotEmpty(diary.getEndtime())) {
-				sql.append(" and to_char(diarydate,'yyyy-mm-dd') <= '").append(
-						DateUtil.date2String(diary.getEndtime(), DateUtil.YMD)).append("')");
-			}
-		} else {
-			if (RunUtil.isNotEmpty(diary.getStarttime()) || RunUtil.isNotEmpty(diary.getEndtime())) {
-				sql.append(" and (to_char(starttime,'yyyy-mm-dd') <= '").append(
-						DateUtil.getNowDateByFormat(DateUtil.YMD)).append("'");
-				sql.append(" and to_char(endTime,'yyyy-mm-dd') >= '").append(
-						DateUtil.getNowDateByFormat(DateUtil.YMD)).append("')");
-			}
+		if (RunUtil.isNotEmpty(diary.getDiarydate())) {
+			sql.append(" and (to_char(starttime,'yyyy-mm-dd') >= '").append(
+					DateUtil.date2String(diary.getDiarydate(), DateUtil.YMD)).append("'");
 		}
+		if (RunUtil.isNotEmpty(diary.getDiarydate())) {
+			sql.append(" and to_char(endTime,'yyyy-mm-dd') <= '").append(
+					DateUtil.date2String(diary.getDiarydate(), DateUtil.YMD)).append("')");
+		}
+
+		if (RunUtil.isNotEmpty(diary.getStarttime()) || RunUtil.isNotEmpty(diary.getEndtime())) {
+			sql.append(" and (to_char(starttime,'yyyy-mm-dd') <= '").append(
+					DateUtil.date2String(diary.getStarttime(), DateUtil.YMD)).append("'");
+			sql.append(" and to_char(endTime,'yyyy-mm-dd') >= '").append(
+					DateUtil.date2String(diary.getEndtime(), DateUtil.YMD)).append("')");
+		}
+
 		if (RunUtil.isNotEmpty(diary.getDiarytype())) {
 			sql.append(" and  diarytype = '").append(diary.getDiarytype()).append("'");
 		}
 		if (RunUtil.isNotEmpty(diary.getUserid())) {
 			sql.append(" and  userid = '").append(diary.getUserid()).append("'");
-		}
-		if (RunUtil.isNotEmpty(diary.getDiarydate())) {
-			sql.append(" and  to_char(diarydate,'yyyy-mm-dd') = '").append(
-					DateUtil.date2String(diary.getDiarydate(), DateUtil.YMD)).append("'");
-		}
+		} 
 		sql.append(" order by diarydate desc");
 		return getSqlList_(sql.toString(), DiaryDaily.class);
 	}

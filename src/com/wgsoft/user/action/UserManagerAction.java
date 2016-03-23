@@ -35,6 +35,15 @@ public class UserManagerAction extends BaseAction {
 	private String usersex;
 	private String oldPwd;
 	private String role;
+	private String needassess;
+
+	public String getNeedassess() {
+		return needassess;
+	}
+
+	public void setNeedassess(String needassess) {
+		this.needassess = needassess;
+	}
 
 	public String getFontsize() {
 		return fontsize;
@@ -206,6 +215,7 @@ public class UserManagerAction extends BaseAction {
 		user.setUsersex(usersex);
 		user.setDefaultstyle(defaultstyle);
 		user.setRoleid(request.getParameter("roleId"));
+		user.setNeedassess(needassess);
 		if (!userPwd.equals(oldPwd)) {
 			user.setUserpwd(SecurityUtils.setPwdForDb(userPwd));
 		}

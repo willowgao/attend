@@ -35,6 +35,13 @@ public class QueryAssessInfoService implements IQueryAssessInfoService {
 		return queryAssessInfoDao.queryOrgRanking(queryMap);
 	}
 
+	/**
+	 * @see com.wgsoft.performance.iservice.IQueryAssessInfoService#queryAssessInfo(Map)
+	 */
+	public List<PerformanceAssessScore> queryAssessInfo(Map<String, Object> queryMap) {
+		return queryAssessInfoDao.queryAssessInfo(queryMap);
+	}
+
 	public IQueryAssessInfoDao getQueryAssessInfoDao() {
 		return queryAssessInfoDao;
 	}

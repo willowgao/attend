@@ -48,8 +48,9 @@ public class PerformanceAssessScoreDao extends BaseDao implements IPerformanceAs
 
 		if (RunUtil.isNotEmpty(queryMap.get("deptid"))) {
 			sql.append("  AND A.DEPTID = '").append(queryMap.get("deptid")).append("'");
+		}else{
+			sql.append("  AND A.DEPTID = '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
 		}
-		sql.append("  AND A.DEPTID = '").append(((UserInfo) queryMap.get("user")).getUserdeptid()).append("' ");
 		sql.append("  GROUP BY A.USERID, A.ASSESSTYPE,A.DEPTID,A.ASSESSYEAR,A.STARTTIME,A.ENDTIME) A");
 		sql
 				.append("  WHERE NOT EXISTS (SELECT 1 FROM PERFORMANCE_ASSESS_SCORE B WHERE A.USERID = B.USERID AND A.ASSESSYEAR = B.ASSESSYEAR AND A.STARTTIME = B.STARTTIME AND A.ENDTIME = B.ENDTIME)");

@@ -54,6 +54,9 @@ var doSysStyle = function(){
 	    }
 	}
 	
+	/**
+	 * 默认字体处理
+	 */
 	if(parent.document.getElementById('fontsize')!=null){
 		var link_easyui_css = jq("#link_easyui_css").attr("href");
 		var link_easyui_css_content = jq(parent.document).contents().find('#link_easyui_css').attr("href");
@@ -508,12 +511,23 @@ function formatterdate(val, row) {
 
 function getDateForStringDate(strDate){
     // 切割年月日与时分秒称为数组
-    var s = strDate.split(" "); 
-    var s1 = s[0].split("-"); 
-    var s2 = s[1].split(":");
-    if(s2.length==2){
-        s2.push("00");
-    }
+	 var s  = null;
+	 var s1  = null;
+	 var s2  = null;
+	 try{
+		 s = strDate.split(" "); 
+		 s1 = s[0].split("-"); 
+		 s2 = s[1].split(":");
+
+		    if(s2.length==2){
+		        s2.push("00");
+		    }
+	 }catch(e){
+
+			var val = new Date(strDate);
+		 
+		 return val;
+	 }
     return new Date(s1[0],s1[1]-1,s1[2],s2[0],s2[1],s2[2]);
 }
 

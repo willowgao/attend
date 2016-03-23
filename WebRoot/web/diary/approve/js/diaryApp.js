@@ -1,5 +1,3 @@
- //jQuery将$换成jq，避免冲突
-var jq = jQuery.noConflict();
  jq(function() {
 		loadData();
 		jq('#dlg').dialog('close');

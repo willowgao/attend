@@ -24,4 +24,14 @@ public interface IQueryDiarysService {
 	 * @date： 2016-3-9 下午04:14:23
 	 */
 	List<DiaryDaily> queryDiarys(Map<String, Object> queryMap);
+
+	/**
+	 * @desc:查询历史日志信息
+	 * @param queryMap
+	 * @return
+	 * @return List<DiaryDaily>
+	 * @date： 2016-3-22 下午06:15:12
+	 */
+	List<DiaryDaily> queryHistoryDiarys(Map<String, Object> queryMap);
+
 }

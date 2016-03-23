@@ -1,5 +1,12 @@
- 
- 
+    jq(function() {
+
+		jq('#deptid').combobox({    
+			url:getDeptByOrg(),
+		    valueField:'id',    
+		    textField:'text'   
+		}); 
+		
+    });
 /**
  * 页面分页查询
  * @return

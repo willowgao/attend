@@ -27,6 +27,17 @@ public interface IQueryAssessInfoService {
 	List<PerformanceAssessScore> queryAssessForList(Map<String, Object> queryMap);
 	
 
+
+	/**
+	 * @desc:查询部门考核情况，是否有人员存在未考评情况
+	 * @param queryMap
+	 * @return
+	 * @return List<PerformanceAssessScore>
+	 * @date： 2016-2-25 下午02:51:59
+	 */
+	List<PerformanceAssessScore> queryAssessInfo(Map<String, Object> queryMap);
+	
+
 	/**
 	 * @desc: 考核得分排名
 	 * @param queryMap

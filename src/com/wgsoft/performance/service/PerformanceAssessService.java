@@ -6,9 +6,11 @@ import java.util.Map;
 
 import com.wgsoft.common.utils.DateUtil;
 import com.wgsoft.common.utils.SysConstants;
+import com.wgsoft.common.utils.SysConstants.DatesCheckUtils;
 import com.wgsoft.performance.idao.IPerformanceAssessDao;
 import com.wgsoft.performance.iservice.IPerformanceAssessService;
 import com.wgsoft.performance.model.PerformanceAssess;
+import com.wgsoft.system.model.ClockDateSetting;
 import com.wgsoft.user.model.UserInfo;
 
 /**
@@ -82,6 +84,13 @@ public class PerformanceAssessService implements IPerformanceAssessService {
 		}
 
 		return i;
+	}
+
+	/**
+	 * @see com.wgsoft.performance.iservice.IPerformanceAssessService#getDateByType(String)
+	 */
+	public ClockDateSetting getDateByType(String dateType) {
+		return performanceAssessDao.getDateByType(dateType);
 	}
 
 	public IPerformanceAssessDao getPerformanceAssessDao() {

@@ -12,6 +12,7 @@ import com.wgsoft.attendance.clock.model.ClockExcep;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.AttednUtils;
+import com.wgsoft.common.utils.DateUtil;
 import com.wgsoft.common.utils.SysConstants;
 import com.wgsoft.system.iservice.IDataDictionaryService;
 
@@ -61,9 +62,10 @@ public class AttendanceExcepAction extends BaseAction {
 	public String getExcepRecords() throws Exception {
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("userId", getUserInfo().getUserid());
-		queryMap.put("startTime", clockRecords == null ? request.getParameter("startTime") : clockRecords
-				.getStartTime());
-		queryMap.put("endTime", clockRecords == null ? request.getParameter("endTime") : clockRecords.getEndTime());
+		queryMap.put("startTime", clockRecords == null ? request.getParameter("startTime") : DateUtil.date2String(
+				clockRecords.getStartTime(), DateUtil.YMD));
+		queryMap.put("endTime", clockRecords == null ? request.getParameter("endTime") : DateUtil.date2String(
+				clockRecords.getEndTime(), DateUtil.YMD));
 		if (clockRecords != null) {
 			queryMap.put("clockdate", clockRecords.getClockdate());
 		}

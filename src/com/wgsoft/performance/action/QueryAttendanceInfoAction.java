@@ -7,12 +7,17 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.wgsoft.attendance.clock.iservice.IAttendanceExcepService;
 import com.wgsoft.attendance.clock.model.ClockRecords;
 import com.wgsoft.common.action.BaseAction;
+import com.wgsoft.common.utils.DateUtil;
 import com.wgsoft.common.utils.EchartsUtils;
+import com.wgsoft.common.utils.RunUtil;
+import com.wgsoft.diary.model.DiaryDaily;
 import com.wgsoft.diary.model.EchartsOfBar;
 import com.wgsoft.diary.model.EchartsOfPie;
 import com.wgsoft.performance.iservice.IQueryAttendanceInfoService;
+import com.wgsoft.performance.model.PositionStatement;
 
 /**
  * 
@@ -39,6 +44,24 @@ public class QueryAttendanceInfoAction extends BaseAction {
 	}
 
 	/**
+	 * 页面初始化
+	 */
+	public String queryAttends() throws Exception {
+		return "queryAttends";
+	}
+	
+	
+	public void initForm() throws Exception {
+		if (clockRecords == null) {
+			clockRecords = new ClockRecords();
+		} 
+		clockRecords.setUserid(getUserInfo().getUserid());
+		clockRecords.setFlag(getUserInfo().getRoletype());
+		renderText(response, transferVoToForm("clockRecordsForm", clockRecords, ClockRecords.class));
+	}
+	
+
+	/**
 	 * @desc:查询出勤情况
 	 * @return
 	 * @throws Exception
@@ -51,6 +74,32 @@ public class QueryAttendanceInfoAction extends BaseAction {
 		queryMap.put("dept", request.getParameter("dept"));
 		queryMap.put("user", getUserInfo());
 		List<ClockRecords> list = getQueryAttendanceInfoService().queryAttend(queryMap);
+		renderText(response, transferListToJsonMapForTabel(list));
+		return null;
+	}
+
+	/**
+	 * @desc:查询出勤情况
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2016-2-2 上午09:24:58
+	 */
+	public String queryAttendsList() throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		if (RunUtil.isEmpty(request.getParameter("userid"))) {
+			queryMap.put("userId", getUserInfo().getUserid());
+		}else{
+			queryMap.put("userId", request.getParameter("userid"));
+		}
+		queryMap.put("startTime", clockRecords == null ? request.getParameter("startTime") : DateUtil.date2String(
+				clockRecords.getStartTime(), DateUtil.YMD));
+		queryMap.put("endTime", clockRecords == null ? request.getParameter("endTime") : DateUtil.date2String(
+				clockRecords.getEndTime(), DateUtil.YMD));
+		if (clockRecords != null) {
+			queryMap.put("clockdate", clockRecords.getClockdate());
+		}
+		List<ClockRecords> list = getAttendanceExcepService().getExcepClockRecords(queryMap);
 		renderText(response, transferListToJsonMapForTabel(list));
 		return null;
 	}
@@ -130,14 +179,18 @@ public class QueryAttendanceInfoAction extends BaseAction {
 		return null;
 
 	}
-	
+
 	public String exportExcel() throws Exception {
-		
+
 		return null;
 	}
 
 	private IQueryAttendanceInfoService getQueryAttendanceInfoService() {
 		return (IQueryAttendanceInfoService) getService("queryAttendanceInfoService");
+	}
+
+	private IAttendanceExcepService getAttendanceExcepService() {
+		return (IAttendanceExcepService) getService("attendanceExcepService");
 	}
 
 	private ClockRecords clockRecords;

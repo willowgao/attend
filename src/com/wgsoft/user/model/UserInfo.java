@@ -22,6 +22,7 @@ public class UserInfo implements java.io.Serializable {
 	private String username;
 	private String userpwd;
 	private String userdeptid;
+	private String userdept;
 	private String userorg;
 	private String roleid;
 	private String roletype;
@@ -29,6 +30,7 @@ public class UserInfo implements java.io.Serializable {
 	private String defaultstyle;
 	private String usersex;
 	private String fontsize;
+	private String needassess;
 
 	public String getFontsize() {
 		return fontsize;
@@ -43,8 +45,25 @@ public class UserInfo implements java.io.Serializable {
 
 	// Constructors
 
+	public String getUserdept() {
+		return userdept;
+	}
+
+	public void setUserdept(String userdept) {
+		this.userdept = userdept;
+	}
+
 	/** default constructor */
 	public UserInfo() {
+	}
+	
+
+	public String getNeedassess() {
+		return needassess;
+	}
+
+	public void setNeedassess(String needassess) {
+		this.needassess = needassess;
 	}
 
 	/** full constructor */

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.apache.struts2.json.JSONUtil;
 
 import com.wgsoft.common.action.BaseAction;
 import com.wgsoft.common.utils.BeanUtil;
+import com.wgsoft.common.utils.DateUtil;
 import com.wgsoft.common.utils.EchartsUtils;
 import com.wgsoft.common.utils.FileUtil;
 import com.wgsoft.common.utils.RunUtil;
@@ -37,8 +39,8 @@ public class QueryAssessInfoAction extends BaseAction {
 	/** 导出文件的列头和属性名称 */
 	private static final String[] expColumnNames = new String[] { "考核年度", "部门", "被考核人", "开始日期", "终止日期", "领导打分", "同级打分",
 			"考勤扣分", "最后得分" };
-	private static final String[] expfieldNames = new String[] { "assessyear", "deptid", "userid", "starttime",
-			"endtime", "higherscore", "peerscore", "reductionscore", "finalscore" };
+	private static final String[] expfieldNames = new String[] { "assessyear", "deptid", "userid", "strstartdate",
+			"strenddate", "higherscore", "peerscore", "reductionscore", "finalscore" };
 	private static final String fileName = "/考核评分汇总表.xls";
 	/**
 	 * 
@@ -52,6 +54,16 @@ public class QueryAssessInfoAction extends BaseAction {
 		return SUCCESS;
 	}
 
+	
+
+	/**
+	 * 页面初始化
+	 */
+	public String info() throws Exception {
+		return "info";
+	}
+
+	
 	/**
 	 * @desc:查询出勤情况
 	 * @return
@@ -78,7 +90,32 @@ public class QueryAssessInfoAction extends BaseAction {
 	}
 
 	/**
-	 * @desc:
+	 * @desc:查询部门考核情况，是否有人员存在未考评情况
+	 * @return
+	 * @throws Exception
+	 * @return String
+	 * @date： 2016-3-23 上午11:12:31
+	 */
+	public String queryAssessInfo() throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		Map<String, Object> requestMap = request.getParameterMap();
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.starttime"))[0])) {
+			queryMap.put("starttime", ((String[]) requestMap.get("assess.starttime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.endtime"))[0])) {
+			queryMap.put("endtime", ((String[]) requestMap.get("assess.endtime"))[0]);
+		}
+		if (RunUtil.isNotEmpty(((String[]) requestMap.get("assess.deptid"))[0])) {
+			queryMap.put("deptid", ((String[]) requestMap.get("assess.deptid"))[0]);
+		}
+		queryMap.put("user", getUserInfo());
+		List<PerformanceAssessScore> list = getQueryAssessInfoService().queryAssessInfo(queryMap);
+		renderText(response, transferListToJsonMapForTabel(list));
+		return null;
+	}
+
+	/**
+	 * @desc:导出表格
 	 * @return
 	 * @throws Exception
 	 * @return String
@@ -93,6 +130,11 @@ public class QueryAssessInfoAction extends BaseAction {
 		for (Map<String, Object> score : scoreMaps) {
 			PerformanceAssessScore assessScore = new PerformanceAssessScore();
 			try {
+				// 处理编码转成文字
+				score.put("strstartdate", score.get("starttime").toString().substring(0, 10));
+				score.put("strenddate", score.get("endtime").toString().substring(0, 10));
+				score.put("deptid", userMap.get(score.get("userid")).getUserdept());
+				score.put("userid", userMap.get(score.get("userid")).getUsername());
 				BeanUtil.applyIf(assessScore, score);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -123,7 +165,7 @@ public class QueryAssessInfoAction extends BaseAction {
 	public String showCharts() throws Exception {
 		return "showCharts";
 	}
-	
+
 	/**
 	 * @desc: 考核得分排名
 	 * @return
@@ -152,7 +194,6 @@ public class QueryAssessInfoAction extends BaseAction {
 		renderText(response, EchartsUtils.getBar(jsonList).toString());
 		return null;
 	}
- 
 
 	private IQueryAssessInfoService getQueryAssessInfoService() {
 		return (IQueryAssessInfoService) getService("queryAssessInfoService");

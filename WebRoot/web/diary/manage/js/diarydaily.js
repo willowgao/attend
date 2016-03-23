@@ -64,7 +64,7 @@
 	//加载下拉表
 	var loadCombobox = function(){
 		jq('#approver').combobox({    
-			url:getUsersForCombox(ROLETYPE_TRIAL),
+			url:getUsersForCombox(),
 		    valueField:'id',    
 		    textField:'text'   
 		});  

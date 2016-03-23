@@ -59,7 +59,7 @@
 				<iframe align="right" id ='discuss' scrolling='auto' frameborder='0'  style='width:30%;height:100%;'></iframe>
 			 </div>
 			 
-				<div class="easyui-panel" style="margin-top: 2px; width: 100%; height: 70%">
+				<div class="easyui-panel" style="margin-top: 2px; width: 100%; height: 60%">
 				<table id="dg" title="日志信息列表" style="width: 100%; height: 100%"
 					data-options="fit:true,
 					rownumbers:true,

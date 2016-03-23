@@ -169,6 +169,9 @@ public class SystemAuthorityManageAction extends BaseAction {
 	 */
 	public String getUserForApprove() throws Exception {
 		String roleType = request.getParameter("roleType");
+		if(RunUtil.isEmpty(roleType)||roleType.equals("undefined")){
+			roleType =String.valueOf(Integer.valueOf(getUserInfo().getRoletype()).intValue()+1);
+		}
 		String jsonData = userService.getUserForApprove(roleType, getUserInfo());
 		this.renderText(response, jsonData);
 		return null;

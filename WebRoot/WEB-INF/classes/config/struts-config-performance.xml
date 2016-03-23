@@ -67,6 +67,7 @@
 		<action name="queryAttend"
 			class="com.wgsoft.performance.action.QueryAttendanceInfoAction">
 			<result name="success">/web/performance/query/queryAttend.jsp</result>
+			<result name="queryAttends">/web/performance/query/queryAttends.jsp</result>
 		</action>
 		
 		
@@ -82,15 +83,21 @@
 			class="com.wgsoft.performance.action.QueryAssessInfoAction">
 			<result name="success">/web/performance/query/queryAssess.jsp</result>
 			<result name="showCharts">/web/performance/query/assessAnalysis.jsp</result>
+			<result name="info">/web/performance/query/queryAssessInfo.jsp</result>
 		</action>
 		
+		
+		 
 		
 		
 		<!-- 日志信息查询 -->
 		<action name="queryDiarys"
 			class="com.wgsoft.performance.action.QueryDiarysAction">
 			<result name="success">/web/performance/query/queryDiarys.jsp</result>
+			<result name="history">/web/performance/query/queryHistoryDiarys.jsp</result>
 		</action>
+		
+		 
 		
 		
 	</package>  

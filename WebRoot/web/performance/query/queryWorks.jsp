@@ -13,6 +13,10 @@
 			<div class="easyui-panel" title="查询条件" style="width: 100%">
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
+						<label >
+							部门：
+						</label>
+						<input class="easyui-combobox" type="text" id="deptid" name="job.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">
 							填报 开始日期：
 						</label>
@@ -31,7 +35,7 @@
 		<div style="width: 100%; height: 75%">
 			<div align="left">
 			</div>
-			<table id="dg" title="工作任务记录" class="easyui-treegrid" style="with: 100%; height: 100%"
+			<table id="dg" title="工作任务记录" class="easyui-treegrid" style="width: 100%; height: 100%"
 				data-options="
 				url:'<%=webapp %>/query/queryWorks!queryWorks.action',
 				idField:'id',

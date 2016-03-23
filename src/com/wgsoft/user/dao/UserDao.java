@@ -27,7 +27,7 @@ public class UserDao extends BaseDao implements IUserDao {
 	 * @see com.wgsoft.user.idao.IUserDao#getUsers()
 	 */
 	public List<UserInfo> getUsers() {
-		List<UserInfo> users = getSqlList_("select * from userInfo", UserInfo.class);
+		List<UserInfo> users = getSqlList_("select a.*,b.deptname userdept from userInfo a ,deptment b WHERE a.userdeptid = b.deptid ", UserInfo.class);
 		return users;
 	}
 
@@ -172,7 +172,14 @@ public class UserDao extends BaseDao implements IUserDao {
 		sql.append("  AND B.ENDTIME = TRUNC(SYSDATE, 'q') - 1");
 		sql.append("  AND B.USERID  ='").append(user.getUserid()).append("'  AND B.DIARYTYPE = '4' )");
 		sql.append("    AND SYSDATE >= TRUNC(SYSDATE, 'q') + 1 ");
-
+		//出差
+		sql .append(" UNION select '/leave/leaveManager!approve.action','请假(出差)审核',startdate,enddate,appdate   FROM leaves WHERE approverid ='").append(user.getUserid()).append("' and status >=1");
+		//异常考核
+		sql .append(" UNION select '/clock/excepManager!approve.action','未打卡审核',clockdate,clockdate,clockdate   FROM CLOCKEXCEPTION A, CLOCK_EXCEP_APPROVE B ");
+		sql .append(" WHERE a.expid = b.expid AND  b.approverid ='").append(user.getUserid()).append("' and a.isenable='0'");
+		//日志
+		sql .append(" UNION select '/diary/diaryApprove.action','工作日志审核',starttime,endtime,diarydate   FROM diary_daily WHERE approverid ='").append(user.getUserid()).append("' and status =1");
+		
 		sql.append(") order by settime ");
 		return getSqlList_(sql.toString(), BacklogWork.class);
 	}

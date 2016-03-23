@@ -112,7 +112,7 @@ var jq = jQuery.noConflict();
 		if((value==null||value =='')){
 			return 'background-color:#F5BB2A;color:#black;';
 		} 
-    	if(!checkForTimeZT(value,row.amxbtime)){
+    	if(!checkForTimeZT(value,row.amxbtime)||!checkForTimeCD(value,row.pmsbtime)){
 			return 'background-color:#E1643D;color:#black;';
 		}else{
 			return 'color:#black;';

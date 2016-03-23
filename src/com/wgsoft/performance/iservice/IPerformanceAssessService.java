@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.wgsoft.performance.model.PerformanceAssess;
+import com.wgsoft.system.model.ClockDateSetting;
 
 /**
  * 
@@ -34,4 +35,14 @@ public interface IPerformanceAssessService {
 	 * @date： 2016-3-2 下午03:25:50
 	 */
 	List<PerformanceAssess> queryAssess(Map<String, Object> queryMap);
+	
+
+	/**
+	 * @desc: 查询考核查检的时间
+	 * @param dateType
+	 * @return
+	 * @return ClockDateSetting
+	 * @date： 2016-3-17 下午05:57:30
+	 */
+	ClockDateSetting getDateByType(String dateType);
 }
