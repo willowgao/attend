@@ -87,9 +87,6 @@
 		</action>
 		
 		
-		 
-		
-		
 		<!-- 日志信息查询 -->
 		<action name="queryDiarys"
 			class="com.wgsoft.performance.action.QueryDiarysAction">

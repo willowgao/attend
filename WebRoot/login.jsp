@@ -31,7 +31,7 @@
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="item active" style="background-image:url('<%=webapp%>/web/common/css/images/class-scheduling-profile.jpg')">
-						<img class="first-slide"  src="<%=webapp%>/web/common/css/images/Banner-bg.jpg"  >
+						<img class="first-slide"  src="<%=webapp%>/web/common/css/images/bann10_1.jpg"  >
 						<div class="container">
 							<div class="carousel-caption"  style="margin-bottom: 40px;">
 								<h1 style="font-size: 55px;">
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img  class="second-slide" src="<%=webapp%>/web/common/css/images/Banner-bg07.jpg" alt="Second slide">
+						<img  class="second-slide" src="<%=webapp%>/web/common/css/images/banner.jpg" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img class="third-slide" src="<%=webapp%>/web/common/css/images/hr-banner.png" alt="Third slide">
+						<img class="third-slide" src="<%=webapp%>/web/common/css/images/Banner-bg.jpg" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>

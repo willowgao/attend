@@ -71,7 +71,7 @@
 					</div>
 					<div style="margin-top: 5px; height: 5%;">
 						<label style="margin: 10px;">
-							核审意见:
+							核审状态:
 						</label>
 						<input class="easyui-combobox" type="text" id="status" name="diaryDaily.status" style="margin-right: 5px;"/>
 						<a onclick="save();" href="#" class="easyui-linkbutton c5" style="width: 80px;">保存</a>

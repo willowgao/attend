@@ -136,6 +136,9 @@ public class QueryAttendanceInfoAction extends BaseAction {
 			jsonBar.setData(xData);
 			jsonList.add(jsonBar);
 		}
+		if(jsonList==null||jsonList.size()==0){
+			return null;
+		}
 		renderText(response, EchartsUtils.getBarCompare(jsonList).toString());
 		return null;
 	}
@@ -174,6 +177,9 @@ public class QueryAttendanceInfoAction extends BaseAction {
 			jsonBar.setData(value);
 			jsonList.add(jsonBar);
 
+		}
+		if(jsonList==null||jsonList.size()==0){
+			return null;
 		}
 		renderText(response, EchartsUtils.setPieToLeft(EchartsUtils.getPieNormal(jsonList)));
 		return null;

@@ -65,7 +65,7 @@
 			</table>
 		</div>
 		
-		<div id="menuTreePanel" title="角色菜单信息" class="easyui-panel" style="width: 300px; height: 600px;"
+		<div id="menuTreePanel" title="用户菜单信息" class="easyui-panel" style="width: 300px; height: 600px;"
 			data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1031,top:1}">
 			<div id="menuTb" style="height: auto">
 				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="saveMenuForRole()">保存</a>

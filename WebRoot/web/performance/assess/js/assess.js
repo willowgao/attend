@@ -121,6 +121,7 @@
 	 */
 	function onClickRow(index, row) { 
 		var userid= jq('#userid').val(row.userid);
+		jq('#roletype').val(row.roletype);
 		var params = jq('#assessForm').serialize();
 		jq.ajax( {
 			url : programName + '/assess/performance!queryAssess.action?userid='+userid,
@@ -149,7 +150,7 @@
 				    var e = new Date(data);
 				  	if (d > e) { 
 				  		jq.messager.alert('提示','已经超过操作考核日期【 '+data.substring(0,data.indexOf('T'))+'】,不能再进行考核!');
-				  		jq('#saveBtn').hide();
+				  		//jq('#saveBtn').hide();
 				  	}else{
 				  		jq('#saveBtn').show();
 				  	}

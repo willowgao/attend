@@ -69,9 +69,8 @@
 				<div id="mytabs" class="easyui-tabs" data-options="fit : true">
 					
 					<div title="个人中心" style="background-image:url('<%=webapp%>/web/common/css/images/bg-header2.png');">
-						<!-- 
-						<img src="<%=webapp%>/web/common/css/images/slide1.png" style="position:absolute;left:10%;top:26%; width:15%;height:20%"></img>
-					 -->	<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
+						<img src="<%=webapp%>/web/common/css/images/2_003.png" style="position:absolute;left:25%;top:30%; width:8%;height:10%"></img>
+					 	<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
 							style="position: absolute; left: 60; top: 100; width: 1200px; height: 30%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;font-weight: bold; ">
 								打卡区域

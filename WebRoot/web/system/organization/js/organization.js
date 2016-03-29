@@ -133,6 +133,8 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 					//重新加载树 
 					queryTree();   
 		    		clearForm();
+		    		//重新加载组织信息
+			    	DataDictionaryService.initDataDictionary();
 		    	}
 		    } 
 		});

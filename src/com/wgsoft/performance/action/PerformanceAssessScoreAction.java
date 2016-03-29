@@ -33,9 +33,9 @@ public class PerformanceAssessScoreAction extends BaseAction {
 
 	/** 导出文件的列头和属性名称 */
 	private static final String[] expColumnNames = new String[] { "考核年度", "部门", "被考核人", "开始日期", "终止日期", "领导打分", "同级打分",
-			"考勤扣分", "最后得分" };
-	private static final String[] expfieldNames = new String[] { "assessyear", "deptid", "userid", "starttime",
-			"endtime", "higherscore", "peerscore", "reductionscore", "finalscore" };
+			"考勤扣分", "最后得分" }; 
+	private static final String[] expfieldNames = new String[] { "assessyear", "deptid", "userid", "strstartdate",
+			"strenddate", "higherscore", "peerscore", "reductionscore", "finalscore" };
 	private static final String fileName = "/考核评分汇总表.xls";
 	/**
 	 * 
@@ -149,6 +149,12 @@ public class PerformanceAssessScoreAction extends BaseAction {
 		List<PerformanceAssessScore> scores = new ArrayList<PerformanceAssessScore>();
 		for (Map<String, Object> score : scoreMaps) {
 			PerformanceAssessScore assessScore = new PerformanceAssessScore();
+			// 处理编码转成文字
+			score.put("strstartdate", score.get("starttime").toString().substring(0, 10));
+			score.put("strenddate", score.get("endtime").toString().substring(0, 10));
+			score.put("deptid", userMap.get(score.get("userid")).getUserdept());
+			score.put("userid", userMap.get(score.get("userid")).getUsername());
+			
 			try {
 				BeanUtil.applyIf(assessScore, score);
 			} catch (Exception e) {
