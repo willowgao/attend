@@ -95,7 +95,10 @@ public class AttendanceExcepService implements IAttendanceExcepService {
 				saveMap.put("exists", "exists");
 			}
 			// 写入正常的打卡记录
-			attendanceExcepDao.insertNormalRecords(saveMap);
+			int rel =attendanceExcepDao.insertNormalRecords(saveMap);
+			if(rel!=0){
+				return SysConstants.ERROR;
+			}
 			// 修改异常记录未正常记录
 			attendanceExcepDao.updateStatus(saveMap);
 			excepApp.setAppdate(new Date());
