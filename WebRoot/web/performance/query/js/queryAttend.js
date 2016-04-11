@@ -141,14 +141,15 @@ var jq = jQuery.noConflict();
 		}
 	}
 	
-	//判断是否到打卡时间
+
+	//判断是否异常打卡
 	function checkForTimeCD(systime,checkTime){
 		if(systime==null){
 			return true;
 		}
 		var a = '01/10/2015 ' + systime;
 	    var b = '01/10/2015 ' + checkTime;
-	    var d = new Date(a);
+	    var d = new Date(new Date(a).getTime()-60*10*1000);
 	    var e = new Date(b);
 	  	if (d > e) {
 	  	   return false;
@@ -156,14 +157,14 @@ var jq = jQuery.noConflict();
 	   	   return true;
 	  	}
 	}
-	//判断是否到打卡时间
+	//判断是否异常打卡
 	function checkForTimeZT(systime,checkTime){
 		if(systime==null){
 			return true;
 		}
 		var a = '01/10/2015 ' + systime;
 	    var b = '01/10/2015 ' + checkTime;
-	    var d = new Date(a);
+	    var d = new Date(new Date(a).getTime()+60*10*1000);
 	    var e = new Date(b);
 	  	if (d >= e) {
 	  	   return true;
@@ -171,6 +172,7 @@ var jq = jQuery.noConflict();
 	   	   return false;
 	  	}
 	}
+	
 	
 	
 	var exportExcel = function(){

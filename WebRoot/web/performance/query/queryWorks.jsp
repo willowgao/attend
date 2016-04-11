@@ -14,7 +14,7 @@
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
 						<label >
-							部门：
+							单位：
 						</label>
 						<input class="easyui-combobox" type="text" id="deptid" name="job.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">

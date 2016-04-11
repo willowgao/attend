@@ -14,7 +14,7 @@
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
 						<label >
-							部门：
+							单位：
 						</label>
 						<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">
@@ -63,7 +63,7 @@
 							考核年度
 						</th>
 						<th data-options="field:'deptid',width:'15%',align:'center',formatter:formatterDept">
-							部门
+							单位
 						</th>
 						<th data-options="field:'userid',width:'6%',align:'center',formatter:formatterUser">
 							被考核人
@@ -118,7 +118,7 @@
 							考核年度
 						</th>
 						<th data-options="field:'deptid',width:'15%',align:'center',formatter:formatterDept">
-							部门
+							单位
 						</th>
 						<th data-options="field:'userid',width:'10%',align:'center',formatter:formatterUser">
 							被考核人

@@ -61,7 +61,7 @@
 							用户ID
 						</th>
 						<th data-options="field:'userdeptid',width:'15%',align:'center',formatter:formatterDept">
-							用户部门
+							用户单位
 						</th>
 						<th data-options="field:'username',width:'10%',align:'center'">
 							用户名称

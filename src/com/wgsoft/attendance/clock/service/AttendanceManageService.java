@@ -43,10 +43,14 @@ public class AttendanceManageService implements IAttendanceManageService {
 				|| (RunUtil.isNotEmpty(clock.getPmsb()) && clock.getType().equals("3"))) {
 			if (RunUtil.isNotEmpty(clock.getAmsb())) {
 				Date amsb = DateUtil.string2Date(clock.getAmsb(), DateUtil.HMS);
+				//上班真实时间往后推前推10分钟
+				amsb = new Date(amsb.getTime()-10*60*1000);
 				bool = amsb.after(checkTime);
 			}
 			if (RunUtil.isNotEmpty(clock.getPmsb())) {
 				Date pmsb = DateUtil.string2Date(clock.getPmsb(), DateUtil.HMS);
+				//上班真实时间往后推前推10分钟
+				pmsb = new Date(pmsb.getTime()-10*60*1000);
 				bool = pmsb.after(checkTime);
 			}
 			// 上班打卡，如果打卡时间晚于设置时间，则属于迟到
@@ -63,16 +67,21 @@ public class AttendanceManageService implements IAttendanceManageService {
 				|| (RunUtil.isNotEmpty(clock.getPmxb()) && clock.getType().equals("4"))) {
 			if (RunUtil.isNotEmpty(clock.getAmxb())) {
 				Date amxb = DateUtil.string2Date(clock.getAmxb(), DateUtil.HMS);
+				//上班真实时间往后推前后10分钟
+				amxb = new Date(amxb.getTime()+10*60*1000);
 				bool = amxb.before(checkTime);
 			}
 			if (RunUtil.isNotEmpty(clock.getPmxb())) {
 				Date pmxb = DateUtil.string2Date(clock.getPmxb(), DateUtil.HMS);
+				//上班真实时间往后推前后10分钟
+				pmxb = new Date(pmxb.getTime()+10*60*1000);
 				bool = pmxb.before(checkTime);
 			}
 			// 上午下班时间，晚于下午上班时间，也属于异常打卡 异常的类型？
 			if (RunUtil.isNotEmpty(clock.getAmxb()) && RunUtil.isNotEmpty(setting.getPmsbTime())) {
 				Date pmsb = DateUtil.string2Date(setting.getPmsbTime(), DateUtil.HMS);
-				bool = pmsb.after(checkTime);
+				Date amxb = DateUtil.string2Date(clock.getAmxb(), DateUtil.HMS);
+				bool = amxb.after(pmsb);
 			}
 
 			// 下班打卡，如果打卡时间早于设置时间，则属于早退

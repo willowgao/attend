@@ -25,7 +25,7 @@
 	<input type="hidden" id="orgType">
 	<input type="hidden" id="userId">
 	<body style="background-color: white; height: 100px">
-		<div id="treePanel" title="机构与部门信息" class="easyui-panel" style="width: 230px; height: 600px;"
+		<div id="treePanel" title="机构与单位信息" class="easyui-panel" style="width: 230px; height: 600px;"
 			data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
 			<div style="z-index: -9999;">
 				<ul id="orgTree" class="ztree">
@@ -55,7 +55,7 @@
 							用户编码
 						</th>
 						<th data-options="field:'userdeptid',width:'20%',align:'center',formatter:formatterDept">
-							部门
+							单位
 						</th>
 						<th data-options="field:'userorg',width:'30%',align:'center',formatter:formatterOrg">
 							组织机构

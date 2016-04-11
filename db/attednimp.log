@@ -1,0 +1,37 @@
+
+连接到: Oracle Database 10g Enterprise Edition Release 10.2.0.1.0 - Production
+With the Partitioning, OLAP and Data Mining options
+
+经由常规路径由 EXPORT:V10.02.01 创建的导出文件
+已经完成 ZHS16GBK 字符集和 AL16UTF16 NCHAR 字符集中的导入
+. 正在将 ATTEDN 的对象导入到 ATTEDN
+. . 正在导入表             "CLOCKDATE_SETTING"导入了         731 行
+. . 正在导入表                "CLOCKEXCEPTION"导入了           3 行
+. . 正在导入表                  "CLOCKREOCRDS"导入了           2 行
+. . 正在导入表           "CLOCK_EXCEP_APPROVE"导入了           3 行
+. . 正在导入表                 "CLOCK_SETTING"导入了           1 行
+. . 正在导入表                "DATADICTIONARY"导入了          42 行
+. . 正在导入表                      "DEPTMENT"导入了           3 行
+. . 正在导入表                 "DIARY_APPROVE"导入了           0 行
+. . 正在导入表                "DIARY_COMMENTS"导入了           2 行
+. . 正在导入表                   "DIARY_DAILY"导入了           1 行
+. . 正在导入表                 "JOBASSIGNMENT"导入了           2 行
+. . 正在导入表         "JOBASSIGNMENT_APPROVE"导入了           1 行
+. . 正在导入表                        "LEAVES"导入了           1 行
+. . 正在导入表                "LEAVES_APPROVE"导入了           1 行
+. . 正在导入表         "LEAVE_APPROVE_SETTING"导入了          12 行
+. . 正在导入表                          "MENU"导入了          53 行
+. . 正在导入表            "PERFORMANCE_ASSESS"导入了          12 行
+. . 正在导入表      "PERFORMANCE_ASSESS_SCORE"导入了           0 行
+. . 正在导入表             "PERFORMANCE_INDEX"导入了          12 行
+. . 正在导入表            "POSITION_STATEMENT"导入了           0 行
+. . 正在导入表    "POSITION_STATEMENT_APPROVE"导入了           0 行
+. . 正在导入表     "POSITION_STATEMENT_DETAIL"导入了           0 行
+. . 正在导入表                      "ROLEINFO"导入了           9 行
+. . 正在导入表                     "ROLE_MENU"导入了           0 行
+. . 正在导入表                      "USERINFO"导入了           6 行
+. . 正在导入表               "USER_LOGIN_INFO"导入了          38 行
+. . 正在导入表                     "USER_MENU"导入了         188 行
+. . 正在导入表               "WG_ORGANIZATION"导入了           8 行
+即将启用约束条件...
+成功终止导入, 没有出现警告。

@@ -23,7 +23,7 @@
 	<input type="hidden" id="roleId">
 	<input type="hidden" id="deptId">
 	<body style="background-color: white; height: 100px">
-		<div id="treePanel" title="机构与部门信息" class="easyui-panel" style="width: 230px; height: 600px;"
+		<div id="treePanel" title="机构与单位信息" class="easyui-panel" style="width: 230px; height: 600px;"
 			data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
 			<div style="z-index: -9999;">
 				<ul id="orgTree" class="ztree">
@@ -59,7 +59,7 @@
 				</thead>
 			</table>
 		</div>
-		<div id="orgInfoPanel" title="机构与部门维护" class="easyui-panel" style="width: 300px; height: 600px;"
+		<div id="orgInfoPanel" title="机构与单位维护" class="easyui-panel" style="width: 300px; height: 600px;"
 			data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1031,top:1}">
 			<form id="addOrgForm" method="post">
 				<div class="label_css">
@@ -68,7 +68,7 @@
 					</label>
 					<select class="easyui-combobox"  id="orgType" name="orgType" style="width:170px;" >
 						 <option value="1">组织</option>   
-    					 <option value="2">部门</option> 
+    					 <option value="2">单位</option> 
 					</select> 
 				</div>
 				<div class="label_css">
@@ -84,7 +84,7 @@
 				<!-- 
 				<div>
 					<label for="userPwd">
-						所属部门:
+						所属单位:
 					</label>
 					<input class="easyui-combobox" type="text" name="userPwd" data-options="required:true" />
 				</div>

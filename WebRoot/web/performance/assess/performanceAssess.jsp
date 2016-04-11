@@ -9,11 +9,11 @@
 	</head>
 	<body>
 		<form id="assessForm">
-			<div class="easyui-panel" title="部门用户信息" style="width: 300px; height: 82px;"
+			<div class="easyui-panel" title="单位用户信息" style="width: 300px; height: 82px;"
 				data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
 				<div style="margin: 15px;">
 					<label >
-						部门：
+						单位：
 					</label>
 					<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 				</div>
@@ -35,7 +35,7 @@
 								用户ID
 							</th>
 							<th data-options="field:'userdeptid',width:'40%',align:'center',formatter:formatterDept">
-								用户部门
+								用户单位
 							</th>
 							<th data-options="field:'username',width:'40%',align:'center'">
 								用户名称

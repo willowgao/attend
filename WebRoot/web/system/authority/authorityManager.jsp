@@ -24,7 +24,7 @@
 	<input type="hidden" id="roleId">
 	<input type="hidden" id="orgType">
 	<body style="background-color: white; height: 100px">
-		<div id="treePanel" title="机构与部门信息" class="easyui-panel" style="width: 230px; height: 600px;"
+		<div id="treePanel" title="机构与单位信息" class="easyui-panel" style="width: 230px; height: 600px;"
 			data-options="collapsible:true,minimizable:false,maximizable:false,closable:false,style:{position:'absolute',left:1,top:1}">
 			<div style="z-index: -9999;">
 				<ul id="orgTree" class="ztree">
@@ -60,7 +60,7 @@
 				<!-- 
 				<div>
 					<label for="userPwd">
-						所属部门:
+						所属单位:
 					</label>
 					<input class="easyui-combobox" type="text" name="userPwd" data-options="required:true" />
 				</div>
@@ -94,7 +94,7 @@
 							角色编码
 						</th>
 						<th data-options="field:'roledeptid',width:'20%',align:'center',formatter:formatterDept">
-							部门
+							单位
 						</th>
 						<th data-options="field:'roletype',width:'20%',align:'center',formatter:formatterRole">
 							角色类型
@@ -129,7 +129,7 @@
 							用户编码
 						</th>
 						<th data-options="field:'userdeptid',width:'20%',align:'center',formatter:formatterDept">
-							部门名称
+							单位名称
 						</th>
 						<th data-options="field:'userorg',width:'25%',align:'center',formatter:formatterOrg">
 							组织机构

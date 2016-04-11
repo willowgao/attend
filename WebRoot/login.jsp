@@ -110,6 +110,8 @@
 		</div>
 			<img src="<%=webapp%>/web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 405px;top: 587px;z-index: 99999" alt="Responsive image"></img>
 			<a class="btn btn-danger btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:15%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
+			<a class="btn btn-danger btn-lg" href="web/common/files/咸宁市平时考核系统运行实施手册_V1.0.doc" style="width:12%;position: absolute;left: 200px;top: 580px">操作手册下载</a>
+			
 	</body>
 
 

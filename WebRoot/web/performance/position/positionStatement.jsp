@@ -19,7 +19,7 @@
 					</label>
 					<input class="easyui-combobox" type="text" id="approver" name="position.approver" data-options="readonly:true,required:true" />
 					<label style="margin: 10px;">
-						部门：
+						单位：
 					</label>
 					<input class="easyui-combobox" type="text" id="deptid" name="position.deptid" data-options="readonly:true,required:true" />
 					<label style="margin: 10px;">

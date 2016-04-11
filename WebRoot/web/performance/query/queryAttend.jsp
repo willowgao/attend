@@ -17,7 +17,7 @@
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
 						<label style="margin: 10px;">
-							部门：
+							单位：
 						</label>
 						<input class="easyui-combobox" type="text" id="dept" name="clockRecords.dept" />
 						<label style="margin: 10px;">

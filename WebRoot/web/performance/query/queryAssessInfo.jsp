@@ -14,7 +14,7 @@
 				<div style="margin-top: 10px; margin-bottom: 10px;">
 					<div style="margin: 10px;">
 						<label >
-							部门：
+							单位：
 						</label>
 						<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">
@@ -55,7 +55,7 @@
 							考核人
 						</th>
 						<th data-options="field:'deptid',width:'15%',align:'center',formatter:formatterDept">
-							部门
+							单位
 						</th> 
 						<th data-options="field:'starttime',width:'8%',align:'center',formatter:formatterdateYMD">
 							开始日期
@@ -64,7 +64,7 @@
 							终止日期
 						</th> 
 						<th data-options="field:'bmrs',width:'10%',align:'center'">
-							部门人数
+							单位人数
 						</th>
 						<th data-options="field:'khrs',width:'10%',align:'center'">
 							已评分人数

@@ -72,7 +72,7 @@
 				<!-- 
 				<div>
 					<label for="userPwd">
-						所属部门:
+						所属单位:
 					</label>
 					<input class="easyui-combobox" type="text" name="userPwd" data-options="required:true" />
 				</div>
