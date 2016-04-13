@@ -3,6 +3,7 @@
 import java.util.Date;
 import java.util.List;
 
+import com.wgsoft.common.utils.RunUtil;
 import com.wgsoft.common.utils.SysConstants;
 import com.wgsoft.diary.idao.IDiaryDailyDao;
 import com.wgsoft.diary.iservice.IDiaryDailyService;
@@ -35,7 +36,9 @@ public class DiaryDailyService implements IDiaryDailyService {
 	public int saveDiaryDailServier(DiaryDaily diary) {
 		try {
 			diary.setStatus(SysConstants.ApproverStatus.APPROVER_STATUS_DECLARE);
-			diary.setDiarydate(new Date());
+			if (RunUtil.isEmpty(diary.getDiarydate())) {
+				diary.setDiarydate(new Date());
+			}
 			diaryDailyDao.insert(diary);
 		} catch (Exception e) {
 			return SysConstants.ERROR;

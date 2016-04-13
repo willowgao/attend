@@ -169,6 +169,10 @@ public class UserService implements IUserService {
 	 */
 	public String getUserForApprove(String roleType, UserInfo user) {
 		List<UserInfo> users = userDao.getUserForApprove(roleType, user);
+		//如果审核人员查询为空，则审核人员为自己
+		if(users==null||users.size()==0){
+			 users = userDao.getUserForApprove(String.valueOf(Integer.valueOf(roleType).intValue()-1), user);
+		}
 		List<Map<String, String>> jsu = new ArrayList<Map<String, String>>();
 		for (UserInfo u : users) {
 			Map<String, String> userMap = new HashMap<String, String>();

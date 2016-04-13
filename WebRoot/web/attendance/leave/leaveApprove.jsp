@@ -58,6 +58,9 @@
 				align="left">
 				<thead>
 					<tr>
+						<th data-options="field:'userid',width:'8%',align:'center',formatter:formatterUser">
+							填报人
+						</th>
 						<th data-options="field:'appdate',width:'10%',align:'center',formatter:formatterdateYMD">
 							申报日期
 						</th>
@@ -81,10 +84,7 @@
 						</th>
 						<th data-options="field:'comments',width:'15%',align:'center'">
 							请假原因
-						</th>
-						<th data-options="field:'userid',width:'10%',align:'center',hidden:'true'">
-							用户ID
-						</th>
+						</th> 
 						<th data-options="field:'leaveid',width:'10%',align:'center',hidden:'true'">
 							请假ID
 						</th>

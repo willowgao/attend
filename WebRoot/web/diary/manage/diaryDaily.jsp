@@ -18,7 +18,7 @@
 							填报时间：
 						</label>
 						<input id="diarydate"   name="diaryDaily.diarydate"class="easyui-datebox" value="<%=sysdate%>"
-							data-options="formatter:fn_Dateformatter,parser:fn_DateParser"></input>
+							data-options="formatter:fn_Dateformatter,parser:fn_DateParser,onSelect:initForm"></input>
 						</td>
 						<label style="margin: 10px;">
 							审批人员：
@@ -27,7 +27,7 @@
 						<label style="margin: 10px;">
 							晒业绩：
 						</label>
-						<input id="onsubmitBtn" class="easyui-switchbutton" checked data-options="onText:'晒',offText:'不晒'"> 
+						<input id="onsubmitBtn" class="easyui-switchbutton"  data-options="onText:'晒',offText:'不晒'"> 
 							<a onclick="save()" href="#" class="easyui-linkbutton c5" style="margin-left:10px;width: 80px">保存</a>
 							<a onclick="queryHistory()" href="#" class="easyui-linkbutton c5" style="margin-left:10px;width: 80px">查询历史</a>
 						
