@@ -171,7 +171,7 @@ CREATE OR REPLACE PACKAGE BODY "PKG_SYNCHRONIZED_MENU" IS
   
     --时间往后推10分钟还是没有到打卡时间，则为异常打卡 或者下班打卡时间晚于下午上班时间，也为异常打卡
     IF TO_DATE(VAR_SYSDATE || VAR_AMXB, 'YYYY-MM-DD HH24:Mi:SS') +
-       10 / (60 * 24) >
+       10 / (60 * 24) <
        TO_DATE(var_clockdate || VAR_AMXBTIME, 'YYYY-MM-DD HH24:Mi:SS')
       
        OR TO_DATE(VAR_SYSDATE || VAR_AMXB, 'YYYY-MM-DD HH24:Mi:SS') >
@@ -194,7 +194,7 @@ CREATE OR REPLACE PACKAGE BODY "PKG_SYNCHRONIZED_MENU" IS
   
     --时间往后推10分钟还是没有到打卡时间，则为异常打卡
     IF TO_DATE(VAR_SYSDATE || VAR_PMXB, 'YYYY-MM-DD HH24:Mi:SS') +
-       10 / (60 * 24) >
+       10 / (60 * 24) <
        TO_DATE(var_clockdate || VAR_PMXBTIME, 'YYYY-MM-DD HH24:Mi:SS') THEN
       UPDATE CLOCKREOCRDS
          SET PMXB = VAR_PMXBTIME

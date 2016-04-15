@@ -111,43 +111,60 @@
 	}
 	 
 	var fristMenuId = null;
+	var initPage = null;
 	jq(document).ready(function() {
-
-		jq('#commDesc').hide();
+		initSysStyle();
+		changeStyle();
+		changeFont();
 		//查询顶部的模块菜单
 		queryMenu();
 		//查询左边的菜单树
 		queryTree(fristMenuId);
-		//初始化系统设置打卡时间
-		queryTimesForNow();
-		//初始化打卡记录
-		queryClockRecords();
-		loadData();
-		changeStyle();
-		initSysStyle();
-		changeFont();
-		//查询待办
-		queryWait();
+		jq('#commDesc').hide();
 		jq('#tab_rightmenu').hide();
 		
 		jq('#topic').mouseover(onTopic);
 		jq('#topic').mouseout(hidDiv);
 		jq('#topic').click(queryWait);
-		//5分钟刷新一次
+		
+		//5分钟刷新一次 待办和打卡区域的刷新
 		setInterval(refreshLayout,10000*30);
+
+		//10毫秒后初始化页面
+		initPage = setInterval(initWait,10);
 		
 	});
 	 
+	var waitcount = 0;
+	/**
+	 * 对首页表格数据进行延时加载
+	 * @return
+	 */
+	var initWait = function(){
+		if(waitcount==0){
+			//初始化系统设置打卡时间
+			queryTimesForNow();
+			//初始化打卡记录
+			queryClockRecords();
+			loadData();
+			//查询待办
+			queryWait();
+			waitcount ++;
+		}else{
+		  //只执行一次定时任务，第二次进入时关闭任务
+		  clearInterval(initPage);
+		}
+	}
+	/**
+	 * 定时查询待办任务在打卡的信息
+	 * @return
+	 */
 	var refreshLayout = function(){
 		//刷新待办事项
 		queryWait();
 		//刷新打卡区域
 		queryClockRecords();
 	}
-
-
-
-	
 	
 		//tree初始化设置
 	var setting = {
@@ -178,7 +195,6 @@
 	 设置系统当前时间所属区间的打卡时间
 	**/
 	function queryTimesForNow(){
-		jq.ajaxSettings.async = false; 
 		jq.getJSON( programName + '/clock/clockManager!queryTimesForNow.action', function(datas) {
 			if(datas.amsbTime!=null){
 				 jq('#amsbTime').val(datas.amsbTime);
@@ -215,7 +231,6 @@
 	//查询打卡记录
 	function queryClockRecords(){
 		params = '{';
-		jq.ajaxSettings.async = false; 
 		jq.getJSON(programName+'/clock/clockManager!getClockRecords.action',function(datas){
 			existsData = datas;
 			if(datas!=null){
@@ -305,7 +320,6 @@
 		} else{
 			params += 'checkTime:\"'+checkTime+'\",';
 			params += 'type:\"'+type+'\",';
-			
 			params = params.substring(0,params.length-1)+'}';
 			jq.get(programName+'/clock/clockManager!saveClock.action?params='+params,function(datas){
 				queryClockRecords();
