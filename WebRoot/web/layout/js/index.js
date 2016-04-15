@@ -133,7 +133,22 @@
 		jq('#topic').mouseover(onTopic);
 		jq('#topic').mouseout(hidDiv);
 		jq('#topic').click(queryWait);
+		//5分钟刷新一次
+		setInterval(refreshLayout,10000*30);
+		
 	});
+	 
+	var refreshLayout = function(){
+		//刷新待办事项
+		queryWait();
+		//刷新打卡区域
+		queryClockRecords();
+	}
+
+
+
+	
+	
 		//tree初始化设置
 	var setting = {
 		check : {
@@ -293,6 +308,8 @@
 				queryClockRecords();
 			});
 		}
+		//刷新列表页面
+		loadData();
 	}
 	 
 	//查询顶部的模块菜单
@@ -575,6 +592,8 @@ var queryWait = function(){
 	}).datagrid('clientPaging');
 	 
 }
+
+
 
  
 /**
