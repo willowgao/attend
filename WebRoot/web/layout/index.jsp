@@ -20,7 +20,7 @@
 		<input type="hidden"  name="clockSetting.pamsbTime" id="pmsbTime" ></input>
 		<input type="hidden"  name="clockSetting.pamxbTime" id="pmxbTime" ></input>
 	<form>
-		<div id="commDesc"  class="easyui-panel" style="width: 10%;height: 3%;position:absolute;z-index:8;border-radius: 8px;"></div>
+		<div id="commDesc"  class="easyui-panel" style="width: 15%;height: 5%;position:absolute;z-index:8;border-radius: 8px;"></div>
 		<div id="main" class="easyui-layout" style="width: 100%" >
 			<div id="north" data-options="region:'north'" style="background-image:url('<%=webapp%>/web/common/css/images/bg-header2.png');" >
 				<!-- 

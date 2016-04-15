@@ -27,9 +27,11 @@
                jq.getJSON(programName+'/diary/diaryAnalysis!getQueryMaxDiss.action', function(datas) {
 			//取出json的值
 				option =  datas;
+				
 			});
-			 
-               myChart.setOption(option);
+			   if(option!=null&&option!=""){
+             	  myChart.setOption(option);
+               }
                myChart.hideLoading();
                
            }

@@ -29,7 +29,9 @@
 				option =  datas;
 			});
 			 
-               myChart.setOption(option);
+                 if(option!=null&&option!=""){
+             	  myChart.setOption(option);
+               }
                myChart.hideLoading();
                
            }

@@ -128,7 +128,7 @@
 					align="left">
 					<thead>
 						<tr>
-							<th data-options="field:'clockdate',width:'12%',align:'center',formatter :formatterdateYMD">
+							<th data-options="field:'clockdate',width:'15%',align:'center',formatter :formatterdateYMD">
 								考勤日期
 							</th>
 							<th data-options="field:'amsb',width:'15%',align:'center',styler:dgCellStyleAmsb">

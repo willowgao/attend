@@ -295,6 +295,9 @@
 					jq.get(programName+'/clock/clockManager!saveClock.action?params='+params,function(datas){
 						queryClockRecords();
 					});
+
+					//刷新列表页面
+					loadData();
 			    }else{
 					return;
 			    }
@@ -575,7 +578,7 @@ var hidDiv = function(){
  * @return
  */
 function loadDiv(e){
-	jq('#commDesc').html('更新待办，请点击点色区域');
+	jq('#commDesc').html('更新待办，请点击红色区域');
 	e = window.event;
 	xOffset = -23;
 	yOffset = 13;

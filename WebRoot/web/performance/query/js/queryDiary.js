@@ -24,7 +24,7 @@
 		});  
 		
 		jq('#userid').combobox({
-			url: programName + '/diary/queryDiarys!getUsersFormUser.action',
+			url: programName + '/query/queryDiarys!getUsersFormUser.action',
 		    valueField:'id',    
 		    textField:'text'  
 		});

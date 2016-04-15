@@ -21,7 +21,7 @@
 		//加载下拉表
 
 		jq('#userid').combobox({
-			url: programName + '/diary/queryDiarys!getUsersFormUser.action',
+			url: programName + '/query/queryAttend!getUsersFormUser.action',
 		    valueField:'id',    
 		    textField:'text'  
 		});
@@ -137,7 +137,6 @@
 			}
 		}
 	}
-	
 	//判断是否异常打卡
 	function checkForTimeCD(systime,checkTime){
 		if(systime==null){
@@ -145,7 +144,7 @@
 		}
 		var a = '01/10/2015 ' + systime;
 	    var b = '01/10/2015 ' + checkTime;
-	    var d = new Date(a);
+	    var d = new Date(new Date(a).getTime()-60*10*1000);
 	    var e = new Date(b);
 	  	if (d > e) {
 	  	   return false;
@@ -160,7 +159,7 @@
 		}
 		var a = '01/10/2015 ' + systime;
 	    var b = '01/10/2015 ' + checkTime;
-	    var d = new Date(a);
+	    var d = new Date(new Date(a).getTime()+60*10*1000);
 	    var e = new Date(b);
 	  	if (d >= e) {
 	  	   return true;

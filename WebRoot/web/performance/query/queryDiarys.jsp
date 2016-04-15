@@ -75,16 +75,16 @@
 					align="left">
 					<thead>
 						<tr>
-							<th data-options="field:'diarydate',width:'8%',align:'center',formatter:formatterdateYMD">
+							<th data-options="field:'diarydate',width:'10%',align:'center',formatter:formatterdateYMD">
 								申报日期
 							</th>
 							<th data-options="field:'diarytype',width:'5%',align:'center',formatter:formatterDiary">
 								日志类型
 							</th>
-							<th data-options="field:'starttime',width:'8%',align:'center',formatter:formatterdateYMD">
+							<th data-options="field:'starttime',width:'10%',align:'center',formatter:formatterdateYMD">
 								开始日期
 							</th>
-							<th data-options="field:'endtime',width:'8%',align:'center',formatter:formatterdateYMD">
+							<th data-options="field:'endtime',width:'10%',align:'center',formatter:formatterdateYMD">
 								终止日期
 							</th>
 							<th data-options="field:'content',width:'20%',align:'center'">

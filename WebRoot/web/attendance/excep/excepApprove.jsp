@@ -84,7 +84,7 @@
 		</div>
 
 		<!-- 弹出窗口 -->
-		<div id="dlg" class="easyui-dialog" title="请假登记申请审核" style="width: 800px; height: 500px; padding: 10px;"
+		<div id="dlg" class="easyui-dialog" title="未（异常）打卡申请审核" style="width: 800px; height: 500px; padding: 10px;"
 			data-options="
 					iconCls: 'icon-search',
 					toolbar: '#dlg-toolbar',
@@ -92,7 +92,7 @@
 					modal:true,
 					buttons: '#dlg-buttons'
 				">
-			<table id="dlgdg" title="请假登记申请记录" style="with: 100%; height: 40%"
+			<table id="dlgdg" title="未（异常）打卡记录" style="with: 100%; height: 40%"
 				data-options="
 				rownumbers:true,
 				autoRowHeight:false,
@@ -102,7 +102,7 @@
 				align="left">
 				<thead>
 					<tr>
-						<th data-options="field:'clockdate',width:'10%',align:'center',formatter :formatterdateYMD">
+						<th data-options="field:'clockdate',width:'15%',align:'center',formatter :formatterdateYMD">
 							考勤日期
 						</th>
 						<th data-options="field:'status',width:'10%',align:'center',formatter:formatterStatus">
@@ -117,7 +117,7 @@
 						<th data-options="field:'approverid',width:'8%',align:'center',formatter:formatterUser">
 							审核人
 						</th>
-						<th data-options="field:'appdate',width:'12%',align:'center',formatter:formatterdateYMD">
+						<th data-options="field:'appdate',width:'15%',align:'center',formatter:formatterdateYMD">
 							申报日期
 						</th>
 						<th data-options="field:'comments',width:'20%',align:'center'">
