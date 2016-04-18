@@ -155,7 +155,7 @@
 					<label for="status">
 						审批状态 :
 					</label>
-					<input class="easyui-combobox" id="status" name="jobAssignment.status" />
+					<input class="easyui-combobox" id="status" name="jobAssignment.status"  editable="false"  />
 					<a onclick="save()" href="#" class="easyui-linkbutton c5" style="width: 80px">传递</a>
 				</div> 
 			</div>

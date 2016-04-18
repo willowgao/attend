@@ -21,7 +21,7 @@
 						<label style="margin: 10px;">
 							假期类型：
 						</label>
-						<input class="easyui-combobox" type="text" id="leavetype" name="leaves.leavetype" />
+						<input class="easyui-combobox" type="text"  editable="false"  id="leavetype" name="leaves.leavetype" />
 						<label style="margin: 10px;">
 							开始日期：
 						</label>
@@ -150,11 +150,11 @@
 						<label for="approver">
 							下步审批人员 :
 						</label>
-						<input class="easyui-combobox" type="text" id="approver" name="approver" />
+						<input class="easyui-combobox" type="text" id="approver" name="approver"  editable="false"  />
 						<label for="status">
 							审批状态 :
 						</label>
-						<input class="easyui-combobox" type="text" id="status" name="status" />
+						<input class="easyui-combobox" type="text" id="status" name="status"   editable="false" />
 					</div> 
 					<div class="label_css">
 						<label for="comments">

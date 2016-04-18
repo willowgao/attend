@@ -37,7 +37,7 @@
 							<label style="margin: 10px;">
 								审批人员：
 							</label>
-							<input class="easyui-combobox" type="text" id="approver" name="jobAssignment.approver" data-options="required:true" />
+							<input class="easyui-combobox" type="text" id="approver" name="jobAssignment.approver"  editable="false"  data-options="required:true" />
 							<a onclick="transfer();" href="#" class="easyui-linkbutton c5" style="width: 80px;margin-left: 10px;">传递</a>
 		                 </div>
 		                  

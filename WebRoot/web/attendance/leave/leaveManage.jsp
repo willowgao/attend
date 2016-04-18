@@ -21,11 +21,11 @@
 						<label style="margin: 10px;">
 							审批人员：
 						</label>
-						<input class="easyui-combobox" type="text" id="approver" name="leaves.approverid" data-options="required:true" />
+						<input class="easyui-combobox" type="text" id="approver" name="leaves.approverid"   editable="false" data-options="required:true" />
 						<label style="margin: 10px;">
 							假期类型：
 						</label>
-						<input class="easyui-combobox" type="text" id="leavetype" name="leaves.leavetype" data-options="required:true" />
+						<input class="easyui-combobox" type="text" id="leavetype" name="leaves.leavetype" editable="false"  data-options="required:true" />
 						<label style="margin: 10px;">
 							&nbsp; 目  的 地：
 						</label>

@@ -16,7 +16,7 @@
 						<label >
 							单位：
 						</label>
-						<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
+						<input class="easyui-combobox" editable="false"  type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 						<label style="margin: 10px;">
 							开始日期：
 						</label>

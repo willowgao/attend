@@ -176,7 +176,7 @@
 						<label for="approver">
 							审批人员 :
 						</label>
-						<input class="easyui-combobox" type="text" id="approver" name="approver" />
+						<input class="easyui-combobox" type="text" id="approver" name="approver"   editable="false"  />
 					</div>
 					<div class="label_css">
 						<a onclick="save()" href="#" class="easyui-linkbutton c5" style="width: 80px">保存</a>

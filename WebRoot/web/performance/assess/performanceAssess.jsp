@@ -15,7 +15,7 @@
 					<label >
 						单位：
 					</label>
-					<input class="easyui-combobox" type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
+					<input class="easyui-combobox"  editable="false"  type="text" id="deptid" name="assess.deptid" data-options="required:true"  />
 				</div>
 			</div>
 			<div class="easyui-panel" style="width: 300px; height: 520px;"

@@ -77,6 +77,10 @@ public class BaseDao extends HibernateDaoSupport implements IBaseDao {
 		}
 	}
 
+	public void setClockDate(){
+		//系统打卡时间初始化
+		callPrepareCall("PRC_INITCLOCK",null);
+	}
 	/**
 	 * 描述:得到SQL的值 <br>
 	 * 参数:SQL 普通的查询SQL语句 <br>

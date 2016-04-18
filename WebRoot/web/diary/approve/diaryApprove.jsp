@@ -21,7 +21,7 @@
 						<label style="margin: 10px;">
 							日志类型：
 						</label>
-						<input class="easyui-combobox" type="text" id="diarytype" name="diaryDaily.diarytype" />
+						<input class="easyui-combobox" type="text" id="diarytype"  editable="false"  name="diaryDaily.diarytype" />
 						<label style="margin: 10px;">
 							开始日期：
 						</label>
@@ -73,7 +73,7 @@
 						<label style="margin: 10px;">
 							核审状态:
 						</label>
-						<input class="easyui-combobox" type="text" id="status" name="diaryDaily.status" style="margin-right: 5px;"/>
+						<input class="easyui-combobox"  editable="false"  type="text" id="status"  editable="false"  name="diaryDaily.status" style="margin-right: 5px;"/>
 						<a onclick="save();" href="#" class="easyui-linkbutton c5" style="width: 80px;">保存</a>
 					</div>
 				</div>

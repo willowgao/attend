@@ -176,10 +176,27 @@
          <property name="cronExpression" value="00 00 00 * * ?" /> <!-- 凌晨点清除 -->
     </bean>
     
+    
+    <!--  --> 
+    <bean id="clockDateJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="baseDao" />
+		<property name="targetMethod" value="setClockDate" />
+		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="clockDateDdlTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+         <property name="jobDetail" ref="clockDateJobDetail" />
+         <property name="cronExpression" value="00 00 01 1 1 ?" /> <!-- 每年1月1日凌晨处理 -->
+    </bean>
+    
+    
+    
+    
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
 				<ref bean="ddlTrigger" />
+				<ref bean="clockDateDdlTrigger" />
 			</list>
 		</property>
 		<property name="autoStartup" value="true"/>

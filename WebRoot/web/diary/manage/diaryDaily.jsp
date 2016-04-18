@@ -23,7 +23,7 @@
 						<label style="margin: 10px;">
 							审批人员：
 						</label>
-						<input class="easyui-combobox" type="text" id="approver" name="diaryDaily.approverid" data-options="required:true" />
+						<input class="easyui-combobox" type="text" id="approver" name="diaryDaily.approverid"  editable="false"  data-options="required:true" />
 						<label style="margin: 10px;">
 							晒业绩：
 						</label>

@@ -19,11 +19,11 @@
 						<label style="margin: 10px;">
 							日志类型：
 						</label>
-						<input class="easyui-combobox" type="text" id="diarytype" name="diaryDaily.diarytype" />
+						<input class="easyui-combobox" type="text" id="diarytype"  editable="false"  name="diaryDaily.diarytype" />
 						<label style="margin: 10px;">
 							填报人：
 						</label>
-						<input class="easyui-combobox" type="text" id="userid" name="diaryDaily.userid" />
+						<input class="easyui-combobox" type="text" id="userid"  editable="false"  name="diaryDaily.userid" />
 						<label style="margin: 10px;">
 							开始日期：
 						</label>

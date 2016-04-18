@@ -147,6 +147,8 @@
 			//初始化打卡记录
 			queryClockRecords();
 			loadData();
+			//加载右键工具拦
+			loadTabTools();
 			//查询待办
 			queryWait();
 			waitcount ++;
@@ -409,7 +411,7 @@ function getData() {
 	return rows;
 }
  
-jq(function(){
+var loadTabTools = function(){
 	var tabsId = 'mytabs';//tabs页签Id
 	var tab_rightmenuId = 'tab_rightmenu';//tabs右键菜单Id
 	
@@ -430,7 +432,7 @@ jq(function(){
 		  CloseTab(tabsId,tab_rightmenuId,item.name);
 		}
 	});
-});
+}
 
 /**
 	tab关闭事件

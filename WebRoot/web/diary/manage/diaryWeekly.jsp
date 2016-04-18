@@ -26,7 +26,7 @@
 						<label style="margin: 10px;">
 							审批人员：
 						</label>
-						<input class="easyui-combobox" type="text" id="approver" name="diaryDaily.approverid" data-options="required:true" />
+						<input class="easyui-combobox" type="text" id="approver" name="diaryDaily.approverid"  editable="false"  data-options="required:true" />
 						<input type="hidden" id="diarytype" name="diaryDaily.diarytype" value="<%=request.getParameter("type") %>"></input>
 					</div>
 					<div style="margin: 10px;">
