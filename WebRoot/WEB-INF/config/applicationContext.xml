@@ -9,7 +9,7 @@
 		</property>
 	</bean>
 	
-	<!-- ***********************TOMCAT******************************** -->
+	<!-- ***********************TOMCAT********************************
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -30,14 +30,14 @@
 		 <property name="maxIdle" value="${datasource.maxIdle}" />
 		 <property name="maxWait" value="${datasource.maxWait}" />
 	</bean>
-	
-	<!-- weblogic 
+	 -->
+	<!-- weblogic -->
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">  
         <property name="jndiName">  
             <value>sysDataSource</value>  
         </property>  
     </bean> 
-		-->
+		
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">

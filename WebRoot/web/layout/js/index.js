@@ -113,9 +113,7 @@
 	var fristMenuId = null;
 	var initPage = null;
 	jq(document).ready(function() {
-		initSysStyle();
-		changeStyle();
-		changeFont();
+		
 		//查询顶部的模块菜单
 		queryMenu();
 		//查询左边的菜单树
@@ -151,6 +149,11 @@
 			loadTabTools();
 			//查询待办
 			queryWait();
+			
+			initSysStyle();
+			changeStyle();
+			changeFont();
+			
 			waitcount ++;
 		}else{
 		  //只执行一次定时任务，第二次进入时关闭任务
@@ -237,6 +240,12 @@
 			existsData = datas;
 			if(datas!=null){
 				setValue(datas);
+			}else{
+				jq('#amsb').text('打卡');
+				jq('#amxb').text('打卡');
+				jq('#pmsb').text('打卡');
+				jq('#pmxb').text('打卡');
+				params = '{';
 			}
 		});
 	}
