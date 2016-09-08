@@ -133,7 +133,7 @@ var jq = jQuery.noConflict();//jQuery将$换成jq，避免冲突
 		var orgId = jq("#h_org").val();
 		var deptId = jq("#deptId").val();
 		var roleId = jq("#roleId").val();
-		var userid = jq("#userid").val();
+		var userid = jq("#userId").val();
 		var qurUrl =  programName + '/user/userManager!getRoles.action?orgId='+orgId;
 		if(deptId!=''){
 			qurUrl = qurUrl+'&deptId='+deptId;
