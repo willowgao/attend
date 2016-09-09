@@ -30,7 +30,7 @@
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					<div class="item active" style="background-image:url('<%=webapp%>/web/common/css/images/class-scheduling-profile.jpg')">
+					<div class="item active">
 						<img class="first-slide"  src="<%=webapp%>/web/common/css/images/bann10_1.jpg"  >
 						<div class="container">
 							<div class="carousel-caption"  style="margin-bottom: 40px;">
@@ -108,9 +108,9 @@
 				*请检查用户名密码是否正确!
 			</div>
 		</div>
-			<img src="<%=webapp%>/web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: absolute;left: 405px;top: 587px;z-index: 99999" alt="Responsive image"></img>
-			<a class="btn btn-danger btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:15%;position: absolute;left: 400px;top: 580px">Chrome 浏览器下载</a>
-			<a class="btn btn-danger btn-lg" href="web/common/files/咸宁市平时考核系统运行实施手册_V1.0.doc" style="width:12%;position: absolute;left: 200px;top: 580px">操作手册下载</a>
+			<img src="<%=webapp%>/web/common/browser/smalllogo.png" class="img-responsive" style="width:2%;height:4%;position: fixed;left: 305px;top: 570px;z-index: 99999" alt="Responsive image"></img>
+			<a class="btn btn-danger btn-lg" href="web/common/browser/Chrome_Setup.exe" style="width:15%;position: fixed;left: 300px;top: 560px">&nbsp;&nbsp;&nbsp;Chrome浏览器下载</a>
+			<a class="btn btn-danger btn-lg" href="web/common/files/咸宁市平时考核系统运行实施手册_V1.0.doc" style="width:12%;position: fixed;left: 100px;top: 560px">操作手册下载</a>
 			
 	</body>
 

@@ -12,21 +12,21 @@ body {
 	font-family: Yahei, Georgia, Serif;
 	font-size: 18px;
 	top: 10px; 
-	position: absolute;
+	position: fixed;
 } 
 #systemName{
-	padding-left:550px;
+	padding-left:350px;
 	bottom: 40px;font-size :10px;
 	font-weight: bold;
 	color: #FFFFFF;
-	position: absolute;
+	position: fixed;
 	border-radius: 60px;
 }
 
 .login_username {
-	left: 750px;
-	top: 570px; 
-	position: absolute;
+	left: 600px;
+	top: 560px; 
+	position: fixed;
 	z-index: 1;
 	font-size: 18px;
 }
@@ -36,9 +36,9 @@ body {
 	width: 100%;
 }
 .login_username_hide {
-	left: 750px;
-	top: 570px; 
-	position: absolute;
+	left: 600px;
+	top: 560px; 
+	position: fixed;
 	z-index: 1;
 	font-size: 18px;
 }
@@ -49,9 +49,9 @@ body {
 	color:#6B6B6B
 }
 .login_password {
-	left: 1000px;
-	top: 570px; 
-	position: absolute;
+	left: 850px;
+	top: 560px; 
+	position: fixed;
 	z-index: 1;
 	font-size: 18px;
 }
@@ -61,9 +61,9 @@ body {
 	width: 100%;
 }
 .login_password_hide {
-	left: 1000px;
-	top: 570px; 
-	position: absolute;
+	left: 850px;
+	top: 560px; 
+	position: fixed;
 	z-index: 2;
 	font-size: 18px;
 }
@@ -74,19 +74,19 @@ body {
 	color:#6B6B6B
 }
 .login_footer {
-	left: 1250px;
-	top: 570px; 
-	position: absolute;
+	left: 1100px;
+	top: 560px; 
+	position: fixed;
 	z-index: 1;
 	width: 8%;
 }
 
 .login_hide {
-	left: 1000px;
-	top: 550px; font-size : 12px;
+	left: 850px;
+	top: 540px; font-size : 12px;
 	font-weight: bold;
 	color: #FFFFFF;
-	position: absolute; 
+	position: fixed; 
 }
 
 
@@ -105,7 +105,7 @@ body {
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -145,7 +145,7 @@ body {
   background-color: #777;
 }
 .carousel-inner > .item > img {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   min-width: 100%;

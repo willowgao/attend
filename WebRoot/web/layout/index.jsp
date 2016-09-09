@@ -71,7 +71,7 @@
 					<div title="个人中心" style="background-image:url('<%=webapp%>/web/common/css/images/bg-header2.png');">
 						<img src="<%=webapp%>/web/common/css/images/2_003.png" style="position:absolute;left:25%;top:30%; width:8%;height:10%"></img>
 					 	<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60; top: 100; width: 100%; height: 30%; border: 1px solid #ccc;">
+							style="position: absolute; left: 60; top: 100; width: 90%; height: 30%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;font-weight: bold; ">
 								打卡区域
 							</div>
@@ -103,7 +103,7 @@
 							</table>  
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 60;  bottom: 50; width: 595px; height: 47%;  border: 1px solid #ccc;">
+							style="position: absolute; left: 60;  bottom: 50; width: 45%; height: 47%;  border: 1px solid #ccc;">
 							<div id="title" style="padding: 13px;  color: #404040;font-weight: bold; ">
 							</div>
 							<div id="topic" class="topic_icon" align="center">
@@ -140,7 +140,7 @@
 							
 						</div>
 						<div class="easyui-draggable" data-options="handle:'#title',onDrag:onDrag"
-							style="position: absolute; left: 664; bottom: 50; width: 595px; height: 47%; border: 1px solid #ccc;">
+							style="position: absolute; left: 50%; bottom: 50; width: 45%; height: 47%; border: 1px solid #ccc;">
 							<div id="title" style="padding: 5px;  color: #404040;font-weight: bold; ">
 								考勤记录
 							</div>
